@@ -677,14 +677,21 @@ linear-gradient(
 />
       <div
   id='pdf-report'
-  style={{
-    width: '100%',
+style={{
+  width: '100%',
+  maxWidth: '1100px',
+  margin: '0 auto',
+  boxSizing: 'border-box',
 
-maxWidth: '1100px',
-          margin: '0 auto',
-          background: 'rgba(255,255,255,0.96)',
-          borderRadius: '32px',
-          padding: '18px',
+  background: 'rgba(255,255,255,0.96)',
+
+  borderRadius: isMobile
+    ? '22px'
+    : '32px',
+
+  padding: isMobile
+    ? '14px'
+    : '18px',
           backdropFilter: 'blur(10px)',
           boxShadow:
 `
@@ -1112,6 +1119,8 @@ backdropFilter: 'blur(12px)',
           style={{
             position: 'relative',
 overflow: 'hidden',
+width: '100%',
+    boxSizing: 'border-box',
             marginTop: '18px',
             background:
 `
@@ -1135,7 +1144,7 @@ linear-gradient(
 )
 `,
             borderRadius: '32px',
-            padding: '16px',
+            padding: isMobile ? '8px' : '16px',
             color: '#fff',
             boxShadow:
 '0 20px 60px rgba(37,99,235,0.18)',
