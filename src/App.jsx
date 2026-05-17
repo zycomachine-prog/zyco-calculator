@@ -596,23 +596,24 @@ const pageHeightPx = Math.floor(
 
 let renderedHeight = 0
 
-// 创建分页canvas
-const pageCanvas =
-  document.createElement('canvas')
+let pageIndex = 0
 
-const pageCtx =
-  pageCanvas.getContext('2d')
+while (pageIndex * pageHeightPx < imgHeight) {
 
-while (renderedHeight < imgHeight) {
+  const pageCanvas =
+    document.createElement('canvas')
+
+  const pageCtx =
+    pageCanvas.getContext('2d')
 
   pageCanvas.width = imgWidth
 
   pageCanvas.height = Math.min(
     pageHeightPx,
-    imgHeight - renderedHeight
+    imgHeight -
+      pageIndex * pageHeightPx
   )
 
-  // 白色背景
   pageCtx.fillStyle = '#ffffff'
 
   pageCtx.fillRect(
@@ -622,11 +623,10 @@ while (renderedHeight < imgHeight) {
     pageCanvas.height
   )
 
-  // 裁切当前页
   pageCtx.drawImage(
     canvas,
     0,
-    renderedHeight,
+    pageIndex * pageHeightPx,
     imgWidth,
     pageCanvas.height,
     0,
@@ -635,33 +635,41 @@ while (renderedHeight < imgHeight) {
     pageCanvas.height
   )
 
-  const pageData =
+  const imgData =
     pageCanvas.toDataURL(
-      'image/jpeg',
-      1.0
+      'image/png'
     )
 
-  // 第二页开始新增页面
-  if (renderedHeight > 0) {
+  if (pageIndex > 0) {
     pdf.addPage()
   }
 
-  // 当前页在PDF中的高度
-  const pageHeightMm =
-    (pageCanvas.height * pdfWidth) /
+  const renderHeight =
+    (pageCanvas.height *
+      pdfWidth) /
     pageCanvas.width
 
   pdf.addImage(
-    pageData,
-    'JPEG',
+    imgData,
+    'PNG',
     0,
     0,
     pdfWidth,
-    pageHeightMm
+    renderHeight,
+    undefined,
+    'FAST'
   )
 
-  renderedHeight += pageHeightPx
+  pageIndex++
 }
+
+// 创建分页canvas
+const pageCanvas =
+  document.createElement('canvas')
+
+const pageCtx =
+  pageCanvas.getContext('2d')
+
 
 pdf.save(
   'ZYCO-Bending-Report.pdf'
@@ -693,11 +701,13 @@ pdf.save(
     <style>{animationStyle}</style>
 
     <div
-      style={{
-        minHeight: '100vh',
-        width: '100%',
-overflowX: 'hidden',
-overflowY: 'visible',
+  style={{
+    minHeight: '100vh',
+    width: '100%',
+    maxWidth: '100vw',
+    overflowX: 'hidden',
+    overflowY: 'visible',
+    boxSizing: 'border-box',
         background: `
 radial-gradient(
 circle at 0% 0%,
@@ -724,7 +734,7 @@ linear-gradient(
 #dbeafe 100%
 )
 `,
-        padding: '16px',
+        padding: isMobile ? '10px' : '16px',
         fontFamily: 'Arial',
         position: 'relative',
        
@@ -755,6 +765,9 @@ linear-gradient(
 style={{
   width: '100%',
   maxWidth: '1100px',
+  boxSizing: 'border-box',
+overflowX: 'hidden',
+maxWidth: '100%',
     minWidth: 0,
   margin: '0 auto',
   boxSizing: 'border-box',
