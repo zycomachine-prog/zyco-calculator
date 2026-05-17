@@ -565,23 +565,45 @@ await new Promise((resolve) =>
     (canvas.height * pdfWidth) /
     canvas.width
 
- const pageHeight =
+const pageHeight =
   pdf.internal.pageSize.getHeight()
 
-let heightLeft = pdfHeight
+if (pdfHeight <= pageHeight) {
 
-let position = 0
+  pdf.addImage(
+    imgData,
+    'PNG',
+    0,
+    0,
+    pdfWidth,
+    pdfHeight
+  )
 
-pdf.addImage(
-  imgData,
-  'PNG',
-  0,
-  position,
-  pdfWidth,
-  pdfHeight
-)
+} else {
 
-heightLeft -= pageHeight
+  let position = 0
+  let remainingHeight = pdfHeight
+
+  while (remainingHeight > 0) {
+
+    pdf.addImage(
+      imgData,
+      'PNG',
+      0,
+      position,
+      pdfWidth,
+      pdfHeight
+    )
+
+    remainingHeight -= pageHeight
+
+    position -= pageHeight
+
+    if (remainingHeight > 0) {
+      pdf.addPage()
+    }
+  }
+}
 
 while (heightLeft > 0) {
   position = heightLeft - pdfHeight
@@ -623,6 +645,8 @@ setIsExportingPDF(false)
     <div
       style={{
         minHeight: '100vh',
+        width: '100%',
+overflowX: 'hidden',
         background: `
 radial-gradient(
 circle at 0% 0%,
@@ -682,6 +706,7 @@ style={{
   maxWidth: '1100px',
   margin: '0 auto',
   boxSizing: 'border-box',
+  overflow: 'hidden',
 
   background: 'rgba(255,255,255,0.96)',
 
@@ -1405,7 +1430,7 @@ border:
               </div>
 
               <svg
-                width='100%'
+                width='94%'
                 height={isMobile ? '220' : '280'}
                 viewBox='0 0 500 420'
               >
