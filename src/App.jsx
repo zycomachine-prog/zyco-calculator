@@ -509,122 +509,133 @@ const animationStyle = `
 }
 `
 const downloadPDF = async () => {
-  setIsExportingPDF(true)
+  try {
+    setIsExportingPDF(true)
 
-await new Promise((resolve) =>
-  setTimeout(resolve, 300)
-)
+    await new Promise((resolve) =>
+      setTimeout(resolve, 300)
+    )
 
-// 修复PDF输入框文字偏上
-const inputs = document.querySelectorAll(
-  'input, select'
-)
+    // 修复输入框文字位置
+    const inputs =
+      document.querySelectorAll(
+        'input, select'
+      )
 
-inputs.forEach((el) => {
-  el.dataset.originalPaddingTop =
-    el.style.paddingTop
+    inputs.forEach((el) => {
+      el.dataset.originalPaddingTop =
+        el.style.paddingTop
 
-  el.dataset.originalLineHeight =
-    el.style.lineHeight
+      el.dataset.originalPaddingBottom =
+        el.style.paddingBottom
 
-  el.style.paddingTop = '16px'
-el.style.paddingBottom = '16px'
-el.style.lineHeight = 'normal'
-})
+      el.dataset.originalLineHeight =
+        el.style.lineHeight
 
-await new Promise((resolve) =>
-  setTimeout(resolve, 100)
-)
- const input =
-  document.getElementById(
-    'pdf-report'
-  )
-
-if (!input) {
-  setIsExportingPDF(false)
-  return
-}
-
-  const canvas =
-    await html2canvas(input, {
-      scale: 1.5,
-      useCORS: true,
-      backgroundColor: '#ffffff',
+      el.style.paddingTop = '16px'
+      el.style.paddingBottom = '16px'
+      el.style.lineHeight = 'normal'
     })
 
-  const imgData =
-    canvas.toDataURL('image/png')
+    await new Promise((resolve) =>
+      setTimeout(resolve, 100)
+    )
 
-  const pdf = new jsPDF(
-    'p',
-    'mm',
-    'a4'
-  )
+    const input =
+      document.getElementById(
+        'pdf-report'
+      )
 
-  const pdfWidth =
-    pdf.internal.pageSize.getWidth()
+    if (!input) {
+      setIsExportingPDF(false)
+      return
+    }
 
-  const pdfHeight =
-    (canvas.height * pdfWidth) /
-    canvas.width
+    const canvas =
+      await html2canvas(input, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        scrollY: -window.scrollY,
+      })
 
-const pdfWidth =
-  pdf.internal.pageSize.getWidth()
+    const imgData =
+      canvas.toDataURL('image/png')
 
-const pageHeight =
-  pdf.internal.pageSize.getHeight()
+    const pdf = new jsPDF(
+      'p',
+      'mm',
+      'a4'
+    )
 
-const pdfHeight =
-  (canvas.height * pdfWidth) /
-  canvas.width
+    const pdfWidth =
+      pdf.internal.pageSize.getWidth()
 
-let heightLeft = pdfHeight
+    const pageHeight =
+      pdf.internal.pageSize.getHeight()
 
-let position = 0
+    const imgHeight =
+      (canvas.height * pdfWidth) /
+      canvas.width
 
-pdf.addImage(
-  imgData,
-  'PNG',
-  0,
-  position,
-  pdfWidth,
-  pdfHeight
-)
+    let heightLeft = imgHeight
 
-heightLeft -= pageHeight
+    let position = 0
 
-while (heightLeft > 0) {
+    // 第一页
+    pdf.addImage(
+      imgData,
+      'PNG',
+      0,
+      position,
+      pdfWidth,
+      imgHeight
+    )
 
-  position = heightLeft - pdfHeight
+    heightLeft -= pageHeight
 
-  pdf.addPage()
+    // 多页
+    while (heightLeft > 0) {
+      position =
+        heightLeft - imgHeight
 
-  pdf.addImage(
-    imgData,
-    'PNG',
-    0,
-    position,
-    pdfWidth,
-    pdfHeight
-  )
+      pdf.addPage()
 
-  heightLeft -= pageHeight
-}
+      pdf.addImage(
+        imgData,
+        'PNG',
+        0,
+        position,
+        pdfWidth,
+        imgHeight
+      )
 
-pdf.save(
-  'ZYCO-Bending-Report.pdf'
-)
+      heightLeft -= pageHeight
+    }
 
-// 恢复输入框样式
-inputs.forEach((el) => {
-  el.style.paddingTop =
-    el.dataset.originalPaddingTop || ''
+    pdf.save(
+      'ZYCO-Bending-Report.pdf'
+    )
 
-  el.style.lineHeight =
-    el.dataset.originalLineHeight || ''
-})
+    // 恢复样式
+    inputs.forEach((el) => {
+      el.style.paddingTop =
+        el.dataset
+          .originalPaddingTop || ''
 
-setIsExportingPDF(false)
+      el.style.paddingBottom =
+        el.dataset
+          .originalPaddingBottom || ''
+
+      el.style.lineHeight =
+        el.dataset
+          .originalLineHeight || ''
+    })
+  } catch (error) {
+    console.error(error)
+  } finally {
+    setIsExportingPDF(false)
+  }
 }
 
   return (
@@ -695,7 +706,7 @@ style={{
   maxWidth: '1100px',
   margin: '0 auto',
   boxSizing: 'border-box',
-  overflow: 'hidden',
+  overflow: 'visible',
 
   background: 'rgba(255,255,255,0.96)',
 
