@@ -2,6 +2,7 @@ import {
   useState,
   useEffect,
   useMemo,
+  useRef,
 } from 'react'
 import CountUp from 'react-countup'
 import jsPDF from 'jspdf'
@@ -71,6 +72,14 @@ const handleFeatureLeave = (e) => {
     '0 10px 30px rgba(0,0,0,0.18)'
 }
 const [language, setLanguage] = useState('EN')
+
+const thicknessRef = useRef(null)
+
+const lengthRef = useRef(null)
+
+const vdieRef = useRef(null)
+
+const materialRef = useRef(null)
 
 const [thickness, setThickness] =
   useState('')
@@ -508,6 +517,10 @@ const animationStyle = `
   }
 }
 `
+const svgAnimationPlayState =
+  isExportingPDF
+    ? 'paused'
+    : 'running'
 const downloadPDF = async () => {
   try {
     setIsExportingPDF(true)
@@ -559,63 +572,100 @@ const downloadPDF = async () => {
         scrollY: -window.scrollY,
       })
 
-    const imgData =
-      canvas.toDataURL('image/png')
+const pdf = new jsPDF(
+  'p',
+  'mm',
+  'a4'
+)
 
-    const pdf = new jsPDF(
-      'p',
-      'mm',
-      'a4'
+const pdfWidth =
+  pdf.internal.pageSize.getWidth()
+
+const pdfHeight =
+  pdf.internal.pageSize.getHeight()
+
+// 原始canvas尺寸
+const imgWidth = canvas.width
+
+const imgHeight = canvas.height
+
+// 每页对应的canvas像素高度
+const pageHeightPx = Math.floor(
+  (imgWidth * pdfHeight) / pdfWidth
+)
+
+let renderedHeight = 0
+
+// 创建分页canvas
+const pageCanvas =
+  document.createElement('canvas')
+
+const pageCtx =
+  pageCanvas.getContext('2d')
+
+while (renderedHeight < imgHeight) {
+
+  pageCanvas.width = imgWidth
+
+  pageCanvas.height = Math.min(
+    pageHeightPx,
+    imgHeight - renderedHeight
+  )
+
+  // 白色背景
+  pageCtx.fillStyle = '#ffffff'
+
+  pageCtx.fillRect(
+    0,
+    0,
+    pageCanvas.width,
+    pageCanvas.height
+  )
+
+  // 裁切当前页
+  pageCtx.drawImage(
+    canvas,
+    0,
+    renderedHeight,
+    imgWidth,
+    pageCanvas.height,
+    0,
+    0,
+    imgWidth,
+    pageCanvas.height
+  )
+
+  const pageData =
+    pageCanvas.toDataURL(
+      'image/jpeg',
+      1.0
     )
 
-    const pdfWidth =
-      pdf.internal.pageSize.getWidth()
+  // 第二页开始新增页面
+  if (renderedHeight > 0) {
+    pdf.addPage()
+  }
 
-    const pageHeight =
-      pdf.internal.pageSize.getHeight()
+  // 当前页在PDF中的高度
+  const pageHeightMm =
+    (pageCanvas.height * pdfWidth) /
+    pageCanvas.width
 
-    const imgHeight =
-      (canvas.height * pdfWidth) /
-      canvas.width
+  pdf.addImage(
+    pageData,
+    'JPEG',
+    0,
+    0,
+    pdfWidth,
+    pageHeightMm
+  )
 
-    let heightLeft = imgHeight
+  renderedHeight += pageHeightPx
+}
 
-    let position = 0
-
-    // 第一页
-    pdf.addImage(
-      imgData,
-      'PNG',
-      0,
-      position,
-      pdfWidth,
-      imgHeight
-    )
-
-    heightLeft -= pageHeight
-
-    // 多页
-    while (heightLeft > 0) {
-      position =
-        heightLeft - imgHeight
-
-      pdf.addPage()
-
-      pdf.addImage(
-        imgData,
-        'PNG',
-        0,
-        position,
-        pdfWidth,
-        imgHeight
-      )
-
-      heightLeft -= pageHeight
-    }
-
-    pdf.save(
-      'ZYCO-Bending-Report.pdf'
-    )
+pdf.save(
+  'ZYCO-Bending-Report.pdf'
+)
 
     // 恢复样式
     inputs.forEach((el) => {
@@ -647,6 +697,7 @@ const downloadPDF = async () => {
         minHeight: '100vh',
         width: '100%',
 overflowX: 'hidden',
+overflowY: 'visible',
         background: `
 radial-gradient(
 circle at 0% 0%,
@@ -676,7 +727,7 @@ linear-gradient(
         padding: '16px',
         fontFamily: 'Arial',
         position: 'relative',
-        overflow: 'hidden',
+       
       }}
     >
       <div
@@ -704,6 +755,7 @@ linear-gradient(
 style={{
   width: '100%',
   maxWidth: '1100px',
+    minWidth: 0,
   margin: '0 auto',
   boxSizing: 'border-box',
   overflow: 'visible',
@@ -715,7 +767,7 @@ style={{
     : '32px',
 
   padding: isMobile
-    ? '14px'
+    ? '10px'
     : '18px',
           backdropFilter: 'blur(10px)',
           boxShadow:
@@ -975,8 +1027,17 @@ backdropFilter: 'blur(12px)',
 
 <div style={inputWrapStyle}>
   <input
-    type='number'
-    value={thickness}
+  ref={thicknessRef}
+
+  type='number'
+
+  value={thickness}
+
+  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      lengthRef.current?.focus()
+    }
+  }}
     onChange={(e) => {
       const value = e.target.value
 
@@ -1012,8 +1073,17 @@ backdropFilter: 'blur(12px)',
 
 <div style={inputWrapStyle}>
   <input
-    type='number'
-    value={length}
+  ref={lengthRef}
+
+  type='number'
+
+  value={length}
+
+  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      vdieRef.current?.focus()
+    }
+  }}
     onChange={(e) => {
       const value = e.target.value
 
@@ -1047,9 +1117,18 @@ backdropFilter: 'blur(12px)',
   </div>
 
 <div style={inputWrapStyle}>
-  <input
-    type='number'
-    value={customVdie}
+ <input
+  ref={vdieRef}
+
+  type='number'
+
+  value={customVdie}
+
+  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      materialRef.current?.focus()
+    }
+  }}
     onChange={(e) => {
       const value = e.target.value
 
@@ -1084,7 +1163,15 @@ backdropFilter: 'blur(12px)',
   </div>
 
 <select
+  ref={materialRef}
+
   value={material}
+
+  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      e.target.blur()
+    }
+  }}
   onChange={(e) =>
     setMaterial(e.target.value)
   }
@@ -1123,11 +1210,12 @@ backdropFilter: 'blur(12px)',
         {/* 结果区域 */}
         <div
   style={{
-    position: 'absolute',
-    right: '30px',
-    bottom: '20px',
+    right: isMobile ? '10px' : '30px',
+bottom: isMobile ? '10px' : '20px',
 
-    fontSize: '42px',
+fontSize: isMobile
+  ? '24px'
+  : '42px',
 
     fontWeight: '900',
 
@@ -1168,7 +1256,12 @@ linear-gradient(
 #1d4ed8 100%
 )
 `,
-            borderRadius: '32px',
+            borderRadius:
+  isExportingPDF
+    ? '0px'
+    : isMobile
+      ? '22px'
+      : '32px',
             padding: isMobile ? '8px' : '16px',
             color: '#fff',
             boxShadow:
@@ -1217,15 +1310,18 @@ linear-gradient(
          <div
   style={{
     fontSize:
-      isMobile
-        ? '52px'
-        : '78px',
+  isMobile
+    ? 'clamp(34px,10vw,52px)'
+    : '78px',
+        wordBreak:'break-word',
+overflowWrap:'break-word',
 
 fontWeight: '900',
 
 marginBottom: '24px',
 
-letterSpacing: '1px',
+letterSpacing:
+  isMobile ? '0px' : '1px',
 fontVariantNumeric: 'tabular-nums',
 
 
@@ -1430,10 +1526,14 @@ border:
               </div>
 
               <svg
-                width='94%'
-                height={isMobile ? '220' : '280'}
-                viewBox='0 0 500 420'
-              >
+  width='100%'
+  height={isMobile ? '220' : '280'}
+  viewBox='0 0 500 420'
+  style={{
+    animationPlayState:
+      svgAnimationPlayState,
+  }}
+>
               <pattern
   id='scanGrid'
   width='20'
@@ -1581,6 +1681,11 @@ border:
     values='80;92;80'
     dur='2.4s'
     repeatCount='indefinite'
+    begin={
+  isExportingPDF
+    ? 'indefinite'
+    : '0s'
+}
   />
 </rect>
 
@@ -1630,6 +1735,11 @@ strokeWidth='1.5'
   calcMode='spline'
   keySplines='0.42 0 0.2 1;0.42 0 0.58 1'
   keyTimes='0;0.55;1'
+  begin={
+  isExportingPDF
+    ? 'indefinite'
+    : '0s'
+}
 />
 </rect>
 
