@@ -535,12 +535,15 @@ el.style.lineHeight = 'normal'
 await new Promise((resolve) =>
   setTimeout(resolve, 100)
 )
-  const input =
-    document.getElementById(
-      'pdf-report'
-    )
+ const input =
+  document.getElementById(
+    'pdf-report'
+  )
 
-  if (!input) return
+if (!input) {
+  setIsExportingPDF(false)
+  return
+}
 
   const canvas =
     await html2canvas(input, {
@@ -565,47 +568,33 @@ await new Promise((resolve) =>
     (canvas.height * pdfWidth) /
     canvas.width
 
+const pdfWidth =
+  pdf.internal.pageSize.getWidth()
+
 const pageHeight =
   pdf.internal.pageSize.getHeight()
 
-if (pdfHeight <= pageHeight) {
+const pdfHeight =
+  (canvas.height * pdfWidth) /
+  canvas.width
 
-  pdf.addImage(
-    imgData,
-    'PNG',
-    0,
-    0,
-    pdfWidth,
-    pdfHeight
-  )
+let heightLeft = pdfHeight
 
-} else {
+let position = 0
 
-  let position = 0
-  let remainingHeight = pdfHeight
+pdf.addImage(
+  imgData,
+  'PNG',
+  0,
+  position,
+  pdfWidth,
+  pdfHeight
+)
 
-  while (remainingHeight > 0) {
-
-    pdf.addImage(
-      imgData,
-      'PNG',
-      0,
-      position,
-      pdfWidth,
-      pdfHeight
-    )
-
-    remainingHeight -= pageHeight
-
-    position -= pageHeight
-
-    if (remainingHeight > 0) {
-      pdf.addPage()
-    }
-  }
-}
+heightLeft -= pageHeight
 
 while (heightLeft > 0) {
+
   position = heightLeft - pdfHeight
 
   pdf.addPage()
