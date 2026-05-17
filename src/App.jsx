@@ -765,13 +765,12 @@ linear-gradient(
 style={{
   width: '100%',
   maxWidth: '1100px',
-  boxSizing: 'border-box',
-overflowX: 'hidden',
-maxWidth: '100%',
-    minWidth: 0,
+  minWidth: 0,
   margin: '0 auto',
   boxSizing: 'border-box',
-  overflow: 'visible',
+
+  overflowX: 'hidden',
+  overflowY: 'visible',
 
   background: 'rgba(255,255,255,0.96)',
 
@@ -782,16 +781,19 @@ maxWidth: '100%',
   padding: isMobile
     ? '10px'
     : '18px',
-          backdropFilter: 'blur(10px)',
-          boxShadow:
+
+  backdropFilter: 'blur(10px)',
+
+  boxShadow:
 `
 0 30px 90px rgba(15,23,42,0.12),
 0 0 0 1px rgba(255,255,255,0.45),
 inset 0 1px 0 rgba(255,255,255,0.75)
 `,
-border:
-  '1px solid rgba(255,255,255,0.65)',
-        }}
+
+  border:
+    '1px solid rgba(255,255,255,0.65)',
+}}
       >
 {/* 顶部 */}
 <div
