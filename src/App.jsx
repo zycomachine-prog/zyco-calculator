@@ -544,7 +544,7 @@ await new Promise((resolve) =>
 
   const canvas =
     await html2canvas(input, {
-      scale: 2,
+      scale: 1.5,
       useCORS: true,
       backgroundColor: '#ffffff',
     })
@@ -565,16 +565,42 @@ await new Promise((resolve) =>
     (canvas.height * pdfWidth) /
     canvas.width
 
+ const pageHeight =
+  pdf.internal.pageSize.getHeight()
+
+let heightLeft = pdfHeight
+
+let position = 0
+
+pdf.addImage(
+  imgData,
+  'PNG',
+  0,
+  position,
+  pdfWidth,
+  pdfHeight
+)
+
+heightLeft -= pageHeight
+
+while (heightLeft > 0) {
+  position = heightLeft - pdfHeight
+
+  pdf.addPage()
+
   pdf.addImage(
     imgData,
     'PNG',
     0,
-    0,
+    position,
     pdfWidth,
     pdfHeight
   )
 
- pdf.save(
+  heightLeft -= pageHeight
+}
+
+pdf.save(
   'ZYCO-Bending-Report.pdf'
 )
 
@@ -652,7 +678,9 @@ linear-gradient(
       <div
   id='pdf-report'
   style={{
-    maxWidth: '1100px',
+    width: '100%',
+
+maxWidth: '1100px',
           margin: '0 auto',
           background: 'rgba(255,255,255,0.96)',
           borderRadius: '32px',
@@ -1267,16 +1295,22 @@ letterSpacing: '1px',
 }
               </div>
 
-              <div
-                style={{
-                  marginTop: '30px',
-                  display: 'grid',
-                  gridTemplateColumns:
-                    '1fr 1fr',
-                  gap: '16px',
-                  perspective: '1000px',
-                }}
-              >
+             <div
+  style={{
+    marginTop: '30px',
+
+    display: 'grid',
+
+    gridTemplateColumns:
+      isMobile
+        ? '1fr'
+        : '1fr 1fr',
+
+    gap: '16px',
+
+    perspective: '1000px',
+  }}
+>
                 <div
   style={featureStyle}
   onMouseEnter={handleFeatureEnter}
@@ -2123,7 +2157,7 @@ const featureStyle = {
 
   color: '#ffffff',
 
-  fontSize: '16px',
+  fontSize: '15px',
 
   fontWeight: '700',
 
@@ -2137,6 +2171,13 @@ const featureStyle = {
 
   transition:
     'all 0.25s ease',
+    wordBreak: 'break-word',
+
+overflowWrap: 'break-word',
+
+whiteSpace: 'normal',
+
+lineHeight: '1.4',
 }
 
 const inputStyle = {
