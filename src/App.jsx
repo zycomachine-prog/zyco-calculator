@@ -1,4 +1,4 @@
-import {
+﻿import {
   useState,
   useEffect,
   useMemo,
@@ -91,11 +91,11 @@ const [material, setMaterial] =
   useState('mildSteel')
 const [isExportingPDF, setIsExportingPDF] =
   useState(false)
-// 手动V槽
+// 鎵嬪姩V妲?
 const [customVdie, setCustomVdie] =
   useState('')
 
-// 自动推荐V槽
+// 鑷姩鎺ㄨ崘V妲?
 const getVdie = (t) => {
   const T = Number(t)
 
@@ -106,19 +106,19 @@ const getVdie = (t) => {
   return T * 12
 }
 
-// 推荐V槽（固定显示）
+// 鎺ㄨ崘V妲斤紙鍥哄畾鏄剧ず锛?
 const recommendedVdie =
   thickness !== ''
     ? getVdie(Number(thickness))
     : ''
 
-// 实际计算V槽
+// 瀹為檯璁＄畻V妲?
 const vDie =
   customVdie !== ''
     ? Number(customVdie)
     : recommendedVdie || ''
 
-  // 材料系数
+  // 鏉愭枡绯绘暟
   const materialFactors = {
     mildSteel: 1,
     galvanizedSteel: 1.05,
@@ -128,7 +128,18 @@ const vDie =
     brass: 0.6,
   }
 
-  // 折弯力计算
+  const targetAngle = 90
+
+  const springbackRanges = {
+    mildSteel: { min: 0.6, max: 1.3 },
+    galvanizedSteel: { min: 0.8, max: 1.6 },
+    stainless201: { min: 2.2, max: 3.8 },
+    stainless304: { min: 1.8, max: 3.0 },
+    aluminum: { min: 1.2, max: 2.8 },
+    brass: { min: 0.4, max: 1.2 },
+  }
+
+  // 鎶樺集鍔涜绠?
   const calculateForce = () => {
     const T = Number(thickness)
     const L = Number(length)
@@ -151,7 +162,7 @@ const vDie =
     return Number(tonnage.toFixed(2))
   }
 
-  // 自动实时计算
+  // 鑷姩瀹炴椂璁＄畻
   const tonnage = useMemo(() => {
   return calculateForce()
 }, [
@@ -161,7 +172,108 @@ const vDie =
   material,
 ])
 
-  // 机型库
+  const springbackEstimate = useMemo(() => {
+  const T = Number(thickness)
+  const V = Number(vDie)
+
+  if (!T || !V) return null
+
+  const materialRange =
+    springbackRanges[material] ||
+    springbackRanges.mildSteel
+
+  const vRatio = Number(vDie) / Number(thickness)
+
+  let vFactor = 1
+
+  if (vRatio <= 6) {
+    vFactor = 0.85
+  } else if (vRatio <= 8) {
+    vFactor = 1
+  } else if (vRatio <= 10) {
+    vFactor = 1.15
+  } else {
+    vFactor = 1.3
+  }
+
+  let thicknessFactor = 1
+
+  if (T < 2) {
+    thicknessFactor = 1.15
+  } else if (T <= 6) {
+    thicknessFactor = 1
+  } else if (T <= 12) {
+    thicknessFactor = 0.9
+  } else {
+    thicknessFactor = 0.8
+  }
+
+  let lengthFactor = 1
+
+  if (Number(length) <= 1000) {
+    lengthFactor = 0.95
+  } else if (Number(length) <= 2500) {
+    lengthFactor = 1
+  } else if (Number(length) <= 4000) {
+    lengthFactor = 1.08
+  } else if (Number(length) <= 6000) {
+    lengthFactor = 1.15
+  } else {
+    lengthFactor = 1.25
+  }
+
+  const clampSpringback = (value) =>
+    Math.min(5.0, Math.max(0.2, value))
+
+  const springbackMin =
+    Number(
+      clampSpringback(
+        materialRange.min *
+        vFactor *
+        thicknessFactor *
+        lengthFactor
+      ).toFixed(1)
+    )
+
+  const springbackMax =
+    Number(
+      clampSpringback(
+        materialRange.max *
+        vFactor *
+        thicknessFactor *
+        lengthFactor
+      ).toFixed(1)
+    )
+
+  const suggestedMinAngle =
+    Number(
+      (
+        targetAngle -
+        springbackMax
+      ).toFixed(1)
+    )
+
+  const suggestedMaxAngle =
+    Number(
+      (
+        targetAngle -
+        springbackMin
+      ).toFixed(1)
+    )
+
+  return {
+    springbackMin,
+    springbackMax,
+    suggestedMinAngle,
+    suggestedMaxAngle,
+  }
+}, [
+  thickness,
+  vDie,
+  material,
+])
+
+  // 鏈哄瀷搴?
   const machineList = [
     [30, 1600],
     [40, 1600],
@@ -214,12 +326,11 @@ const vDie =
     [600, 6000],
   ]
 
-  // 多语言
+  // 澶氳瑷€
   const texts = {
     EN: {
       title: 'ZYCO Press Brake Calculator',
-      subtitle:
-        'Professional Bending Force Calculation System',
+      subtitle: 'Professional Bending Force Calculation System',
       result: 'Calculation Result',
       machine: 'Recommended Machine',
       vdie: 'Recommended V Die',
@@ -230,244 +341,280 @@ const vDie =
       thickness: 'Thickness (mm)',
       length: 'Length (mm)',
       thicknessLabel: 'THICKNESS',
-lengthLabel: 'LENGTH',
-vdieLabel: 'V DIE',
-materialLabel: 'MATERIAL',
-
-systemOnline: 'SYSTEM ONLINE',
-
-hybridServo: 'Hybrid Servo',
-cncControl: 'CNC Control',
-accuracy: '±0.01mm',
-energySaving: 'Energy Saving',
-
-calcDetails: 'CALCULATION DETAILS',
-
-detailThickness: 'Thickness',
-detailLength: 'Length',
-detailVdie: 'V Die',
-materialFactor: 'Material Factor',
-materials: {
-  mildSteel: 'Mild Steel',
-  galvanizedSteel: 'Galvanized Steel',
-  stainless201: 'Stainless 201',
-  stainless304: 'Stainless 304',
-  aluminum: 'Aluminum',
-  brass: 'Brass',
-},
-
-downloadPdf:
-  'DOWNLOAD PDF REPORT',
+      lengthLabel: 'LENGTH',
+      vdieLabel: 'V DIE',
+      materialLabel: 'MATERIAL',
+      systemOnline: 'SYSTEM ONLINE',
+      hybridServo: 'Hybrid Servo',
+      cncControl: 'CNC Control',
+      accuracy: '±0.01mm',
+      energySaving: 'Energy Saving',
+      calcDetails: 'CALCULATION DETAILS',
+      detailThickness: 'Thickness',
+      detailLength: 'Length',
+      detailVdie: 'V Die',
+      materialFactor: 'Material Factor',
+      downloadPdf: 'DOWNLOAD PDF REPORT',
+      springbackTitle: 'SPRINGBACK ESTIMATION',
+      estimatedSpringback: 'Estimated Springback',
+      suggestedBendAngle: 'Suggested Bend Angle',
+      springbackNote:
+        'Reference value for air bending. Actual springback may vary depending on material batch, tooling, machine condition and bending method. Suggested bend angle is for process reference only and may not be equal to the final input angle used in the press brake control system. Actual parameters should be adjusted according to machine controller, tooling and trial bending results.',
+      springbackLengthNote:
+        'Longer bending length may increase angle deviation due to machine, tooling and deflection effects.',
+      machineAdviceTitle: 'MACHINE SELECTION ADVICE',
+      machineAdviceNote:
+        "For long-term stable operation, it is recommended to avoid continuous use near the machine's maximum rated tonnage. For high-load production conditions, selecting a larger machine model or increasing the V-die opening is recommended to reduce stress on tooling and machine components.",
+      machineAdvisoryNote:
+        "For long-term stable operation, it is recommended to avoid continuous use near the machine's maximum rated tonnage. For high-load production conditions, selecting a larger machine model or increasing the V-die opening is recommended to reduce stress on tooling and machine components.",
+      materials: {
+        mildSteel: 'Mild Steel',
+        galvanizedSteel: 'Galvanized Steel',
+        stainless201: 'Stainless 201',
+        stainless304: 'Stainless 304',
+        aluminum: 'Aluminum',
+        brass: 'Brass',
+      },
     },
-
     CN: {
       title: 'ZYCO折弯机计算器',
-      subtitle: '专业力弯曲计算系统',
+      subtitle: '专业折弯力计算系统',
       result: '计算结果',
-      machine: '推荐型号',
-      vdie: '推荐V型模具',
-      whatsapp: 'WhatsApp 联系方式',
-      custom: '定制机型',
+      machine: '推荐设备',
+      vdie: '推荐V槽',
+      whatsapp: 'WhatsApp 联系',
+      custom: '定制设备',
       ton: '吨',
       diagram: '折弯机示意图',
       thickness: '板厚 (mm)',
-      length: '折弯长度 (mm)',
+      length: '长度 (mm)',
       thicknessLabel: '板厚',
-lengthLabel: '长度',
-vdieLabel: 'V槽',
-materialLabel: '材料',
-
-systemOnline: '系统运行中',
-
-hybridServo: '电液伺服',
-cncControl: '数控系统',
-accuracy: '±0.01毫米',
-energySaving: '高效节能',
-
-calcDetails: '计算详情',
-
-detailThickness: '板厚',
-detailLength: '长度',
-detailVdie: 'V槽',
-materialFactor: '材料系数',
-materials: {
-  mildSteel: '普通钢',
-  galvanizedSteel: '镀锌钢',
-  stainless201: '201不锈钢',
-  stainless304: '304不锈钢',
-  aluminum: '铝',
-  brass: '黄铜',
-},
-downloadPdf: '下载PDF报告',
+      lengthLabel: '长度',
+      vdieLabel: 'V槽',
+      materialLabel: '材料',
+      systemOnline: '系统在线',
+      hybridServo: '混合伺服',
+      cncControl: '数控系统',
+      accuracy: '±0.01mm',
+      energySaving: '节能',
+      calcDetails: '计算详情',
+      detailThickness: '板厚',
+      detailLength: '长度',
+      detailVdie: 'V槽',
+      materialFactor: '材料系数',
+      downloadPdf: '下载PDF报告',
+      springbackTitle: '回弹估算',
+      estimatedSpringback: '预估回弹',
+      suggestedBendAngle: '建议折弯角度',
+      springbackNote:
+        '该数值为空气折弯经验参考值，实际回弹会因材料批次、模具、设备状态和折弯方式不同而变化。建议折弯角度仅供工艺参考，并不等同于折弯机系统最终输入角度。实际参数需根据设备系统、模具及试折结果进行调整。',
+      springbackLengthNote:
+        '较长折弯长度可能因设备、模具及挠度影响而增加角度偏差。',
+      machineAdviceTitle: '设备选型建议',
+      machineAdviceNote:
+        '为保证设备长期稳定运行，建议避免长时间接近或达到机器最大额定压力使用。对于长期高负载工况，建议选择更大型号设备或适当增大 V 开口，以降低模具与设备负载。',
+      machineAdvisoryNote:
+        '为保证设备长期稳定运行，建议避免长时间接近或达到机器最大额定压力使用。对于长期高负载工况，建议选择更大型号设备或适当增大 V 开口，以降低模具与设备负载。',
+      materials: {
+        mildSteel: '普通钢',
+        galvanizedSteel: '镀锌钢',
+        stainless201: '201不锈钢',
+        stainless304: '304不锈钢',
+        aluminum: '铝',
+        brass: '黄铜',
+      },
     },
-
     RU: {
       title: 'Калькулятор листогиба ZYCO',
-      subtitle:
-        'Профессиональная система расчета усилия гибки',
-      result: 'Результат',
-      machine: 'Рекомендуемая модель',
-      vdie: 'Рекомендуемый V-паз',
-      whatsapp: 'WhatsApp',
-      custom: 'Индивидуальная модель',
+      subtitle: 'Профессиональная система расчета усилия гибки',
+      result: 'Результат расчета',
+      machine: 'Рекомендуемый станок',
+      vdie: 'Рекомендуемая V-матрица',
+      whatsapp: 'Связаться в WhatsApp',
+      custom: 'Индивидуальный станок',
       ton: 'Тонн',
-      diagram: 'СХЕМА ГИБКИ',
+      diagram: 'СХЕМА ЛИСТОГИБА',
       thickness: 'Толщина (мм)',
       length: 'Длина (мм)',
       thicknessLabel: 'ТОЛЩИНА',
-lengthLabel: 'ДЛИНА',
-vdieLabel: 'V-ПАЗ',
-materialLabel: 'МАТЕРИАЛ',
-
-systemOnline: 'СИСТЕМА АКТИВНА',
-
-hybridServo: 'Гибридный сервопривод',
-cncControl: 'ЧПУ управление',
-accuracy: '±0.01мм',
-energySaving: 'Энергосбережение',
-
-calcDetails: 'ДЕТАЛИ РАСЧЕТА',
-
-detailThickness: 'Толщина',
-detailLength: 'Длина',
-detailVdie: 'V-Паз',
-materialFactor: 'Коэффициент материала',
-materials: {
-  mildSteel: 'Углеродистая сталь',
-  galvanizedSteel: 'Оцинкованная сталь',
-  stainless201: 'Нерж. сталь 201',
-  stainless304: 'Нерж. сталь 304',
-  aluminum: 'Алюминий',
-  brass: 'Латунь',
-},
-downloadPdf:
-  'СКАЧАТЬ PDF ОТЧЕТ',
+      lengthLabel: 'ДЛИНА',
+      vdieLabel: 'V-МАТРИЦА',
+      materialLabel: 'МАТЕРИАЛ',
+      systemOnline: 'СИСТЕМА ОНЛАЙН',
+      hybridServo: 'Гибридный сервопривод',
+      cncControl: 'ЧПУ управление',
+      accuracy: '±0.01мм',
+      energySaving: 'Энергосбережение',
+      calcDetails: 'ДЕТАЛИ РАСЧЕТА',
+      detailThickness: 'Толщина',
+      detailLength: 'Длина',
+      detailVdie: 'V-матрица',
+      materialFactor: 'Коэффициент материала',
+      downloadPdf: 'СКАЧАТЬ PDF ОТЧЕТ',
+      springbackTitle: 'ОЦЕНКА ПРУЖИНЕНИЯ',
+      estimatedSpringback: 'Оценочное пружинение',
+      suggestedBendAngle: 'Рекомендуемый угол гибки',
+      springbackNote:
+        'Справочное значение для воздушной гибки. Фактическое пружинение может меняться в зависимости от партии материала, оснастки, состояния станка и метода гибки. Рекомендуемый угол гибки является только технологическим ориентиром и может не совпадать с окончательным углом ввода в системе управления листогибом. Фактические параметры следует корректировать с учетом контроллера станка, оснастки и результатов пробной гибки.',
+      springbackLengthNote:
+        'Большая длина гибки может увеличить отклонение угла из-за влияния станка, оснастки и прогиба.',
+      machineAdviceTitle: 'СОВЕТ ПО ВЫБОРУ СТАНКА',
+      machineAdviceNote:
+        'Для долгосрочной стабильной работы рекомендуется избегать продолжительной эксплуатации вблизи максимального номинального усилия станка. При высоких производственных нагрузках рекомендуется выбрать более крупную модель станка или увеличить раскрытие V-матрицы, чтобы снизить нагрузку на оснастку и узлы станка.',
+      machineAdvisoryNote:
+        'Для долгосрочной стабильной работы рекомендуется избегать продолжительной эксплуатации вблизи максимального номинального усилия станка. При высоких производственных нагрузках рекомендуется выбрать более крупную модель станка или увеличить раскрытие V-матрицы, чтобы снизить нагрузку на оснастку и узлы станка.',
+      materials: {
+        mildSteel: 'Углеродистая сталь',
+        galvanizedSteel: 'Оцинкованная сталь',
+        stainless201: 'Нержавеющая сталь 201',
+        stainless304: 'Нержавеющая сталь 304',
+        aluminum: 'Алюминий',
+        brass: 'Латунь',
+      },
     },
-
     ES: {
       title: 'Calculadora de Plegado ZYCO',
-      subtitle:
-        'Sistema profesional de cálculo de fuerza',
-      result: 'Resultado',
+      subtitle: 'Sistema profesional de cálculo de fuerza de plegado',
+      result: 'Resultado del cálculo',
       machine: 'Máquina recomendada',
       vdie: 'Matriz V recomendada',
-      whatsapp: 'WhatsApp',
+      whatsapp: 'Contacto WhatsApp',
       custom: 'Máquina personalizada',
       ton: 'Ton',
-      diagram: 'DIAGRAMA DE PLEGADO',
+      diagram: 'DIAGRAMA DE PLEGADORA',
       thickness: 'Espesor (mm)',
       length: 'Longitud (mm)',
       thicknessLabel: 'ESPESOR',
-lengthLabel: 'LONGITUD',
-vdieLabel: 'MATRIZ V',
-materialLabel: 'MATERIAL',
-
-systemOnline: 'SISTEMA EN LÍNEA',
-
-hybridServo: 'Servo Híbrido',
-cncControl: 'Control CNC',
-accuracy: '±0.01mm',
-energySaving: 'Ahorro de Energía',
-
-calcDetails: 'DETALLES DE CÁLCULO',
-
-detailThickness: 'Espesor',
-detailLength: 'Longitud',
-detailVdie: 'Matriz V',
-materialFactor: 'Factor del Material',
-materials: {
-  mildSteel: 'Acero al carbono',
-  galvanizedSteel: 'Acero galvanizado',
-  stainless201: 'Acero inoxidable 201',
-  stainless304: 'Acero inoxidable 304',
-  aluminum: 'Aluminio',
-  brass: 'Latón',
-},
-downloadPdf: 'DESCARGAR INFORME PDF',
+      lengthLabel: 'LONGITUD',
+      vdieLabel: 'MATRIZ V',
+      materialLabel: 'MATERIAL',
+      systemOnline: 'SISTEMA EN LÍNEA',
+      hybridServo: 'Servo híbrido',
+      cncControl: 'Control CNC',
+      accuracy: '±0.01mm',
+      energySaving: 'Ahorro de energía',
+      calcDetails: 'DETALLES DE CÁLCULO',
+      detailThickness: 'Espesor',
+      detailLength: 'Longitud',
+      detailVdie: 'Matriz V',
+      materialFactor: 'Factor del material',
+      downloadPdf: 'DESCARGAR INFORME PDF',
+      springbackTitle: 'ESTIMACIÓN DE RETORNO ELÁSTICO',
+      estimatedSpringback: 'Retorno elástico estimado',
+      suggestedBendAngle: 'Ángulo de plegado sugerido',
+      springbackNote:
+        'Valor de referencia para plegado al aire. El retorno elástico real puede variar según el lote del material, la herramienta, el estado de la máquina y el método de plegado. El ángulo de plegado sugerido es solo una referencia de proceso y puede no ser igual al ángulo final introducido en el sistema de control de la plegadora. Los parámetros reales deben ajustarse según el controlador de la máquina, la herramienta y los resultados de las pruebas de plegado.',
+      springbackLengthNote:
+        'Una mayor longitud de plegado puede aumentar la desviación del ángulo por efectos de la máquina, la herramienta y la deflexión.',
+      machineAdviceTitle: 'CONSEJO DE SELECCIÓN DE MÁQUINA',
+      machineAdviceNote:
+        'Para una operación estable a largo plazo, se recomienda evitar el uso continuo cerca del tonelaje nominal máximo de la máquina. En condiciones de producción de alta carga, se recomienda seleccionar un modelo de máquina más grande o aumentar la abertura de la matriz V para reducir el esfuerzo sobre la herramienta y los componentes de la máquina.',
+      machineAdvisoryNote:
+        'Para una operación estable a largo plazo, se recomienda evitar el uso continuo cerca del tonelaje nominal máximo de la máquina. En condiciones de producción de alta carga, se recomienda seleccionar un modelo de máquina más grande o aumentar la abertura de la matriz V para reducir el esfuerzo sobre la herramienta y los componentes de la máquina.',
+      materials: {
+        mildSteel: 'Acero dulce',
+        galvanizedSteel: 'Acero galvanizado',
+        stainless201: 'Acero inoxidable 201',
+        stainless304: 'Acero inoxidable 304',
+        aluminum: 'Aluminio',
+        brass: 'Latón',
+      },
     },
-
     TR: {
-      title: 'ZYCO Abkant Hesaplayıcı',
-      subtitle:
-        'Profesyonel Bükme Kuvveti Hesaplama Sistemi',
-      result: 'Sonuç',
+      title: 'ZYCO Abkant Pres Hesaplayıcı',
+      subtitle: 'Profesyonel Bükme Kuvveti Hesaplama Sistemi',
+      result: 'Hesaplama Sonucu',
       machine: 'Önerilen Makine',
       vdie: 'Önerilen V Kalıp',
-      whatsapp: 'WhatsApp',
+      whatsapp: 'WhatsApp İletişim',
       custom: 'Özel Makine',
       ton: 'Ton',
-      diagram: 'BÜKÜM ŞEMASI',
+      diagram: 'ABKANT PRES ŞEMASI',
       thickness: 'Kalınlık (mm)',
       length: 'Uzunluk (mm)',
       thicknessLabel: 'KALINLIK',
-lengthLabel: 'UZUNLUK',
-vdieLabel: 'V KALIP',
-materialLabel: 'MALZEME',
-
-systemOnline: 'SİSTEM AKTİF',
-
-hybridServo: 'Hibrit Servo',
-cncControl: 'CNC Kontrol',
-accuracy: '±0.01mm',
-energySaving: 'Enerji Tasarrufu',
-
-calcDetails: 'HESAPLAMA DETAYLARI',
-
-detailThickness: 'Kalınlık',
-detailLength: 'Uzunluk',
-detailVdie: 'V Kalıp',
-materialFactor: 'Malzeme Katsayısı',
-materials: {
-  mildSteel: 'Karbon Çelik',
-  galvanizedSteel: 'Galvanizli Çelik',
-  stainless201: 'Paslanmaz 201',
-  stainless304: 'Paslanmaz 304',
-  aluminum: 'Alüminyum',
-  brass: 'Pirinç',
-},
-downloadPdf: 'PDF RAPORUNU İNDİR',
+      lengthLabel: 'UZUNLUK',
+      vdieLabel: 'V KALIP',
+      materialLabel: 'MALZEME',
+      systemOnline: 'SİSTEM ÇEVRİMİÇİ',
+      hybridServo: 'Hibrit Servo',
+      cncControl: 'CNC Kontrol',
+      accuracy: '±0.01mm',
+      energySaving: 'Enerji Tasarrufu',
+      calcDetails: 'HESAPLAMA DETAYLARI',
+      detailThickness: 'Kalınlık',
+      detailLength: 'Uzunluk',
+      detailVdie: 'V Kalıp',
+      materialFactor: 'Malzeme Katsayısı',
+      downloadPdf: 'PDF RAPORUNU İNDİR',
+      springbackTitle: 'GERİ ESNEME TAHMİNİ',
+      estimatedSpringback: 'Tahmini geri esneme',
+      suggestedBendAngle: 'Önerilen bükme açısı',
+      springbackNote:
+        'Havada bükme için referans değerdir. Gerçek geri esneme; malzeme partisi, takım, makine durumu ve bükme yöntemine göre değişebilir. Önerilen bükme açısı yalnızca proses referansı içindir ve abkant kontrol sisteminde kullanılan nihai giriş açısına eşit olmayabilir. Gerçek parametreler makine kontrolörü, takım ve deneme bükümü sonuçlarına göre ayarlanmalıdır.',
+      springbackLengthNote:
+        'Daha uzun bükme boyu, makine, takım ve sehim etkileri nedeniyle açı sapmasını artırabilir.',
+      machineAdviceTitle: 'MAKİNE SEÇİM TAVSİYESİ',
+      machineAdviceNote:
+        'Uzun süreli kararlı çalışma için makinenin maksimum nominal tonajına yakın sürekli kullanımından kaçınılması önerilir. Yüksek yüklü üretim koşullarında, takım ve makine bileşenleri üzerindeki gerilimi azaltmak için daha büyük bir makine modeli seçilmesi veya V kalıp açıklığının artırılması önerilir.',
+      machineAdvisoryNote:
+        'Uzun süreli kararlı çalışma için makinenin maksimum nominal tonajına yakın sürekli kullanımından kaçınılması önerilir. Yüksek yüklü üretim koşullarında, takım ve makine bileşenleri üzerindeki gerilimi azaltmak için daha büyük bir makine modeli seçilmesi veya V kalıp açıklığının artırılması önerilir.',
+      materials: {
+        mildSteel: 'Yumuşak Çelik',
+        galvanizedSteel: 'Galvanizli Çelik',
+        stainless201: 'Paslanmaz 201',
+        stainless304: 'Paslanmaz 304',
+        aluminum: 'Alüminyum',
+        brass: 'Pirinç',
+      },
     },
-
     ID: {
       title: 'Kalkulator Press Brake ZYCO',
-      subtitle:
-        'Sistem Perhitungan Gaya Tekuk Profesional',
-      result: 'Hasil',
+      subtitle: 'Sistem Perhitungan Gaya Tekuk Profesional',
+      result: 'Hasil Perhitungan',
       machine: 'Mesin Rekomendasi',
       vdie: 'V Die Rekomendasi',
-      whatsapp: 'WhatsApp',
+      whatsapp: 'Kontak WhatsApp',
       custom: 'Mesin Khusus',
       ton: 'Ton',
-      diagram: 'DIAGRAM TEKUK',
+      diagram: 'DIAGRAM PRESS BRAKE',
       thickness: 'Ketebalan (mm)',
       length: 'Panjang (mm)',
       thicknessLabel: 'KETEBALAN',
-lengthLabel: 'PANJANG',
-vdieLabel: 'V DIE',
-materialLabel: 'MATERIAL',
-
-systemOnline: 'SISTEM AKTIF',
-
-hybridServo: 'Servo Hybrid',
-cncControl: 'Kontrol CNC',
-accuracy: '±0.01mm',
-energySaving: 'Hemat Energi',
-
-calcDetails: 'DETAIL PERHITUNGAN',
-
-detailThickness: 'Ketebalan',
-detailLength: 'Panjang',
-detailVdie: 'V Die',
-materialFactor: 'Faktor Material',
-materials: {
-  mildSteel: 'Baja Ringan',
-  galvanizedSteel: 'Baja Galvanis',
-  stainless201: 'Stainless 201',
-  stainless304: 'Stainless 304',
-  aluminum: 'Aluminium',
-  brass: 'Kuningan',
-},
-downloadPdf: 'UNDUH LAPORAN PDF',
+      lengthLabel: 'PANJANG',
+      vdieLabel: 'V DIE',
+      materialLabel: 'MATERIAL',
+      systemOnline: 'SISTEM ONLINE',
+      hybridServo: 'Servo Hybrid',
+      cncControl: 'Kontrol CNC',
+      accuracy: '±0.01mm',
+      energySaving: 'Hemat Energi',
+      calcDetails: 'DETAIL PERHITUNGAN',
+      detailThickness: 'Ketebalan',
+      detailLength: 'Panjang',
+      detailVdie: 'V Die',
+      materialFactor: 'Faktor Material',
+      downloadPdf: 'UNDUH LAPORAN PDF',
+      springbackTitle: 'ESTIMASI SPRINGBACK',
+      estimatedSpringback: 'Springback perkiraan',
+      suggestedBendAngle: 'Sudut tekuk yang disarankan',
+      springbackNote:
+        'Nilai referensi untuk air bending. Springback aktual dapat berbeda tergantung batch material, tooling, kondisi mesin, dan metode penekukan. Sudut tekuk yang disarankan hanya sebagai referensi proses dan belum tentu sama dengan sudut input akhir pada sistem kontrol press brake. Parameter aktual perlu disesuaikan berdasarkan controller mesin, tooling, dan hasil trial bending.',
+      springbackLengthNote:
+        'Panjang tekuk yang lebih besar dapat meningkatkan deviasi sudut akibat pengaruh mesin, tooling, dan defleksi.',
+      machineAdviceTitle: 'SARAN PEMILIHAN MESIN',
+      machineAdviceNote:
+        'Untuk operasi jangka panjang yang stabil, disarankan menghindari penggunaan terus-menerus mendekati tonase maksimum mesin. Untuk kondisi produksi beban tinggi, disarankan memilih model mesin yang lebih besar atau memperbesar bukaan V-die untuk mengurangi beban pada tooling dan komponen mesin.',
+      machineAdvisoryNote:
+        'Untuk operasi jangka panjang yang stabil, disarankan menghindari penggunaan terus-menerus mendekati tonase maksimum mesin. Untuk kondisi produksi beban tinggi, disarankan memilih model mesin yang lebih besar atau memperbesar bukaan V-die untuk mengurangi beban pada tooling dan komponen mesin.',
+      materials: {
+        mildSteel: 'Baja Ringan',
+        galvanizedSteel: 'Baja Galvanis',
+        stainless201: 'Stainless 201',
+        stainless304: 'Stainless 304',
+        aluminum: 'Aluminium',
+        brass: 'Kuningan',
+      },
     },
   }
 
@@ -480,7 +627,7 @@ const titleFontSize = {
   TR: isMobile ? '24px' : '42px',
   ID: isMobile ? '24px' : '42px',
 }
-  // 推荐机型
+  // 鎺ㄨ崘鏈哄瀷
  const recommendMachine = () => {
   if (!thickness || !length) {
     return '--'
@@ -521,6 +668,15 @@ const svgAnimationPlayState =
   isExportingPDF
     ? 'paused'
     : 'running'
+const estimatedSpringbackValue =
+  springbackEstimate
+    ? `${springbackEstimate.springbackMin.toFixed(1)}° - ${springbackEstimate.springbackMax.toFixed(1)}°`
+    : '--'
+
+const suggestedBendAngleValue =
+  springbackEstimate
+    ? `${springbackEstimate.suggestedMinAngle.toFixed(1)}° - ${springbackEstimate.suggestedMaxAngle.toFixed(1)}°`
+    : '--'
 const downloadPDF = async () => {
   try {
     setIsExportingPDF(true)
@@ -529,7 +685,7 @@ const downloadPDF = async () => {
       setTimeout(resolve, 300)
     )
 
-    // 修复输入框文字位置
+    // 淇杈撳叆妗嗘枃瀛椾綅缃?
     const inputs =
       document.querySelectorAll(
         'input, select'
@@ -572,110 +728,39 @@ const downloadPDF = async () => {
         scrollY: -window.scrollY,
       })
 
+const pdfWidth = 210
+
+const pdfHeight =
+  (canvas.height * pdfWidth) /
+  canvas.width
+
 const pdf = new jsPDF(
   'p',
   'mm',
-  'a4'
+  [pdfWidth, pdfHeight]
 )
 
-const pdfWidth =
-  pdf.internal.pageSize.getWidth()
+// 鍘熷canvas灏哄
+const imgData =
+  canvas.toDataURL('image/png')
 
-const pdfHeight =
-  pdf.internal.pageSize.getHeight()
-
-// 原始canvas尺寸
-const imgWidth = canvas.width
-
-const imgHeight = canvas.height
-
-// 每页对应的canvas像素高度
-const pageHeightPx = Math.floor(
-  (imgWidth * pdfHeight) / pdfWidth
+pdf.addImage(
+  imgData,
+  'PNG',
+  0,
+  0,
+  pdfWidth,
+  pdfHeight,
+  undefined,
+  'FAST'
 )
-
-let renderedHeight = 0
-
-let pageIndex = 0
-
-while (pageIndex * pageHeightPx < imgHeight) {
-
-  const pageCanvas =
-    document.createElement('canvas')
-
-  const pageCtx =
-    pageCanvas.getContext('2d')
-
-  pageCanvas.width = imgWidth
-
-  pageCanvas.height = Math.min(
-    pageHeightPx,
-    imgHeight -
-      pageIndex * pageHeightPx
-  )
-
-  pageCtx.fillStyle = '#ffffff'
-
-  pageCtx.fillRect(
-    0,
-    0,
-    pageCanvas.width,
-    pageCanvas.height
-  )
-
-  pageCtx.drawImage(
-    canvas,
-    0,
-    pageIndex * pageHeightPx,
-    imgWidth,
-    pageCanvas.height,
-    0,
-    0,
-    imgWidth,
-    pageCanvas.height
-  )
-
-  const imgData =
-    pageCanvas.toDataURL(
-      'image/png'
-    )
-
-  if (pageIndex > 0) {
-    pdf.addPage()
-  }
-
-  const renderHeight =
-    (pageCanvas.height *
-      pdfWidth) /
-    pageCanvas.width
-
-  pdf.addImage(
-    imgData,
-    'PNG',
-    0,
-    0,
-    pdfWidth,
-    renderHeight,
-    undefined,
-    'FAST'
-  )
-
-  pageIndex++
-}
-
-// 创建分页canvas
-const pageCanvas =
-  document.createElement('canvas')
-
-const pageCtx =
-  pageCanvas.getContext('2d')
 
 
 pdf.save(
   'ZYCO-Bending-Report.pdf'
 )
 
-    // 恢复样式
+    // 鎭㈠鏍峰紡
     inputs.forEach((el) => {
       el.style.paddingTop =
         el.dataset
@@ -795,7 +880,7 @@ inset 0 1px 0 rgba(255,255,255,0.75)
     '1px solid rgba(255,255,255,0.65)',
 }}
       >
-{/* 顶部 */}
+{/* 椤堕儴 */}
 <div
   style={{
     display: 'flex',
@@ -873,7 +958,7 @@ inset 0 1px 0 rgba(255,255,255,0.75)
       </span>
     </div>
 
-    {/* 标题扫描光 */}
+    {/* 鏍囬鎵弿鍏?*/}
     <div
   style={{
     position: 'relative',
@@ -1013,7 +1098,7 @@ overflowWrap: 'break-word',
   </select>
 </div>
 
-        {/* 输入区域 */}
+        {/* 杈撳叆鍖哄煙 */}
         <div
           style={{
             display: 'grid',
@@ -1222,7 +1307,7 @@ backdropFilter: 'blur(12px)',
           
         </div>
 
-        {/* 结果区域 */}
+        {/* 缁撴灉鍖哄煙 */}
         <div
   style={{
     right: isMobile ? '10px' : '30px',
@@ -1401,7 +1486,7 @@ letterSpacing: '1px',
               gap: '30px',
             }}
           >
-            {/* 左侧 */}
+            {/* 宸︿晶 */}
             <div
               style={{
                 background:
@@ -1509,23 +1594,35 @@ letterSpacing: '1px',
   : 'AUTO'}
                 </strong>
               </div>
+
+              <div style={machineAdvisoryStyle}>
+                {t.machineAdviceNote}
+              </div>
             </div>
 
-            {/* 右侧 */}
+            {/* 鍙充晶 */}
             <div
               style={{
 background:
-'rgba(255,255,255,0.06)',
+isExportingPDF
+  ? 'linear-gradient(145deg,#123b87 0%,#1d4ed8 100%)'
+  : 'rgba(255,255,255,0.06)',
 
 borderRadius: '24px',
 
 padding: '16px',
 
 boxShadow:
-'inset 0 0 40px rgba(59,130,246,0.18),0 10px 30px rgba(0,0,0,0.18)',
+isExportingPDF
+  ? 'none'
+  : 'inset 0 0 40px rgba(59,130,246,0.18),0 10px 30px rgba(0,0,0,0.18)',
 
 border:
 '1px solid rgba(148,163,184,0.15)',
+
+display: 'flex',
+
+flexDirection: 'column',
 }}
 
             >
@@ -1540,11 +1637,38 @@ border:
                 {t.diagram}
               </div>
 
-              <svg
-  width='100%'
-  height={isMobile ? '220' : '280'}
-  viewBox='0 0 500 420'
+<div
   style={{
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: isMobile ? '300px' : '360px',
+    overflow: 'hidden',
+  }}
+>
+<svg
+  width='100%'
+  height={
+    isExportingPDF
+      ? '240'
+      : isMobile
+        ? '220'
+        : '280'
+  }
+  viewBox='0 0 500 460'
+  style={{
+    width: '100%',
+    maxWidth: '520px',
+    maxHeight: '100%',
+    height:
+      isExportingPDF
+        ? '240px'
+        : isMobile
+          ? '220px'
+          : '280px',
+    display: 'block',
+    margin: '0 auto',
     animationPlayState:
       svgAnimationPlayState,
   }}
@@ -1682,7 +1806,8 @@ border:
   </filter>
 
 </defs>
-{/* 左液压油缸 */}
+<g transform='translate(-8, 34) scale(1.03)'>
+{/* 宸︽恫鍘嬫补缂?*/}
 <rect
   x='170'
   y='10'
@@ -1691,20 +1816,18 @@ border:
   rx='4'
   fill='#94a3b8'
 >
-  <animate
-    attributeName='height'
-    values='80;92;80'
-    dur='2.4s'
-    repeatCount='indefinite'
-    begin={
-  isExportingPDF
-    ? 'indefinite'
-    : '0s'
-}
-  />
+  {!isExportingPDF && (
+    <animate
+      attributeName='height'
+      values='80;92;80'
+      dur='2.4s'
+      repeatCount='indefinite'
+      begin='0s'
+    />
+  )}
 </rect>
 
-{/* 右液压油缸 */}
+{/* 鍙虫恫鍘嬫补缂?*/}
 <rect
   x='320'
   y='10'
@@ -1713,23 +1836,29 @@ border:
   rx='4'
   fill='#94a3b8'
 >
-  <animate
-    attributeName='height'
-    values='80;92;80'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+  {!isExportingPDF && (
+    <animate
+      attributeName='height'
+      values='80;92;80'
+      dur='2.4s'
+      repeatCount='indefinite'
+    />
+  )}
 </rect>
-{/* HUD扫描背景 */}
+{/* HUD鎵弿鑳屾櫙 */}
 <rect
   x='0'
   y='0'
   width='500'
   height='420'
   fill='url(#scanGrid)'
-  opacity='0.08'
+  opacity={
+    isExportingPDF
+      ? '0'
+      : '0.08'
+  }
 />
-{/* 上模压板 */}
+{/* 涓婃ā鍘嬫澘 */}
 <rect
   x='185'
   y='18'
@@ -1741,24 +1870,22 @@ border:
 strokeWidth='1.5'
   opacity='0.95'
 >
-<animateTransform
-  attributeName='transform'
-  type='translate'
-  values='0 0;0 14;0 0'
-  dur='2.4s'
-  repeatCount='indefinite'
-  calcMode='spline'
-  keySplines='0.42 0 0.2 1;0.42 0 0.58 1'
-  keyTimes='0;0.55;1'
-  begin={
-  isExportingPDF
-    ? 'indefinite'
-    : '0s'
-}
-/>
+{!isExportingPDF && (
+  <animateTransform
+    attributeName='transform'
+    type='translate'
+    values='0 0;0 14;0 0'
+    dur='2.4s'
+    repeatCount='indefinite'
+    calcMode='spline'
+    keySplines='0.42 0 0.2 1;0.42 0 0.58 1'
+    keyTimes='0;0.55;1'
+    begin='0s'
+  />
+)}
 </rect>
 
-{/* 上模主体 */}
+{/* 涓婃ā涓讳綋 */}
 <path
   d='
   M215 46
@@ -1776,16 +1903,18 @@ strokeWidth='1.5'
   stroke='#cbd5e1'
   strokeWidth='1.2'
 >
-  <animateTransform
-    attributeName='transform'
-    type='translate'
-    values='0 0;0 12;0 0'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+  {!isExportingPDF && (
+    <animateTransform
+      attributeName='transform'
+      type='translate'
+      values='0 0;0 12;0 0'
+      dur='2.4s'
+      repeatCount='indefinite'
+    />
+  )}
 </path>
 
-{/* 上模高光 */}
+{/* 涓婃ā楂樺厜 */}
 <line
   x1='242'
   y1='58'
@@ -1796,13 +1925,15 @@ strokeWidth='1.5'
   opacity='0.28'
   strokeLinecap='round'
 >
-  <animateTransform
-    attributeName='transform'
-    type='translate'
-    values='0 0;0 12;0 0'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+  {!isExportingPDF && (
+    <animateTransform
+      attributeName='transform'
+      type='translate'
+      values='0 0;0 12;0 0'
+      dur='2.4s'
+      repeatCount='indefinite'
+    />
+  )}
 </line>
 
 <rect
@@ -1814,16 +1945,18 @@ strokeWidth='1.5'
   opacity='0.8'
 >
 
-  <animate
-    attributeName='y'
-    values='188;215;188'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+  {!isExportingPDF && (
+    <animate
+      attributeName='y'
+      values='188;215;188'
+      dur='2.4s'
+      repeatCount='indefinite'
+    />
+  )}
 
 </rect>
-{/* 板材 */}
-{/* 板材弯曲动画 */}
+{/* 鏉挎潗 */}
+{/* 鏉挎潗寮洸鍔ㄧ敾 */}
 <path
   d='
   M120 204
@@ -1837,29 +1970,33 @@ strokeWidth='1.5'
   strokeWidth='2'
   filter='url(#glow)'
 >
-  <animate
-    attributeName='d'
-    dur='2.4s'
-    repeatCount='indefinite'
-    values='
-    M120 204 Q250 204 380 204 L380 214 Q250 214 120 214 Z;
+  {!isExportingPDF && (
+    <>
+      <animate
+        attributeName='d'
+        dur='2.4s'
+        repeatCount='indefinite'
+        values='
+        M120 204 Q250 204 380 204 L380 214 Q250 214 120 214 Z;
 
-    M120 204 Q250 228 380 204 L380 214 Q250 238 120 214 Z;
+        M120 204 Q250 228 380 204 L380 214 Q250 238 120 214 Z;
 
-    M120 204 Q250 204 380 204 L380 214 Q250 214 120 214 Z
-    '
-  />
+        M120 204 Q250 204 380 204 L380 214 Q250 214 120 214 Z
+        '
+      />
 
-  <animate
-    attributeName='opacity'
-    values='0.7;1;0.7'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+      <animate
+        attributeName='opacity'
+        values='0.7;1;0.7'
+        dur='2.4s'
+        repeatCount='indefinite'
+      />
+    </>
+  )}
 </path>
 
 
-{/* 下模主体 */}
+{/* 涓嬫ā涓讳綋 */}
 <path
   d='
   M110 320
@@ -1877,7 +2014,7 @@ strokeWidth='1.5'
   filter='url(#glow)'
 />
 
-{/* V槽深度 */}
+{/* V妲芥繁搴?*/}
 <path
   d='
   M220 250
@@ -1887,7 +2024,7 @@ strokeWidth='1.5'
   fill='#0f172a'
 />
 
-{/* 下模顶部高光 */}
+{/* 涓嬫ā椤堕儴楂樺厜 */}
 <line
   x1='180'
   y1='250'
@@ -1898,7 +2035,7 @@ strokeWidth='1.5'
   opacity='0.6'
 />
 
-{/* 下模底座 */}
+{/* 涓嬫ā搴曞骇 */}
 <rect
   x='90'
   y='320'
@@ -1908,7 +2045,7 @@ strokeWidth='1.5'
   fill='#334155'
 />
 
-{/* 底座高光 */}
+{/* 搴曞骇楂樺厜 */}
 <rect
   x='100'
   y='327'
@@ -1919,7 +2056,7 @@ strokeWidth='1.5'
   opacity='0.35'
 />
 
-                {/* 压力箭头 */}
+                {/* 鍘嬪姏绠ご */}
                 <line
 x1='250'
 y1='-10'
@@ -1932,19 +2069,23 @@ filter='url(#glow)'
 
 >
 
-<animate
-  attributeName='stroke-opacity'
-  values='0.3;1;0.3'
-  dur='2.4s'
-  repeatCount='indefinite'
-/>
+{!isExportingPDF && (
+  <>
+    <animate
+      attributeName='stroke-opacity'
+      values='0.3;1;0.3'
+      dur='2.4s'
+      repeatCount='indefinite'
+    />
 
-<animate
-  attributeName='stroke-width'
-  values='4;6;4'
-  dur='2.4s'
-  repeatCount='indefinite'
-/></line>
+    <animate
+      attributeName='stroke-width'
+      values='4;6;4'
+      dur='2.4s'
+      repeatCount='indefinite'
+    />
+  </>
+)}</line>
 
 
                 <polygon
@@ -1962,18 +2103,20 @@ opacity='0.95'
 
 >
 
-<animate
- attributeName='opacity'
- values='0.4;1;0.4'
- dur='2.4s'
- repeatCount='indefinite'
-/>
+{!isExportingPDF && (
+  <animate
+    attributeName='opacity'
+    values='0.4;1;0.4'
+    dur='2.4s'
+    repeatCount='indefinite'
+  />
+)}
 
 PRESS </text>
 
 
 
-                {/* V槽文字 */}
+                {/* V妲芥枃瀛?*/}
                 <text
                   x='250'
                   y='390'
@@ -1985,7 +2128,7 @@ PRESS </text>
                   V = {vDie || 'AUTO'}
                 </text>
 
-                {/* 板厚 */}
+                {/* 鏉垮帤 */}
                 <text
                   x='395'
                   y='180'
@@ -1996,7 +2139,7 @@ PRESS </text>
                 >
                   T = {thickness || '--'} mm
                 </text>
-                {/* 压力冲击波 */}
+                {/* 鍘嬪姏鍐插嚮娉?*/}
 <circle
   cx='250'
   cy='210'
@@ -2006,21 +2149,27 @@ PRESS </text>
   strokeWidth='3'
   opacity='0.5'
 >
-  <animate
-    attributeName='r'
-    values='8;55'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+  {!isExportingPDF && (
+    <>
+      <animate
+        attributeName='r'
+        values='8;55'
+        dur='2.4s'
+        repeatCount='indefinite'
+      />
 
-  <animate
-    attributeName='opacity'
-    values='0.45;0'
-    dur='2.4s'
-    repeatCount='indefinite'
-  />
+      <animate
+        attributeName='opacity'
+        values='0.45;0'
+        dur='2.4s'
+        repeatCount='indefinite'
+      />
+    </>
+  )}
 </circle>
+</g>
               </svg>
+            </div>
             </div>
           </div>
         </div>
@@ -2068,7 +2217,13 @@ PRESS </text>
       gap: '14px',
     }}
   >
-    <div style={detailCardStyle}>
+    <div
+      style={
+        language === 'RU'
+          ? russianDetailCardStyle
+          : detailCardStyle
+      }
+    >
       {t.thicknessLabel}:
       <strong
   style={{
@@ -2084,7 +2239,13 @@ PRESS </text>
       </strong>
     </div>
 
-    <div style={detailCardStyle}>
+    <div
+      style={
+        language === 'RU'
+          ? russianDetailCardStyle
+          : detailCardStyle
+      }
+    >
       {t.lengthLabel}:
       <strong
   style={{
@@ -2100,7 +2261,13 @@ PRESS </text>
       </strong>
     </div>
 
-    <div style={detailCardStyle}>
+    <div
+      style={
+        language === 'RU'
+          ? russianDetailCardStyle
+          : detailCardStyle
+      }
+    >
       {t.vdieLabel}:
       <strong
   style={{
@@ -2116,7 +2283,13 @@ PRESS </text>
       </strong>
     </div>
 
-    <div style={detailCardStyle}>
+    <div
+      style={
+        language === 'RU'
+          ? russianDetailCardStyle
+          : detailCardStyle
+      }
+    >
       {t.materialFactor}:
       <strong
   style={{
@@ -2135,6 +2308,153 @@ PRESS </text>
         }
       </strong>
     </div>
+  </div>
+</div>
+
+<div
+  style={{
+    marginTop: '20px',
+
+    padding: '18px',
+
+    borderRadius: '24px',
+
+    background:
+`
+radial-gradient(
+circle at top left,
+rgba(96,165,250,0.22),
+transparent 35%
+),
+
+linear-gradient(
+145deg,
+#0b1f3f 0%,
+#12366e 48%,
+#1d4ed8 100%
+)
+`,
+
+    border:
+      '1px solid rgba(147,197,253,0.22)',
+
+    color: '#dbeafe',
+
+    boxShadow:
+      '0 14px 38px rgba(37,99,235,0.18)',
+  }}
+>
+  <div
+    style={{
+      fontSize: '14px',
+
+      letterSpacing: '2px',
+
+      color: '#bfdbfe',
+
+      marginBottom: '16px',
+
+      fontWeight: '800',
+
+      wordBreak: 'break-word',
+
+      overflowWrap: 'anywhere',
+    }}
+  >
+    {t.springbackTitle}
+  </div>
+
+  <div
+    style={{
+      display: 'grid',
+
+      gridTemplateColumns:
+        isMobile
+          ? '1fr'
+          : '1fr 1fr',
+
+      gap: '14px',
+    }}
+  >
+    <div style={springbackCardStyle}>
+      {t.estimatedSpringback}:
+      <strong
+        style={{
+          color: '#ffffff',
+
+          marginLeft: '6px',
+
+          fontWeight: '900',
+
+          wordBreak: 'break-word',
+
+          overflowWrap: 'anywhere',
+        }}
+      >
+        {' '}
+        {estimatedSpringbackValue}
+      </strong>
+    </div>
+
+    <div style={springbackCardStyle}>
+      {t.suggestedBendAngle}:
+      <strong
+        style={{
+          color: '#ffffff',
+
+          marginLeft: '6px',
+
+          fontWeight: '900',
+
+          wordBreak: 'break-word',
+
+          overflowWrap: 'anywhere',
+        }}
+      >
+        {' '}
+        {suggestedBendAngleValue}
+      </strong>
+    </div>
+  </div>
+
+  <div
+    style={{
+      marginTop: '14px',
+
+      color: '#bfdbfe',
+
+      fontSize: '13px',
+
+      lineHeight: '1.7',
+
+      wordBreak: 'normal',
+
+      overflowWrap: 'anywhere',
+
+      whiteSpace: 'normal',
+    }}
+  >
+    {t.springbackNote}
+  </div>
+
+  <div
+    style={{
+      marginTop: '8px',
+
+      color: '#dbeafe',
+
+      fontSize: '12px',
+
+      lineHeight: '1.6',
+
+      wordBreak: 'normal',
+
+      overflowWrap: 'anywhere',
+
+      whiteSpace: 'normal',
+    }}
+  >
+    {t.springbackLengthNote}
   </div>
 </div>
 
@@ -2339,6 +2659,36 @@ whiteSpace: 'normal',
 lineHeight: '1.4',
 }
 
+const machineAdvisoryStyle = {
+  marginTop: '18px',
+
+  padding: '14px 16px',
+
+  borderRadius: '18px',
+
+  background:
+    'linear-gradient(145deg,rgba(96,165,250,0.14),rgba(255,255,255,0.06))',
+
+  border:
+    '1px solid rgba(147,197,253,0.16)',
+
+  color: '#bfdbfe',
+
+  fontSize: '13px',
+
+  fontWeight: '600',
+
+  lineHeight: '1.65',
+
+  boxShadow: 'none',
+
+  wordBreak: 'normal',
+
+  overflowWrap: 'anywhere',
+
+  whiteSpace: 'normal',
+}
+
 const inputStyle = {
   height: '58px',
   lineHeight: 'normal',
@@ -2435,4 +2785,56 @@ const detailCardStyle = {
   backdropFilter: 'blur(4px)',
 
   lineHeight: '1.6',
+}
+
+const russianDetailCardStyle = {
+  ...detailCardStyle,
+
+  display: 'flex',
+
+  alignItems: 'center',
+
+  justifyContent: 'center',
+
+  flexWrap: 'wrap',
+
+  textAlign: 'center',
+
+  lineHeight: '1.45',
+
+  whiteSpace: 'normal',
+
+  wordBreak: 'normal',
+
+  overflowWrap: 'anywhere',
+}
+
+const springbackCardStyle = {
+  background:
+    'linear-gradient(180deg,rgba(30,64,120,0.72) 0%,rgba(29,78,216,0.30) 100%)',
+
+  border:
+    '1px solid rgba(191,219,254,0.2)',
+
+  borderRadius: '18px',
+
+  padding: '18px',
+
+  fontSize: '15px',
+
+  fontWeight: '700',
+
+  color: '#dbeafe',
+
+  boxShadow: 'none',
+
+  backdropFilter: 'none',
+
+  lineHeight: '1.6',
+
+  wordBreak: 'normal',
+
+  overflowWrap: 'anywhere',
+
+  whiteSpace: 'normal',
 }
