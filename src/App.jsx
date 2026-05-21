@@ -8,6 +8,7 @@ import EngineeringHub from './pages/EngineeringHub.jsx'
 import InsideRadiusGuide from './pages/InsideRadiusGuide.jsx'
 import MaterialDatabase from './pages/MaterialDatabase.jsx'
 import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
+import VDieSelection from './pages/VDieSelection.jsx'
 
 export default function App() {
   return (
@@ -36,6 +37,11 @@ export default function App() {
         <Route
           path='/engineering-tools/inside-radius-guide'
           element={<InsideRadiusGuide />}
+        />
+
+        <Route
+          path='/engineering-tools/v-die-selection'
+          element={<VDieSelection />}
         />
 
         <Route

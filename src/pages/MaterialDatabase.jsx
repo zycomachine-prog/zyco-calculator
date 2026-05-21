@@ -5,9 +5,9 @@ const materials = [
     factor: '1.00',
     yieldStrength: '180–280 MPa',
     tensileStrength: '300–450 MPa',
-    recommendedVDie: '6T–8T',
+    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '0.6°–1.3°',
-    insideRadiusReference: '≈ 1T',
+    insideRadiusReference: '1T–1.5T',
     applicationNote:
       'Standard reference material for press brake tonnage calculation.',
   },
@@ -17,9 +17,9 @@ const materials = [
     factor: '1.05',
     yieldStrength: '200–300 MPa',
     tensileStrength: '320–460 MPa',
-    recommendedVDie: '6T–8T',
+    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '0.8°–1.6°',
-    insideRadiusReference: '≈ 1T',
+    insideRadiusReference: '1.2T–1.6T',
     applicationNote:
       'Similar to mild steel, coating condition may affect surface quality.',
   },
@@ -29,9 +29,9 @@ const materials = [
     factor: '1.76',
     yieldStrength: '260–380 MPa',
     tensileStrength: '600–850 MPa',
-    recommendedVDie: '8T–10T',
+    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '2.2°–3.8°',
-    insideRadiusReference: '1T–1.5T',
+    insideRadiusReference: '1.4T–2T',
     applicationNote:
       'Higher work hardening and springback than mild steel.',
   },
@@ -41,9 +41,9 @@ const materials = [
     factor: '1.62',
     yieldStrength: '215–300 MPa',
     tensileStrength: '520–750 MPa',
-    recommendedVDie: '8T–10T',
+    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '1.8°–3.0°',
-    insideRadiusReference: '1T–1.5T',
+    insideRadiusReference: '1.3T–1.8T',
     applicationNote:
       'Common stainless steel with strong springback and good corrosion resistance.',
   },
@@ -53,7 +53,7 @@ const materials = [
     factor: '0.65',
     yieldStrength: '70–160 MPa',
     tensileStrength: '150–250 MPa',
-    recommendedVDie: '6T–8T',
+    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '1.2°–2.8°',
     insideRadiusReference: '1T–2T',
     applicationNote:
@@ -65,9 +65,9 @@ const materials = [
     factor: '0.60',
     yieldStrength: '100–250 MPa',
     tensileStrength: '250–500 MPa',
-    recommendedVDie: '6T–8T',
+    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '0.4°–1.2°',
-    insideRadiusReference: '≈ 1T',
+    insideRadiusReference: '1T–1.5T',
     applicationNote:
       'Good formability, but bending direction and hardness condition should be considered.',
   },
@@ -77,16 +77,21 @@ const fields = [
   ['Material Factor', 'factor'],
   ['Yield Strength', 'yieldStrength'],
   ['Tensile Strength', 'tensileStrength'],
-  ['Recommended V Die', 'recommendedVDie'],
-  ['Typical Springback Range', 'springbackRange'],
+  ['Standard Auto V Die', 'standardAutoVDie'],
   ['Inside Radius Reference', 'insideRadiusReference'],
+  ['Typical Springback Range', 'springbackRange'],
 ]
 
 const springbackReferenceCondition =
   '2 mm thickness / 90° air bending / V ≈ 8T'
 
-const springbackEngineeringNote =
-  'Springback values are typical reference ranges based on 2 mm sheet thickness, 90° air bending and V-opening around 8× material thickness. Actual results may vary depending on material batch, thickness, V-die opening, punch radius, grain direction, tooling condition and machine setup.'
+const engineeringReferenceNotes = [
+  'Standard Auto V Die follows the same recommendation logic used in the Press Brake Calculator:',
+  'T < 8 mm \u2192 V = 8T',
+  '8 mm \u2264 T < 25 mm \u2192 V = 10T',
+  'T \u2265 25 mm \u2192 V = 12T',
+  'Springback and inside radius values are typical engineering reference ranges. Actual results may vary depending on material batch, thickness, V-opening, punch radius, grain direction, tooling condition and machine setup.',
+]
 
 export default function MaterialDatabase() {
   return (
@@ -198,6 +203,29 @@ export default function MaterialDatabase() {
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
           }
 
+          .zyco-materials__note-title {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.25;
+            font-weight: 850;
+            letter-spacing: 0;
+          }
+
+          .zyco-materials__note-text {
+            margin: 0;
+          }
+
+          .zyco-materials__note-text + .zyco-materials__note-text {
+            margin-top: 6px;
+          }
+
+          .zyco-materials__note-rule {
+            margin: 4px 0 0;
+            color: #ffffff;
+            font-weight: 800;
+          }
+
           .zyco-materials__grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -286,7 +314,7 @@ export default function MaterialDatabase() {
             line-height: 1.4;
             font-weight: 800;
             text-align: right;
-            white-space: nowrap;
+            overflow-wrap: anywhere;
           }
 
           .zyco-material-card__reference {
@@ -438,9 +466,28 @@ export default function MaterialDatabase() {
               Engineering reference for sheet metal bending materials
             </p>
 
-            <p className='zyco-materials__engineering-note'>
-              {springbackEngineeringNote}
-            </p>
+            <div className='zyco-materials__engineering-note'>
+              <h2 className='zyco-materials__note-title'>
+                Engineering Reference Notes
+              </h2>
+
+              <p className='zyco-materials__note-text'>
+                {engineeringReferenceNotes[0]}
+              </p>
+
+              {engineeringReferenceNotes.slice(1, 4).map((note) => (
+                <p
+                  className='zyco-materials__note-rule'
+                  key={note}
+                >
+                  {note}
+                </p>
+              ))}
+
+              <p className='zyco-materials__note-text'>
+                {engineeringReferenceNotes[4]}
+              </p>
+            </div>
           </header>
 
           <div className='zyco-materials__grid'>

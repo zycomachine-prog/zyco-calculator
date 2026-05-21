@@ -2,20 +2,18 @@ const materials = [
   {
     name: 'Mild Steel',
     materialKey: 'mildSteel',
-    recommendedInsideRadius: '\u2248 1T',
-    minimumInsideRadius: '0.8T',
+    recommendedInsideRadius: '1T\u20131.5T',
+    minimumInsideRadius: '0.8T\u20131T',
     crackRisk: 'Low',
-    recommendedVDieRelation: 'V = 6T\u20138T',
     springbackSensitivity: 'Low',
     applicationNote: 'Standard forming material with good bendability.',
   },
   {
     name: 'Galvanized Steel',
     materialKey: 'galvanizedSteel',
-    recommendedInsideRadius: '\u2248 1T',
-    minimumInsideRadius: '1T',
+    recommendedInsideRadius: '1.2T\u20131.6T',
+    minimumInsideRadius: '1T\u20131.2T',
     crackRisk: 'Medium',
-    recommendedVDieRelation: 'V = 6T\u20138T',
     springbackSensitivity: 'Low',
     applicationNote:
       'Coating condition may affect edge cracking and surface quality.',
@@ -23,10 +21,9 @@ const materials = [
   {
     name: 'Stainless Steel 201',
     materialKey: 'stainless201',
-    recommendedInsideRadius: '1T\u20131.5T',
-    minimumInsideRadius: '1T',
+    recommendedInsideRadius: '1.4T\u20132T',
+    minimumInsideRadius: '1T\u20131.3T',
     crackRisk: 'High',
-    recommendedVDieRelation: 'V = 8T\u201310T',
     springbackSensitivity: 'Very High',
     applicationNote:
       'Strong work hardening and higher crack risk in sharp bends.',
@@ -34,10 +31,9 @@ const materials = [
   {
     name: 'Stainless Steel 304',
     materialKey: 'stainless304',
-    recommendedInsideRadius: '1T\u20131.5T',
-    minimumInsideRadius: '1T',
+    recommendedInsideRadius: '1.3T\u20131.8T',
+    minimumInsideRadius: '1T\u20131.3T',
     crackRisk: 'Medium',
-    recommendedVDieRelation: 'V = 8T\u201310T',
     springbackSensitivity: 'High',
     applicationNote:
       'Good corrosion resistance with significant springback.',
@@ -46,9 +42,8 @@ const materials = [
     name: 'Aluminum',
     materialKey: 'aluminum',
     recommendedInsideRadius: '1T\u20132T',
-    minimumInsideRadius: '1T',
+    minimumInsideRadius: '0.8T\u20131.5T',
     crackRisk: 'Medium',
-    recommendedVDieRelation: 'V = 6T\u20138T',
     springbackSensitivity: 'Medium',
     applicationNote:
       'Softer material with lower tonnage but sensitive to grain direction.',
@@ -56,10 +51,9 @@ const materials = [
   {
     name: 'Brass',
     materialKey: 'brass',
-    recommendedInsideRadius: '\u2248 1T',
-    minimumInsideRadius: '0.8T',
+    recommendedInsideRadius: '1T\u20131.5T',
+    minimumInsideRadius: '0.8T\u20131T',
     crackRisk: 'Low',
-    recommendedVDieRelation: 'V = 6T\u20138T',
     springbackSensitivity: 'Low',
     applicationNote:
       'Excellent formability under proper hardness condition.',
@@ -70,8 +64,13 @@ const fields = [
   ['Recommended Inside Radius', 'recommendedInsideRadius'],
   ['Minimum Inside Radius', 'minimumInsideRadius'],
   ['Crack Risk', 'crackRisk'],
-  ['Recommended V Die Relation', 'recommendedVDieRelation'],
   ['Springback Sensitivity', 'springbackSensitivity'],
+]
+
+const engineeringReferenceNotes = [
+  'Minimum Inside Radius represents the minimum practical forming limit under favorable tooling and material conditions.',
+  'Recommended Inside Radius represents a more stable production-friendly bending condition for consistent forming quality and reduced cracking risk.',
+  'Actual inside radius in air bending depends mainly on the selected V-opening width and material properties.',
 ]
 
 export default function InsideRadiusGuide() {
@@ -170,6 +169,37 @@ export default function InsideRadiusGuide() {
             font-weight: 600;
           }
 
+          .zyco-radius__engineering-note {
+            max-width: 940px;
+            margin: 24px 0 0;
+            padding: 18px 20px;
+            border: 1px solid rgba(147, 197, 253, 0.22);
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.24);
+            color: #dbeafe;
+            font-size: 14px;
+            line-height: 1.7;
+            font-weight: 650;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+          }
+
+          .zyco-radius__note-title {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.25;
+            font-weight: 850;
+            letter-spacing: 0;
+          }
+
+          .zyco-radius__note-text {
+            margin: 0;
+          }
+
+          .zyco-radius__note-text + .zyco-radius__note-text {
+            margin-top: 8px;
+          }
+
           .zyco-radius__grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -258,7 +288,7 @@ export default function InsideRadiusGuide() {
             line-height: 1.4;
             font-weight: 800;
             text-align: right;
-            white-space: nowrap;
+            overflow-wrap: anywhere;
           }
 
           .zyco-radius-card__note-label {
@@ -332,6 +362,11 @@ export default function InsideRadiusGuide() {
               font-size: 16px;
             }
 
+            .zyco-radius__engineering-note {
+              padding: 16px;
+              font-size: 13px;
+            }
+
             .zyco-radius__grid {
               grid-template-columns: 1fr;
               gap: 14px;
@@ -369,6 +404,21 @@ export default function InsideRadiusGuide() {
             <p className='zyco-radius__subtitle'>
               Industrial reference for inside bend radius selection
             </p>
+
+            <div className='zyco-radius__engineering-note'>
+              <h2 className='zyco-radius__note-title'>
+                Engineering Reference Notes
+              </h2>
+
+              {engineeringReferenceNotes.map((note) => (
+                <p
+                  className='zyco-radius__note-text'
+                  key={note}
+                >
+                  {note}
+                </p>
+              ))}
+            </div>
           </header>
 
           <div className='zyco-radius__grid'>

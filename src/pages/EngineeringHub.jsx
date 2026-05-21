@@ -23,7 +23,8 @@ const tools = [
     title: 'V Die Selection',
     description:
       'Recommended V opening and tooling selection',
-    status: 'soon',
+    status: 'active',
+    href: '/engineering-tools/v-die-selection',
   },
   {
     title: 'Inside Radius Guide',
