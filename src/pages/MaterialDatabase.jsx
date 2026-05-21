@@ -93,6 +93,52 @@ const engineeringReferenceNotes = [
   'Springback and inside radius values are typical engineering reference ranges. Actual results may vary depending on material batch, thickness, V-opening, punch radius, grain direction, tooling condition and machine setup.',
 ]
 
+const faqItems = [
+  {
+    question: 'Which material properties affect press brake tonnage most?',
+    answer:
+      'Tonnage is strongly affected by tensile strength, sheet thickness, bend length and V-die opening. Higher-strength materials such as stainless steel need more force than mild steel at the same thickness and bend length.',
+  },
+  {
+    question: 'Why are yield strength and tensile strength both useful?',
+    answer:
+      'Yield strength helps describe when the sheet begins to plastically deform, while tensile strength is often used in practical bending force estimates. Both values help compare material behavior during forming.',
+  },
+  {
+    question: 'Can the same V-die opening be used for every material?',
+    answer:
+      'The same thickness rule can be a starting point, but material strength, crack risk, target inside radius and surface requirements may require a wider or narrower V-opening.',
+  },
+  {
+    question: 'Why do material batch and grain direction matter?',
+    answer:
+      'Real sheet material varies by batch, rolling direction and hardness condition. These factors can change cracking risk, springback and the final inside radius, especially in stainless steel and aluminum.',
+  },
+]
+
+const relatedTools = [
+  {
+    title: 'Press Brake Calculator',
+    href: '/engineering-tools/press-brake-calculator',
+  },
+  {
+    title: 'Material Database',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    title: 'V Die Selection Tool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    title: 'Inside Radius Guide',
+    href: '/engineering-tools/inside-radius-guide',
+  },
+  {
+    title: 'Springback Database',
+    href: '/engineering-tools/springback-database',
+  },
+]
+
 export default function MaterialDatabase() {
   return (
     <>
@@ -395,6 +441,52 @@ export default function MaterialDatabase() {
             box-shadow: 0 18px 38px rgba(37, 99, 235, 0.42);
           }
 
+          .zyco-materials__panel {
+            margin-top: 22px;
+            padding: 24px;
+            border: 1px solid rgba(147, 197, 253, 0.2);
+            border-radius: 28px;
+            background:
+              linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(18px);
+          }
+
+          .zyco-materials__faq {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+          }
+
+          .zyco-materials__faq-item {
+            padding: 18px;
+            border: 1px solid rgba(147, 197, 253, 0.18);
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.22);
+          }
+
+          .zyco-materials__question {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 850;
+          }
+
+          .zyco-materials__answer {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.65;
+            font-weight: 600;
+          }
+
+          .zyco-materials__tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+          }
+
           @media (max-width: 980px) {
             .zyco-materials__grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -433,6 +525,15 @@ export default function MaterialDatabase() {
               gap: 14px;
             }
 
+            .zyco-materials__faq {
+              grid-template-columns: 1fr;
+            }
+
+            .zyco-materials__panel {
+              padding: 22px;
+              border-radius: 24px;
+            }
+
             .zyco-material-card {
               min-height: 0;
               padding: 22px;
@@ -446,6 +547,10 @@ export default function MaterialDatabase() {
             .zyco-material-card__value {
               text-align: left;
               white-space: normal;
+            }
+
+            .zyco-material-card__action {
+              width: 100%;
             }
           }
         `}
@@ -468,8 +573,18 @@ export default function MaterialDatabase() {
 
             <div className='zyco-materials__engineering-note'>
               <h2 className='zyco-materials__note-title'>
-                Engineering Reference Notes
+                Engineering Overview
               </h2>
+
+              <p className='zyco-materials__note-text'>
+                This material database compares common sheet metals used in
+                press brake air bending. Material factor, strength range,
+                inside radius reference and springback range are useful when
+                estimating bending force, selecting tooling and preparing angle
+                compensation. In production, the same nominal thickness can
+                behave differently when tensile strength, coating condition,
+                hardness, grain direction or material batch changes.
+              </p>
 
               <p className='zyco-materials__note-text'>
                 {engineeringReferenceNotes[0]}
@@ -553,6 +668,62 @@ export default function MaterialDatabase() {
               </article>
             ))}
           </div>
+
+          <section
+            className='zyco-materials__panel'
+            aria-labelledby='material-faq'
+          >
+            <h2
+              className='zyco-materials__note-title'
+              id='material-faq'
+            >
+              Material Database FAQ
+            </h2>
+
+            <div className='zyco-materials__faq'>
+              {faqItems.map((item) => (
+                <article
+                  className='zyco-materials__faq-item'
+                  key={item.question}
+                >
+                  <h3 className='zyco-materials__question'>
+                    {item.question}
+                  </h3>
+
+                  <p className='zyco-materials__answer'>
+                    {item.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className='zyco-materials__panel'
+            aria-labelledby='material-related-tools'
+          >
+            <h2
+              className='zyco-materials__note-title'
+              id='material-related-tools'
+            >
+              Related Engineering Tools
+            </h2>
+
+            <nav
+              className='zyco-materials__tools'
+              aria-label='Related engineering tools'
+            >
+              {relatedTools.map((tool) => (
+                <a
+                  className='zyco-material-card__action'
+                  href={tool.href}
+                  key={tool.title}
+                >
+                  {tool.title}
+                </a>
+              ))}
+            </nav>
+          </section>
         </section>
       </main>
     </>

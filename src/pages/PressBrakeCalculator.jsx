@@ -17,6 +17,29 @@ const validMaterialKeys = [
   'brass',
 ]
 
+const relatedEngineeringTools = [
+  {
+    labelKey: 'pressBrakeCalculator',
+    href: '/engineering-tools/press-brake-calculator',
+  },
+  {
+    labelKey: 'materialDatabase',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    labelKey: 'vDieSelectionTool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    labelKey: 'insideRadiusGuide',
+    href: '/engineering-tools/inside-radius-guide',
+  },
+  {
+    labelKey: 'springbackDatabase',
+    href: '/engineering-tools/springback-database',
+  },
+]
+
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {
     return 'mildSteel'
@@ -418,6 +441,17 @@ const vDie =
         "For long-term stable operation, it is recommended to avoid continuous use near the machine's maximum rated tonnage. For high-load production conditions, selecting a larger machine model or increasing the V-die opening is recommended to reduce stress on tooling and machine components.",
       machineAdvisoryNote:
         "For long-term stable operation, it is recommended to avoid continuous use near the machine's maximum rated tonnage. For high-load production conditions, selecting a larger machine model or increasing the V-die opening is recommended to reduce stress on tooling and machine components.",
+      engineeringOverviewTitle: 'Engineering Overview',
+      engineeringOverviewText:
+        'This press brake calculator estimates bending force for air bending based on sheet thickness, bend length, material factor and V-die opening. It is useful for early machine capacity checks, quotation review and tooling setup planning. Real production results can change with material tensile strength, die condition, punch radius, bend angle, grain direction, lubrication and machine deflection, so calculated tonnage should be treated as an engineering estimate rather than a substitute for trial bending.',
+      relatedEngineeringToolsTitle: 'Related Engineering Tools',
+      relatedTools: {
+        pressBrakeCalculator: 'Press Brake Calculator',
+        materialDatabase: 'Material Database',
+        vDieSelectionTool: 'V Die Selection Tool',
+        insideRadiusGuide: 'Inside Radius Guide',
+        springbackDatabase: 'Springback Database',
+      },
       materials: {
         mildSteel: 'Mild Steel',
         galvanizedSteel: 'Galvanized Steel',
@@ -470,6 +504,17 @@ const vDie =
         '为保证设备长期稳定运行，建议避免长时间接近或达到机器最大额定压力使用。对于长期高负载工况，建议选择更大型号设备或适当增大 V 开口，以降低模具与设备负载。',
       machineAdvisoryNote:
         '为保证设备长期稳定运行，建议避免长时间接近或达到机器最大额定压力使用。对于长期高负载工况，建议选择更大型号设备或适当增大 V 开口，以降低模具与设备负载。',
+      engineeringOverviewTitle: '工程说明',
+      engineeringOverviewText:
+        '这款折弯机计算器可根据板材厚度、折弯长度、材料系数和 V 型模具开口大小，估算空气折弯所需的折弯力。它适用于早期设备能力判断、报价审核和模具设定规划。实际生产结果会因材料抗拉强度、模具状态、冲头半径、折弯角度、纹理方向、润滑情况和机器挠度等因素而变化，因此计算出的吨位应视为工程估算值，而非试弯结果的替代。',
+      relatedEngineeringToolsTitle: '相关工程工具',
+      relatedTools: {
+        pressBrakeCalculator: '折弯机计算器',
+        materialDatabase: '材料数据库',
+        vDieSelectionTool: 'V型模具选择工具',
+        insideRadiusGuide: '内半径指南',
+        springbackDatabase: '回弹数据库',
+      },
       materials: {
         mildSteel: '普通钢',
         galvanizedSteel: '镀锌钢',
@@ -522,6 +567,17 @@ const vDie =
         'Для долгосрочной стабильной работы рекомендуется избегать продолжительной эксплуатации вблизи максимального номинального усилия станка. При высоких производственных нагрузках рекомендуется выбрать более крупную модель станка или увеличить раскрытие V-матрицы, чтобы снизить нагрузку на оснастку и узлы станка.',
       machineAdvisoryNote:
         'Для долгосрочной стабильной работы рекомендуется избегать продолжительной эксплуатации вблизи максимального номинального усилия станка. При высоких производственных нагрузках рекомендуется выбрать более крупную модель станка или увеличить раскрытие V-матрицы, чтобы снизить нагрузку на оснастку и узлы станка.',
+      engineeringOverviewTitle: 'Инженерный обзор',
+      engineeringOverviewText:
+        'Этот калькулятор листогиба оценивает усилие воздушной гибки на основе толщины листа, длины гиба, коэффициента материала и раскрытия V-матрицы. Он полезен для предварительной проверки мощности станка, оценки коммерческого предложения и планирования настройки оснастки. Фактический результат в производстве может изменяться из-за прочности материала на растяжение, состояния матрицы, радиуса пуансона, угла гибки, направления прокатки, смазки и прогиба станка, поэтому рассчитанный тоннаж следует рассматривать как инженерную оценку, а не замену пробной гибки.',
+      relatedEngineeringToolsTitle: 'Связанные инженерные инструменты',
+      relatedTools: {
+        pressBrakeCalculator: 'Калькулятор листогиба',
+        materialDatabase: 'База материалов',
+        vDieSelectionTool: 'Выбор V-матрицы',
+        insideRadiusGuide: 'Справочник внутреннего радиуса',
+        springbackDatabase: 'База пружинения',
+      },
       materials: {
         mildSteel: 'Углеродистая сталь',
         galvanizedSteel: 'Оцинкованная сталь',
@@ -574,6 +630,17 @@ const vDie =
         'Para una operación estable a largo plazo, se recomienda evitar el uso continuo cerca del tonelaje nominal máximo de la máquina. En condiciones de producción de alta carga, se recomienda seleccionar un modelo de máquina más grande o aumentar la abertura de la matriz V para reducir el esfuerzo sobre la herramienta y los componentes de la máquina.',
       machineAdvisoryNote:
         'Para una operación estable a largo plazo, se recomienda evitar el uso continuo cerca del tonelaje nominal máximo de la máquina. En condiciones de producción de alta carga, se recomienda seleccionar un modelo de máquina más grande o aumentar la abertura de la matriz V para reducir el esfuerzo sobre la herramienta y los componentes de la máquina.',
+      engineeringOverviewTitle: 'Resumen de ingeniería',
+      engineeringOverviewText:
+        'Esta calculadora de plegadora estima la fuerza de plegado para plegado al aire según el espesor de la chapa, la longitud de plegado, el factor del material y la abertura de la matriz V. Es útil para verificaciones iniciales de capacidad de máquina, revisión de cotizaciones y planificación de ajustes de utillaje. Los resultados reales de producción pueden variar por la resistencia a la tracción del material, el estado de la matriz, el radio del punzón, el ángulo de plegado, la dirección de laminación, la lubricación y la deflexión de la máquina, por lo que el tonelaje calculado debe tratarse como una estimación de ingeniería y no como sustituto de una prueba de plegado.',
+      relatedEngineeringToolsTitle: 'Herramientas de ingeniería relacionadas',
+      relatedTools: {
+        pressBrakeCalculator: 'Calculadora de plegadora',
+        materialDatabase: 'Base de datos de materiales',
+        vDieSelectionTool: 'Herramienta de selección de matriz V',
+        insideRadiusGuide: 'Guía de radio interior',
+        springbackDatabase: 'Base de datos de retorno elástico',
+      },
       materials: {
         mildSteel: 'Acero dulce',
         galvanizedSteel: 'Acero galvanizado',
@@ -626,6 +693,17 @@ const vDie =
         'Uzun süreli kararlı çalışma için makinenin maksimum nominal tonajına yakın sürekli kullanımından kaçınılması önerilir. Yüksek yüklü üretim koşullarında, takım ve makine bileşenleri üzerindeki gerilimi azaltmak için daha büyük bir makine modeli seçilmesi veya V kalıp açıklığının artırılması önerilir.',
       machineAdvisoryNote:
         'Uzun süreli kararlı çalışma için makinenin maksimum nominal tonajına yakın sürekli kullanımından kaçınılması önerilir. Yüksek yüklü üretim koşullarında, takım ve makine bileşenleri üzerindeki gerilimi azaltmak için daha büyük bir makine modeli seçilmesi veya V kalıp açıklığının artırılması önerilir.',
+      engineeringOverviewTitle: 'Mühendislik özeti',
+      engineeringOverviewText:
+        'Bu abkant pres hesaplayıcısı, sac kalınlığı, bükme uzunluğu, malzeme katsayısı ve V kalıp açıklığına göre havada bükme için gerekli bükme kuvvetini tahmin eder. Erken makine kapasitesi kontrolü, teklif değerlendirmesi ve takım ayarı planlaması için kullanışlıdır. Gerçek üretim sonuçları malzeme çekme dayanımı, kalıp durumu, zımba radyüsü, bükme açısı, hadde yönü, yağlama ve makine sehimi gibi etkenlere göre değişebilir; bu nedenle hesaplanan tonaj deneme bükümünün yerine geçen kesin değer değil, mühendislik tahmini olarak değerlendirilmelidir.',
+      relatedEngineeringToolsTitle: 'İlgili mühendislik araçları',
+      relatedTools: {
+        pressBrakeCalculator: 'Abkant pres hesaplayıcısı',
+        materialDatabase: 'Malzeme veritabanı',
+        vDieSelectionTool: 'V kalıp seçim aracı',
+        insideRadiusGuide: 'İç radyüs kılavuzu',
+        springbackDatabase: 'Geri esneme veritabanı',
+      },
       materials: {
         mildSteel: 'Yumuşak Çelik',
         galvanizedSteel: 'Galvanizli Çelik',
@@ -678,6 +756,17 @@ const vDie =
         'Untuk operasi jangka panjang yang stabil, disarankan menghindari penggunaan terus-menerus mendekati tonase maksimum mesin. Untuk kondisi produksi beban tinggi, disarankan memilih model mesin yang lebih besar atau memperbesar bukaan V-die untuk mengurangi beban pada tooling dan komponen mesin.',
       machineAdvisoryNote:
         'Untuk operasi jangka panjang yang stabil, disarankan menghindari penggunaan terus-menerus mendekati tonase maksimum mesin. Untuk kondisi produksi beban tinggi, disarankan memilih model mesin yang lebih besar atau memperbesar bukaan V-die untuk mengurangi beban pada tooling dan komponen mesin.',
+      engineeringOverviewTitle: 'Ringkasan teknik',
+      engineeringOverviewText:
+        'Kalkulator press brake ini memperkirakan gaya tekuk untuk air bending berdasarkan ketebalan plat, panjang tekukan, faktor material, dan bukaan V-die. Alat ini berguna untuk pemeriksaan awal kapasitas mesin, evaluasi penawaran, dan perencanaan setelan tooling. Hasil produksi aktual dapat berubah karena kekuatan tarik material, kondisi die, radius punch, sudut tekuk, arah serat material, pelumasan, dan defleksi mesin, sehingga tonase hasil perhitungan harus diperlakukan sebagai estimasi teknik, bukan pengganti trial bending.',
+      relatedEngineeringToolsTitle: 'Alat teknik terkait',
+      relatedTools: {
+        pressBrakeCalculator: 'Kalkulator press brake',
+        materialDatabase: 'Database material',
+        vDieSelectionTool: 'Alat pemilihan V-die',
+        insideRadiusGuide: 'Panduan radius dalam',
+        springbackDatabase: 'Database springback',
+      },
       materials: {
         mildSteel: 'Baja Ringan',
         galvanizedSteel: 'Baja Galvanis',
@@ -2734,6 +2823,116 @@ overflow: 'hidden',
 />
           </button>
         </a>
+
+        <section
+          aria-labelledby='press-brake-engineering-overview'
+          style={{
+            marginTop: '24px',
+            padding: isMobile ? '20px' : '24px 26px',
+            border: '1px solid rgba(59,130,246,0.26)',
+            borderRadius: '24px',
+            background:
+              'linear-gradient(145deg,rgba(248,250,252,0.94),rgba(219,234,254,0.82))',
+            boxShadow:
+              '0 18px 48px rgba(15,23,42,0.22), inset 0 1px 0 rgba(255,255,255,0.8)',
+            backdropFilter: 'blur(18px)',
+          }}
+        >
+          <h2
+            id='press-brake-engineering-overview'
+            style={{
+              margin: '0 0 10px',
+              color: '#1e3a8a',
+              fontSize: isMobile ? '20px' : '22px',
+              lineHeight: 1.28,
+              fontWeight: 850,
+            }}
+          >
+            {t.engineeringOverviewTitle}
+          </h2>
+
+          <p
+            style={{
+              maxWidth: '960px',
+              margin: 0,
+              color: '#334155',
+              fontSize: isMobile ? '14px' : '15px',
+              lineHeight: 1.72,
+              fontWeight: 650,
+            }}
+          >
+            {t.engineeringOverviewText}
+          </p>
+        </section>
+
+        <section
+          aria-labelledby='press-brake-related-tools'
+          style={{
+            marginTop: '16px',
+            padding: isMobile ? '18px' : '20px 22px',
+            border: '1px solid rgba(59,130,246,0.24)',
+            borderRadius: '24px',
+            background:
+              'linear-gradient(145deg,rgba(239,246,255,0.92),rgba(191,219,254,0.68))',
+            boxShadow:
+              '0 14px 38px rgba(15,23,42,0.18), inset 0 1px 0 rgba(255,255,255,0.72)',
+            backdropFilter: 'blur(18px)',
+          }}
+        >
+          <h2
+            id='press-brake-related-tools'
+            style={{
+              margin: '0 0 14px',
+              color: '#1e3a8a',
+              fontSize: isMobile ? '19px' : '21px',
+              lineHeight: 1.28,
+              fontWeight: 850,
+            }}
+          >
+            {t.relatedEngineeringToolsTitle}
+          </h2>
+
+          <nav
+            aria-label={t.relatedEngineeringToolsTitle}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile
+                ? '1fr'
+                : 'repeat(5, minmax(0, 1fr))',
+              gap: '10px',
+            }}
+          >
+            {relatedEngineeringTools.map((tool) => (
+              <a
+                href={tool.href}
+                key={tool.labelKey}
+                style={{
+                  minHeight: '42px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxSizing: 'border-box',
+                  padding: '0 14px',
+                  border: '1px solid rgba(191,219,254,0.44)',
+                  borderRadius: '14px',
+                  background:
+                    'linear-gradient(135deg,#1e3a8a 0%,#2563eb 52%,#3b82f6 100%)',
+                  color: '#ffffff',
+                  fontSize: isMobile ? '14px' : '13px',
+                  fontWeight: 850,
+                  lineHeight: 1.25,
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  textShadow: '0 1px 1px rgba(15,23,42,0.28)',
+                  boxShadow: '0 8px 20px rgba(37,99,235,0.28)',
+                  overflowWrap: 'anywhere',
+                }}
+              >
+                {t.relatedTools[tool.labelKey]}
+              </a>
+            ))}
+          </nav>
+        </section>
       </div>
     </div>
   </>

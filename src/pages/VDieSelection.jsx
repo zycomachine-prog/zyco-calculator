@@ -58,7 +58,53 @@ const materials = [
 ]
 
 const engineeringNote =
-  'Minimum Safe Radius represents the minimum practical forming limit under favorable tooling and material conditions. Estimated Natural Inside Radius is calculated from the selected V-opening. Recommended Inside Radius is a general production-friendly range based on common air bending practice. Standard Auto V Die follows Calculator logic: 8T / 10T / 12T by thickness range. Calculator standard rule: T < 8 mm \u2192 V = 8T; 8 mm \u2264 T < 25 mm \u2192 V = 10T; T \u2265 25 mm \u2192 V = 12T.'
+  'V-die selection controls more than tool fit. In press brake air bending, V-opening width affects required tonnage, natural inside radius, springback tendency, surface marking and the available flange length. The standard 8T / 10T / 12T rule is a practical starting point, but the final die choice should also consider material strength, crack risk, punch radius, target bend radius, tooling condition and whether the job prioritizes force reduction or tight radius control.'
+
+const faqItems = [
+  {
+    question: 'How do I choose V-die opening for sheet metal bending?',
+    answer:
+      'A common starting point is 8 times material thickness for thinner sheets, 10 times thickness for medium thickness and 12 times thickness for thicker plates. The final choice should be checked against radius, tonnage, flange length and material risk.',
+  },
+  {
+    question: 'Does a smaller V-opening reduce inside radius?',
+    answer:
+      'Yes, a smaller V-opening generally produces a smaller natural inside radius in air bending, but it also increases bending force and may increase marking or cracking risk.',
+  },
+  {
+    question: 'Why would I use a larger V-die opening?',
+    answer:
+      'A larger V-opening can reduce required tonnage and tool load. It is often useful for thicker plates or higher-strength materials, but it may increase inside radius and springback.',
+  },
+  {
+    question: 'Is V-die selection the same for stainless steel and mild steel?',
+    answer:
+      'The thickness rule can be the same starting point, but stainless steel usually needs more force and has higher springback, so radius and angle compensation should be reviewed more carefully.',
+  },
+]
+
+const relatedTools = [
+  {
+    title: 'Press Brake Calculator',
+    href: '/engineering-tools/press-brake-calculator',
+  },
+  {
+    title: 'Material Database',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    title: 'V Die Selection Tool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    title: 'Inside Radius Guide',
+    href: '/engineering-tools/inside-radius-guide',
+  },
+  {
+    title: 'Springback Database',
+    href: '/engineering-tools/springback-database',
+  },
+]
 
 const getStandardAutoVDie = (thickness) => {
   if (thickness < 8) return thickness * 8
@@ -237,6 +283,19 @@ export default function VDieSelection() {
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
           }
 
+          .zyco-vdie__note-title {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.25;
+            font-weight: 850;
+            letter-spacing: 0;
+          }
+
+          .zyco-vdie__note-text {
+            margin: 0;
+          }
+
           .zyco-vdie__grid {
             display: grid;
             grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
@@ -391,6 +450,52 @@ export default function VDieSelection() {
             box-shadow: 0 18px 38px rgba(37, 99, 235, 0.42);
           }
 
+          .zyco-vdie__panel {
+            margin-top: 22px;
+            padding: 24px;
+            border: 1px solid rgba(147, 197, 253, 0.2);
+            border-radius: 28px;
+            background:
+              linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(18px);
+          }
+
+          .zyco-vdie__faq {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+          }
+
+          .zyco-vdie__faq-item {
+            padding: 18px;
+            border: 1px solid rgba(147, 197, 253, 0.18);
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.22);
+          }
+
+          .zyco-vdie__question {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 850;
+          }
+
+          .zyco-vdie__answer {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.65;
+            font-weight: 600;
+          }
+
+          .zyco-vdie__tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+          }
+
           @media (max-width: 900px) {
             .zyco-vdie__grid {
               grid-template-columns: 1fr;
@@ -429,6 +534,19 @@ export default function VDieSelection() {
               grid-template-columns: 1fr;
               gap: 6px;
             }
+
+            .zyco-vdie__faq {
+              grid-template-columns: 1fr;
+            }
+
+            .zyco-vdie__panel {
+              padding: 22px;
+              border-radius: 24px;
+            }
+
+            .zyco-vdie-card__action {
+              width: 100%;
+            }
           }
         `}
       </style>
@@ -448,9 +566,21 @@ export default function VDieSelection() {
               Recommended V-opening guide for sheet metal air bending
             </p>
 
-            <p className='zyco-vdie__engineering-note'>
-              {engineeringNote}
-            </p>
+            <section
+              className='zyco-vdie__engineering-note'
+              aria-labelledby='vdie-engineering-overview'
+            >
+              <h2
+                className='zyco-vdie__note-title'
+                id='vdie-engineering-overview'
+              >
+                Engineering Overview
+              </h2>
+
+              <p className='zyco-vdie__note-text'>
+                {engineeringNote}
+              </p>
+            </section>
           </header>
 
           <div className='zyco-vdie__grid'>
@@ -533,6 +663,62 @@ export default function VDieSelection() {
               </a>
             </article>
           </div>
+
+          <section
+            className='zyco-vdie__panel'
+            aria-labelledby='vdie-faq'
+          >
+            <h2
+              className='zyco-vdie-card__title'
+              id='vdie-faq'
+            >
+              V Die Selection FAQ
+            </h2>
+
+            <div className='zyco-vdie__faq'>
+              {faqItems.map((item) => (
+                <article
+                  className='zyco-vdie__faq-item'
+                  key={item.question}
+                >
+                  <h3 className='zyco-vdie__question'>
+                    {item.question}
+                  </h3>
+
+                  <p className='zyco-vdie__answer'>
+                    {item.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className='zyco-vdie__panel'
+            aria-labelledby='vdie-related-tools'
+          >
+            <h2
+              className='zyco-vdie-card__title'
+              id='vdie-related-tools'
+            >
+              Related Engineering Tools
+            </h2>
+
+            <nav
+              className='zyco-vdie__tools'
+              aria-label='Related engineering tools'
+            >
+              {relatedTools.map((tool) => (
+                <a
+                  className='zyco-vdie-card__action'
+                  href={tool.href}
+                  key={tool.title}
+                >
+                  {tool.title}
+                </a>
+              ))}
+            </nav>
+          </section>
         </section>
       </main>
     </>

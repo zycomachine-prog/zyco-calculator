@@ -73,6 +73,52 @@ const engineeringReferenceNotes = [
   'Actual inside radius in air bending depends mainly on the selected V-opening width and material properties.',
 ]
 
+const faqItems = [
+  {
+    question: 'What determines inside bend radius in air bending?',
+    answer:
+      'In air bending, the inside radius is mainly formed by the V-opening width and material behavior rather than by forcing the sheet fully into the die. Thickness, material strength and punch radius also influence the final radius.',
+  },
+  {
+    question: 'What happens if the inside radius is too small?',
+    answer:
+      'A radius below the practical forming limit increases the risk of cracking, coating damage and unstable bend quality, especially on hard stainless steel, galvanized sheet and some aluminum tempers.',
+  },
+  {
+    question: 'Is minimum inside radius the best production target?',
+    answer:
+      'Not usually. Minimum radius is a forming limit reference. A recommended radius gives more stable production, lower crack risk and more consistent angle control.',
+  },
+  {
+    question: 'How does V-die opening affect inside radius?',
+    answer:
+      'A wider V-opening generally creates a larger natural inside radius in air bending. A narrower opening can reduce radius but increases tonnage and may raise marking or cracking risk.',
+  },
+]
+
+const relatedTools = [
+  {
+    title: 'Press Brake Calculator',
+    href: '/engineering-tools/press-brake-calculator',
+  },
+  {
+    title: 'Material Database',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    title: 'V Die Selection Tool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    title: 'Inside Radius Guide',
+    href: '/engineering-tools/inside-radius-guide',
+  },
+  {
+    title: 'Springback Database',
+    href: '/engineering-tools/springback-database',
+  },
+]
+
 export default function InsideRadiusGuide() {
   return (
     <>
@@ -334,6 +380,52 @@ export default function InsideRadiusGuide() {
             box-shadow: 0 18px 38px rgba(37, 99, 235, 0.42);
           }
 
+          .zyco-radius__panel {
+            margin-top: 22px;
+            padding: 24px;
+            border: 1px solid rgba(147, 197, 253, 0.2);
+            border-radius: 28px;
+            background:
+              linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(18px);
+          }
+
+          .zyco-radius__faq {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+          }
+
+          .zyco-radius__faq-item {
+            padding: 18px;
+            border: 1px solid rgba(147, 197, 253, 0.18);
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.22);
+          }
+
+          .zyco-radius__question {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 850;
+          }
+
+          .zyco-radius__answer {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.65;
+            font-weight: 600;
+          }
+
+          .zyco-radius__tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+          }
+
           @media (max-width: 980px) {
             .zyco-radius__grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -372,6 +464,15 @@ export default function InsideRadiusGuide() {
               gap: 14px;
             }
 
+            .zyco-radius__faq {
+              grid-template-columns: 1fr;
+            }
+
+            .zyco-radius__panel {
+              padding: 22px;
+              border-radius: 24px;
+            }
+
             .zyco-radius-card {
               min-height: 0;
               padding: 22px;
@@ -385,6 +486,10 @@ export default function InsideRadiusGuide() {
             .zyco-radius-card__value {
               text-align: left;
               white-space: normal;
+            }
+
+            .zyco-radius-card__action {
+              width: 100%;
             }
           }
         `}
@@ -407,8 +512,19 @@ export default function InsideRadiusGuide() {
 
             <div className='zyco-radius__engineering-note'>
               <h2 className='zyco-radius__note-title'>
-                Engineering Reference Notes
+                Engineering Overview
               </h2>
+
+              <p className='zyco-radius__note-text'>
+                Inside bend radius is a key forming result in press brake air
+                bending because it affects part fit, flat pattern development,
+                cracking risk and final angle stability. This guide compares
+                practical radius ranges by material so engineers can judge
+                whether a bend is close to the forming limit or better suited
+                for stable production. The selected V-opening, material
+                thickness, punch radius, grain direction and hardness condition
+                should all be considered before releasing a bending setup.
+              </p>
 
               {engineeringReferenceNotes.map((note) => (
                 <p
@@ -467,6 +583,62 @@ export default function InsideRadiusGuide() {
               </article>
             ))}
           </div>
+
+          <section
+            className='zyco-radius__panel'
+            aria-labelledby='inside-radius-faq'
+          >
+            <h2
+              className='zyco-radius__note-title'
+              id='inside-radius-faq'
+            >
+              Inside Radius FAQ
+            </h2>
+
+            <div className='zyco-radius__faq'>
+              {faqItems.map((item) => (
+                <article
+                  className='zyco-radius__faq-item'
+                  key={item.question}
+                >
+                  <h3 className='zyco-radius__question'>
+                    {item.question}
+                  </h3>
+
+                  <p className='zyco-radius__answer'>
+                    {item.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className='zyco-radius__panel'
+            aria-labelledby='inside-radius-related-tools'
+          >
+            <h2
+              className='zyco-radius__note-title'
+              id='inside-radius-related-tools'
+            >
+              Related Engineering Tools
+            </h2>
+
+            <nav
+              className='zyco-radius__tools'
+              aria-label='Related engineering tools'
+            >
+              {relatedTools.map((tool) => (
+                <a
+                  className='zyco-radius-card__action'
+                  href={tool.href}
+                  key={tool.title}
+                >
+                  {tool.title}
+                </a>
+              ))}
+            </nav>
+          </section>
         </section>
       </main>
     </>

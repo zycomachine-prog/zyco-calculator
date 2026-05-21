@@ -4,7 +4,7 @@ const tools = [
     description:
       'Professional bending force calculation system',
     status: 'active',
-    href: '/',
+    href: '/engineering-tools/press-brake-calculator',
   },
   {
     title: 'Material Database',
@@ -39,6 +39,29 @@ const tools = [
     description:
       'Punch and die application guide',
     status: 'soon',
+  },
+]
+
+const relatedTools = [
+  {
+    title: 'Press Brake Calculator',
+    href: '/engineering-tools/press-brake-calculator',
+  },
+  {
+    title: 'Material Database',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    title: 'V Die Selection Tool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    title: 'Inside Radius Guide',
+    href: '/engineering-tools/inside-radius-guide',
+  },
+  {
+    title: 'Springback Database',
+    href: '/engineering-tools/springback-database',
   },
 ]
 
@@ -142,6 +165,35 @@ export default function EngineeringHub() {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
+          }
+
+          .zyco-hub__panel {
+            margin-bottom: 22px;
+            padding: 24px;
+            border: 1px solid rgba(147, 197, 253, 0.2);
+            border-radius: 28px;
+            background:
+              linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(18px);
+          }
+
+          .zyco-hub__panel-title {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 22px;
+            line-height: 1.28;
+            font-weight: 850;
+            letter-spacing: 0;
+          }
+
+          .zyco-hub__panel-text {
+            max-width: 960px;
+            margin: 0;
+            color: #dbeafe;
+            font-size: 15px;
+            line-height: 1.75;
+            font-weight: 650;
           }
 
           .zyco-tool-card {
@@ -248,6 +300,16 @@ export default function EngineeringHub() {
             box-shadow: 0 18px 38px rgba(37, 99, 235, 0.42);
           }
 
+          .zyco-hub__related {
+            margin-top: 22px;
+          }
+
+          .zyco-hub__tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+          }
+
           .zyco-tool-card__badge {
             min-height: 36px;
             display: inline-flex;
@@ -298,9 +360,18 @@ export default function EngineeringHub() {
               gap: 14px;
             }
 
+            .zyco-hub__panel {
+              padding: 22px;
+              border-radius: 24px;
+            }
+
             .zyco-tool-card {
               min-height: 214px;
               padding: 22px;
+            }
+
+            .zyco-tool-card__action {
+              width: 100%;
             }
           }
         `}
@@ -318,9 +389,32 @@ export default function EngineeringHub() {
             </h1>
 
             <p className='zyco-hub__subtitle'>
-              Professional Engineering Tools for Sheet Metal Bending
+              Professional engineering references for sheet metal bending, tooling selection and press brake setup.
             </p>
           </header>
+
+          <section
+            className='zyco-hub__panel'
+            aria-labelledby='hub-engineering-overview'
+          >
+            <h2
+              className='zyco-hub__panel-title'
+              id='hub-engineering-overview'
+            >
+              Engineering Overview
+            </h2>
+
+            <p className='zyco-hub__panel-text'>
+              The ZYCO Engineering Hub organizes practical press brake
+              references into separate tools so engineers can check tonnage,
+              material behavior, V-die opening, inside bend radius and
+              springback from focused pages. These references are intended for
+              air bending preparation, quotation checks, tooling review and
+              production setup planning where material strength, thickness,
+              bend length, V-opening and forming method all affect the final
+              bending result.
+            </p>
+          </section>
 
           <div className='zyco-hub__grid'>
             {tools.map((tool, index) => (
@@ -357,6 +451,33 @@ export default function EngineeringHub() {
               </article>
             ))}
           </div>
+
+          <section
+            className='zyco-hub__panel zyco-hub__related'
+            aria-labelledby='hub-related-tools'
+          >
+            <h2
+              className='zyco-hub__panel-title'
+              id='hub-related-tools'
+            >
+              Related Engineering Tools
+            </h2>
+
+            <nav
+              className='zyco-hub__tools'
+              aria-label='Related engineering tools'
+            >
+              {relatedTools.map((tool) => (
+                <a
+                  className='zyco-tool-card__action'
+                  href={tool.href}
+                  key={tool.title}
+                >
+                  {tool.title}
+                </a>
+              ))}
+            </nav>
+          </section>
         </section>
       </main>
     </>

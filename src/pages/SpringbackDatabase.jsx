@@ -108,6 +108,10 @@ const relatedTools = [
     title: 'Inside Radius Guide',
     href: '/engineering-tools/inside-radius-guide',
   },
+  {
+    title: 'Springback Database',
+    href: '/engineering-tools/springback-database',
+  },
 ]
 
 const fields = [
