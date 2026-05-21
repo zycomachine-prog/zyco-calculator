@@ -7,6 +7,13 @@ const tools = [
     href: '/engineering-tools/press-brake-calculator',
   },
   {
+    title: 'Bend Allowance Calculator',
+    description:
+      'Sheet metal bend allowance, bend deduction and flat pattern reference',
+    status: 'active',
+    href: '/engineering-tools/bend-allowance-calculator',
+  },
+  {
     title: 'Material Database',
     description:
       'Yield strength, tensile strength, K-factor and bending properties',
@@ -62,6 +69,10 @@ const relatedTools = [
   {
     title: 'Springback Database',
     href: '/engineering-tools/springback-database',
+  },
+  {
+    title: 'Bend Allowance Calculator',
+    href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
 

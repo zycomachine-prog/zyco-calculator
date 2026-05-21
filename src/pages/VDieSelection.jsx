@@ -104,6 +104,10 @@ const relatedTools = [
     title: 'Springback Database',
     href: '/engineering-tools/springback-database',
   },
+  {
+    title: 'Bend Allowance Calculator',
+    href: '/engineering-tools/bend-allowance-calculator',
+  },
 ]
 
 const getStandardAutoVDie = (thickness) => {

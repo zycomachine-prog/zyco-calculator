@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom'
+import BendAllowanceCalculator from './pages/BendAllowanceCalculator.jsx'
 import EngineeringHub from './pages/EngineeringHub.jsx'
 import InsideRadiusGuide from './pages/InsideRadiusGuide.jsx'
 import MaterialDatabase from './pages/MaterialDatabase.jsx'
@@ -28,6 +29,11 @@ export default function App() {
         <Route
           path='/engineering-tools/press-brake-calculator'
           element={<PressBrakeCalculator />}
+        />
+
+        <Route
+          path='/engineering-tools/bend-allowance-calculator'
+          element={<BendAllowanceCalculator />}
         />
 
         <Route

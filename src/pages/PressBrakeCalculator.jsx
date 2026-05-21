@@ -38,6 +38,10 @@ const relatedEngineeringTools = [
     labelKey: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
+  {
+    labelKey: 'bendAllowanceCalculator',
+    href: '/engineering-tools/bend-allowance-calculator',
+  },
 ]
 
 const getInitialMaterial = () => {
@@ -451,6 +455,7 @@ const vDie =
         vDieSelectionTool: 'V Die Selection Tool',
         insideRadiusGuide: 'Inside Radius Guide',
         springbackDatabase: 'Springback Database',
+        bendAllowanceCalculator: 'Bend Allowance Calculator',
       },
       materials: {
         mildSteel: 'Mild Steel',
@@ -514,6 +519,7 @@ const vDie =
         vDieSelectionTool: 'V型模具选择工具',
         insideRadiusGuide: '内半径指南',
         springbackDatabase: '回弹数据库',
+        bendAllowanceCalculator: '折弯展开计算器',
       },
       materials: {
         mildSteel: '普通钢',
@@ -577,6 +583,7 @@ const vDie =
         vDieSelectionTool: 'Выбор V-матрицы',
         insideRadiusGuide: 'Справочник внутреннего радиуса',
         springbackDatabase: 'База пружинения',
+        bendAllowanceCalculator: 'Калькулятор припуска на гиб',
       },
       materials: {
         mildSteel: 'Углеродистая сталь',
@@ -640,6 +647,7 @@ const vDie =
         vDieSelectionTool: 'Herramienta de selección de matriz V',
         insideRadiusGuide: 'Guía de radio interior',
         springbackDatabase: 'Base de datos de retorno elástico',
+        bendAllowanceCalculator: 'Calculadora de desarrollo de plegado',
       },
       materials: {
         mildSteel: 'Acero dulce',
@@ -703,6 +711,7 @@ const vDie =
         vDieSelectionTool: 'V kalıp seçim aracı',
         insideRadiusGuide: 'İç radyüs kılavuzu',
         springbackDatabase: 'Geri esneme veritabanı',
+        bendAllowanceCalculator: 'Büküm payı hesaplayıcı',
       },
       materials: {
         mildSteel: 'Yumuşak Çelik',
@@ -766,6 +775,7 @@ const vDie =
         vDieSelectionTool: 'Alat pemilihan V-die',
         insideRadiusGuide: 'Panduan radius dalam',
         springbackDatabase: 'Database springback',
+        bendAllowanceCalculator: 'Kalkulator allowance tekuk',
       },
       materials: {
         mildSteel: 'Baja Ringan',
@@ -2898,7 +2908,7 @@ overflow: 'hidden',
               display: 'grid',
               gridTemplateColumns: isMobile
                 ? '1fr'
-                : 'repeat(5, minmax(0, 1fr))',
+                : 'repeat(6, minmax(0, 1fr))',
               gap: '10px',
             }}
           >
