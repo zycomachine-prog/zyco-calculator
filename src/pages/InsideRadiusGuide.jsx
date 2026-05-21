@@ -2,98 +2,84 @@ const materials = [
   {
     name: 'Mild Steel',
     materialKey: 'mildSteel',
-    factor: '1.00',
-    yieldStrength: '180–280 MPa',
-    tensileStrength: '300–450 MPa',
-    recommendedVDie: '6T–8T',
-    springbackRange: '0.6°–1.3°',
-    insideRadiusReference: '≈ 1T',
-    applicationNote:
-      'Standard reference material for press brake tonnage calculation.',
+    recommendedInsideRadius: '\u2248 1T',
+    minimumInsideRadius: '0.8T',
+    crackRisk: 'Low',
+    recommendedVDieRelation: 'V = 6T\u20138T',
+    springbackSensitivity: 'Low',
+    applicationNote: 'Standard forming material with good bendability.',
   },
   {
     name: 'Galvanized Steel',
     materialKey: 'galvanizedSteel',
-    factor: '1.05',
-    yieldStrength: '200–300 MPa',
-    tensileStrength: '320–460 MPa',
-    recommendedVDie: '6T–8T',
-    springbackRange: '0.8°–1.6°',
-    insideRadiusReference: '≈ 1T',
+    recommendedInsideRadius: '\u2248 1T',
+    minimumInsideRadius: '1T',
+    crackRisk: 'Medium',
+    recommendedVDieRelation: 'V = 6T\u20138T',
+    springbackSensitivity: 'Low',
     applicationNote:
-      'Similar to mild steel, coating condition may affect surface quality.',
+      'Coating condition may affect edge cracking and surface quality.',
   },
   {
     name: 'Stainless Steel 201',
     materialKey: 'stainless201',
-    factor: '1.76',
-    yieldStrength: '260–380 MPa',
-    tensileStrength: '600–850 MPa',
-    recommendedVDie: '8T–10T',
-    springbackRange: '2.2°–3.8°',
-    insideRadiusReference: '1T–1.5T',
+    recommendedInsideRadius: '1T\u20131.5T',
+    minimumInsideRadius: '1T',
+    crackRisk: 'High',
+    recommendedVDieRelation: 'V = 8T\u201310T',
+    springbackSensitivity: 'Very High',
     applicationNote:
-      'Higher work hardening and springback than mild steel.',
+      'Strong work hardening and higher crack risk in sharp bends.',
   },
   {
     name: 'Stainless Steel 304',
     materialKey: 'stainless304',
-    factor: '1.62',
-    yieldStrength: '215–300 MPa',
-    tensileStrength: '520–750 MPa',
-    recommendedVDie: '8T–10T',
-    springbackRange: '1.8°–3.0°',
-    insideRadiusReference: '1T–1.5T',
+    recommendedInsideRadius: '1T\u20131.5T',
+    minimumInsideRadius: '1T',
+    crackRisk: 'Medium',
+    recommendedVDieRelation: 'V = 8T\u201310T',
+    springbackSensitivity: 'High',
     applicationNote:
-      'Common stainless steel with strong springback and good corrosion resistance.',
+      'Good corrosion resistance with significant springback.',
   },
   {
     name: 'Aluminum',
     materialKey: 'aluminum',
-    factor: '0.65',
-    yieldStrength: '70–160 MPa',
-    tensileStrength: '150–250 MPa',
-    recommendedVDie: '6T–8T',
-    springbackRange: '1.2°–2.8°',
-    insideRadiusReference: '1T–2T',
+    recommendedInsideRadius: '1T\u20132T',
+    minimumInsideRadius: '1T',
+    crackRisk: 'Medium',
+    recommendedVDieRelation: 'V = 6T\u20138T',
+    springbackSensitivity: 'Medium',
     applicationNote:
-      'Low bending force but higher springback due to lower elastic modulus.',
+      'Softer material with lower tonnage but sensitive to grain direction.',
   },
   {
     name: 'Brass',
     materialKey: 'brass',
-    factor: '0.60',
-    yieldStrength: '100–250 MPa',
-    tensileStrength: '250–500 MPa',
-    recommendedVDie: '6T–8T',
-    springbackRange: '0.4°–1.2°',
-    insideRadiusReference: '≈ 1T',
+    recommendedInsideRadius: '\u2248 1T',
+    minimumInsideRadius: '0.8T',
+    crackRisk: 'Low',
+    recommendedVDieRelation: 'V = 6T\u20138T',
+    springbackSensitivity: 'Low',
     applicationNote:
-      'Good formability, but bending direction and hardness condition should be considered.',
+      'Excellent formability under proper hardness condition.',
   },
 ]
 
 const fields = [
-  ['Material Factor', 'factor'],
-  ['Yield Strength', 'yieldStrength'],
-  ['Tensile Strength', 'tensileStrength'],
-  ['Recommended V Die', 'recommendedVDie'],
-  ['Typical Springback Range', 'springbackRange'],
-  ['Inside Radius Reference', 'insideRadiusReference'],
+  ['Recommended Inside Radius', 'recommendedInsideRadius'],
+  ['Minimum Inside Radius', 'minimumInsideRadius'],
+  ['Crack Risk', 'crackRisk'],
+  ['Recommended V Die Relation', 'recommendedVDieRelation'],
+  ['Springback Sensitivity', 'springbackSensitivity'],
 ]
 
-const springbackReferenceCondition =
-  '2 mm thickness / 90° air bending / V ≈ 8T'
-
-const springbackEngineeringNote =
-  'Springback values are typical reference ranges based on 2 mm sheet thickness, 90° air bending and V-opening around 8× material thickness. Actual results may vary depending on material batch, thickness, V-die opening, punch radius, grain direction, tooling condition and machine setup.'
-
-export default function MaterialDatabase() {
+export default function InsideRadiusGuide() {
   return (
     <>
       <style>
         {`
-          .zyco-materials {
+          .zyco-radius {
             min-height: 100vh;
             box-sizing: border-box;
             padding: 52px 22px;
@@ -114,7 +100,7 @@ export default function MaterialDatabase() {
             position: relative;
           }
 
-          .zyco-materials::before {
+          .zyco-radius::before {
             content: "";
             position: absolute;
             inset: 0;
@@ -126,7 +112,7 @@ export default function MaterialDatabase() {
             pointer-events: none;
           }
 
-          .zyco-materials::after {
+          .zyco-radius::after {
             content: "";
             position: absolute;
             left: -10%;
@@ -138,14 +124,14 @@ export default function MaterialDatabase() {
             pointer-events: none;
           }
 
-          .zyco-materials__shell {
+          .zyco-radius__shell {
             width: min(1180px, 100%);
             margin: 0 auto;
             position: relative;
             z-index: 1;
           }
 
-          .zyco-materials__header {
+          .zyco-radius__header {
             margin-bottom: 34px;
             padding: 34px;
             border: 1px solid rgba(147, 197, 253, 0.2);
@@ -156,7 +142,7 @@ export default function MaterialDatabase() {
             backdrop-filter: blur(18px);
           }
 
-          .zyco-materials__eyebrow {
+          .zyco-radius__eyebrow {
             margin: 0 0 14px;
             color: #93c5fd;
             font-size: 13px;
@@ -165,7 +151,7 @@ export default function MaterialDatabase() {
             text-transform: uppercase;
           }
 
-          .zyco-materials__title {
+          .zyco-radius__title {
             margin: 0;
             color: #ffffff;
             font-size: 46px;
@@ -175,7 +161,7 @@ export default function MaterialDatabase() {
             text-shadow: 0 0 28px rgba(96, 165, 250, 0.35);
           }
 
-          .zyco-materials__subtitle {
+          .zyco-radius__subtitle {
             max-width: 680px;
             margin: 16px 0 0;
             color: #bfdbfe;
@@ -184,28 +170,14 @@ export default function MaterialDatabase() {
             font-weight: 600;
           }
 
-          .zyco-materials__engineering-note {
-            max-width: 940px;
-            margin: 24px 0 0;
-            padding: 18px 20px;
-            border: 1px solid rgba(147, 197, 253, 0.22);
-            border-radius: 20px;
-            background: rgba(15, 23, 42, 0.24);
-            color: #dbeafe;
-            font-size: 14px;
-            line-height: 1.7;
-            font-weight: 650;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-          }
-
-          .zyco-materials__grid {
+          .zyco-radius__grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
           }
 
-          .zyco-material-card {
-            min-height: 438px;
+          .zyco-radius-card {
+            min-height: 474px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -227,7 +199,7 @@ export default function MaterialDatabase() {
             overflow: hidden;
           }
 
-          .zyco-material-card::before {
+          .zyco-radius-card::before {
             content: "";
             position: absolute;
             top: 0;
@@ -238,7 +210,7 @@ export default function MaterialDatabase() {
             opacity: 0.75;
           }
 
-          .zyco-material-card:hover {
+          .zyco-radius-card:hover {
             transform: translateY(-7px);
             border-color: rgba(147, 197, 253, 0.36);
             box-shadow: 0 22px 48px rgba(37, 99, 235, 0.26);
@@ -247,7 +219,7 @@ export default function MaterialDatabase() {
               linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
           }
 
-          .zyco-material-card__title {
+          .zyco-radius-card__title {
             margin: 0 0 18px;
             color: #ffffff;
             font-size: 22px;
@@ -257,13 +229,13 @@ export default function MaterialDatabase() {
             overflow-wrap: anywhere;
           }
 
-          .zyco-material-card__specs {
+          .zyco-radius-card__specs {
             display: grid;
             gap: 10px;
             margin: 0 0 18px;
           }
 
-          .zyco-material-card__spec {
+          .zyco-radius-card__spec {
             display: flex;
             justify-content: space-between;
             gap: 14px;
@@ -271,7 +243,7 @@ export default function MaterialDatabase() {
             border-bottom: 1px solid rgba(191, 219, 254, 0.14);
           }
 
-          .zyco-material-card__label {
+          .zyco-radius-card__label {
             color: #93c5fd;
             font-size: 12px;
             line-height: 1.35;
@@ -280,7 +252,7 @@ export default function MaterialDatabase() {
             text-transform: uppercase;
           }
 
-          .zyco-material-card__value {
+          .zyco-radius-card__value {
             color: #ffffff;
             font-size: 14px;
             line-height: 1.4;
@@ -289,33 +261,7 @@ export default function MaterialDatabase() {
             white-space: nowrap;
           }
 
-          .zyco-material-card__reference {
-            margin: 16px 0 18px;
-            padding: 12px 14px;
-            border: 1px solid rgba(147, 197, 253, 0.18);
-            border-radius: 16px;
-            background: rgba(15, 23, 42, 0.22);
-          }
-
-          .zyco-material-card__reference-label {
-            margin: 0 0 5px;
-            color: #93c5fd;
-            font-size: 11px;
-            line-height: 1.35;
-            font-weight: 900;
-            letter-spacing: 0.7px;
-            text-transform: uppercase;
-          }
-
-          .zyco-material-card__reference-value {
-            margin: 0;
-            color: #dbeafe;
-            font-size: 13px;
-            line-height: 1.55;
-            font-weight: 750;
-          }
-
-          .zyco-material-card__note-label {
+          .zyco-radius-card__note-label {
             margin: 0 0 8px;
             color: #93c5fd;
             font-size: 12px;
@@ -324,7 +270,7 @@ export default function MaterialDatabase() {
             text-transform: uppercase;
           }
 
-          .zyco-material-card__note {
+          .zyco-radius-card__note {
             margin: 0 0 24px;
             color: #cbd5e1;
             font-size: 14px;
@@ -332,16 +278,7 @@ export default function MaterialDatabase() {
             font-weight: 600;
           }
 
-          .zyco-material-card__calculator-note {
-            max-width: 280px;
-            margin: 0 0 12px;
-            color: #bfdbfe;
-            font-size: 13px;
-            line-height: 1.55;
-            font-weight: 650;
-          }
-
-          .zyco-material-card__action {
+          .zyco-radius-card__action {
             min-height: 46px;
             display: inline-flex;
             align-items: center;
@@ -362,60 +299,55 @@ export default function MaterialDatabase() {
               box-shadow 0.25s ease;
           }
 
-          .zyco-material-card__action:hover {
+          .zyco-radius-card__action:hover {
             transform: translateY(-2px);
             box-shadow: 0 18px 38px rgba(37, 99, 235, 0.42);
           }
 
           @media (max-width: 980px) {
-            .zyco-materials__grid {
+            .zyco-radius__grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .zyco-materials__title {
+            .zyco-radius__title {
               font-size: 38px;
             }
           }
 
           @media (max-width: 640px) {
-            .zyco-materials {
+            .zyco-radius {
               padding: 28px 14px;
             }
 
-            .zyco-materials__header {
+            .zyco-radius__header {
               padding: 24px;
               border-radius: 24px;
             }
 
-            .zyco-materials__title {
+            .zyco-radius__title {
               font-size: 32px;
             }
 
-            .zyco-materials__subtitle {
+            .zyco-radius__subtitle {
               font-size: 16px;
             }
 
-            .zyco-materials__engineering-note {
-              padding: 16px;
-              font-size: 13px;
-            }
-
-            .zyco-materials__grid {
+            .zyco-radius__grid {
               grid-template-columns: 1fr;
               gap: 14px;
             }
 
-            .zyco-material-card {
+            .zyco-radius-card {
               min-height: 0;
               padding: 22px;
             }
 
-            .zyco-material-card__spec {
+            .zyco-radius-card__spec {
               display: grid;
               gap: 4px;
             }
 
-            .zyco-material-card__value {
+            .zyco-radius-card__value {
               text-align: left;
               white-space: normal;
             }
@@ -423,86 +355,65 @@ export default function MaterialDatabase() {
         `}
       </style>
 
-      <main className='zyco-materials'>
-        <section className='zyco-materials__shell'>
-          <header className='zyco-materials__header'>
-            <p className='zyco-materials__eyebrow'>
+      <main className='zyco-radius'>
+        <section className='zyco-radius__shell'>
+          <header className='zyco-radius__header'>
+            <p className='zyco-radius__eyebrow'>
               Engineering Reference
             </p>
 
-            <h1 className='zyco-materials__title'>
-              Material Database
+            <h1 className='zyco-radius__title'>
+              Inside Radius Guide
             </h1>
 
-            <p className='zyco-materials__subtitle'>
-              Engineering reference for sheet metal bending materials
-            </p>
-
-            <p className='zyco-materials__engineering-note'>
-              {springbackEngineeringNote}
+            <p className='zyco-radius__subtitle'>
+              Industrial reference for inside bend radius selection
             </p>
           </header>
 
-          <div className='zyco-materials__grid'>
+          <div className='zyco-radius__grid'>
             {materials.map((material) => (
               <article
-                className='zyco-material-card'
+                className='zyco-radius-card'
                 key={material.name}
               >
                 <div>
-                  <h2 className='zyco-material-card__title'>
+                  <h2 className='zyco-radius-card__title'>
                     {material.name}
                   </h2>
 
-                  <dl className='zyco-material-card__specs'>
+                  <dl className='zyco-radius-card__specs'>
                     {fields.map(([label, key]) => (
-                      <div key={label}>
-                        <div className='zyco-material-card__spec'>
-                          <dt className='zyco-material-card__label'>
-                            {label}
-                          </dt>
+                      <div
+                        className='zyco-radius-card__spec'
+                        key={label}
+                      >
+                        <dt className='zyco-radius-card__label'>
+                          {label}
+                        </dt>
 
-                          <dd className='zyco-material-card__value'>
-                            {material[key]}
-                          </dd>
-                        </div>
-
-                        {key === 'springbackRange' && (
-                          <div className='zyco-material-card__reference'>
-                            <p className='zyco-material-card__reference-label'>
-                              Reference Condition
-                            </p>
-
-                            <p className='zyco-material-card__reference-value'>
-                              {springbackReferenceCondition}
-                            </p>
-                          </div>
-                        )}
+                        <dd className='zyco-radius-card__value'>
+                          {material[key]}
+                        </dd>
                       </div>
                     ))}
                   </dl>
 
-                  <p className='zyco-material-card__note-label'>
+                  <p className='zyco-radius-card__note-label'>
                     Application Note
                   </p>
 
-                  <p className='zyco-material-card__note'>
+                  <p className='zyco-radius-card__note'>
                     {material.applicationNote}
                   </p>
                 </div>
 
-                <div>
-                  <p className='zyco-material-card__calculator-note'>
-                    For thickness- and V-die-based estimation, use the Press Brake Calculator.
-                  </p>
-
-                  <a
-                    className='zyco-material-card__action'
-                    href={`/engineering-tools/press-brake-calculator?material=${material.materialKey}`}
-                  >
-                    Calculate Bending Force →
-                  </a>
-                </div>
+                <a
+                  className='zyco-radius-card__action'
+                  href={`/engineering-tools/press-brake-calculator?material=${material.materialKey}`}
+                >
+                  Calculate Bending Force {'\u2192'}
+                </a>
               </article>
             ))}
           </div>

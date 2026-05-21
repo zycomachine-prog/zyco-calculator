@@ -29,7 +29,8 @@ const tools = [
     title: 'Inside Radius Guide',
     description:
       'Inside bend radius and minimum radius reference',
-    status: 'soon',
+    status: 'active',
+    href: '/engineering-tools/inside-radius-guide',
   },
   {
     title: 'Tooling Guide',

@@ -5,6 +5,7 @@ import {
   Routes,
 } from 'react-router-dom'
 import EngineeringHub from './pages/EngineeringHub.jsx'
+import InsideRadiusGuide from './pages/InsideRadiusGuide.jsx'
 import MaterialDatabase from './pages/MaterialDatabase.jsx'
 import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
 
@@ -30,6 +31,11 @@ export default function App() {
         <Route
           path='/engineering-tools/material-database'
           element={<MaterialDatabase />}
+        />
+
+        <Route
+          path='/engineering-tools/inside-radius-guide'
+          element={<InsideRadiusGuide />}
         />
 
         <Route
