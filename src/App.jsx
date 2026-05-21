@@ -5,6 +5,7 @@ import {
   Routes,
 } from 'react-router-dom'
 import EngineeringHub from './pages/EngineeringHub.jsx'
+import MaterialDatabase from './pages/MaterialDatabase.jsx'
 import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
 
 export default function App() {
@@ -24,6 +25,11 @@ export default function App() {
         <Route
           path='/engineering-tools/press-brake-calculator'
           element={<PressBrakeCalculator />}
+        />
+
+        <Route
+          path='/engineering-tools/material-database'
+          element={<MaterialDatabase />}
         />
 
         <Route

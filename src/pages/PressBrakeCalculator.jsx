@@ -8,6 +8,29 @@ import CountUp from 'react-countup'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
+const validMaterialKeys = [
+  'mildSteel',
+  'galvanizedSteel',
+  'stainless201',
+  'stainless304',
+  'aluminum',
+  'brass',
+]
+
+const getInitialMaterial = () => {
+  if (typeof window === 'undefined') {
+    return 'mildSteel'
+  }
+
+  const materialParam = new URLSearchParams(
+    window.location.search
+  ).get('material')
+
+  return validMaterialKeys.includes(materialParam)
+    ? materialParam
+    : 'mildSteel'
+}
+
 export default function PressBrakeCalculator() {
   const [isMobile, setIsMobile] =
   useState(
@@ -88,7 +111,7 @@ const [length, setLength] =
   useState('')
 
 const [material, setMaterial] =
-  useState('mildSteel')
+  useState(getInitialMaterial)
 const [isExportingPDF, setIsExportingPDF] =
   useState(false)
 // 鎵嬪姩V妲?
