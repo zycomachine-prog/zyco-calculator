@@ -162,6 +162,15 @@ const vDie =
     brass: { min: 0.4, max: 1.2 },
   }
 
+  const naturalInsideRadiusFactors = {
+    mildSteel: 0.16,
+    galvanizedSteel: 0.16,
+    stainless201: 0.18,
+    stainless304: 0.18,
+    aluminum: 0.14,
+    brass: 0.16,
+  }
+
   // 鎶樺集鍔涜绠?
   const calculateForce = () => {
     const T = Number(thickness)
@@ -297,6 +306,21 @@ const vDie =
 ])
 
   // 鏈哄瀷搴?
+  const estimatedNaturalInsideRadius = useMemo(() => {
+  const V = Number(vDie)
+
+  if (!Number.isFinite(V) || V <= 0) return null
+
+  const factor =
+    naturalInsideRadiusFactors[material] ||
+    naturalInsideRadiusFactors.mildSteel
+
+  return V * factor
+}, [
+  vDie,
+  material,
+])
+
   const machineList = [
     [30, 1600],
     [40, 1600],
@@ -381,6 +405,10 @@ const vDie =
       springbackTitle: 'SPRINGBACK ESTIMATION',
       estimatedSpringback: 'Estimated Springback',
       suggestedBendAngle: 'Suggested Bend Angle',
+      estimatedNaturalInsideRadiusTitle:
+        'ESTIMATED NATURAL INSIDE RADIUS',
+      estimatedNaturalInsideRadiusNote:
+        'Estimated natural inside radius for air bending. Actual radius may vary depending on tooling geometry, material condition and bending method.',
       springbackNote:
         'Reference value for air bending. Actual springback may vary depending on material batch, tooling, machine condition and bending method. Suggested bend angle is for process reference only and may not be equal to the final input angle used in the press brake control system. Actual parameters should be adjusted according to machine controller, tooling and trial bending results.',
       springbackLengthNote:
@@ -429,6 +457,10 @@ const vDie =
       springbackTitle: '回弹估算',
       estimatedSpringback: '预估回弹',
       suggestedBendAngle: '建议折弯角度',
+      estimatedNaturalInsideRadiusTitle:
+        '预估自然内半径',
+      estimatedNaturalInsideRadiusNote:
+        '空气折弯的预估自然内半径。实际半径可能因模具几何形状、材料状态和折弯方式而变化。',
       springbackNote:
         '该数值为空气折弯经验参考值，实际回弹会因材料批次、模具、设备状态和折弯方式不同而变化。建议折弯角度仅供工艺参考，并不等同于折弯机系统最终输入角度。实际参数需根据设备系统、模具及试折结果进行调整。',
       springbackLengthNote:
@@ -477,6 +509,10 @@ const vDie =
       springbackTitle: 'ОЦЕНКА ПРУЖИНЕНИЯ',
       estimatedSpringback: 'Оценочное пружинение',
       suggestedBendAngle: 'Рекомендуемый угол гибки',
+      estimatedNaturalInsideRadiusTitle:
+        'ОЦЕНОЧНЫЙ ЕСТЕСТВЕННЫЙ ВНУТРЕННИЙ РАДИУС',
+      estimatedNaturalInsideRadiusNote:
+        'Оценочный естественный внутренний радиус для воздушной гибки. Фактический радиус может меняться в зависимости от геометрии оснастки, состояния материала и метода гибки.',
       springbackNote:
         'Справочное значение для воздушной гибки. Фактическое пружинение может меняться в зависимости от партии материала, оснастки, состояния станка и метода гибки. Рекомендуемый угол гибки является только технологическим ориентиром и может не совпадать с окончательным углом ввода в системе управления листогибом. Фактические параметры следует корректировать с учетом контроллера станка, оснастки и результатов пробной гибки.',
       springbackLengthNote:
@@ -525,6 +561,10 @@ const vDie =
       springbackTitle: 'ESTIMACIÓN DE RETORNO ELÁSTICO',
       estimatedSpringback: 'Retorno elástico estimado',
       suggestedBendAngle: 'Ángulo de plegado sugerido',
+      estimatedNaturalInsideRadiusTitle:
+        'RADIO INTERIOR NATURAL ESTIMADO',
+      estimatedNaturalInsideRadiusNote:
+        'Radio interior natural estimado para plegado al aire. El radio real puede variar según la geometría del utillaje, el estado del material y el método de plegado.',
       springbackNote:
         'Valor de referencia para plegado al aire. El retorno elástico real puede variar según el lote del material, la herramienta, el estado de la máquina y el método de plegado. El ángulo de plegado sugerido es solo una referencia de proceso y puede no ser igual al ángulo final introducido en el sistema de control de la plegadora. Los parámetros reales deben ajustarse según el controlador de la máquina, la herramienta y los resultados de las pruebas de plegado.',
       springbackLengthNote:
@@ -573,6 +613,10 @@ const vDie =
       springbackTitle: 'GERİ ESNEME TAHMİNİ',
       estimatedSpringback: 'Tahmini geri esneme',
       suggestedBendAngle: 'Önerilen bükme açısı',
+      estimatedNaturalInsideRadiusTitle:
+        'TAHMİNİ DOĞAL İÇ RADYÜS',
+      estimatedNaturalInsideRadiusNote:
+        'Havada bükme için tahmini doğal iç radyüs. Gerçek radyüs; takım geometrisi, malzeme durumu ve bükme yöntemine göre değişebilir.',
       springbackNote:
         'Havada bükme için referans değerdir. Gerçek geri esneme; malzeme partisi, takım, makine durumu ve bükme yöntemine göre değişebilir. Önerilen bükme açısı yalnızca proses referansı içindir ve abkant kontrol sisteminde kullanılan nihai giriş açısına eşit olmayabilir. Gerçek parametreler makine kontrolörü, takım ve deneme bükümü sonuçlarına göre ayarlanmalıdır.',
       springbackLengthNote:
@@ -621,6 +665,10 @@ const vDie =
       springbackTitle: 'ESTIMASI SPRINGBACK',
       estimatedSpringback: 'Springback perkiraan',
       suggestedBendAngle: 'Sudut tekuk yang disarankan',
+      estimatedNaturalInsideRadiusTitle:
+        'RADIUS DALAM ALAMI PERKIRAAN',
+      estimatedNaturalInsideRadiusNote:
+        'Radius dalam alami perkiraan untuk air bending. Radius aktual dapat berbeda tergantung geometri tooling, kondisi material, dan metode penekukan.',
       springbackNote:
         'Nilai referensi untuk air bending. Springback aktual dapat berbeda tergantung batch material, tooling, kondisi mesin, dan metode penekukan. Sudut tekuk yang disarankan hanya sebagai referensi proses dan belum tentu sama dengan sudut input akhir pada sistem kontrol press brake. Parameter aktual perlu disesuaikan berdasarkan controller mesin, tooling, dan hasil trial bending.',
       springbackLengthNote:
@@ -694,6 +742,11 @@ const svgAnimationPlayState =
 const estimatedSpringbackValue =
   springbackEstimate
     ? `${springbackEstimate.springbackMin.toFixed(1)}° - ${springbackEstimate.springbackMax.toFixed(1)}°`
+    : '--'
+
+const estimatedNaturalInsideRadiusValue =
+  estimatedNaturalInsideRadius
+    ? `\u2248 ${estimatedNaturalInsideRadius.toFixed(1)} mm`
     : '--'
 
 const suggestedBendAngleValue =
@@ -1497,6 +1550,62 @@ letterSpacing: '1px',
   </span>
 </>
 
+          </div>
+
+          <div
+            style={{
+              marginBottom: '24px',
+              padding: '18px',
+              borderRadius: '22px',
+              background:
+                'linear-gradient(145deg,rgba(96,165,250,0.18),rgba(255,255,255,0.06))',
+              border:
+                '1px solid rgba(147,197,253,0.18)',
+              boxShadow:
+                '0 10px 30px rgba(0,0,0,0.16)',
+              color: '#dbeafe',
+            }}
+          >
+            <div
+              style={{
+                color: '#93c5fd',
+                fontSize: '13px',
+                letterSpacing: '2px',
+                fontWeight: '800',
+                marginBottom: '10px',
+                textTransform: 'uppercase',
+                wordBreak: 'break-word',
+                overflowWrap: 'anywhere',
+              }}
+            >
+              {t.estimatedNaturalInsideRadiusTitle}
+            </div>
+
+            <div
+              style={{
+                color: '#ffffff',
+                fontSize: isMobile ? '28px' : '34px',
+                fontWeight: '900',
+                lineHeight: '1.1',
+                marginBottom: '10px',
+                fontVariantNumeric: 'tabular-nums',
+              }}
+            >
+              {estimatedNaturalInsideRadiusValue}
+            </div>
+
+            <div
+              style={{
+                color: '#bfdbfe',
+                fontSize: '13px',
+                lineHeight: '1.65',
+                wordBreak: 'normal',
+                overflowWrap: 'anywhere',
+                whiteSpace: 'normal',
+              }}
+            >
+              {t.estimatedNaturalInsideRadiusNote}
+            </div>
           </div>
 
           <div

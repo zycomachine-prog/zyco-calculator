@@ -8,6 +8,7 @@ import EngineeringHub from './pages/EngineeringHub.jsx'
 import InsideRadiusGuide from './pages/InsideRadiusGuide.jsx'
 import MaterialDatabase from './pages/MaterialDatabase.jsx'
 import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
+import SpringbackDatabase from './pages/SpringbackDatabase.jsx'
 import VDieSelection from './pages/VDieSelection.jsx'
 
 export default function App() {
@@ -32,6 +33,11 @@ export default function App() {
         <Route
           path='/engineering-tools/material-database'
           element={<MaterialDatabase />}
+        />
+
+        <Route
+          path='/engineering-tools/springback-database'
+          element={<SpringbackDatabase />}
         />
 
         <Route
