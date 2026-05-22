@@ -8,6 +8,7 @@ import CountUp from 'react-countup'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 import { calculatorLanguageMap } from '../languages/engineeringText.js'
+import { setPageSEO } from '../utils/seo.js'
 
 const validMaterialKeys = [
   'mildSteel',
@@ -69,6 +70,17 @@ export default function PressBrakeCalculator({
       ? window.innerWidth < 900
       : false
   )
+
+useEffect(() => {
+  setPageSEO({
+    title: 'Press Brake Tonnage Calculator for Sheet Metal Bending | ZYCO',
+    description:
+      'Calculate press brake bending force for sheet metal air bending based on material, thickness, bend length and V-die opening. Estimate tonnage, machine capacity, inside radius and springback reference.',
+    keywords:
+      'press brake calculator, press brake tonnage calculator, bending force calculator, sheet metal bending calculator, V die opening, air bending force',
+    canonicalPath: '/engineering-tools/press-brake-calculator',
+  })
+}, [])
 
 useEffect(() => {
   const handleResize = () => {

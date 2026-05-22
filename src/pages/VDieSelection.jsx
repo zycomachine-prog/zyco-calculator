@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
+import { setPageSEO } from '../utils/seo.js'
 
 const materials = [
   {
@@ -103,6 +104,17 @@ export default function VDieSelection({
   language = 'en',
   setLanguage = () => {},
 }) {
+  useEffect(() => {
+    setPageSEO({
+      title: 'V Die Selection Tool for Press Brake Bending | ZYCO',
+      description:
+        'Select recommended V-die opening for press brake air bending based on material and thickness. Understand standard V-opening rules, inside radius influence, tonnage effect and cracking risk.',
+      keywords:
+        'V die selection, V opening calculator, press brake tooling, press brake die selection, air bending V die, sheet metal V die',
+      canonicalPath: '/engineering-tools/v-die-selection',
+    })
+  }, [])
+
   const t = getEngineeringText(language)
   const page = t.pages.vdie
   const backToEngineeringToolsLabel =

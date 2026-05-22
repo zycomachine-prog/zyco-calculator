@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
+import { setPageSEO } from '../utils/seo.js'
 
 const materials = [
   {
@@ -104,25 +105,15 @@ export default function SpringbackDatabase({
   }
 
   useEffect(() => {
-    document.title =
-      `${page.title} | ZYCO`
-
-    const description =
-      page.subtitle
-
-    let metaDescription = document.querySelector('meta[name="description"]')
-
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta')
-      metaDescription.setAttribute('name', 'description')
-      document.head.appendChild(metaDescription)
-    }
-
-    metaDescription.setAttribute('content', description)
-  }, [
-    page.subtitle,
-    page.title,
-  ])
+    setPageSEO({
+      title: 'Sheet Metal Springback Database for Press Brake Bending | ZYCO',
+      description:
+        'Reference typical springback ranges for mild steel, stainless steel, aluminum, galvanized steel and brass in press brake air bending. Understand how material, V-opening and inside radius affect springback.',
+      keywords:
+        'springback database, sheet metal springback, press brake springback, stainless steel springback, air bending springback, springback angle',
+      canonicalPath: '/engineering-tools/springback-database',
+    })
+  }, [])
 
   return (
     <>

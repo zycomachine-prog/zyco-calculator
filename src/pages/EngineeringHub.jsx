@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
+import { setPageSEO } from '../utils/seo.js'
 
 const tools = [
   {
@@ -69,6 +71,17 @@ export default function EngineeringHub({
   language = 'en',
   setLanguage = () => {},
 }) {
+  useEffect(() => {
+    setPageSEO({
+      title: 'ZYCO Engineering Tools for Press Brake Bending',
+      description:
+        'Explore ZYCO engineering tools for sheet metal bending, including press brake tonnage calculation, material database, V-die selection, inside radius guide, springback reference and bend allowance calculation.',
+      keywords:
+        'press brake tools, sheet metal bending tools, press brake calculator, V die selection, bend allowance calculator, springback database, material database',
+      canonicalPath: '/engineering-tools',
+    })
+  }, [])
+
   const t = getEngineeringText(language)
   const page = t.pages.hub
   const toolDescriptions = Object.fromEntries(page.tools)

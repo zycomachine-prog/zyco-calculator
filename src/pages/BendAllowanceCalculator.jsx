@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
+import { setPageSEO } from '../utils/seo.js'
 
 const materials = [
   {
@@ -107,25 +108,15 @@ export default function BendAllowanceCalculator({
     useState(false)
 
   useEffect(() => {
-    document.title =
-      `${page.title} | ZYCO`
-
-    const description =
-      page.subtitle
-
-    let metaDescription = document.querySelector('meta[name="description"]')
-
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta')
-      metaDescription.setAttribute('name', 'description')
-      document.head.appendChild(metaDescription)
-    }
-
-    metaDescription.setAttribute('content', description)
-  }, [
-    page.subtitle,
-    page.title,
-  ])
+    setPageSEO({
+      title: 'Bend Allowance Calculator for Sheet Metal Flat Pattern | ZYCO',
+      description:
+        'Calculate bend allowance, outside setback and bend deduction for sheet metal bending using thickness, inside radius, bend angle and K-factor. Useful for flat pattern and development reference.',
+      keywords:
+        'bend allowance calculator, bend deduction calculator, K factor calculator, flat pattern calculator, sheet metal development, outside setback',
+      canonicalPath: '/engineering-tools/bend-allowance-calculator',
+    })
+  }, [])
 
   const selectedMaterial =
     materials.find((material) => material.materialKey === materialKey) ||
