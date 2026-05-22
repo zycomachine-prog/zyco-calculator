@@ -88,12 +88,14 @@ useEffect(() => {
 }, [])
   const handleFocus = (e) => {
   e.target.style.border =
-    '1px solid #3b82f6'
+    '1px solid rgba(14,165,233,0.72)'
 
   e.target.style.boxShadow =
 `
-0 0 0 4px rgba(59,130,246,0.15),
-0 0 25px rgba(59,130,246,0.15),
+0 0 0 4px rgba(14,165,233,0.12),
+0 16px 34px rgba(15,23,42,0.12),
+0 8px 24px rgba(37,99,235,0.12),
+inset 0 1px 0 rgba(255,255,255,0.98)
 `
 
 e.target.style.transform =
@@ -102,10 +104,10 @@ e.target.style.transform =
 
 const handleBlur = (e) => {
   e.target.style.border =
-    '1px solid rgba(148,163,184,0.25)'
+    '1px solid rgba(147,197,253,0.34)'
 
   e.target.style.boxShadow =
-  '0 6px 18px rgba(15,23,42,0.05)'
+  '0 10px 24px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.96), inset 0 -10px 24px rgba(219,234,254,0.18)'
 
 e.target.style.transform =
   'translateY(0px)'
@@ -859,31 +861,39 @@ const animationStyle = `
   }
 }
 
+@keyframes titleTextScan {
+  0% {
+    background-position: 260% 0;
+  }
+
+  100% {
+    background-position: -160% 0;
+  }
+}
+
 .zyco-press-brake-back-to-hub {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
   max-width: min(100%, 460px);
-  min-height: 44px;
+  min-height: 46px;
   box-sizing: border-box;
   margin: 0 0 18px;
-  padding: 0 16px;
-  border-color: rgba(37, 99, 235, 0.46);
+  padding: 0 18px;
+  border-color: rgba(37, 99, 235, 0.5);
   border-style: solid;
   border-width: 1px;
   border-radius: 999px;
-  background:
-    linear-gradient(145deg, rgba(239, 246, 255, 0.9), rgba(219, 234, 254, 0.7));
-  color: #1e3a8a;
+  background-color: #dbeafe;
+  color: #0f2f6b;
   font-size: 14px;
   line-height: 1.35;
   font-weight: 850;
   text-decoration: none;
   box-shadow:
-    0 10px 24px rgba(37, 99, 235, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(16px);
+    0 10px 24px rgba(15, 23, 42, 0.13),
+    0 4px 12px rgba(37, 99, 235, 0.12);
   transition:
     transform 0.22s ease,
     border-color 0.22s ease,
@@ -893,19 +903,56 @@ const animationStyle = `
 }
 
 .zyco-press-brake-back-to-hub:hover {
-  border-color: rgba(37, 99, 235, 0.72);
-  background:
-    linear-gradient(145deg, rgba(219, 234, 254, 0.98), rgba(191, 219, 254, 0.84));
-  color: #0f172a;
+  border-color: rgba(29, 78, 216, 0.72);
+  background-color: #bfdbfe;
+  color: #0b2454;
   box-shadow:
-    0 16px 32px rgba(37, 99, 235, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 14px 30px rgba(15, 23, 42, 0.16),
+    0 6px 16px rgba(37, 99, 235, 0.16);
   transform: translateY(-2px);
 }
 
 .zyco-press-brake-back-to-hub:focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.28);
   outline-offset: 3px;
+}
+
+.zyco-press-brake-title-shine {
+  position: relative;
+}
+
+.zyco-press-brake-title-shine::after {
+  content: attr(data-title);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 42%,
+      rgba(255, 255, 255, 0.74) 49%,
+      rgba(226, 246, 255, 0.68) 52%,
+      transparent 59%,
+      transparent 100%
+    );
+  background-size: 240% 100%;
+  background-position: 260% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  animation: titleTextScan 7s linear infinite;
+}
+
+.zyco-press-brake-input:hover {
+  border-color: rgba(14, 165, 233, 0.52) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%) !important;
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, 0.08),
+    0 0 0 3px rgba(14, 165, 233, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    inset 0 -10px 22px rgba(219, 234, 254, 0.16) !important;
 }
 
 @media (max-width: 640px) {
@@ -1053,28 +1100,23 @@ pdf.save(
     boxSizing: 'border-box',
         background: `
 radial-gradient(
-circle at 0% 0%,
-rgba(59,130,246,0.16),
+circle at 18% 12%,
+rgba(96,165,250,0.28),
+transparent 30%
+),
+
+radial-gradient(
+circle at 82% 18%,
+rgba(14,165,233,0.18),
 transparent 28%
 ),
 
-radial-gradient(
-circle at 100% 100%,
-rgba(14,165,233,0.12),
-transparent 32%
-),
-
-radial-gradient(
-circle at 50% 20%,
-rgba(96,165,250,0.10),
-transparent 40%
-),
-
 linear-gradient(
-180deg,
-#f4f8ff 0%,
-#e2e8f0 45%,
-#dbeafe 100%
+145deg,
+#071224 0%,
+#0b1f3f 42%,
+#12366e 74%,
+#1d4ed8 100%
 )
 `,
         padding: isMobile ? '10px' : '16px',
@@ -1089,17 +1131,19 @@ linear-gradient(
     inset: 0,
     backgroundImage: `
       linear-gradient(
-        rgba(255,255,255,0.06) 1px,
+        rgba(96,165,250,0.07) 1px,
         transparent 1px
       ),
       linear-gradient(
         90deg,
-        rgba(255,255,255,0.06) 1px,
+        rgba(96,165,250,0.07) 1px,
         transparent 1px
       )
     `,
-    backgroundSize: '40px 40px',
-    opacity: 0.25,
+    backgroundSize: '42px 42px',
+    opacity: 0.9,
+    maskImage:
+      'linear-gradient(to bottom, rgba(0,0,0,0.88), transparent 78%)',
     pointerEvents: 'none',
       }}
 />
@@ -1115,7 +1159,8 @@ style={{
   overflowX: 'hidden',
   overflowY: 'visible',
 
-  background: 'rgba(255,255,255,0.96)',
+  background:
+    'linear-gradient(145deg,rgba(255,255,255,0.96),rgba(239,246,255,0.9))',
 
   borderRadius: isMobile
     ? '22px'
@@ -1125,17 +1170,17 @@ style={{
     ? '10px'
     : '18px',
 
-  backdropFilter: 'blur(10px)',
+  backdropFilter: 'blur(14px)',
 
   boxShadow:
 `
-0 30px 90px rgba(15,23,42,0.12),
-0 0 0 1px rgba(255,255,255,0.45),
-inset 0 1px 0 rgba(255,255,255,0.75)
+0 30px 90px rgba(0,0,0,0.22),
+0 0 0 1px rgba(147,197,253,0.22),
+inset 0 1px 0 rgba(255,255,255,0.82)
 `,
 
   border:
-    '1px solid rgba(255,255,255,0.65)',
+    '1px solid rgba(147,197,253,0.22)',
 }}
       >
         <a
@@ -1178,11 +1223,14 @@ inset 0 1px 0 rgba(255,255,255,0.75)
   background:
   isExportingPDF
     ? 'rgba(219,234,254,1)'
-    : '#eaf1ff',
+    : 'rgba(239,246,255,0.82)',
 
   padding: '10px 18px',
 
   borderRadius: '999px',
+
+  border:
+    '1px solid rgba(147,197,253,0.42)',
 
   position: 'relative',
 
@@ -1191,7 +1239,8 @@ inset 0 1px 0 rgba(255,255,255,0.75)
   boxShadow:
     isExportingPDF
       ? 'none'
-      : '0 4px 15px rgba(59,130,246,0.08)',
+      : '0 10px 26px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.86)',
+  backdropFilter: 'blur(14px)',
 }}
     >
       <div
@@ -1200,6 +1249,8 @@ inset 0 1px 0 rgba(255,255,255,0.75)
           height: '10px',
           borderRadius: '999px',
           background: '#2563eb',
+          boxShadow:
+            '0 0 0 3px rgba(37,99,235,0.12), 0 0 12px rgba(37,99,235,0.24)',
         }}
       />
 
@@ -1207,9 +1258,9 @@ inset 0 1px 0 rgba(255,255,255,0.75)
         style={{
   fontSize: '14px',
 
-  fontWeight: '700',
+  fontWeight: '800',
 
-  color: '#1e3a8a',
+  color: '#0f2f6b',
 
   opacity: 1,
 
@@ -1217,7 +1268,7 @@ inset 0 1px 0 rgba(255,255,255,0.75)
 
   zIndex: 3,
 
-  letterSpacing: '1px',
+  letterSpacing: '1.2px',
 }}
       >
         ZYCO INDUSTRIAL SYSTEM
@@ -1237,25 +1288,13 @@ inset 0 1px 0 rgba(255,255,255,0.75)
     : '0px',
   }}
 >
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: '-40%',
-          width: '30%',
-          height: '100%',
-          background:
-            'linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent)',
-          transform: 'skewX(-25deg)',
-          animation:
-  isExportingPDF
-    ? 'none'
-    : 'titleScan 4s linear infinite',
-          pointerEvents: 'none',
-        }}
-      />
-
       <h1
+        className={
+          isExportingPDF
+            ? undefined
+            : 'zyco-press-brake-title-shine'
+        }
+        data-title={t.title}
         style={{
           fontSize: titleFontSize[calculatorLanguage],
 
@@ -1278,7 +1317,7 @@ inset 0 1px 0 rgba(255,255,255,0.75)
     }
   : {
       background:
-        'linear-gradient(180deg,#0f172a 0%,#2563eb 100%)',
+        'linear-gradient(180deg,#0f172a 0%,#1e3a8a 62%,#2563eb 100%)',
 
       WebkitBackgroundClip:
         'text',
@@ -1289,8 +1328,7 @@ inset 0 1px 0 rgba(255,255,255,0.75)
 
           textShadow:
             `
-            0 2px 10px rgba(59,130,246,0.08),
-            0 0 30px rgba(96,165,250,0.08)
+            0 1px 2px rgba(15,23,42,0.05)
             `,
             wordBreak: 'break-word',
             whiteSpace: 'normal',
@@ -1322,6 +1360,7 @@ overflowWrap: 'break-word',
   </div>
 
 <select
+  className='zyco-press-brake-input'
   value={calculatorLanguage}
   onChange={(e) =>
     setLanguage(
@@ -1378,14 +1417,23 @@ overflowWrap: 'break-word',
             gap: '12px',
             marginTop: '24px',
             background:
-'linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%)',
+isExportingPDF
+  ? '#f8fbff'
+  : 'linear-gradient(145deg,rgba(255,255,255,0.94),rgba(239,246,255,0.82))',
             padding: '12px',
             borderRadius: '24px',
             border:
-'1px solid rgba(148,163,184,0.15)',
+isExportingPDF
+  ? '1px solid rgba(96,165,250,0.42)'
+  : '1px solid rgba(147,197,253,0.24)',
 boxShadow:
-'0 10px 30px rgba(15,23,42,0.04)',
-backdropFilter: 'blur(12px)',
+isExportingPDF
+  ? '0 8px 18px rgba(15,23,42,0.08)'
+  : '0 18px 44px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.82)',
+backdropFilter:
+  isExportingPDF
+    ? 'none'
+    : 'blur(14px)',
 
           }}
         >
@@ -1396,6 +1444,7 @@ backdropFilter: 'blur(12px)',
 
 <div style={inputWrapStyle}>
   <input
+  className='zyco-press-brake-input'
   ref={thicknessRef}
 
   type='number'
@@ -1421,7 +1470,11 @@ backdropFilter: 'blur(12px)',
         setThickness(value)
       }
     }}
-    style={inputStyle}
+    style={
+      isExportingPDF
+        ? pdfInputStyle
+        : inputStyle
+    }
     onFocus={handleFocus}
     onBlur={handleBlur}
     placeholder='3 mm'
@@ -1442,6 +1495,7 @@ backdropFilter: 'blur(12px)',
 
 <div style={inputWrapStyle}>
   <input
+  className='zyco-press-brake-input'
   ref={lengthRef}
 
   type='number'
@@ -1467,7 +1521,11 @@ backdropFilter: 'blur(12px)',
         setLength(value)
       }
     }}
-    style={inputStyle}
+    style={
+      isExportingPDF
+        ? pdfInputStyle
+        : inputStyle
+    }
     onFocus={handleFocus}
     onBlur={handleBlur}
     placeholder='2500 mm'
@@ -1487,6 +1545,7 @@ backdropFilter: 'blur(12px)',
 
 <div style={inputWrapStyle}>
  <input
+  className='zyco-press-brake-input'
   ref={vdieRef}
 
   type='number'
@@ -1512,7 +1571,11 @@ backdropFilter: 'blur(12px)',
         setCustomVdie(value)
       }
     }}
-    style={inputStyle}
+    style={
+      isExportingPDF
+        ? pdfInputStyle
+        : inputStyle
+    }
     onFocus={handleFocus}
     onBlur={handleBlur}
     placeholder='AUTO'
@@ -1532,6 +1595,7 @@ backdropFilter: 'blur(12px)',
   </div>
 
 <select
+  className='zyco-press-brake-input'
   ref={materialRef}
 
   value={material}
@@ -1544,7 +1608,11 @@ backdropFilter: 'blur(12px)',
   onChange={(e) =>
     setMaterial(e.target.value)
   }
-  style={inputStyle}
+  style={
+    isExportingPDF
+      ? pdfInputStyle
+      : inputStyle
+  }
   onFocus={handleFocus}
   onBlur={handleBlur}
 >
@@ -2518,15 +2586,45 @@ PRESS </text>
 >
   <div
     style={{
+      display: 'inline-flex',
+
+      alignItems: 'center',
+
+      gap: '10px',
+
       fontSize: '14px',
 
-      letterSpacing: '2px',
+      letterSpacing: '2.2px',
 
-      color: '#93c5fd',
+      color: '#1d4ed8',
+
+      fontWeight: '900',
+
+      textShadow:
+        '0 1px 8px rgba(37,99,235,0.12)',
 
       marginBottom: '16px',
     }}
   >
+    <span
+      aria-hidden='true'
+      style={{
+        width: '28px',
+
+        height: '3px',
+
+        borderRadius: '999px',
+
+        background:
+          'linear-gradient(90deg,#38bdf8 0%,#2563eb 100%)',
+
+        boxShadow:
+          '0 0 10px rgba(37,99,235,0.22)',
+
+        flexShrink: 0,
+      }}
+    />
+
     {t.calcDetails}
   </div>
 
@@ -2936,10 +3034,17 @@ overflow: 'hidden',
             border: '1px solid rgba(59,130,246,0.26)',
             borderRadius: '24px',
             background:
-              'linear-gradient(145deg,rgba(248,250,252,0.94),rgba(219,234,254,0.82))',
+              isExportingPDF
+                ? '#f8fbff'
+                : 'linear-gradient(145deg,rgba(248,250,252,0.94),rgba(219,234,254,0.82))',
             boxShadow:
-              '0 18px 48px rgba(15,23,42,0.22), inset 0 1px 0 rgba(255,255,255,0.8)',
-            backdropFilter: 'blur(18px)',
+              isExportingPDF
+                ? '0 8px 18px rgba(15,23,42,0.08)'
+                : '0 18px 48px rgba(15,23,42,0.22), inset 0 1px 0 rgba(255,255,255,0.8)',
+            backdropFilter:
+              isExportingPDF
+                ? 'none'
+                : 'blur(18px)',
           }}
         >
           <h2
@@ -2977,10 +3082,17 @@ overflow: 'hidden',
             border: '1px solid rgba(59,130,246,0.24)',
             borderRadius: '24px',
             background:
-              'linear-gradient(145deg,rgba(239,246,255,0.92),rgba(191,219,254,0.68))',
+              isExportingPDF
+                ? '#f8fbff'
+                : 'linear-gradient(145deg,rgba(239,246,255,0.92),rgba(191,219,254,0.68))',
             boxShadow:
-              '0 14px 38px rgba(15,23,42,0.18), inset 0 1px 0 rgba(255,255,255,0.72)',
-            backdropFilter: 'blur(18px)',
+              isExportingPDF
+                ? '0 8px 18px rgba(15,23,42,0.08)'
+                : '0 14px 38px rgba(15,23,42,0.18), inset 0 1px 0 rgba(255,255,255,0.72)',
+            backdropFilter:
+              isExportingPDF
+                ? 'none'
+                : 'blur(18px)',
           }}
         >
           <h2
@@ -3135,7 +3247,7 @@ paddingBottom: '16px',
   borderRadius: '18px',
 
   border:
-    '1px solid rgba(148,163,184,0.18)',
+    '1px solid rgba(147,197,253,0.34)',
 
   paddingLeft: '22px',
 
@@ -3150,18 +3262,18 @@ paddingBottom: '16px',
   boxSizing: 'border-box',
 
   background:
-    'linear-gradient(180deg,#ffffff 0%,#f1f5ff 100%)',
+    'linear-gradient(180deg,#ffffff 0%,#fbfdff 100%)',
 
   backdropFilter: 'blur(10px)',
 
-  color: '#0f172a',
+  color: '#0b1f3f',
 
   outline: 'none',
 
   transition: 'all 0.25s ease',
 
   boxShadow:
-    '0 6px 18px rgba(15,23,42,0.05)',
+    '0 10px 24px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.96), inset 0 -10px 24px rgba(219,234,254,0.18)',
 
   transform: 'translateY(0px)',
 
@@ -3176,6 +3288,19 @@ paddingBottom: '16px',
   MozAppearance: 'none',
 
 }
+const pdfInputStyle = {
+  ...inputStyle,
+
+  background: '#ffffff',
+
+  border:
+    '1px solid rgba(96,165,250,0.48)',
+
+  boxShadow:
+    '0 4px 12px rgba(15,23,42,0.08)',
+
+  backdropFilter: 'none',
+}
 const inputWrapStyle = {
   position: 'relative',
   width: '100%',
@@ -3187,11 +3312,11 @@ const unitStyle = {
   top: '50%',
   transform: 'translateY(-50%)',
 
-  color: '#64748b',
+  color: '#334155',
 
   fontSize: '14px',
 
-  fontWeight: '700',
+  fontWeight: '800',
 
   pointerEvents: 'none',
 
