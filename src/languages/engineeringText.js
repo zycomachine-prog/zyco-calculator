@@ -36,6 +36,7 @@ const relatedTools = {
     insideRadiusGuide: 'Inside Radius Guide',
     springbackDatabase: 'Springback Database',
     bendAllowanceCalculator: 'Bend Allowance Calculator',
+    airBendingGuide: 'Air Bending Guide',
   },
   zh: {
     pressBrakeCalculator: '折弯机计算器',
@@ -78,6 +79,12 @@ const relatedTools = {
     bendAllowanceCalculator: 'Kalkulator bend allowance',
   },
 }
+
+relatedTools.zh.airBendingGuide = '空气折弯指南'
+relatedTools.ru.airBendingGuide = 'Руководство по Air Bending'
+relatedTools.es.airBendingGuide = 'Guía de Air Bending'
+relatedTools.tr.airBendingGuide = 'Air Bending kılavuzu'
+relatedTools.id.airBendingGuide = 'Panduan Air Bending'
 
 const materialNames = {
   en: {
@@ -1701,6 +1708,364 @@ const localizedOverrides = {
     },
   },
 }
+
+const airBendingHubDescriptions = {
+  en: 'Engineering guide to air bending principles, V-die selection, inside radius behavior, springback influence and bending force estimation.',
+  zh: '介绍空气折弯原理、V型模具选择、内半径变化、回弹影响和折弯力估算的工程指南。',
+  ru: 'Инженерное руководство по принципам Air Bending, выбору V-матрицы, поведению внутреннего радиуса, влиянию springback и оценке усилия гибки.',
+  es: 'Guía de ingeniería sobre principios de Air Bending, selección de matriz V, comportamiento del radio interior, springback y estimación de fuerza de plegado.',
+  tr: 'Air Bending prensipleri, V kalıp seçimi, iç radyüs davranışı, geri esneme etkisi ve bükme kuvveti tahmini için mühendislik kılavuzu.',
+  id: 'Panduan teknik untuk prinsip Air Bending, pemilihan V-die, perilaku radius dalam, pengaruh springback, dan estimasi gaya tekuk.',
+}
+
+pages.en.hub.tools.splice(6, 0, [
+  'airBendingGuide',
+  airBendingHubDescriptions.en,
+])
+
+Object.entries(airBendingHubDescriptions).forEach(([language, description]) => {
+  if (language !== 'en') {
+    localizedOverrides[language].hub.tools.splice(6, 0, [
+      'airBendingGuide',
+      description,
+    ])
+  }
+})
+
+const airBendingPageTranslations = {
+  en: {
+    backToEngineeringTools: 'Back to Engineering Tools',
+    title: 'Air Bending Guide for Press Brake Sheet Metal Forming',
+    subtitle:
+      'Understand air bending principles, V-die selection, inside radius behavior, springback influence and bending force estimation for modern press brake operations.',
+    industrialNote:
+      'Air bending is the most widely used press brake bending method in modern sheet metal fabrication because it provides flexible angle control, lower tooling force and reduced tooling wear.',
+    overviewTitle: 'Engineering Overview',
+    overview: [
+      'Air bending is a press brake forming method where the punch drives the sheet into a V die without forcing the material to fully match the die angle or bottom surface. The bend is formed through controlled elastic-plastic deformation while the material is supported at the die shoulders and loaded at the punch tip.',
+      'It is common in modern shops because one punch and die set can form a wide range of angles by changing ram depth. This reduces tool changes, lowers forming force compared with bottoming or coining, and makes CNC angle correction practical for mixed-part production.',
+      'The relationship between punch tip and V die is not a full-contact geometry. In typical air bending, the sheet contacts three points: the punch nose and the two die shoulders. The final angle is mainly controlled by punch penetration depth, while material strength, thickness, grain direction, tooling condition and machine deflection influence the actual result.',
+      'Springback exists because the outer and inner zones of the bend do not remain fully plastically deformed after unloading. Higher tensile strength, higher yield strength and larger elastic recovery cause the angle to open after the ram returns.',
+      'The V opening changes inside radius because air bending allows the material to form a natural radius over the die span. A wider V opening usually produces a larger inside radius and lower force. A narrower V opening concentrates deformation, reducing radius but increasing required tonnage and marking risk.',
+    ],
+    sections: [
+      {
+        title: 'How Air Bending Works',
+        paragraphs: [
+          'In air bending, the punch does not bottom out against the die. The material is suspended over the V opening and contacts the tooling mainly at the punch tip and the two die shoulders.',
+          'The bend angle is controlled by punch penetration depth. Deeper penetration closes the angle; less penetration leaves a more open angle. Because the material is not forced to the die angle, the same tooling can produce multiple bend angles when the machine position and compensation are controlled correctly.',
+          'This method depends on repeatable material behavior and accurate machine control. Variations in thickness, tensile strength, rolling direction, surface coating and tooling wear can change the final angle even when the programmed depth is unchanged.',
+        ],
+      },
+      {
+        title: 'V-Die Selection Influence',
+        paragraphs: [
+          'A larger V opening reduces bending force because the forming lever arm becomes longer and the material bends over a wider span. The tradeoff is a larger natural inside radius, greater sensitivity to springback and a wider bend line footprint.',
+          'A smaller V opening increases tonnage because the material is forced to bend over a shorter span. It can produce a smaller inside radius and often reduces springback, but it also increases tool pressure, surface marking and the risk of cracking on hard or low-ductility materials.',
+          'Production V-die choice is therefore a balance between force capacity, required inside radius, flange length, material ductility, marking tolerance and angle stability.',
+        ],
+      },
+      {
+        title: 'Inside Radius Behavior in Air Bending',
+        paragraphs: [
+          'In air bending, the inside radius is normally a natural radius created by the material, thickness and V opening. It is not automatically equal to the punch tip radius unless the punch radius is large enough to dominate the bend geometry.',
+          'For many mild steel air bends, the natural inside radius is often related to the V opening rather than only the punch nose. Wider V openings create larger inside radii, while narrower V openings create tighter radii at higher tonnage.',
+          'Material thickness matters because thicker plate needs a larger deformation zone to bend without excessive strain. If the specified inside radius is too small for the material and thickness, cracking, coating damage or unstable angle repeatability may occur.',
+        ],
+      },
+      {
+        title: 'Springback in Air Bending',
+        paragraphs: [
+          'Springback is the elastic recovery that occurs after the ram releases pressure. In air bending it is more visible because the material is not coined into a fully compressed tool cavity.',
+          'High tensile and high yield materials spring back more because a larger portion of the bend remains elastically stressed after forming. Stainless steel generally needs more overbend than mild steel. Aluminum behavior depends strongly on alloy and temper.',
+          'Compensation methods include programmed overbend, angle measurement systems, material-specific bend tables, test bends, tighter thickness control and tooling choices that reduce variation.',
+        ],
+      },
+    ],
+    comparisonTitle: 'Air Bending vs Bottoming vs Coining',
+    comparisonHeaders: ['Engineering factor', 'Air bending', 'Bottoming', 'Coining'],
+    comparison: [
+      ['Forming pressure', 'Low to medium', 'High', 'Very high'],
+      ['Accuracy', 'Good with CNC compensation', 'High when tooling and material are stable', 'Very high for suitable parts'],
+      ['Springback', 'Must be compensated', 'Reduced by higher contact pressure', 'Minimal because material is heavily compressed'],
+      ['Tool wear', 'Lower', 'Medium to high', 'High'],
+      ['Flexibility', 'High; multiple angles with same tooling', 'Medium; closer to tool angle', 'Low; tooling and tonnage specific'],
+      ['Production speed', 'Fast for mixed production', 'Fast for repeat jobs after setup', 'Slower when high tonnage or special tooling is required'],
+      ['Tooling force', 'Lowest of the three methods', 'Higher than air bending', 'Highest'],
+    ],
+    faqTitle: 'Air Bending FAQ',
+    faq: [
+      ['What is air bending in a press brake?', 'Air bending is a press brake method where the punch bends the sheet into a V die without bottoming out. The material contacts the punch tip and die shoulders, and the final angle is controlled mainly by punch penetration depth.'],
+      ['Why is air bending more flexible?', 'Air bending is flexible because one punch and V die combination can form multiple angles. Operators adjust ram depth and compensation rather than changing tooling for every angle.'],
+      ['How does V-die opening affect bending force?', 'A larger V opening lowers bending force because the material bends over a wider span. A smaller V opening increases tonnage because the bend is formed over a shorter lever arm.'],
+      ['Why does springback occur?', 'Springback occurs because part of the bend remains elastically stressed during forming. After the ram releases pressure, the material recovers slightly and the bend angle opens.'],
+      ['What is the difference between air bending and coining?', 'Air bending forms the angle through controlled penetration without full tool contact. Coining uses much higher force to compress the material into the die angle, reducing springback but increasing tonnage and tool wear.'],
+      ['Does punch radius determine inside radius?', 'Not always. In air bending, inside radius is often a natural radius influenced by V opening, material thickness and material properties. The punch radius dominates only when it is large enough relative to the natural bend radius.'],
+      ['Why does stainless steel spring back more?', 'Stainless steel usually has higher yield strength and stronger elastic recovery than mild steel, so it often requires more overbend or angle compensation in air bending.'],
+      ['How accurate is air bending?', 'Air bending can be accurate when machine repeatability, tooling condition, material consistency and angle compensation are controlled. It is more sensitive to material variation than bottoming or coining.'],
+      ['Why does a wider V die create a larger inside radius?', 'A wider V opening spreads bending deformation across a larger zone. The sheet forms a broader natural radius instead of being forced tightly around the punch nose.'],
+      ['When should a smaller V opening be avoided?', 'Avoid a smaller V opening when tonnage exceeds machine capacity, when surface marking is unacceptable, or when hard material may crack from excessive localized strain.'],
+    ],
+  },
+  zh: {
+    backToEngineeringTools: '返回工程工具',
+    title: '折弯机钣金成形空气折弯指南',
+    subtitle:
+      '了解现代折弯机作业中的空气折弯原理、V型模具选择、内半径变化、回弹影响和折弯力估算逻辑。',
+    industrialNote:
+      '空气折弯是现代钣金制造中最常用的折弯方式，因为它具有角度控制灵活、所需成形力较低、模具磨损较小等特点。',
+    overviewTitle: '工程概述',
+    overview: [
+      '空气折弯是一种折弯机成形方法，冲头将板材压入 V 型下模，但不会强制板材完全贴合下模角度或模腔底部。弯曲区域通过弹塑性变形形成，板材主要由两个模肩支撑，并由冲头尖端加载。',
+      '这种方法在现代工厂中最常见，因为同一套冲头和下模可以通过改变滑块下压深度形成多个角度。它减少换模时间，相比压底和压印需要更低的折弯力，也更适合 CNC 角度补偿和多品种生产。',
+      '冲头尖端与 V 型模之间不是全接触关系。典型空气折弯中，板材形成三点接触：冲头鼻部和两个下模肩部。最终角度主要由冲头下压深度决定，同时受材料强度、板厚、纹向、模具状态和机器挠度影响。',
+      '回弹产生的原因是卸载后弯曲内外层并未完全保持塑性变形。抗拉强度、屈服强度和弹性恢复越高，滑块回程后角度越容易张开。',
+      'V 开口会改变内半径，因为空气折弯允许板材在模口跨度内形成自然半径。较大的 V 开口通常带来较大的内半径和较低的折弯力；较小的 V 开口会集中变形、减小半径，但会提高所需吨位和压痕风险。',
+    ],
+    sections: [
+      {
+        title: '空气折弯如何工作',
+        paragraphs: [
+          '在空气折弯中，冲头不会压到底，也不会让板材完全贴死下模。板材悬跨在 V 开口上，主要接触冲头尖端和两个下模肩部。',
+          '折弯角度由冲头下压深度控制。下压越深，角度越闭合；下压较浅，角度更开放。由于板材不被强制压成模具角度，同一套模具在机器位置控制和补偿正确时可以生产多个角度。',
+          '这种方法依赖材料行为的稳定性和机器控制精度。板厚、抗拉强度、轧制方向、表面涂层和模具磨损的变化，即使程序深度不变，也会改变最终角度。',
+        ],
+      },
+      {
+        title: 'V型模具选择的影响',
+        paragraphs: [
+          '较大的 V 开口会降低折弯力，因为成形力臂变长，材料在更宽的跨度上弯曲。代价是自然内半径更大，对回弹更敏感，弯曲区域占用的宽度也更大。',
+          '较小的 V 开口会提高吨位，因为材料在更短跨度内成形。它可以获得更小的内半径，并且有时能减小回弹，但也会增加模具压力、表面压痕以及高强或低延展材料的开裂风险。',
+          '生产中的 V 型模具选择需要在机器吨位、目标内半径、最小边长、材料延展性、表面要求和角度稳定性之间平衡。',
+        ],
+      },
+      {
+        title: '空气折弯中的内半径行为',
+        paragraphs: [
+          '空气折弯中的内半径通常是由材料、板厚和 V 开口共同形成的自然半径，并不一定等于冲头尖端半径。只有当冲头半径足够大并主导成形几何时，冲头半径才会决定内半径。',
+          '对于许多低碳钢空气折弯，内半径通常更接近 V 开口的影响，而不是只由冲头鼻部决定。较宽的 V 开口形成较大的自然内半径，较窄的 V 开口在更高吨位下形成更小半径。',
+          '板厚也很关键。较厚板材需要更大的变形区域才能避免过高应变。如果指定内半径对材料和板厚来说过小，可能出现开裂、涂层损伤或角度重复性不稳定。',
+        ],
+      },
+      {
+        title: '空气折弯中的回弹',
+        paragraphs: [
+          '回弹是滑块卸载后材料发生的弹性恢复。空气折弯没有像压印那样将材料强制压入模腔，因此回弹表现更明显。',
+          '高抗拉、高屈服材料回弹更大，因为折弯后仍有更多区域保持弹性应力。不锈钢通常比低碳钢需要更大的过弯补偿；铝材的表现则强烈依赖合金牌号和热处理状态。',
+          '常见补偿方法包括程序过弯、角度测量系统、按材料建立折弯表、试折、控制板厚公差以及选择能减少波动的模具组合。',
+        ],
+      },
+    ],
+    comparisonTitle: '空气折弯、压底与压印对比',
+    comparisonHeaders: ['工程因素', '空气折弯', '压底', '压印'],
+    comparison: [
+      ['成形压力', '低到中等', '高', '非常高'],
+      ['精度', '配合 CNC 补偿时较好', '材料和模具稳定时较高', '适合条件下非常高'],
+      ['回弹', '必须补偿', '通过较高接触压力降低', '因材料被强压，通常最小'],
+      ['模具磨损', '较低', '中到高', '高'],
+      ['灵活性', '高；同一模具可做多个角度', '中；更接近模具角度', '低；依赖特定模具和高吨位'],
+      ['生产速度', '适合多品种生产，速度快', '批量稳定后速度快', '高吨位或特殊模具时较慢'],
+      ['模具受力', '三种方式中最低', '高于空气折弯', '最高'],
+    ],
+    faqTitle: '空气折弯常见问题',
+    faq: [
+      ['什么是折弯机空气折弯？', '空气折弯是冲头将板材压入 V 型下模但不压到底的折弯方法。板材主要接触冲头尖端和下模肩部，最终角度主要由冲头下压深度控制。'],
+      ['为什么空气折弯更灵活？', '因为一套冲头和 V 型下模可以通过调整滑块深度和补偿形成多个角度，不需要每个角度都更换模具。'],
+      ['V 型模具开口如何影响折弯力？', '较大的 V 开口让材料在更宽跨度上弯曲，因此折弯力较低；较小的 V 开口缩短力臂，会提高所需吨位。'],
+      ['为什么会发生回弹？', '折弯过程中部分材料仍保留弹性应力。卸载后材料发生弹性恢复，折弯角度会略微张开。'],
+      ['空气折弯和压印有什么区别？', '空气折弯通过控制下压深度成形，不需要完全贴合模具；压印使用更高压力将材料压入模具角度，回弹更小但吨位和模具磨损更高。'],
+      ['冲头半径是否决定内半径？', '不一定。空气折弯中的内半径常由 V 开口、板厚和材料性能形成自然半径。只有冲头半径足够大时才会主导内半径。'],
+      ['为什么不锈钢回弹更大？', '不锈钢通常屈服强度更高、弹性恢复更明显，因此比低碳钢需要更多过弯或角度补偿。'],
+      ['空气折弯精度如何？', '在机器重复精度、模具状态、材料一致性和角度补偿受控时，空气折弯可以达到较好精度，但它比压底或压印更受材料波动影响。'],
+      ['为什么较宽 V 型模会形成较大内半径？', '较宽 V 开口会把弯曲变形分布到更大的区域，板材形成更宽的自然半径，而不是被强制紧贴冲头鼻部。'],
+      ['什么时候应避免较小 V 开口？', '当吨位超过设备能力、表面压痕不可接受，或硬材料可能因局部应变过大而开裂时，应避免使用过小 V 开口。'],
+    ],
+  },
+  ru: {
+    backToEngineeringTools: 'Назад к инженерным инструментам',
+    title: 'Руководство Air Bending для гибки листового металла',
+    subtitle:
+      'Разберите принципы Air Bending, выбор V-матрицы, поведение внутреннего радиуса, влияние springback и оценку усилия для современных листогибов.',
+    industrialNote:
+      'Air Bending является самым распространенным методом гибки на листогибе, потому что дает гибкое управление углом, снижает усилие и уменьшает износ оснастки.',
+    overviewTitle: 'Инженерный обзор',
+    overview: [
+      'Air Bending формирует лист в V-матрице без полного прижатия к углу или дну матрицы. Изгиб создается управляемой упруго-пластической деформацией при опоре на плечи матрицы и нагрузке от пуансона.',
+      'Метод удобен для цехов, потому что одна пара пуансон-матрица может получать разные углы за счет изменения глубины хода. Это сокращает переналадку и снижает усилие по сравнению с bottoming и coining.',
+      'Контакт обычно трехточечный: нос пуансона и два плеча матрицы. Итоговый угол задается глубиной проникновения, но зависит от прочности, толщины, направления прокатки, состояния оснастки и прогиба машины.',
+      'Springback возникает из-за упругого восстановления после разгрузки. Чем выше предел текучести, прочность и упругая составляющая, тем сильнее угол раскрывается после возврата балки.',
+      'Раскрытие V-матрицы влияет на внутренний радиус и усилие. Более широкое V дает больший естественный радиус и меньшее усилие; более узкое V уменьшает радиус, но повышает тоннаж и риск следов.',
+    ],
+    sections: [
+      { title: 'Как работает Air Bending', paragraphs: ['Пуансон не доходит до дна матрицы. Лист в основном касается носа пуансона и двух плеч V-матрицы.', 'Угол управляется глубиной проникновения пуансона. Большая глубина закрывает угол, меньшая оставляет его более открытым.', 'Стабильность зависит от повторяемости материала и машины; толщина, прочность, направление прокатки и износ оснастки меняют конечный угол.'] },
+      { title: 'Влияние выбора V-матрицы', paragraphs: ['Большее раскрытие V снижает усилие, но обычно увеличивает естественный внутренний радиус и чувствительность к springback.', 'Меньшее раскрытие V повышает тоннаж, может уменьшить радиус и springback, но увеличивает давление на оснастку, следы и риск трещин.', 'Практический выбор V-матрицы балансирует усилие, радиус, длину полки, пластичность материала, качество поверхности и стабильность угла.'] },
+      { title: 'Поведение внутреннего радиуса', paragraphs: ['При Air Bending внутренний радиус обычно формируется естественно под влиянием материала, толщины и раскрытия V, а не всегда равен радиусу пуансона.', 'Широкое V формирует больший радиус, узкое V формирует меньший радиус при большем тоннаже.', 'Если заданный радиус слишком мал для материала и толщины, возрастает риск трещин, повреждения покрытия и нестабильного угла.'] },
+      { title: 'Springback при Air Bending', paragraphs: ['Springback - это упругое восстановление после снятия нагрузки. При Air Bending оно заметнее, чем при coining.', 'Материалы с высокой прочностью и пределом текучести, особенно нержавеющая сталь, требуют большего перегиба.', 'Компенсация включает программный перегиб, измерение угла, таблицы по материалам, пробные гибы и контроль толщины.'] },
+    ],
+    comparisonTitle: 'Air Bending, Bottoming и Coining',
+    comparisonHeaders: ['Фактор', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [
+      ['Давление формовки', 'Низкое или среднее', 'Высокое', 'Очень высокое'],
+      ['Точность', 'Хорошая с CNC-компенсацией', 'Высокая при стабильном материале', 'Очень высокая для подходящих деталей'],
+      ['Springback', 'Требует компенсации', 'Снижен высоким контактом', 'Минимальный'],
+      ['Износ оснастки', 'Низкий', 'Средний или высокий', 'Высокий'],
+      ['Гибкость', 'Высокая', 'Средняя', 'Низкая'],
+      ['Скорость производства', 'Высокая для смешанных партий', 'Высокая после наладки', 'Ниже при высоком тоннаже'],
+      ['Усилие на оснастке', 'Минимальное', 'Выше Air Bending', 'Максимальное'],
+    ],
+    faqTitle: 'FAQ по Air Bending',
+    faq: [
+      ['Что такое Air Bending на листогибе?', 'Это гибка без полного прижатия листа к матрице; угол задается глубиной хода пуансона.'],
+      ['Почему Air Bending более гибкий?', 'Одна оснастка может получать разные углы за счет изменения глубины и компенсации.'],
+      ['Как раскрытие V влияет на усилие?', 'Большее V снижает усилие, меньшее V повышает тоннаж.'],
+      ['Почему возникает springback?', 'Материал упруго восстанавливается после снятия усилия, и угол немного раскрывается.'],
+      ['Чем Air Bending отличается от coining?', 'Coining использует намного большее усилие для сжатия материала в угол матрицы.'],
+      ['Определяет ли радиус пуансона внутренний радиус?', 'Не всегда; часто радиус задается раскрытием V, толщиной и материалом.'],
+      ['Почему нержавеющая сталь сильнее пружинит?', 'Из-за более высокой прочности и упругого восстановления.'],
+      ['Насколько точен Air Bending?', 'Он точен при стабильном материале, исправной оснастке и корректной компенсации.'],
+    ],
+  },
+  es: {
+    backToEngineeringTools: 'Volver a herramientas de ingeniería',
+    title: 'Guía de Air Bending para conformado de chapa en plegadora',
+    subtitle:
+      'Comprenda principios de Air Bending, selección de matriz V, radio interior, springback y estimación de fuerza en operaciones modernas de plegadora.',
+    industrialNote:
+      'Air Bending es el método de plegado más usado porque permite controlar el ángulo con flexibilidad, requiere menos fuerza y reduce el desgaste del utillaje.',
+    overviewTitle: 'Resumen de ingeniería',
+    overview: [
+      'Air Bending forma la chapa en una matriz V sin obligarla a copiar completamente el ángulo o el fondo de la matriz.',
+      'Es común porque una misma combinación de punzón y matriz puede producir varios ángulos mediante la profundidad de penetración.',
+      'El contacto típico es de tres puntos: punta del punzón y dos hombros de la matriz. El ángulo depende de la penetración y de material, espesor, dirección de laminación, utillaje y deflexión.',
+      'El springback aparece por recuperación elástica después de descargar la fuerza.',
+      'Una abertura V mayor reduce fuerza y aumenta el radio interior natural; una abertura menor reduce radio pero aumenta tonelaje y riesgo de marcas.',
+    ],
+    sections: [
+      { title: 'Cómo funciona Air Bending', paragraphs: ['El punzón no llega al fondo de la matriz. La chapa contacta principalmente la punta del punzón y los hombros de la matriz.', 'El ángulo se controla con la profundidad de penetración; más profundidad cierra el ángulo.', 'La repetibilidad depende de material, espesor, resistencia, recubrimiento, dirección de laminación y estado del utillaje.'] },
+      { title: 'Influencia de la selección de matriz V', paragraphs: ['Una abertura V mayor reduce la fuerza y aumenta el radio interior natural y la sensibilidad al springback.', 'Una abertura V menor aumenta el tonelaje, reduce el radio y puede reducir springback, pero eleva presión, marcas y riesgo de grietas.', 'La selección equilibra capacidad, radio requerido, longitud de ala, ductilidad, marcas y estabilidad angular.'] },
+      { title: 'Comportamiento del radio interior', paragraphs: ['En Air Bending el radio interior suele ser natural y depende de material, espesor y abertura V.', 'El radio no siempre es igual al radio del punzón; el punzón domina solo si su radio es suficientemente grande.', 'Un radio demasiado pequeño puede causar grietas, daño de recubrimiento o baja repetibilidad.'] },
+      { title: 'Springback en Air Bending', paragraphs: ['Springback es la recuperación elástica al liberar la fuerza.', 'Materiales de alta resistencia, como aceros inoxidables, suelen requerir mayor sobreplegado.', 'La compensación usa sobreplegado programado, medición de ángulo, tablas de material, pruebas y control de espesor.'] },
+    ],
+    comparisonTitle: 'Air Bending vs Bottoming vs Coining',
+    comparisonHeaders: ['Factor', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [
+      ['Presión de formado', 'Baja a media', 'Alta', 'Muy alta'],
+      ['Precisión', 'Buena con compensación CNC', 'Alta con material estable', 'Muy alta en piezas adecuadas'],
+      ['Springback', 'Debe compensarse', 'Reducido por mayor contacto', 'Mínimo'],
+      ['Desgaste de herramienta', 'Menor', 'Medio a alto', 'Alto'],
+      ['Flexibilidad', 'Alta', 'Media', 'Baja'],
+      ['Velocidad de producción', 'Rápida para producción mixta', 'Rápida tras ajuste', 'Más lenta con alto tonelaje'],
+      ['Fuerza de utillaje', 'La menor', 'Mayor que Air Bending', 'La mayor'],
+    ],
+    faqTitle: 'FAQ de Air Bending',
+    faq: [
+      ['¿Qué es Air Bending en una plegadora?', 'Es un método donde el punzón dobla la chapa en una matriz V sin llegar al fondo.'],
+      ['¿Por qué Air Bending es más flexible?', 'Porque una misma herramienta puede producir varios ángulos ajustando profundidad y compensación.'],
+      ['¿Cómo afecta la abertura V a la fuerza?', 'Una V mayor reduce la fuerza; una V menor aumenta el tonelaje.'],
+      ['¿Por qué ocurre springback?', 'Por recuperación elástica del material después de descargar la fuerza.'],
+      ['¿Cuál es la diferencia con coining?', 'Coining comprime el material con mucha más fuerza dentro del ángulo de la matriz.'],
+      ['¿El radio del punzón determina el radio interior?', 'No siempre; en Air Bending influyen abertura V, espesor y material.'],
+      ['¿Por qué el inoxidable tiene más springback?', 'Por mayor límite elástico y recuperación elástica.'],
+      ['¿Qué precisión tiene Air Bending?', 'Puede ser preciso con buena repetibilidad, material estable y compensación angular.'],
+    ],
+  },
+  tr: {
+    backToEngineeringTools: 'Mühendislik araçlarına dön',
+    title: 'Abkant sac şekillendirme için Air Bending kılavuzu',
+    subtitle:
+      'Modern abkant operasyonlarında Air Bending prensiplerini, V kalıp seçimini, iç radyüs davranışını, geri esnemeyi ve bükme kuvveti tahminini anlayın.',
+    industrialNote:
+      'Air Bending, esnek açı kontrolü, daha düşük şekillendirme kuvveti ve daha az takım aşınması sağladığı için en yaygın abkant bükme yöntemidir.',
+    overviewTitle: 'Mühendislik özeti',
+    overview: [
+      'Air Bending, sacın V kalıp içinde tamamen dibe basılmadan şekillendirildiği abkant yöntemidir.',
+      'Aynı zımba ve V kalıp seti, koç derinliği değiştirilerek birçok açı üretebildiği için modern atölyelerde çok yaygındır.',
+      'Tipik temas üç noktadadır: zımba burnu ve iki kalıp omzu. Son açı penetrasyon derinliğiyle kontrol edilir.',
+      'Geri esneme, yük kaldırıldıktan sonra malzemenin elastik toparlanması nedeniyle oluşur.',
+      'Daha geniş V açıklığı daha büyük doğal iç radyüs ve daha düşük kuvvet üretir; daha dar V açıklığı daha küçük radyüs ama daha yüksek tonaj oluşturur.',
+    ],
+    sections: [
+      { title: 'Air Bending nasıl çalışır', paragraphs: ['Zımba kalıbın dibine basmaz; sac çoğunlukla zımba ucu ve iki kalıp omzuna temas eder.', 'Açı zımba penetrasyon derinliğiyle kontrol edilir; daha derin giriş açıyı kapatır.', 'Kalınlık, çekme dayanımı, hadde yönü, kaplama ve takım aşınması nihai açıyı değiştirebilir.'] },
+      { title: 'V kalıp seçiminin etkisi', paragraphs: ['Daha büyük V açıklığı bükme kuvvetini düşürür, fakat iç radyüsü ve geri esneme hassasiyetini artırır.', 'Daha küçük V açıklığı tonajı artırır, radyüsü küçültür ve iz/çatlak riskini yükseltir.', 'Seçim; kuvvet kapasitesi, radyüs, flanş boyu, süneklik, yüzey kalitesi ve açı kararlılığı arasında dengedir.'] },
+      { title: 'Air Bending içinde iç radyüs', paragraphs: ['İç radyüs çoğu zaman malzeme, kalınlık ve V açıklığıyla oluşan doğal radyüstür.', 'Radyüs her zaman zımba uç radyüsüne eşit değildir.', 'Çok küçük radyüs çatlak, kaplama hasarı ve açı tekrarlanabilirliği sorunları yaratabilir.'] },
+      { title: 'Air Bending içinde geri esneme', paragraphs: ['Geri esneme, koç basıncı kalktıktan sonra oluşan elastik toparlanmadır.', 'Yüksek dayanımlı malzemeler ve paslanmaz çelik daha fazla overbend gerektirir.', 'Telafi; programlı overbend, açı ölçümü, malzeme tabloları, deneme bükümü ve kalınlık kontrolüyle yapılır.'] },
+    ],
+    comparisonTitle: 'Air Bending, Bottoming ve Coining karşılaştırması',
+    comparisonHeaders: ['Faktör', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [
+      ['Şekillendirme basıncı', 'Düşük-orta', 'Yüksek', 'Çok yüksek'],
+      ['Hassasiyet', 'CNC telafiyle iyi', 'Stabil malzemede yüksek', 'Uygun parçada çok yüksek'],
+      ['Geri esneme', 'Telafi gerekir', 'Daha fazla temasla azalır', 'Minimum'],
+      ['Takım aşınması', 'Düşük', 'Orta-yüksek', 'Yüksek'],
+      ['Esneklik', 'Yüksek', 'Orta', 'Düşük'],
+      ['Üretim hızı', 'Karma üretimde hızlı', 'Ayar sonrası hızlı', 'Yüksek tonajda daha yavaş'],
+      ['Takım kuvveti', 'En düşük', 'Air Bendingden yüksek', 'En yüksek'],
+    ],
+    faqTitle: 'Air Bending SSS',
+    faq: [
+      ['Abkantta Air Bending nedir?', 'Zımbanın sacı V kalıba bastığı ancak dibe basmadığı bükme yöntemidir.'],
+      ['Neden daha esnektir?', 'Aynı takım ile penetrasyon ve telafi ayarlanarak farklı açılar üretilebilir.'],
+      ['V açıklığı kuvveti nasıl etkiler?', 'Büyük V kuvveti düşürür, küçük V tonajı artırır.'],
+      ['Geri esneme neden olur?', 'Malzeme yük kalkınca elastik olarak toparlanır ve açı açılır.'],
+      ['Coining ile farkı nedir?', 'Coining malzemeyi çok yüksek kuvvetle kalıp açısına sıkıştırır.'],
+      ['Zımba radyüsü iç radyüsü belirler mi?', 'Her zaman değil; V açıklığı, kalınlık ve malzeme de belirleyicidir.'],
+      ['Paslanmaz neden daha fazla geri esner?', 'Daha yüksek akma dayanımı ve elastik toparlanma nedeniyle.'],
+      ['Air Bending ne kadar hassastır?', 'Makine, takım, malzeme ve açı telafisi kontrol edildiğinde hassastır.'],
+    ],
+  },
+  id: {
+    backToEngineeringTools: 'Kembali ke alat engineering',
+    title: 'Panduan Air Bending untuk forming plat dengan press brake',
+    subtitle:
+      'Pahami prinsip Air Bending, pemilihan V-die, perilaku radius dalam, pengaruh springback, dan estimasi gaya tekuk untuk operasi press brake modern.',
+    industrialNote:
+      'Air Bending adalah metode bending press brake paling umum karena fleksibel untuk kontrol sudut, membutuhkan gaya lebih rendah, dan mengurangi keausan tooling.',
+    overviewTitle: 'Ringkasan teknik',
+    overview: [
+      'Air Bending membentuk plat ke dalam V-die tanpa memaksa material menyentuh penuh sudut atau dasar die.',
+      'Metode ini umum karena satu set punch dan die dapat membuat banyak sudut dengan mengubah kedalaman ram.',
+      'Kontak biasanya tiga titik: ujung punch dan dua bahu die. Sudut akhir dikontrol oleh penetrasi punch dan dipengaruhi material, ketebalan, arah rolling, tooling, dan defleksi mesin.',
+      'Springback terjadi karena pemulihan elastis setelah gaya dilepas.',
+      'V opening lebih besar menurunkan gaya dan membuat radius dalam lebih besar; V opening lebih kecil mengecilkan radius tetapi menaikkan tonase dan risiko marking.',
+    ],
+    sections: [
+      { title: 'Cara kerja Air Bending', paragraphs: ['Punch tidak bottom out. Plat terutama menyentuh ujung punch dan dua bahu V-die.', 'Sudut dikontrol oleh kedalaman penetrasi punch; penetrasi lebih dalam menutup sudut.', 'Variasi ketebalan, tensile strength, arah rolling, coating, dan keausan tooling dapat mengubah sudut akhir.'] },
+      { title: 'Pengaruh pemilihan V-die', paragraphs: ['V opening lebih besar mengurangi gaya tekuk, tetapi membuat radius alami lebih besar dan springback lebih sensitif.', 'V opening lebih kecil meningkatkan tonase, mengecilkan radius, dan meningkatkan risiko marking atau retak.', 'Pemilihan die menyeimbangkan kapasitas gaya, radius, panjang flange, daktilitas, marking, dan stabilitas sudut.'] },
+      { title: 'Perilaku radius dalam pada Air Bending', paragraphs: ['Radius dalam biasanya radius alami yang terbentuk dari material, ketebalan, dan V opening.', 'Radius tidak selalu sama dengan radius ujung punch.', 'Radius yang terlalu kecil dapat menyebabkan retak, kerusakan coating, atau sudut yang tidak stabil.'] },
+      { title: 'Springback pada Air Bending', paragraphs: ['Springback adalah pemulihan elastis setelah tekanan ram dilepas.', 'Material high tensile dan stainless steel biasanya membutuhkan overbend lebih besar.', 'Kompensasi dilakukan dengan overbend program, sistem ukur sudut, tabel material, trial bending, dan kontrol ketebalan.'] },
+    ],
+    comparisonTitle: 'Air Bending vs Bottoming vs Coining',
+    comparisonHeaders: ['Faktor', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [
+      ['Tekanan forming', 'Rendah-sedang', 'Tinggi', 'Sangat tinggi'],
+      ['Akurasi', 'Baik dengan kompensasi CNC', 'Tinggi bila material stabil', 'Sangat tinggi untuk part sesuai'],
+      ['Springback', 'Harus dikompensasi', 'Berkurang karena tekanan kontak', 'Minimal'],
+      ['Keausan tooling', 'Lebih rendah', 'Sedang-tinggi', 'Tinggi'],
+      ['Fleksibilitas', 'Tinggi', 'Sedang', 'Rendah'],
+      ['Kecepatan produksi', 'Cepat untuk produksi campuran', 'Cepat setelah setup', 'Lebih lambat pada tonase tinggi'],
+      ['Gaya tooling', 'Paling rendah', 'Lebih tinggi dari Air Bending', 'Paling tinggi'],
+    ],
+    faqTitle: 'FAQ Air Bending',
+    faq: [
+      ['Apa itu Air Bending pada press brake?', 'Metode bending di mana punch menekuk plat ke V-die tanpa bottoming out.'],
+      ['Mengapa Air Bending lebih fleksibel?', 'Satu tooling dapat membuat beberapa sudut dengan mengatur kedalaman ram dan kompensasi.'],
+      ['Bagaimana V opening memengaruhi gaya?', 'V lebih besar menurunkan gaya; V lebih kecil menaikkan tonase.'],
+      ['Mengapa springback terjadi?', 'Material pulih secara elastis setelah gaya bending dilepas.'],
+      ['Apa beda Air Bending dan coining?', 'Coining memakai gaya jauh lebih besar untuk menekan material ke sudut die.'],
+      ['Apakah radius punch menentukan radius dalam?', 'Tidak selalu; V opening, ketebalan, dan material sangat berpengaruh.'],
+      ['Mengapa stainless steel springback lebih besar?', 'Karena yield strength dan pemulihan elastis biasanya lebih tinggi.'],
+      ['Seberapa akurat Air Bending?', 'Akurat bila repeatability mesin, tooling, material, dan kompensasi sudut terkontrol.'],
+    ],
+  },
+}
+
+pages.en.air = airBendingPageTranslations.en
+
+Object.entries(airBendingPageTranslations).forEach(([language, page]) => {
+  if (language !== 'en') {
+    localizedOverrides[language].air = page
+  }
+})
 
 const mergeDeep = (base, override) => {
   if (!override) return base

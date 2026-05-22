@@ -91,6 +91,10 @@ const relatedTools = [
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
+  {
+    key: 'airBendingGuide',
+    href: '/engineering-tools/air-bending-guide',
+  },
 ]
 
 const backToEngineeringToolsLabels = {

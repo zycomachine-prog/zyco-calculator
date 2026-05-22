@@ -48,7 +48,32 @@ const relatedEngineeringTools = [
     labelKey: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
+  {
+    labelKey: 'airBendingGuide',
+    href: '/engineering-tools/air-bending-guide',
+  },
 ]
+
+const relatedToolFallbackLabels = {
+  en: {
+    airBendingGuide: 'Air Bending Guide',
+  },
+  zh: {
+    airBendingGuide: '空气折弯指南',
+  },
+  ru: {
+    airBendingGuide: 'Руководство по Air Bending',
+  },
+  es: {
+    airBendingGuide: 'Guía de Air Bending',
+  },
+  tr: {
+    airBendingGuide: 'Air Bending kılavuzu',
+  },
+  id: {
+    airBendingGuide: 'Panduan Air Bending',
+  },
+}
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {
@@ -499,6 +524,7 @@ const vDie =
         insideRadiusGuide: 'Inside Radius Guide',
         springbackDatabase: 'Springback Database',
         bendAllowanceCalculator: 'Bend Allowance Calculator',
+        airBendingGuide: 'Air Bending Guide',
       },
       materials: {
         mildSteel: 'Mild Steel',
@@ -563,6 +589,7 @@ const vDie =
         insideRadiusGuide: '内半径指南',
         springbackDatabase: '回弹数据库',
         bendAllowanceCalculator: '折弯展开计算器',
+        airBendingGuide: '空气折弯指南',
       },
       materials: {
         mildSteel: '普通钢',
@@ -3170,7 +3197,11 @@ overflow: 'hidden',
                   overflowWrap: 'anywhere',
                 }}
               >
-                {t.relatedTools[tool.labelKey]}
+                {t.relatedTools[tool.labelKey] ||
+                  relatedToolFallbackLabels[calculatorLanguage]?.[
+                    tool.labelKey
+                  ] ||
+                  relatedToolFallbackLabels.en[tool.labelKey]}
               </a>
             ))}
           </nav>

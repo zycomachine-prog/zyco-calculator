@@ -39,6 +39,11 @@ const tools = [
     href: '/engineering-tools/inside-radius-guide',
   },
   {
+    key: 'airBendingGuide',
+    status: 'active',
+    href: '/engineering-tools/air-bending-guide',
+  },
+  {
     key: 'toolingGuide',
     status: 'soon',
   },
@@ -68,6 +73,10 @@ const relatedTools = [
   {
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
+  },
+  {
+    key: 'airBendingGuide',
+    href: '/engineering-tools/air-bending-guide',
   },
 ]
 
@@ -135,6 +144,12 @@ export default function EngineeringHub({
                 position: 6,
                 name: 'Bend Allowance Calculator',
                 url: getSiteUrl('/engineering-tools/bend-allowance-calculator'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 7,
+                name: 'Air Bending Guide',
+                url: getSiteUrl('/engineering-tools/air-bending-guide'),
               },
             ],
           },

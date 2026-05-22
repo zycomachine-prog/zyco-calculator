@@ -8,6 +8,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import AirBendingGuide from './pages/AirBendingGuide.jsx'
 import BendAllowanceCalculator from './pages/BendAllowanceCalculator.jsx'
 import EngineeringHub from './pages/EngineeringHub.jsx'
 import InsideRadiusGuide from './pages/InsideRadiusGuide.jsx'
@@ -65,6 +66,11 @@ export default function App() {
         <Route
           path='/engineering-tools/inside-radius-guide'
           element={<InsideRadiusGuide {...languageProps} />}
+        />
+
+        <Route
+          path='/engineering-tools/air-bending-guide'
+          element={<AirBendingGuide {...languageProps} />}
         />
 
         <Route
