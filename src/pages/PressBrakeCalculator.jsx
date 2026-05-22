@@ -3182,6 +3182,22 @@ overflow: 'hidden',
               <a
                 href={tool.href}
                 key={tool.labelKey}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform =
+                    'translateY(-2px)'
+                  e.currentTarget.style.boxShadow =
+                    '0 14px 28px rgba(37,99,235,0.36)'
+                  e.currentTarget.style.filter =
+                    'brightness(1.04)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform =
+                    'translateY(0px)'
+                  e.currentTarget.style.boxShadow =
+                    '0 8px 20px rgba(37,99,235,0.28)'
+                  e.currentTarget.style.filter =
+                    'brightness(1)'
+                }}
                 style={{
                   minHeight: '42px',
                   display: 'inline-flex',
@@ -3201,6 +3217,10 @@ overflow: 'hidden',
                   textAlign: 'center',
                   textShadow: '0 1px 1px rgba(15,23,42,0.28)',
                   boxShadow: '0 8px 20px rgba(37,99,235,0.28)',
+                  filter: 'brightness(1)',
+                  transform: 'translateY(0px)',
+                  transition:
+                    'transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease',
                   overflowWrap: 'anywhere',
                 }}
               >
