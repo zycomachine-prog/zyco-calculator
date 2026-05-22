@@ -191,6 +191,9 @@ const calculatorToSharedLanguageMap =
     )
   )
 
+const relatedToolLanguage =
+  calculatorToSharedLanguageMap[calculatorLanguage] || 'en'
+
 const thicknessRef = useRef(null)
 
 const lengthRef = useRef(null)
@@ -654,6 +657,7 @@ const vDie =
         insideRadiusGuide: 'Справочник внутреннего радиуса',
         springbackDatabase: 'База пружинения',
         bendAllowanceCalculator: 'Калькулятор припуска на гиб',
+        airBendingGuide: 'Руководство по Air Bending',
       },
       materials: {
         mildSteel: 'Углеродистая сталь',
@@ -718,6 +722,7 @@ const vDie =
         insideRadiusGuide: 'Guía de radio interior',
         springbackDatabase: 'Base de datos de retorno elástico',
         bendAllowanceCalculator: 'Calculadora de desarrollo de plegado',
+        airBendingGuide: 'Guía de Air Bending',
       },
       materials: {
         mildSteel: 'Acero dulce',
@@ -782,6 +787,7 @@ const vDie =
         insideRadiusGuide: 'İç radyüs kılavuzu',
         springbackDatabase: 'Geri esneme veritabanı',
         bendAllowanceCalculator: 'Büküm payı hesaplayıcı',
+        airBendingGuide: 'Air Bending kılavuzu',
       },
       materials: {
         mildSteel: 'Yumuşak Çelik',
@@ -846,6 +852,7 @@ const vDie =
         insideRadiusGuide: 'Panduan radius dalam',
         springbackDatabase: 'Database springback',
         bendAllowanceCalculator: 'Kalkulator allowance tekuk',
+        airBendingGuide: 'Panduan Air Bending',
       },
       materials: {
         mildSteel: 'Baja Ringan',
@@ -3198,7 +3205,7 @@ overflow: 'hidden',
                 }}
               >
                 {t.relatedTools[tool.labelKey] ||
-                  relatedToolFallbackLabels[calculatorLanguage]?.[
+                  relatedToolFallbackLabels[relatedToolLanguage]?.[
                     tool.labelKey
                   ] ||
                   relatedToolFallbackLabels.en[tool.labelKey]}

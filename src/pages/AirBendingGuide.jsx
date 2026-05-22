@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import AirBendingMotionDiagram from '../components/AirBendingMotionDiagram.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
@@ -132,6 +133,10 @@ const relatedTools = [
   {
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
+  },
+  {
+    key: 'airBendingGuide',
+    href: '/engineering-tools/air-bending-guide',
   },
 ]
 
@@ -281,7 +286,7 @@ export default function AirBendingGuide({
           }
 
           .zyco-air__shell {
-            width: min(1180px, 100%);
+            width: min(1120px, 100%);
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -394,6 +399,23 @@ export default function AirBendingGuide({
             padding: 24px;
           }
 
+          .zyco-air__content-panel,
+          .zyco-air__content-grid {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+          }
+
+          .zyco-air__related-panel {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 34px;
+            padding: 22px;
+            box-sizing: border-box;
+          }
+
           .zyco-air__panel-title {
             margin: 0 0 14px;
             color: #ffffff;
@@ -421,7 +443,8 @@ export default function AirBendingGuide({
           .zyco-air__knowledge-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
+            gap: 22px;
+            margin-top: 30px;
           }
 
           .zyco-air__knowledge-grid .zyco-air__panel {
@@ -494,6 +517,8 @@ export default function AirBendingGuide({
           .zyco-air__tools {
             display: flex;
             flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
             gap: 12px;
           }
 
@@ -513,6 +538,7 @@ export default function AirBendingGuide({
             font-weight: 800;
             text-decoration: none;
             box-shadow: 0 12px 30px rgba(37, 99, 235, 0.34);
+            flex: 0 1 auto;
             transition:
               transform 0.25s ease,
               box-shadow 0.25s ease,
@@ -600,8 +626,10 @@ export default function AirBendingGuide({
             </p>
           </header>
 
+          <AirBendingMotionDiagram labels={page.motionDiagram} />
+
           <section
-            className='zyco-air__panel'
+            className='zyco-air__panel zyco-air__content-panel'
             aria-labelledby='air-engineering-overview'
           >
             <h2
@@ -620,7 +648,7 @@ export default function AirBendingGuide({
             </div>
           </section>
 
-          <div className='zyco-air__knowledge-grid'>
+          <div className='zyco-air__knowledge-grid zyco-air__content-grid'>
             {page.sections.map((section) => (
               <ContentSection
                 key={section.title}
@@ -630,7 +658,7 @@ export default function AirBendingGuide({
           </div>
 
           <section
-            className='zyco-air__panel'
+            className='zyco-air__panel zyco-air__content-panel'
             aria-labelledby='air-bending-comparison'
           >
             <h2
@@ -668,7 +696,7 @@ export default function AirBendingGuide({
           </section>
 
           <section
-            className='zyco-air__panel'
+            className='zyco-air__panel zyco-air__content-panel zyco-air__faq-panel'
             aria-labelledby='air-bending-faq'
           >
             <h2
@@ -697,7 +725,7 @@ export default function AirBendingGuide({
           </section>
 
           <section
-            className='zyco-air__panel'
+            className='zyco-air__panel zyco-air__related-panel'
             aria-labelledby='air-bending-related-tools'
           >
             <h2

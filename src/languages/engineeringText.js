@@ -1741,6 +1741,22 @@ const airBendingPageTranslations = {
     industrialNote:
       'Air bending is the most widely used press brake bending method in modern sheet metal fabrication because it provides flexible angle control, lower tooling force and reduced tooling wear.',
     overviewTitle: 'Engineering Overview',
+    motionDiagram: {
+      eyebrow: 'Motion Diagram V1',
+      title: 'Air bending load path and three-point contact',
+      punchStroke: 'Punch stroke',
+      sheetBending: 'Sheet bending',
+      springbackReference: 'Springback reference',
+      punchDownstroke: 'Punch downstroke',
+      leftSupport: 'left support',
+      rightSupport: 'right support',
+      angleFormation: 'angle formation',
+      vDieSupport: 'V-die support',
+      highlightsAria: 'Diagram highlights',
+      svgTitle: 'Air bending motion diagram',
+      svgDescription:
+        'Animated SVG showing punch downstroke, sheet bending over a V die, three-point contact and a springback reference line.',
+    },
     overview: [
       'Air bending is a press brake forming method where the punch drives the sheet into a V die without forcing the material to fully match the die angle or bottom surface. The bend is formed through controlled elastic-plastic deformation while the material is supported at the die shoulders and loaded at the punch tip.',
       'It is common in modern shops because one punch and die set can form a wide range of angles by changing ram depth. This reduces tool changes, lowers forming force compared with bottoming or coining, and makes CNC angle correction practical for mixed-part production.',
@@ -1815,6 +1831,22 @@ const airBendingPageTranslations = {
     industrialNote:
       '空气折弯是现代钣金制造中最常用的折弯方式，因为它具有角度控制灵活、所需成形力较低、模具磨损较小等特点。',
     overviewTitle: '工程概述',
+    motionDiagram: {
+      eyebrow: '动态图 V1',
+      title: '空气折弯载荷路径与三点接触',
+      punchStroke: '冲头行程',
+      sheetBending: '板料弯曲',
+      springbackReference: '回弹参考',
+      punchDownstroke: '冲头下压',
+      leftSupport: '左侧支撑',
+      rightSupport: '右侧支撑',
+      angleFormation: '角度形成',
+      vDieSupport: 'V 型下模支撑',
+      highlightsAria: '图示重点',
+      svgTitle: '空气折弯动态图示',
+      svgDescription:
+        '动态图示展示冲头下压、板料在 V 型下模上弯曲、三点接触以及回弹参考线。',
+    },
     overview: [
       '空气折弯是一种折弯机成形方法，冲头将板材压入 V 型下模，但不会强制板材完全贴合下模角度或模腔底部。弯曲区域通过弹塑性变形形成，板材主要由两个模肩支撑，并由冲头尖端加载。',
       '这种方法在现代工厂中最常见，因为同一套冲头和下模可以通过改变滑块下压深度形成多个角度。它减少换模时间，相比压底和压印需要更低的折弯力，也更适合 CNC 角度补偿和多品种生产。',
@@ -1889,6 +1921,22 @@ const airBendingPageTranslations = {
     industrialNote:
       'Air Bending является самым распространенным методом гибки на листогибе, потому что дает гибкое управление углом, снижает усилие и уменьшает износ оснастки.',
     overviewTitle: 'Инженерный обзор',
+    motionDiagram: {
+      eyebrow: 'Динамическая схема V1',
+      title: 'Траектория нагрузки Air Bending и трехточечный контакт',
+      punchStroke: 'Ход пуансона',
+      sheetBending: 'Гибка листа',
+      springbackReference: 'Ориентир springback',
+      punchDownstroke: 'Ход пуансона вниз',
+      leftSupport: 'левая опора',
+      rightSupport: 'правая опора',
+      angleFormation: 'формирование угла',
+      vDieSupport: 'опора V-матрицы',
+      highlightsAria: 'Ключевые элементы схемы',
+      svgTitle: 'Динамическая схема Air Bending',
+      svgDescription:
+        'Анимированная SVG-схема показывает ход пуансона вниз, гибку листа на V-матрице, трехточечный контакт и ориентир springback.',
+    },
     overview: [
       'Air Bending формирует лист в V-матрице без полного прижатия к углу или дну матрицы. Изгиб создается управляемой упруго-пластической деформацией при опоре на плечи матрицы и нагрузке от пуансона.',
       'Метод удобен для цехов, потому что одна пара пуансон-матрица может получать разные углы за счет изменения глубины хода. Это сокращает переналадку и снижает усилие по сравнению с bottoming и coining.',
@@ -1933,6 +1981,22 @@ const airBendingPageTranslations = {
     industrialNote:
       'Air Bending es el método de plegado más usado porque permite controlar el ángulo con flexibilidad, requiere menos fuerza y reduce el desgaste del utillaje.',
     overviewTitle: 'Resumen de ingeniería',
+    motionDiagram: {
+      eyebrow: 'Diagrama de movimiento V1',
+      title: 'Ruta de carga en Air Bending y contacto de tres puntos',
+      punchStroke: 'Carrera del punzón',
+      sheetBending: 'Plegado de chapa',
+      springbackReference: 'Referencia de springback',
+      punchDownstroke: 'Descenso del punzón',
+      leftSupport: 'apoyo izquierdo',
+      rightSupport: 'apoyo derecho',
+      angleFormation: 'formación del ángulo',
+      vDieSupport: 'apoyo de matriz V',
+      highlightsAria: 'Puntos clave del diagrama',
+      svgTitle: 'Diagrama de movimiento de Air Bending',
+      svgDescription:
+        'SVG animado que muestra el descenso del punzón, el plegado de la chapa sobre una matriz V, el contacto de tres puntos y una referencia de springback.',
+    },
     overview: [
       'Air Bending forma la chapa en una matriz V sin obligarla a copiar completamente el ángulo o el fondo de la matriz.',
       'Es común porque una misma combinación de punzón y matriz puede producir varios ángulos mediante la profundidad de penetración.',
@@ -1977,6 +2041,22 @@ const airBendingPageTranslations = {
     industrialNote:
       'Air Bending, esnek açı kontrolü, daha düşük şekillendirme kuvveti ve daha az takım aşınması sağladığı için en yaygın abkant bükme yöntemidir.',
     overviewTitle: 'Mühendislik özeti',
+    motionDiagram: {
+      eyebrow: 'Hareket diyagramı V1',
+      title: 'Air Bending yük yolu ve üç nokta teması',
+      punchStroke: 'Zımba stroku',
+      sheetBending: 'Sac bükme',
+      springbackReference: 'Geri esneme referansı',
+      punchDownstroke: 'Zımba aşağı hareketi',
+      leftSupport: 'sol destek',
+      rightSupport: 'sağ destek',
+      angleFormation: 'açı oluşumu',
+      vDieSupport: 'V kalıp desteği',
+      highlightsAria: 'Diyagram vurguları',
+      svgTitle: 'Air Bending hareket diyagramı',
+      svgDescription:
+        'Animasyonlu SVG; zımba aşağı hareketini, sacın V kalıp üzerinde bükülmesini, üç nokta temasını ve geri esneme referansını gösterir.',
+    },
     overview: [
       'Air Bending, sacın V kalıp içinde tamamen dibe basılmadan şekillendirildiği abkant yöntemidir.',
       'Aynı zımba ve V kalıp seti, koç derinliği değiştirilerek birçok açı üretebildiği için modern atölyelerde çok yaygındır.',
@@ -2021,6 +2101,22 @@ const airBendingPageTranslations = {
     industrialNote:
       'Air Bending adalah metode bending press brake paling umum karena fleksibel untuk kontrol sudut, membutuhkan gaya lebih rendah, dan mengurangi keausan tooling.',
     overviewTitle: 'Ringkasan teknik',
+    motionDiagram: {
+      eyebrow: 'Diagram gerak V1',
+      title: 'Jalur beban Air Bending dan kontak tiga titik',
+      punchStroke: 'Stroke punch',
+      sheetBending: 'Bending plat',
+      springbackReference: 'Referensi springback',
+      punchDownstroke: 'Punch bergerak turun',
+      leftSupport: 'tumpuan kiri',
+      rightSupport: 'tumpuan kanan',
+      angleFormation: 'pembentukan sudut',
+      vDieSupport: 'tumpuan V-die',
+      highlightsAria: 'Sorotan diagram',
+      svgTitle: 'Diagram gerak Air Bending',
+      svgDescription:
+        'SVG animasi yang menampilkan punch bergerak turun, plat bending di atas V-die, kontak tiga titik, dan garis referensi springback.',
+    },
     overview: [
       'Air Bending membentuk plat ke dalam V-die tanpa memaksa material menyentuh penuh sudut atau dasar die.',
       'Metode ini umum karena satu set punch dan die dapat membuat banyak sudut dengan mengubah kedalaman ram.',
