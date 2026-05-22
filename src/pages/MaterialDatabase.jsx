@@ -1,7 +1,12 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
-import { setPageSEO } from '../utils/seo.js'
+import {
+  createFAQPageStructuredData,
+  createWebApplicationStructuredData,
+  setPageSEO,
+  setStructuredData,
+} from '../utils/seo.js'
 
 const materials = [
   {
@@ -110,6 +115,8 @@ export default function MaterialDatabase({
   setLanguage = () => {},
 }) {
   useEffect(() => {
+    const englishPage = getEngineeringText('en').pages.material
+
     setPageSEO({
       title: 'Sheet Metal Bending Material Database | ZYCO',
       description:
@@ -117,6 +124,22 @@ export default function MaterialDatabase({
       keywords:
         'sheet metal material database, press brake material factor, stainless steel bending, aluminum bending, material strength for bending, springback material reference',
       canonicalPath: '/engineering-tools/material-database',
+    })
+
+    setStructuredData({
+      id: 'material-database-jsonld',
+      data: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          createWebApplicationStructuredData({
+            name: 'Material Database',
+            description:
+              'Reference common sheet metal bending materials including mild steel, galvanized steel, stainless steel, aluminum and brass. Compare material factor, strength range, inside radius and springback reference.',
+            path: '/engineering-tools/material-database',
+          }),
+          createFAQPageStructuredData(englishPage.faq),
+        ],
+      },
     })
   }, [])
 

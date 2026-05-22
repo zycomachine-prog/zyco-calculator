@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
-import { setPageSEO } from '../utils/seo.js'
+import {
+  getSiteUrl,
+  setPageSEO,
+  setStructuredData,
+} from '../utils/seo.js'
 
 const tools = [
   {
@@ -79,6 +83,63 @@ export default function EngineeringHub({
       keywords:
         'press brake tools, sheet metal bending tools, press brake calculator, V die selection, bend allowance calculator, springback database, material database',
       canonicalPath: '/engineering-tools',
+    })
+
+    setStructuredData({
+      id: 'engineering-hub-jsonld',
+      data: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            name: 'ZYCO Engineering Hub',
+            url: getSiteUrl('/engineering-tools'),
+          },
+          {
+            '@type': 'ItemList',
+            name: 'ZYCO Engineering Tools',
+            url: getSiteUrl('/engineering-tools'),
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Press Brake Calculator',
+                url: getSiteUrl('/engineering-tools/press-brake-calculator'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Material Database',
+                url: getSiteUrl('/engineering-tools/material-database'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'V Die Selection Tool',
+                url: getSiteUrl('/engineering-tools/v-die-selection'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 4,
+                name: 'Inside Radius Guide',
+                url: getSiteUrl('/engineering-tools/inside-radius-guide'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 5,
+                name: 'Springback Database',
+                url: getSiteUrl('/engineering-tools/springback-database'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 6,
+                name: 'Bend Allowance Calculator',
+                url: getSiteUrl('/engineering-tools/bend-allowance-calculator'),
+              },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

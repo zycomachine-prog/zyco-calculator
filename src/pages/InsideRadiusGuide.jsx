@@ -1,7 +1,12 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
-import { setPageSEO } from '../utils/seo.js'
+import {
+  createFAQPageStructuredData,
+  createWebApplicationStructuredData,
+  setPageSEO,
+  setStructuredData,
+} from '../utils/seo.js'
 
 const materials = [
   {
@@ -102,6 +107,8 @@ export default function InsideRadiusGuide({
   setLanguage = () => {},
 }) {
   useEffect(() => {
+    const englishPage = getEngineeringText('en').pages.radius
+
     setPageSEO({
       title: 'Inside Bend Radius Guide for Sheet Metal Bending | ZYCO',
       description:
@@ -109,6 +116,22 @@ export default function InsideRadiusGuide({
       keywords:
         'inside bend radius, sheet metal bend radius, minimum bend radius, press brake inside radius, air bending radius, V opening radius',
       canonicalPath: '/engineering-tools/inside-radius-guide',
+    })
+
+    setStructuredData({
+      id: 'inside-radius-guide-jsonld',
+      data: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          createWebApplicationStructuredData({
+            name: 'Inside Radius Guide',
+            description:
+              'Reference recommended and minimum inside bend radius for common sheet metal materials. Understand how V-opening, material properties and air bending conditions affect inside radius.',
+            path: '/engineering-tools/inside-radius-guide',
+          }),
+          createFAQPageStructuredData(englishPage.faq),
+        ],
+      },
     })
   }, [])
 

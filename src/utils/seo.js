@@ -1,4 +1,10 @@
-const SITE_URL = 'https://www.zycomachine.com'
+export const SITE_URL = 'https://www.zycomachine.com'
+
+export const ZYCO_PUBLISHER = {
+  '@type': 'Organization',
+  name: 'ZYCO',
+  url: SITE_URL,
+}
 
 const getCanonicalUrl = (canonicalPath) => {
   if (!canonicalPath) {
@@ -11,6 +17,8 @@ const getCanonicalUrl = (canonicalPath) => {
 
   return `${SITE_URL}${canonicalPath.startsWith('/') ? '' : '/'}${canonicalPath}`
 }
+
+export const getSiteUrl = getCanonicalUrl
 
 const upsertMetaByName = (name, content) => {
   let meta = document.querySelector(`meta[name="${name}"]`)
@@ -48,6 +56,80 @@ const upsertCanonical = (href) => {
   link.setAttribute('href', href)
 }
 
+const findStructuredDataScript = (id) => {
+  if (!id) {
+    return document.querySelector(
+      'script[type="application/ld+json"][data-seo-jsonld]'
+    )
+  }
+
+  const byDataAttribute = document.querySelector(
+    `script[type="application/ld+json"][data-seo-jsonld="${id}"]`
+  )
+
+  if (byDataAttribute) {
+    return byDataAttribute
+  }
+
+  const byId = document.getElementById(id)
+
+  return byId?.tagName === 'SCRIPT' ? byId : null
+}
+
+export const setStructuredData = ({
+  id,
+  data,
+}) => {
+  if (typeof document === 'undefined' || !data) {
+    return
+  }
+
+  let script = findStructuredDataScript(id)
+
+  if (!script) {
+    script = document.createElement('script')
+    script.setAttribute('type', 'application/ld+json')
+    document.head.appendChild(script)
+  }
+
+  if (id) {
+    script.setAttribute('id', id)
+    script.setAttribute('data-seo-jsonld', id)
+  } else {
+    script.setAttribute('data-seo-jsonld', 'true')
+  }
+
+  script.textContent = JSON.stringify(data).replace(/</g, '\\u003c')
+}
+
+export const createWebApplicationStructuredData = ({
+  name,
+  description,
+  path,
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name,
+  description,
+  url: getCanonicalUrl(path),
+  applicationCategory: 'EngineeringApplication',
+  operatingSystem: 'Web',
+  publisher: ZYCO_PUBLISHER,
+})
+
+export const createFAQPageStructuredData = (faq) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+})
+
 export const setPageSEO = ({
   title,
   description,
@@ -75,4 +157,3 @@ export const setPageSEO = ({
   upsertMetaByName('twitter:title', title)
   upsertMetaByName('twitter:description', description)
 }
-
