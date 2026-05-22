@@ -812,6 +812,16 @@ const titleFontSize = {
   TR: isMobile ? '24px' : '42px',
   ID: isMobile ? '24px' : '42px',
 }
+const backToEngineeringToolsLabel =
+  {
+    EN: '← Back to Engineering Tools',
+    CN: '← 返回工程工具中心',
+    RU: '← Назад к инженерным инструментам',
+    ES: '← Volver a herramientas de ingeniería',
+    TR: '← Mühendislik araçlarına dön',
+    ID: '← Kembali ke Engineering Tools',
+  }[calculatorLanguage] ||
+  '← Back to Engineering Tools'
   // 鎺ㄨ崘鏈哄瀷
  const recommendMachine = () => {
   if (!thickness || !length) {
@@ -846,6 +856,64 @@ const animationStyle = `
 
   100% {
     transform: translateX(520%) skewX(-25deg);
+  }
+}
+
+.zyco-press-brake-back-to-hub {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: min(100%, 460px);
+  min-height: 44px;
+  box-sizing: border-box;
+  margin: 0 0 18px;
+  padding: 0 16px;
+  border-color: rgba(37, 99, 235, 0.46);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 999px;
+  background:
+    linear-gradient(145deg, rgba(239, 246, 255, 0.9), rgba(219, 234, 254, 0.7));
+  color: #1e3a8a;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 850;
+  text-decoration: none;
+  box-shadow:
+    0 10px 24px rgba(37, 99, 235, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(16px);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.zyco-press-brake-back-to-hub:hover {
+  border-color: rgba(37, 99, 235, 0.72);
+  background:
+    linear-gradient(145deg, rgba(219, 234, 254, 0.98), rgba(191, 219, 254, 0.84));
+  color: #0f172a;
+  box-shadow:
+    0 16px 32px rgba(37, 99, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.zyco-press-brake-back-to-hub:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .zyco-press-brake-back-to-hub {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    text-align: center;
   }
 }
 `
@@ -1033,7 +1101,7 @@ linear-gradient(
     backgroundSize: '40px 40px',
     opacity: 0.25,
     pointerEvents: 'none',
-  }}
+      }}
 />
       <div
   id='pdf-report'
@@ -1070,6 +1138,14 @@ inset 0 1px 0 rgba(255,255,255,0.75)
     '1px solid rgba(255,255,255,0.65)',
 }}
       >
+        <a
+          aria-label={backToEngineeringToolsLabel}
+          className='zyco-press-brake-back-to-hub'
+          href='/engineering-tools'
+        >
+          {backToEngineeringToolsLabel}
+        </a>
+
 {/* 椤堕儴 */}
 <div
   style={{

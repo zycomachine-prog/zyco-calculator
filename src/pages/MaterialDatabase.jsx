@@ -94,12 +94,24 @@ const relatedTools = [
   },
 ]
 
+const backToEngineeringToolsLabels = {
+  en: '← Back to Engineering Tools',
+  zh: '← 返回工程工具中心',
+  ru: '← Назад к инженерным инструментам',
+  es: '← Volver a herramientas de ingeniería',
+  tr: '← Mühendislik araçlarına dön',
+  id: '← Kembali ke Engineering Tools',
+}
+
 export default function MaterialDatabase({
   language = 'en',
   setLanguage = () => {},
 }) {
   const t = getEngineeringText(language)
   const page = t.pages.material
+  const backToEngineeringToolsLabel =
+    backToEngineeringToolsLabels[language] ||
+    backToEngineeringToolsLabels.en
   const getMaterialDisplayValue = (material, key) => {
     if (key === 'standardAutoVDie') {
       return page.values.standardAutoVDie
@@ -162,6 +174,53 @@ export default function MaterialDatabase({
             margin: 0 auto;
             position: relative;
             z-index: 1;
+          }
+
+          .zyco-tool-back-to-hub {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            max-width: min(100%, 460px);
+            min-height: 44px;
+            box-sizing: border-box;
+            margin: 0 0 22px;
+            padding: 0 16px;
+            border: 1px solid rgba(147, 197, 253, 0.46);
+            border-radius: 999px;
+            background:
+              linear-gradient(145deg, rgba(15, 23, 42, 0.34), rgba(37, 99, 235, 0.12));
+            color: #bfdbfe;
+            font-size: 14px;
+            line-height: 1.35;
+            font-weight: 850;
+            text-decoration: none;
+            box-shadow:
+              0 10px 28px rgba(15, 23, 42, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            transition:
+              transform 0.22s ease,
+              border-color 0.22s ease,
+              color 0.22s ease,
+              background 0.22s ease,
+              box-shadow 0.22s ease;
+          }
+
+          .zyco-tool-back-to-hub:hover {
+            transform: translateY(-2px);
+            border-color: rgba(191, 219, 254, 0.72);
+            background:
+              linear-gradient(145deg, rgba(30, 64, 175, 0.42), rgba(59, 130, 246, 0.18));
+            color: #ffffff;
+            box-shadow:
+              0 16px 34px rgba(37, 99, 235, 0.26),
+              inset 0 1px 0 rgba(255, 255, 255, 0.16);
+          }
+
+          .zyco-tool-back-to-hub:focus-visible {
+            outline: 3px solid rgba(147, 197, 253, 0.46);
+            outline-offset: 3px;
           }
 
           .zyco-materials__header {
@@ -475,6 +534,13 @@ export default function MaterialDatabase({
               border-radius: 24px;
             }
 
+            .zyco-tool-back-to-hub {
+              width: 100%;
+              margin-bottom: 16px;
+              padding: 10px 14px;
+              text-align: center;
+            }
+
             .zyco-materials__title {
               font-size: 32px;
             }
@@ -527,6 +593,14 @@ export default function MaterialDatabase({
       <main className='zyco-materials'>
         <section className='zyco-materials__shell'>
           <header className='zyco-materials__header'>
+            <a
+              aria-label={backToEngineeringToolsLabel}
+              className='zyco-tool-back-to-hub'
+              href='/engineering-tools'
+            >
+              {backToEngineeringToolsLabel}
+            </a>
+
             <LanguageSwitcher
               className='zyco-page-language-switcher'
               language={language}
