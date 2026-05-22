@@ -7,6 +7,7 @@ import {
 import CountUp from 'react-countup'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
+import { calculatorLanguageMap } from '../languages/engineeringText.js'
 
 const validMaterialKeys = [
   'mildSteel',
@@ -58,7 +59,10 @@ const getInitialMaterial = () => {
     : 'mildSteel'
 }
 
-export default function PressBrakeCalculator() {
+export default function PressBrakeCalculator({
+  language = 'en',
+  setLanguage = () => {},
+}) {
   const [isMobile, setIsMobile] =
   useState(
     typeof window !== 'undefined'
@@ -121,7 +125,18 @@ const handleFeatureLeave = (e) => {
   e.currentTarget.style.boxShadow =
     '0 10px 30px rgba(0,0,0,0.18)'
 }
-const [language, setLanguage] = useState('EN')
+const calculatorLanguage =
+  calculatorLanguageMap[language] || 'EN'
+
+const calculatorToSharedLanguageMap =
+  Object.fromEntries(
+    Object.entries(calculatorLanguageMap).map(
+      ([sharedLanguage, calculatorLanguageValue]) => [
+        calculatorLanguageValue,
+        sharedLanguage,
+      ]
+    )
+  )
 
 const thicknessRef = useRef(null)
 
@@ -788,7 +803,7 @@ const vDie =
     },
   }
 
-  const t = texts[language]
+  const t = texts[calculatorLanguage]
 const titleFontSize = {
   EN: isMobile ? '28px' : '52px',
   CN: isMobile ? '30px' : '52px',
@@ -1166,7 +1181,7 @@ inset 0 1px 0 rgba(255,255,255,0.75)
 
       <h1
         style={{
-          fontSize: titleFontSize[language],
+          fontSize: titleFontSize[calculatorLanguage],
 
             maxWidth: isMobile ? '100%' : '500px',
           margin: 0,
@@ -1231,9 +1246,12 @@ overflowWrap: 'break-word',
   </div>
 
 <select
-  value={language}
+  value={calculatorLanguage}
   onChange={(e) =>
-    setLanguage(e.target.value)
+    setLanguage(
+      calculatorToSharedLanguageMap[e.target.value] ||
+      'en'
+    )
   }
   style={{
     ...inputStyle,
@@ -2450,7 +2468,7 @@ PRESS </text>
   >
     <div
       style={
-        language === 'RU'
+        calculatorLanguage === 'RU'
           ? russianDetailCardStyle
           : detailCardStyle
       }
@@ -2472,7 +2490,7 @@ PRESS </text>
 
     <div
       style={
-        language === 'RU'
+        calculatorLanguage === 'RU'
           ? russianDetailCardStyle
           : detailCardStyle
       }
@@ -2494,7 +2512,7 @@ PRESS </text>
 
     <div
       style={
-        language === 'RU'
+        calculatorLanguage === 'RU'
           ? russianDetailCardStyle
           : detailCardStyle
       }
@@ -2516,7 +2534,7 @@ PRESS </text>
 
     <div
       style={
-        language === 'RU'
+        calculatorLanguage === 'RU'
           ? russianDetailCardStyle
           : detailCardStyle
       }

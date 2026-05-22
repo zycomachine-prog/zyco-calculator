@@ -1,82 +1,82 @@
+import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
+
 const tools = [
   {
-    title: 'Press Brake Calculator',
-    description:
-      'Professional bending force calculation system',
+    key: 'pressBrakeCalculator',
     status: 'active',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Bend Allowance Calculator',
-    description:
-      'Sheet metal bend allowance, bend deduction and flat pattern reference',
+    key: 'bendAllowanceCalculator',
     status: 'active',
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
-    title: 'Material Database',
-    description:
-      'Yield strength, tensile strength, K-factor and bending properties',
+    key: 'materialDatabase',
     status: 'active',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'Springback Database',
-    description:
-      'Industrial springback reference system',
+    key: 'springbackDatabase',
     status: 'active',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'V Die Selection',
-    description:
-      'Recommended V opening and tooling selection',
+    key: 'vDieSelectionTool',
     status: 'active',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
-    description:
-      'Inside bend radius and minimum radius reference',
+    key: 'insideRadiusGuide',
     status: 'active',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Tooling Guide',
-    description:
-      'Punch and die application guide',
+    key: 'toolingGuide',
     status: 'soon',
   },
 ]
 
 const relatedTools = [
   {
-    title: 'Press Brake Calculator',
+    key: 'pressBrakeCalculator',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Material Database',
+    key: 'materialDatabase',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'V Die Selection Tool',
+    key: 'vDieSelectionTool',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
+    key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Springback Database',
+    key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'Bend Allowance Calculator',
+    key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
 
-export default function EngineeringHub() {
+export default function EngineeringHub({
+  language = 'en',
+  setLanguage = () => {},
+}) {
+  const t = getEngineeringText(language)
+  const page = t.pages.hub
+  const toolDescriptions = Object.fromEntries(page.tools)
+  const overviewText = page.overview.replace(
+    'ZYCO Engineering Hub',
+    page.hubName
+  )
+
   return (
     <>
       <style>
@@ -391,16 +391,22 @@ export default function EngineeringHub() {
       <main className='zyco-hub'>
         <section className='zyco-hub__shell'>
           <header className='zyco-hub__header'>
+            <LanguageSwitcher
+              className='zyco-page-language-switcher'
+              language={language}
+              setLanguage={setLanguage}
+            />
+
             <p className='zyco-hub__eyebrow'>
-              Engineering Tools Hub
+              {page.eyebrow}
             </p>
 
             <h1 className='zyco-hub__title'>
-              ZYCO Engineering Tools
+              {page.title}
             </h1>
 
             <p className='zyco-hub__subtitle'>
-              Professional engineering references for sheet metal bending, tooling selection and press brake setup.
+              {page.subtitle}
             </p>
           </header>
 
@@ -412,18 +418,11 @@ export default function EngineeringHub() {
               className='zyco-hub__panel-title'
               id='hub-engineering-overview'
             >
-              Engineering Overview
+              {t.common.engineeringOverview}
             </h2>
 
             <p className='zyco-hub__panel-text'>
-              The ZYCO Engineering Hub organizes practical press brake
-              references into separate tools so engineers can check tonnage,
-              material behavior, V-die opening, inside bend radius and
-              springback from focused pages. These references are intended for
-              air bending preparation, quotation checks, tooling review and
-              production setup planning where material strength, thickness,
-              bend length, V-opening and forming method all affect the final
-              bending result.
+              {overviewText}
             </p>
           </section>
 
@@ -431,7 +430,7 @@ export default function EngineeringHub() {
             {tools.map((tool, index) => (
               <article
                 className='zyco-tool-card'
-                key={tool.title}
+                key={tool.key}
               >
                 <div>
                   <div className='zyco-tool-card__index'>
@@ -439,11 +438,11 @@ export default function EngineeringHub() {
                   </div>
 
                   <h2 className='zyco-tool-card__title'>
-                    {tool.title}
+                    {t.relatedTools[tool.key] || 'Tooling Guide'}
                   </h2>
 
                   <p className='zyco-tool-card__description'>
-                    {tool.description}
+                    {toolDescriptions[tool.key]}
                   </p>
                 </div>
 
@@ -452,11 +451,11 @@ export default function EngineeringHub() {
                     className='zyco-tool-card__action'
                     href={tool.href}
                   >
-                    Open Tool →
+                    {t.common.openTool} {'\u2192'}
                   </a>
                 ) : (
                   <span className='zyco-tool-card__badge'>
-                    Coming Soon
+                    {t.common.comingSoon}
                   </span>
                 )}
               </article>
@@ -471,20 +470,20 @@ export default function EngineeringHub() {
               className='zyco-hub__panel-title'
               id='hub-related-tools'
             >
-              Related Engineering Tools
+              {t.common.relatedEngineeringTools}
             </h2>
 
             <nav
               className='zyco-hub__tools'
-              aria-label='Related engineering tools'
+              aria-label={t.common.relatedToolsAria}
             >
               {relatedTools.map((tool) => (
                 <a
                   className='zyco-tool-card__action'
                   href={tool.href}
-                  key={tool.title}
+                  key={tool.key}
                 >
-                  {tool.title}
+                  {t.relatedTools[tool.key]}
                 </a>
               ))}
             </nav>

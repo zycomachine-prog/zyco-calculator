@@ -1,3 +1,6 @@
+import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
+
 const materials = [
   {
     name: 'Mild Steel',
@@ -6,7 +9,6 @@ const materials = [
     minimumInsideRadius: '0.8T\u20131T',
     crackRisk: 'Low',
     springbackSensitivity: 'Low',
-    applicationNote: 'Standard forming material with good bendability.',
   },
   {
     name: 'Galvanized Steel',
@@ -15,8 +17,6 @@ const materials = [
     minimumInsideRadius: '1T\u20131.2T',
     crackRisk: 'Medium',
     springbackSensitivity: 'Low',
-    applicationNote:
-      'Coating condition may affect edge cracking and surface quality.',
   },
   {
     name: 'Stainless Steel 201',
@@ -25,8 +25,6 @@ const materials = [
     minimumInsideRadius: '1T\u20131.3T',
     crackRisk: 'High',
     springbackSensitivity: 'Very High',
-    applicationNote:
-      'Strong work hardening and higher crack risk in sharp bends.',
   },
   {
     name: 'Stainless Steel 304',
@@ -35,8 +33,6 @@ const materials = [
     minimumInsideRadius: '1T\u20131.3T',
     crackRisk: 'Medium',
     springbackSensitivity: 'High',
-    applicationNote:
-      'Good corrosion resistance with significant springback.',
   },
   {
     name: 'Aluminum',
@@ -45,8 +41,6 @@ const materials = [
     minimumInsideRadius: '0.8T\u20131.5T',
     crackRisk: 'Medium',
     springbackSensitivity: 'Medium',
-    applicationNote:
-      'Softer material with lower tonnage but sensitive to grain direction.',
   },
   {
     name: 'Brass',
@@ -55,75 +49,60 @@ const materials = [
     minimumInsideRadius: '0.8T\u20131T',
     crackRisk: 'Low',
     springbackSensitivity: 'Low',
-    applicationNote:
-      'Excellent formability under proper hardness condition.',
   },
 ]
 
 const fields = [
-  ['Recommended Inside Radius', 'recommendedInsideRadius'],
-  ['Minimum Inside Radius', 'minimumInsideRadius'],
-  ['Crack Risk', 'crackRisk'],
-  ['Springback Sensitivity', 'springbackSensitivity'],
-]
-
-const engineeringReferenceNotes = [
-  'Minimum Inside Radius represents the minimum practical forming limit under favorable tooling and material conditions.',
-  'Recommended Inside Radius represents a more stable production-friendly bending condition for consistent forming quality and reduced cracking risk.',
-  'Actual inside radius in air bending depends mainly on the selected V-opening width and material properties.',
-]
-
-const faqItems = [
-  {
-    question: 'What determines inside bend radius in air bending?',
-    answer:
-      'In air bending, the inside radius is mainly formed by the V-opening width and material behavior rather than by forcing the sheet fully into the die. Thickness, material strength and punch radius also influence the final radius.',
-  },
-  {
-    question: 'What happens if the inside radius is too small?',
-    answer:
-      'A radius below the practical forming limit increases the risk of cracking, coating damage and unstable bend quality, especially on hard stainless steel, galvanized sheet and some aluminum tempers.',
-  },
-  {
-    question: 'Is minimum inside radius the best production target?',
-    answer:
-      'Not usually. Minimum radius is a forming limit reference. A recommended radius gives more stable production, lower crack risk and more consistent angle control.',
-  },
-  {
-    question: 'How does V-die opening affect inside radius?',
-    answer:
-      'A wider V-opening generally creates a larger natural inside radius in air bending. A narrower opening can reduce radius but increases tonnage and may raise marking or cracking risk.',
-  },
+  ['recommendedInsideRadius', 'recommendedInsideRadius'],
+  ['minimumInsideRadius', 'minimumInsideRadius'],
+  ['crackRisk', 'crackRisk'],
+  ['springbackSensitivity', 'springbackSensitivity'],
 ]
 
 const relatedTools = [
   {
-    title: 'Press Brake Calculator',
+    key: 'pressBrakeCalculator',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Material Database',
+    key: 'materialDatabase',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'V Die Selection Tool',
+    key: 'vDieSelectionTool',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
+    key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Springback Database',
+    key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'Bend Allowance Calculator',
+    key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
 
-export default function InsideRadiusGuide() {
+export default function InsideRadiusGuide({
+  language = 'en',
+  setLanguage = () => {},
+}) {
+  const t = getEngineeringText(language)
+  const page = t.pages.radius
+  const valueKeys = {
+    Low: 'low',
+    Medium: 'medium',
+    High: 'high',
+    'Very High': 'veryHigh',
+    'Low to Medium': 'lowToMedium',
+    'Medium to High': 'mediumToHigh',
+  }
+  const getRadiusDisplayValue = (value) =>
+    page.values[valueKeys[value]] || value
+
   return (
     <>
       <style>
@@ -502,35 +481,34 @@ export default function InsideRadiusGuide() {
       <main className='zyco-radius'>
         <section className='zyco-radius__shell'>
           <header className='zyco-radius__header'>
+            <LanguageSwitcher
+              className='zyco-page-language-switcher'
+              language={language}
+              setLanguage={setLanguage}
+            />
+
             <p className='zyco-radius__eyebrow'>
-              Engineering Reference
+              {t.common.engineeringReference}
             </p>
 
             <h1 className='zyco-radius__title'>
-              Inside Radius Guide
+              {page.title}
             </h1>
 
             <p className='zyco-radius__subtitle'>
-              Industrial reference for inside bend radius selection
+              {page.subtitle}
             </p>
 
             <div className='zyco-radius__engineering-note'>
               <h2 className='zyco-radius__note-title'>
-                Engineering Overview
+                {t.common.engineeringOverview}
               </h2>
 
               <p className='zyco-radius__note-text'>
-                Inside bend radius is a key forming result in press brake air
-                bending because it affects part fit, flat pattern development,
-                cracking risk and final angle stability. This guide compares
-                practical radius ranges by material so engineers can judge
-                whether a bend is close to the forming limit or better suited
-                for stable production. The selected V-opening, material
-                thickness, punch radius, grain direction and hardness condition
-                should all be considered before releasing a bending setup.
+                {page.overview}
               </p>
 
-              {engineeringReferenceNotes.map((note) => (
+              {page.notes.map((note) => (
                 <p
                   className='zyco-radius__note-text'
                   key={note}
@@ -549,32 +527,32 @@ export default function InsideRadiusGuide() {
               >
                 <div>
                   <h2 className='zyco-radius-card__title'>
-                    {material.name}
+                    {t.materialNames[material.materialKey]}
                   </h2>
 
                   <dl className='zyco-radius-card__specs'>
-                    {fields.map(([label, key]) => (
+                    {fields.map(([labelKey, key]) => (
                       <div
                         className='zyco-radius-card__spec'
-                        key={label}
+                        key={labelKey}
                       >
                         <dt className='zyco-radius-card__label'>
-                          {label}
+                          {page.fields[labelKey]}
                         </dt>
 
                         <dd className='zyco-radius-card__value'>
-                          {material[key]}
+                          {getRadiusDisplayValue(material[key])}
                         </dd>
                       </div>
                     ))}
                   </dl>
 
                   <p className='zyco-radius-card__note-label'>
-                    Application Note
+                    {t.common.applicationNote}
                   </p>
 
                   <p className='zyco-radius-card__note'>
-                    {material.applicationNote}
+                    {t.materialNotes[material.materialKey]}
                   </p>
                 </div>
 
@@ -582,7 +560,7 @@ export default function InsideRadiusGuide() {
                   className='zyco-radius-card__action'
                   href={`/engineering-tools/press-brake-calculator?material=${material.materialKey}`}
                 >
-                  Calculate Bending Force {'\u2192'}
+                  {t.common.calculateBendingForce} {'\u2192'}
                 </a>
               </article>
             ))}
@@ -596,21 +574,21 @@ export default function InsideRadiusGuide() {
               className='zyco-radius__note-title'
               id='inside-radius-faq'
             >
-              Inside Radius FAQ
+              {page.faqTitle}
             </h2>
 
             <div className='zyco-radius__faq'>
-              {faqItems.map((item) => (
+              {page.faq.map(([question, answer]) => (
                 <article
                   className='zyco-radius__faq-item'
-                  key={item.question}
+                  key={question}
                 >
                   <h3 className='zyco-radius__question'>
-                    {item.question}
+                    {question}
                   </h3>
 
                   <p className='zyco-radius__answer'>
-                    {item.answer}
+                    {answer}
                   </p>
                 </article>
               ))}
@@ -625,20 +603,20 @@ export default function InsideRadiusGuide() {
               className='zyco-radius__note-title'
               id='inside-radius-related-tools'
             >
-              Related Engineering Tools
+              {t.common.relatedEngineeringTools}
             </h2>
 
             <nav
               className='zyco-radius__tools'
-              aria-label='Related engineering tools'
+              aria-label={t.common.relatedToolsAria}
             >
               {relatedTools.map((tool) => (
                 <a
                   className='zyco-radius-card__action'
                   href={tool.href}
-                  key={tool.title}
+                  key={tool.key}
                 >
-                  {tool.title}
+                  {t.relatedTools[tool.key]}
                 </a>
               ))}
             </nav>

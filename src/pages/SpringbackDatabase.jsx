@@ -1,137 +1,102 @@
 import { useEffect } from 'react'
+import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 
 const materials = [
   {
     name: 'Mild Steel',
     materialKey: 'mildSteel',
     range: '0.6°–1.3°',
-    reference: '2 mm thickness / 90° air bending / V ≈ 8T',
-    sensitivity: 'Low',
-    factors: 'V-opening, thickness, tooling condition',
-    note: 'Standard reference material with relatively stable springback behavior.',
   },
   {
     name: 'Galvanized Steel',
     materialKey: 'galvanizedSteel',
     range: '0.8°–1.6°',
-    reference: '2 mm thickness / 90° air bending / V ≈ 8T',
-    sensitivity: 'Low to Medium',
-    factors: 'Coating condition, V-opening, material batch',
-    note: 'Similar to mild steel, but coating and surface condition may affect forming quality.',
   },
   {
     name: 'Stainless Steel 201',
     materialKey: 'stainless201',
     range: '2.2°–3.8°',
-    reference: '2 mm thickness / 90° air bending / V ≈ 8T',
-    sensitivity: 'Very High',
-    factors: 'Work hardening, tensile strength, V-opening, inside radius',
-    note: 'Higher work hardening and springback than 304 stainless steel.',
   },
   {
     name: 'Stainless Steel 304',
     materialKey: 'stainless304',
     range: '1.8°–3.0°',
-    reference: '2 mm thickness / 90° air bending / V ≈ 8T',
-    sensitivity: 'High',
-    factors: 'Work hardening, V-opening, inside radius, grain direction',
-    note: 'Common stainless steel with significant springback and good corrosion resistance.',
   },
   {
     name: 'Aluminum',
     materialKey: 'aluminum',
     range: '1.2°–2.8°',
-    reference: '2 mm thickness / 90° air bending / V ≈ 8T',
-    sensitivity: 'Medium to High',
-    factors:
-      'Lower elastic modulus, alloy grade, temper condition, grain direction',
-    note: 'Requires careful angle compensation despite lower bending force.',
   },
   {
     name: 'Brass',
     materialKey: 'brass',
     range: '0.4°–1.2°',
-    reference: '2 mm thickness / 90° air bending / V ≈ 8T',
-    sensitivity: 'Low',
-    factors: 'Hardness condition, grain direction, V-opening',
-    note: 'Good formability when hardness and bending direction are properly considered.',
-  },
-]
-
-const springbackFactors = [
-  'material strength',
-  'thickness',
-  'V-opening',
-  'inside radius',
-  'tooling condition',
-  'bending method',
-  'machine setup',
-]
-
-const faqItems = [
-  {
-    question: 'What is springback in press brake bending?',
-    answer:
-      'Springback is the elastic recovery of the material after bending. It causes the final angle to open slightly after the bending force is released.',
-  },
-  {
-    question: 'Why does stainless steel have more springback?',
-    answer:
-      'Stainless steel usually has higher tensile strength and stronger work hardening behavior, so it tends to spring back more than mild steel.',
-  },
-  {
-    question: 'Does a larger V-opening increase springback?',
-    answer:
-      'In air bending, a larger V-opening usually produces a larger inside radius and can increase springback tendency.',
-  },
-  {
-    question: 'How can springback be reduced?',
-    answer:
-      'Springback can be reduced by using proper tooling, selecting a suitable V-opening, applying angle compensation and performing trial bending.',
   },
 ]
 
 const relatedTools = [
   {
-    title: 'Press Brake Calculator',
+    key: 'pressBrakeCalculator',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Material Database',
+    key: 'materialDatabase',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'V Die Selection Tool',
+    key: 'vDieSelectionTool',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
+    key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Springback Database',
+    key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'Bend Allowance Calculator',
+    key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
 
 const fields = [
-  ['Typical Springback Range', 'range'],
-  ['Reference Condition', 'reference'],
-  ['Springback Sensitivity', 'sensitivity'],
-  ['Main Influencing Factors', 'factors'],
+  ['range', 'range'],
+  ['reference', 'reference'],
+  ['sensitivity', 'sensitivity'],
+  ['factors', 'factors'],
 ]
 
-export default function SpringbackDatabase() {
+export default function SpringbackDatabase({
+  language = 'en',
+  setLanguage = () => {},
+}) {
+  const t = getEngineeringText(language)
+  const page = t.pages.springback
+  const getSpringbackDisplayValue = (material, key) => {
+    if (key === 'reference') {
+      return page.values.reference
+    }
+
+    if (key === 'sensitivity') {
+      return page.values.sensitivity[material.materialKey] || material[key]
+    }
+
+    if (key === 'factors') {
+      return page.values.factors[material.materialKey] || material[key]
+    }
+
+    return material[key] || '--'
+  }
+
   useEffect(() => {
     document.title =
-      'Springback Database | Press Brake Air Bending Reference | ZYCO'
+      `${page.title} | ZYCO`
 
     const description =
-      'Typical press brake air bending springback reference by material, sheet thickness and V-opening, with engineering notes for steel, stainless steel, aluminum and brass.'
+      page.subtitle
 
     let metaDescription = document.querySelector('meta[name="description"]')
 
@@ -142,7 +107,10 @@ export default function SpringbackDatabase() {
     }
 
     metaDescription.setAttribute('content', description)
-  }, [])
+  }, [
+    page.subtitle,
+    page.title,
+  ])
 
   return (
     <>
@@ -528,16 +496,22 @@ export default function SpringbackDatabase() {
       <main className='zyco-springback'>
         <section className='zyco-springback__shell'>
           <header className='zyco-springback__header'>
+            <LanguageSwitcher
+              className='zyco-page-language-switcher'
+              language={language}
+              setLanguage={setLanguage}
+            />
+
             <p className='zyco-springback__eyebrow'>
-              Engineering Reference
+              {t.common.engineeringReference}
             </p>
 
             <h1 className='zyco-springback__title'>
-              Springback Database
+              {page.title}
             </h1>
 
             <p className='zyco-springback__subtitle'>
-              Typical air bending springback reference by material, thickness and V-opening
+              {page.subtitle}
             </p>
           </header>
 
@@ -549,19 +523,15 @@ export default function SpringbackDatabase() {
               className='zyco-springback__panel-title'
               id='springback-engineering-overview'
             >
-              Press Brake Springback Engineering Overview
+              {page.overviewTitle}
             </h2>
 
             <p className='zyco-springback__panel-text'>
-              Springback is not a fixed value. In air bending, the final angle
-              after unloading changes with the elastic recovery of the sheet
-              and with practical press brake setup conditions. The values below
-              are intended as engineering reference ranges for comparing
-              materials and preparing trial bending compensation.
+              {page.overview}
             </p>
 
             <ul className='zyco-springback__factor-list'>
-              {springbackFactors.map((factor) => (
+              {page.factors.map((factor) => (
                 <li
                   className='zyco-springback__factor'
                   key={factor}
@@ -580,32 +550,32 @@ export default function SpringbackDatabase() {
               >
                 <div>
                   <h2 className='zyco-springback-card__title'>
-                    {material.name}
+                    {t.materialNames[material.materialKey]}
                   </h2>
 
                   <dl className='zyco-springback-card__specs'>
-                    {fields.map(([label, key]) => (
+                    {fields.map(([labelKey, key]) => (
                       <div
                         className='zyco-springback-card__spec'
-                        key={label}
+                        key={labelKey}
                       >
                         <dt className='zyco-springback-card__label'>
-                          {label}
+                          {page.fields[labelKey]}
                         </dt>
 
                         <dd className='zyco-springback-card__value'>
-                          {material[key]}
+                          {getSpringbackDisplayValue(material, key)}
                         </dd>
                       </div>
                     ))}
                   </dl>
 
                   <p className='zyco-springback-card__note-label'>
-                    Engineering Note
+                    {t.common.engineeringNote}
                   </p>
 
                   <p className='zyco-springback-card__note'>
-                    {material.note}
+                    {t.materialNotes[material.materialKey]}
                   </p>
                 </div>
 
@@ -613,7 +583,7 @@ export default function SpringbackDatabase() {
                   className='zyco-springback-card__action'
                   href={`/engineering-tools/press-brake-calculator?material=${material.materialKey}`}
                 >
-                  Calculate Bending Force →
+                  {t.common.calculateBendingForce} {'\u2192'}
                 </a>
               </article>
             ))}
@@ -627,26 +597,19 @@ export default function SpringbackDatabase() {
               className='zyco-springback__panel-title'
               id='springback-reference-notes'
             >
-              Engineering Reference Notes
+              {t.common.engineeringReferenceNotes}
             </h2>
 
             <ul className='zyco-springback__notes'>
-              <li className='zyco-springback__note'>
-                Springback values are typical reference ranges based on 2 mm
-                sheet thickness, 90° air bending and V-opening around 8×
-                material thickness.
-              </li>
+              {page.notes.map((note) => (
+                <li
+                  className='zyco-springback__note'
+                  key={note}
+                >
+                  {note}
+                </li>
+              ))}
 
-              <li className='zyco-springback__note'>
-                Actual springback may vary depending on material batch,
-                thickness, V-die opening, punch radius, inside radius, grain
-                direction, tooling condition and machine setup.
-              </li>
-
-              <li className='zyco-springback__note'>
-                For thickness-, V-die- and length-based estimation, use the
-                Press Brake Calculator.
-              </li>
             </ul>
           </section>
 
@@ -658,21 +621,21 @@ export default function SpringbackDatabase() {
               className='zyco-springback__panel-title'
               id='springback-faq'
             >
-              Springback FAQ
+              {page.faqTitle}
             </h2>
 
             <div className='zyco-springback__faq'>
-              {faqItems.map((item) => (
+              {page.faq.map(([question, answer]) => (
                 <article
                   className='zyco-springback__faq-item'
-                  key={item.question}
+                  key={question}
                 >
                   <h3 className='zyco-springback__question'>
-                    {item.question}
+                    {question}
                   </h3>
 
                   <p className='zyco-springback__answer'>
-                    {item.answer}
+                    {answer}
                   </p>
                 </article>
               ))}
@@ -687,20 +650,20 @@ export default function SpringbackDatabase() {
               className='zyco-springback__panel-title'
               id='springback-related-tools'
             >
-              Related Engineering Tools
+              {t.common.relatedEngineeringTools}
             </h2>
 
             <nav
               className='zyco-springback__tools'
-              aria-label='Related engineering tools'
+              aria-label={t.common.relatedToolsAria}
             >
               {relatedTools.map((tool) => (
                 <a
                   className='zyco-springback-tool-link'
                   href={tool.href}
-                  key={tool.title}
+                  key={tool.key}
                 >
-                  {tool.title}
+                  {t.relatedTools[tool.key]}
                 </a>
               ))}
             </nav>

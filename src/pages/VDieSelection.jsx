@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 
 const materials = [
   {
@@ -7,8 +9,6 @@ const materials = [
     naturalInsideRadiusFactor: 0.16,
     minimumSafeInsideRadius: '0.8T\u20131T',
     recommendedInsideRadius: '1T\u20131.5T',
-    materialAdjustmentAdvice:
-      'Practical V-opening may be adjusted based on bend radius requirement, crack risk, surface quality, springback and tooling condition.',
   },
   {
     name: 'Galvanized Steel',
@@ -16,8 +16,6 @@ const materials = [
     naturalInsideRadiusFactor: 0.16,
     minimumSafeInsideRadius: '1T\u20131.2T',
     recommendedInsideRadius: '1.2T\u20131.6T',
-    materialAdjustmentAdvice:
-      'Practical V-opening may be adjusted based on bend radius requirement, crack risk, surface quality, springback and tooling condition.',
   },
   {
     name: 'Stainless Steel 201',
@@ -25,8 +23,6 @@ const materials = [
     naturalInsideRadiusFactor: 0.18,
     minimumSafeInsideRadius: '1T\u20131.3T',
     recommendedInsideRadius: '1.4T\u20132T',
-    materialAdjustmentAdvice:
-      'Practical V-opening may be adjusted based on bend radius requirement, crack risk, surface quality, springback and tooling condition.',
   },
   {
     name: 'Stainless Steel 304',
@@ -34,8 +30,6 @@ const materials = [
     naturalInsideRadiusFactor: 0.18,
     minimumSafeInsideRadius: '1T\u20131.3T',
     recommendedInsideRadius: '1.3T\u20131.8T',
-    materialAdjustmentAdvice:
-      'Practical V-opening may be adjusted based on bend radius requirement, crack risk, surface quality, springback and tooling condition.',
   },
   {
     name: 'Aluminum',
@@ -43,8 +37,6 @@ const materials = [
     naturalInsideRadiusFactor: 0.14,
     minimumSafeInsideRadius: '0.8T\u20131.5T',
     recommendedInsideRadius: '1T\u20132T',
-    materialAdjustmentAdvice:
-      'Practical V-opening may be adjusted based on bend radius requirement, crack risk, surface quality, springback and tooling condition.',
   },
   {
     name: 'Brass',
@@ -52,60 +44,32 @@ const materials = [
     naturalInsideRadiusFactor: 0.16,
     minimumSafeInsideRadius: '0.8T\u20131T',
     recommendedInsideRadius: '1T\u20131.5T',
-    materialAdjustmentAdvice:
-      'Practical V-opening may be adjusted based on bend radius requirement, crack risk, surface quality, springback and tooling condition.',
-  },
-]
-
-const engineeringNote =
-  'V-die selection controls more than tool fit. In press brake air bending, V-opening width affects required tonnage, natural inside radius, springback tendency, surface marking and the available flange length. The standard 8T / 10T / 12T rule is a practical starting point, but the final die choice should also consider material strength, crack risk, punch radius, target bend radius, tooling condition and whether the job prioritizes force reduction or tight radius control.'
-
-const faqItems = [
-  {
-    question: 'How do I choose V-die opening for sheet metal bending?',
-    answer:
-      'A common starting point is 8 times material thickness for thinner sheets, 10 times thickness for medium thickness and 12 times thickness for thicker plates. The final choice should be checked against radius, tonnage, flange length and material risk.',
-  },
-  {
-    question: 'Does a smaller V-opening reduce inside radius?',
-    answer:
-      'Yes, a smaller V-opening generally produces a smaller natural inside radius in air bending, but it also increases bending force and may increase marking or cracking risk.',
-  },
-  {
-    question: 'Why would I use a larger V-die opening?',
-    answer:
-      'A larger V-opening can reduce required tonnage and tool load. It is often useful for thicker plates or higher-strength materials, but it may increase inside radius and springback.',
-  },
-  {
-    question: 'Is V-die selection the same for stainless steel and mild steel?',
-    answer:
-      'The thickness rule can be the same starting point, but stainless steel usually needs more force and has higher springback, so radius and angle compensation should be reviewed more carefully.',
   },
 ]
 
 const relatedTools = [
   {
-    title: 'Press Brake Calculator',
+    key: 'pressBrakeCalculator',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Material Database',
+    key: 'materialDatabase',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'V Die Selection Tool',
+    key: 'vDieSelectionTool',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
+    key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Springback Database',
+    key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'Bend Allowance Calculator',
+    key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
@@ -126,7 +90,12 @@ const formatNumber = (value) =>
 const formatNaturalInsideRadius = (value) =>
   `\u2248 ${value.toFixed(1)} mm`
 
-export default function VDieSelection() {
+export default function VDieSelection({
+  language = 'en',
+  setLanguage = () => {},
+}) {
+  const t = getEngineeringText(language)
+  const page = t.pages.vdie
   const [materialKey, setMaterialKey] = useState('mildSteel')
   const [thickness, setThickness] = useState('')
 
@@ -152,26 +121,27 @@ export default function VDieSelection() {
       ),
       minimumSafeInsideRadius: selectedMaterial.minimumSafeInsideRadius,
       recommendedInsideRadius: selectedMaterial.recommendedInsideRadius,
-      materialAdjustmentAdvice: selectedMaterial.materialAdjustmentAdvice,
+      materialAdjustmentAdvice: t.common.materialAdjustmentAdvice,
     }
   }, [
+    language,
     selectedMaterial,
     thickness,
   ])
 
   const outputRows = [
     [
-      'Standard Auto V Die Rule',
-      'Follows Calculator logic: 8T / 10T / 12T by thickness range',
+      page.output.standardRule,
+      page.output.standardRuleValue,
     ],
-    ['Standard Auto V Die', result?.standardAutoVDie || '--'],
+    [page.output.standardAutoVDie, result?.standardAutoVDie || '--'],
     [
-      'Estimated Natural Inside Radius',
+      page.output.estimatedNaturalInsideRadius,
       result?.estimatedNaturalInsideRadius || '--',
     ],
-    ['Minimum Safe Inside Radius', result?.minimumSafeInsideRadius || '--'],
-    ['Recommended Inside Radius', result?.recommendedInsideRadius || '--'],
-    ['Material Adjustment Advice', result?.materialAdjustmentAdvice || '--'],
+    [page.output.minimumSafeInsideRadius, result?.minimumSafeInsideRadius || '--'],
+    [page.output.recommendedInsideRadius, result?.recommendedInsideRadius || '--'],
+    [page.output.materialAdjustmentAdvice, result?.materialAdjustmentAdvice || '--'],
   ]
 
   return (
@@ -558,16 +528,22 @@ export default function VDieSelection() {
       <main className='zyco-vdie'>
         <section className='zyco-vdie__shell'>
           <header className='zyco-vdie__header'>
+            <LanguageSwitcher
+              className='zyco-page-language-switcher'
+              language={language}
+              setLanguage={setLanguage}
+            />
+
             <p className='zyco-vdie__eyebrow'>
-              Engineering Reference
+              {t.common.engineeringReference}
             </p>
 
             <h1 className='zyco-vdie__title'>
-              V Die Selection Tool
+              {page.title}
             </h1>
 
             <p className='zyco-vdie__subtitle'>
-              Recommended V-opening guide for sheet metal air bending
+              {page.subtitle}
             </p>
 
             <section
@@ -578,11 +554,11 @@ export default function VDieSelection() {
                 className='zyco-vdie__note-title'
                 id='vdie-engineering-overview'
               >
-                Engineering Overview
+                {t.common.engineeringOverview}
               </h2>
 
               <p className='zyco-vdie__note-text'>
-                {engineeringNote}
+                {page.overview}
               </p>
             </section>
           </header>
@@ -590,13 +566,13 @@ export default function VDieSelection() {
           <div className='zyco-vdie__grid'>
             <article className='zyco-vdie-card'>
               <h2 className='zyco-vdie-card__title'>
-                Input Parameters
+                {t.common.inputParameters}
               </h2>
 
               <div className='zyco-vdie-form'>
                 <label className='zyco-vdie-field'>
                   <span className='zyco-vdie-field__label'>
-                    Material
+                    {t.common.material}
                   </span>
 
                   <select
@@ -611,7 +587,7 @@ export default function VDieSelection() {
                         key={material.materialKey}
                         value={material.materialKey}
                       >
-                        {material.name}
+                        {t.materialNames[material.materialKey]}
                       </option>
                     ))}
                   </select>
@@ -619,7 +595,7 @@ export default function VDieSelection() {
 
                 <label className='zyco-vdie-field'>
                   <span className='zyco-vdie-field__label'>
-                    Thickness (mm)
+                    {t.common.thickness}
                   </span>
 
                   <input
@@ -631,7 +607,7 @@ export default function VDieSelection() {
                     onChange={(event) =>
                       setThickness(event.target.value)
                     }
-                    placeholder='Enter sheet thickness'
+                    placeholder={t.common.enterSheetThickness}
                   />
                 </label>
               </div>
@@ -639,7 +615,7 @@ export default function VDieSelection() {
 
             <article className='zyco-vdie-card'>
               <h2 className='zyco-vdie-card__title'>
-                Selection Output
+                {t.common.selectionOutput}
               </h2>
 
               <dl className='zyco-vdie-results'>
@@ -663,7 +639,7 @@ export default function VDieSelection() {
                 className='zyco-vdie-card__action'
                 href={`/engineering-tools/press-brake-calculator?material=${materialKey}`}
               >
-                Calculate Bending Force {'\u2192'}
+                {t.common.calculateBendingForce} {'\u2192'}
               </a>
             </article>
           </div>
@@ -676,21 +652,21 @@ export default function VDieSelection() {
               className='zyco-vdie-card__title'
               id='vdie-faq'
             >
-              V Die Selection FAQ
+              {page.faqTitle}
             </h2>
 
             <div className='zyco-vdie__faq'>
-              {faqItems.map((item) => (
+              {page.faq.map(([question, answer]) => (
                 <article
                   className='zyco-vdie__faq-item'
-                  key={item.question}
+                  key={question}
                 >
                   <h3 className='zyco-vdie__question'>
-                    {item.question}
+                    {question}
                   </h3>
 
                   <p className='zyco-vdie__answer'>
-                    {item.answer}
+                    {answer}
                   </p>
                 </article>
               ))}
@@ -705,20 +681,20 @@ export default function VDieSelection() {
               className='zyco-vdie-card__title'
               id='vdie-related-tools'
             >
-              Related Engineering Tools
+              {t.common.relatedEngineeringTools}
             </h2>
 
             <nav
               className='zyco-vdie__tools'
-              aria-label='Related engineering tools'
+              aria-label={t.common.relatedToolsAria}
             >
               {relatedTools.map((tool) => (
                 <a
                   className='zyco-vdie-card__action'
                   href={tool.href}
-                  key={tool.title}
+                  key={tool.key}
                 >
-                  {tool.title}
+                  {t.relatedTools[tool.key]}
                 </a>
               ))}
             </nav>

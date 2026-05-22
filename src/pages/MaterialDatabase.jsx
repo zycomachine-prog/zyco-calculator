@@ -1,3 +1,6 @@
+import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
+
 const materials = [
   {
     name: 'Mild Steel',
@@ -5,11 +8,8 @@ const materials = [
     factor: '1.00',
     yieldStrength: '180–280 MPa',
     tensileStrength: '300–450 MPa',
-    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '0.6°–1.3°',
     insideRadiusReference: '1T–1.5T',
-    applicationNote:
-      'Standard reference material for press brake tonnage calculation.',
   },
   {
     name: 'Galvanized Steel',
@@ -17,11 +17,8 @@ const materials = [
     factor: '1.05',
     yieldStrength: '200–300 MPa',
     tensileStrength: '320–460 MPa',
-    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '0.8°–1.6°',
     insideRadiusReference: '1.2T–1.6T',
-    applicationNote:
-      'Similar to mild steel, coating condition may affect surface quality.',
   },
   {
     name: 'Stainless Steel 201',
@@ -29,11 +26,8 @@ const materials = [
     factor: '1.76',
     yieldStrength: '260–380 MPa',
     tensileStrength: '600–850 MPa',
-    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '2.2°–3.8°',
     insideRadiusReference: '1.4T–2T',
-    applicationNote:
-      'Higher work hardening and springback than mild steel.',
   },
   {
     name: 'Stainless Steel 304',
@@ -41,11 +35,8 @@ const materials = [
     factor: '1.62',
     yieldStrength: '215–300 MPa',
     tensileStrength: '520–750 MPa',
-    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '1.8°–3.0°',
     insideRadiusReference: '1.3T–1.8T',
-    applicationNote:
-      'Common stainless steel with strong springback and good corrosion resistance.',
   },
   {
     name: 'Aluminum',
@@ -53,11 +44,8 @@ const materials = [
     factor: '0.65',
     yieldStrength: '70–160 MPa',
     tensileStrength: '150–250 MPa',
-    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '1.2°–2.8°',
     insideRadiusReference: '1T–2T',
-    applicationNote:
-      'Low bending force but higher springback due to lower elastic modulus.',
   },
   {
     name: 'Brass',
@@ -65,85 +53,61 @@ const materials = [
     factor: '0.60',
     yieldStrength: '100–250 MPa',
     tensileStrength: '250–500 MPa',
-    standardAutoVDie: 'Calculator-based 8T / 10T / 12T rule',
     springbackRange: '0.4°–1.2°',
     insideRadiusReference: '1T–1.5T',
-    applicationNote:
-      'Good formability, but bending direction and hardness condition should be considered.',
   },
 ]
 
 const fields = [
-  ['Material Factor', 'factor'],
-  ['Yield Strength', 'yieldStrength'],
-  ['Tensile Strength', 'tensileStrength'],
-  ['Standard Auto V Die', 'standardAutoVDie'],
-  ['Inside Radius Reference', 'insideRadiusReference'],
-  ['Typical Springback Range', 'springbackRange'],
-]
-
-const springbackReferenceCondition =
-  '2 mm thickness / 90° air bending / V ≈ 8T'
-
-const engineeringReferenceNotes = [
-  'Standard Auto V Die follows the same recommendation logic used in the Press Brake Calculator:',
-  'T < 8 mm \u2192 V = 8T',
-  '8 mm \u2264 T < 25 mm \u2192 V = 10T',
-  'T \u2265 25 mm \u2192 V = 12T',
-  'Springback and inside radius values are typical engineering reference ranges. Actual results may vary depending on material batch, thickness, V-opening, punch radius, grain direction, tooling condition and machine setup.',
-]
-
-const faqItems = [
-  {
-    question: 'Which material properties affect press brake tonnage most?',
-    answer:
-      'Tonnage is strongly affected by tensile strength, sheet thickness, bend length and V-die opening. Higher-strength materials such as stainless steel need more force than mild steel at the same thickness and bend length.',
-  },
-  {
-    question: 'Why are yield strength and tensile strength both useful?',
-    answer:
-      'Yield strength helps describe when the sheet begins to plastically deform, while tensile strength is often used in practical bending force estimates. Both values help compare material behavior during forming.',
-  },
-  {
-    question: 'Can the same V-die opening be used for every material?',
-    answer:
-      'The same thickness rule can be a starting point, but material strength, crack risk, target inside radius and surface requirements may require a wider or narrower V-opening.',
-  },
-  {
-    question: 'Why do material batch and grain direction matter?',
-    answer:
-      'Real sheet material varies by batch, rolling direction and hardness condition. These factors can change cracking risk, springback and the final inside radius, especially in stainless steel and aluminum.',
-  },
+  ['factor', 'factor'],
+  ['yieldStrength', 'yieldStrength'],
+  ['tensileStrength', 'tensileStrength'],
+  ['standardAutoVDie', 'standardAutoVDie'],
+  ['insideRadiusReference', 'insideRadiusReference'],
+  ['springbackRange', 'springbackRange'],
 ]
 
 const relatedTools = [
   {
-    title: 'Press Brake Calculator',
+    key: 'pressBrakeCalculator',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Material Database',
+    key: 'materialDatabase',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'V Die Selection Tool',
+    key: 'vDieSelectionTool',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
+    key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Springback Database',
+    key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'Bend Allowance Calculator',
+    key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
 
-export default function MaterialDatabase() {
+export default function MaterialDatabase({
+  language = 'en',
+  setLanguage = () => {},
+}) {
+  const t = getEngineeringText(language)
+  const page = t.pages.material
+  const getMaterialDisplayValue = (material, key) => {
+    if (key === 'standardAutoVDie') {
+      return page.values.standardAutoVDie
+    }
+
+    return material[key]
+  }
+
   return (
     <>
       <style>
@@ -563,38 +527,38 @@ export default function MaterialDatabase() {
       <main className='zyco-materials'>
         <section className='zyco-materials__shell'>
           <header className='zyco-materials__header'>
+            <LanguageSwitcher
+              className='zyco-page-language-switcher'
+              language={language}
+              setLanguage={setLanguage}
+            />
+
             <p className='zyco-materials__eyebrow'>
-              Engineering Reference
+              {t.common.engineeringReference}
             </p>
 
             <h1 className='zyco-materials__title'>
-              Material Database
+              {page.title}
             </h1>
 
             <p className='zyco-materials__subtitle'>
-              Engineering reference for sheet metal bending materials
+              {page.subtitle}
             </p>
 
             <div className='zyco-materials__engineering-note'>
               <h2 className='zyco-materials__note-title'>
-                Engineering Overview
+                {t.common.engineeringOverview}
               </h2>
 
               <p className='zyco-materials__note-text'>
-                This material database compares common sheet metals used in
-                press brake air bending. Material factor, strength range,
-                inside radius reference and springback range are useful when
-                estimating bending force, selecting tooling and preparing angle
-                compensation. In production, the same nominal thickness can
-                behave differently when tensile strength, coating condition,
-                hardness, grain direction or material batch changes.
+                {page.overview}
               </p>
 
               <p className='zyco-materials__note-text'>
-                {engineeringReferenceNotes[0]}
+                {page.notes[0]}
               </p>
 
-              {engineeringReferenceNotes.slice(1, 4).map((note) => (
+              {page.notes.slice(1, 4).map((note) => (
                 <p
                   className='zyco-materials__note-rule'
                   key={note}
@@ -604,7 +568,7 @@ export default function MaterialDatabase() {
               ))}
 
               <p className='zyco-materials__note-text'>
-                {engineeringReferenceNotes[4]}
+                {page.notes[4]}
               </p>
             </div>
           </header>
@@ -617,30 +581,30 @@ export default function MaterialDatabase() {
               >
                 <div>
                   <h2 className='zyco-material-card__title'>
-                    {material.name}
+                    {t.materialNames[material.materialKey]}
                   </h2>
 
                   <dl className='zyco-material-card__specs'>
-                    {fields.map(([label, key]) => (
-                      <div key={label}>
+                    {fields.map(([labelKey, key]) => (
+                      <div key={labelKey}>
                         <div className='zyco-material-card__spec'>
                           <dt className='zyco-material-card__label'>
-                            {label}
+                            {page.fields[labelKey]}
                           </dt>
 
                           <dd className='zyco-material-card__value'>
-                            {material[key]}
+                            {getMaterialDisplayValue(material, key)}
                           </dd>
                         </div>
 
                         {key === 'springbackRange' && (
                           <div className='zyco-material-card__reference'>
                             <p className='zyco-material-card__reference-label'>
-                              Reference Condition
+                              {t.common.referenceCondition}
                             </p>
 
                             <p className='zyco-material-card__reference-value'>
-                              {springbackReferenceCondition}
+                              {page.values.springbackReferenceCondition}
                             </p>
                           </div>
                         )}
@@ -649,24 +613,24 @@ export default function MaterialDatabase() {
                   </dl>
 
                   <p className='zyco-material-card__note-label'>
-                    Application Note
+                    {t.common.applicationNote}
                   </p>
 
                   <p className='zyco-material-card__note'>
-                    {material.applicationNote}
+                    {t.materialNotes[material.materialKey]}
                   </p>
                 </div>
 
                 <div>
                   <p className='zyco-material-card__calculator-note'>
-                    For thickness- and V-die-based estimation, use the Press Brake Calculator.
+                    {page.calculatorNote}
                   </p>
 
                   <a
                     className='zyco-material-card__action'
                     href={`/engineering-tools/press-brake-calculator?material=${material.materialKey}`}
                   >
-                    Calculate Bending Force →
+                    {t.common.calculateBendingForce} {'\u2192'}
                   </a>
                 </div>
               </article>
@@ -681,21 +645,21 @@ export default function MaterialDatabase() {
               className='zyco-materials__note-title'
               id='material-faq'
             >
-              Material Database FAQ
+              {page.faqTitle}
             </h2>
 
             <div className='zyco-materials__faq'>
-              {faqItems.map((item) => (
+              {page.faq.map(([question, answer]) => (
                 <article
                   className='zyco-materials__faq-item'
-                  key={item.question}
+                  key={question}
                 >
                   <h3 className='zyco-materials__question'>
-                    {item.question}
+                    {question}
                   </h3>
 
                   <p className='zyco-materials__answer'>
-                    {item.answer}
+                    {answer}
                   </p>
                 </article>
               ))}
@@ -710,20 +674,20 @@ export default function MaterialDatabase() {
               className='zyco-materials__note-title'
               id='material-related-tools'
             >
-              Related Engineering Tools
+              {t.common.relatedEngineeringTools}
             </h2>
 
             <nav
               className='zyco-materials__tools'
-              aria-label='Related engineering tools'
+              aria-label={t.common.relatedToolsAria}
             >
               {relatedTools.map((tool) => (
                 <a
                   className='zyco-material-card__action'
                   href={tool.href}
-                  key={tool.title}
+                  key={tool.key}
                 >
-                  {tool.title}
+                  {t.relatedTools[tool.key]}
                 </a>
               ))}
             </nav>

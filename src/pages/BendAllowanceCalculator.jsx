@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 
 const materials = [
   {
@@ -39,52 +41,29 @@ const materials = [
   },
 ]
 
-const faqItems = [
-  {
-    question: 'What is bend allowance?',
-    answer:
-      'Bend allowance is the arc length of the neutral axis through the bend area. It is used to calculate the flat pattern length of a bent sheet metal part.',
-  },
-  {
-    question: 'What is K-Factor?',
-    answer:
-      'K-Factor describes the position of the neutral axis relative to the sheet thickness. It varies with material, tooling, inside radius and bending method.',
-  },
-  {
-    question: 'Is K-Factor fixed for one material?',
-    answer:
-      'No. K-Factor is a practical reference value. It can change with inside radius, V-opening, material condition and bending method.',
-  },
-  {
-    question: 'How is bend deduction different from bend allowance?',
-    answer:
-      'Bend allowance represents the developed arc length through the bend, while bend deduction is used to subtract from flange dimensions to calculate flat length.',
-  },
-]
-
 const relatedTools = [
   {
-    title: 'Press Brake Calculator',
+    key: 'pressBrakeCalculator',
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    title: 'Material Database',
+    key: 'materialDatabase',
     href: '/engineering-tools/material-database',
   },
   {
-    title: 'V Die Selection Tool',
+    key: 'vDieSelectionTool',
     href: '/engineering-tools/v-die-selection',
   },
   {
-    title: 'Inside Radius Guide',
+    key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
   {
-    title: 'Springback Database',
+    key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
   },
   {
-    title: 'Bend Allowance Calculator',
+    key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
 ]
@@ -101,7 +80,12 @@ const getStandardAutoVDie = (thickness) => {
   return thickness * 12
 }
 
-export default function BendAllowanceCalculator() {
+export default function BendAllowanceCalculator({
+  language = 'en',
+  setLanguage = () => {},
+}) {
+  const t = getEngineeringText(language)
+  const page = t.pages.bend
   const [materialKey, setMaterialKey] = useState('mildSteel')
   const [thickness, setThickness] = useState('2')
   const [insideRadius, setInsideRadius] = useState('2.6')
@@ -112,10 +96,10 @@ export default function BendAllowanceCalculator() {
 
   useEffect(() => {
     document.title =
-      'Bend Allowance Calculator | Sheet Metal Flat Pattern Reference | ZYCO'
+      `${page.title} | ZYCO`
 
     const description =
-      'Calculate sheet metal bend allowance, outside setback and bend deduction with material K-Factor references for press brake flat pattern planning.'
+      page.subtitle
 
     let metaDescription = document.querySelector('meta[name="description"]')
 
@@ -126,7 +110,10 @@ export default function BendAllowanceCalculator() {
     }
 
     metaDescription.setAttribute('content', description)
-  }, [])
+  }, [
+    page.subtitle,
+    page.title,
+  ])
 
   const selectedMaterial =
     materials.find((material) => material.materialKey === materialKey) ||
@@ -237,15 +224,15 @@ export default function BendAllowanceCalculator() {
 
   const outputRows = [
     [
-      'Bend Allowance',
+      page.output.bendAllowance,
       result ? formatMillimeters(result.bendAllowance) : '--',
     ],
     [
-      'Outside Setback',
+      page.output.outsideSetback,
       result ? formatMillimeters(result.outsideSetback) : '--',
     ],
     [
-      'Bend Deduction',
+      page.output.bendDeduction,
       result ? formatMillimeters(result.bendDeduction) : '--',
     ],
   ]
@@ -699,29 +686,35 @@ export default function BendAllowanceCalculator() {
       <main className='zyco-bend'>
         <section className='zyco-bend__shell'>
           <header className='zyco-bend__header'>
+            <LanguageSwitcher
+              className='zyco-page-language-switcher'
+              language={language}
+              setLanguage={setLanguage}
+            />
+
             <p className='zyco-bend__eyebrow'>
-              Engineering Calculator
+              {t.common.engineeringCalculator}
             </p>
 
             <h1 className='zyco-bend__title'>
-              Bend Allowance Calculator
+              {page.title}
             </h1>
 
             <p className='zyco-bend__subtitle'>
-              Calculate sheet metal bend allowance, bend deduction and flat pattern reference values
+              {page.subtitle}
             </p>
           </header>
 
           <div className='zyco-bend__grid'>
             <article className='zyco-bend-card'>
               <h2 className='zyco-bend-card__title'>
-                Input Parameters
+                {t.common.inputParameters}
               </h2>
 
               <div className='zyco-bend-form'>
                 <label className='zyco-bend-field'>
                   <span className='zyco-bend-field__label'>
-                    Material
+                    {t.common.material}
                   </span>
 
                   <select
@@ -734,7 +727,7 @@ export default function BendAllowanceCalculator() {
                         key={material.materialKey}
                         value={material.materialKey}
                       >
-                        {material.name}
+                        {t.materialNames[material.materialKey]}
                       </option>
                     ))}
                   </select>
@@ -742,7 +735,7 @@ export default function BendAllowanceCalculator() {
 
                 <label className='zyco-bend-field'>
                   <span className='zyco-bend-field__label'>
-                    Thickness (mm)
+                    {t.common.thickness}
                   </span>
 
                   <input
@@ -757,7 +750,7 @@ export default function BendAllowanceCalculator() {
 
                 <label className='zyco-bend-field'>
                   <span className='zyco-bend-field__label'>
-                    Inside Radius (mm)
+                    {t.common.insideRadius}
                   </span>
 
                   <input
@@ -772,20 +765,19 @@ export default function BendAllowanceCalculator() {
 
                 <div className='zyco-bend-radius-reference'>
                   <p className='zyco-bend-radius-reference__value'>
-                    Auto Estimated Inside Radius:{' '}
+                    {t.common.autoEstimatedInsideRadius}:{' '}
                     {autoEstimatedInsideRadius === null
                       ? '--'
                       : formatAutoInsideRadius(autoEstimatedInsideRadius)}
                   </p>
 
                   <p className='zyco-bend-radius-reference__note'>
-                    Calculated from standard V-opening, material factor and a
-                    small bend-angle adjustment.
+                    {t.common.autoEstimatedInsideRadiusNote}
                   </p>
 
                   {isManualRadiusOverride && (
                     <p className='zyco-bend-radius-reference__status'>
-                      Manual Radius Override Active
+                      {t.common.manualRadiusOverrideActive}
                     </p>
                   )}
 
@@ -794,13 +786,13 @@ export default function BendAllowanceCalculator() {
                     type='button'
                     onClick={useAutoEstimatedRadius}
                   >
-                    Use Auto Estimated Radius
+                    {t.common.useAutoEstimatedRadius}
                   </button>
                 </div>
 
                 <label className='zyco-bend-field'>
                   <span className='zyco-bend-field__label'>
-                    Bend Angle (degrees)
+                    {t.common.bendAngle}
                   </span>
 
                   <input
@@ -815,7 +807,7 @@ export default function BendAllowanceCalculator() {
 
                 <label className='zyco-bend-field'>
                   <span className='zyco-bend-field__label'>
-                    K-Factor
+                    {t.common.kFactor}
                   </span>
 
                   <input
@@ -829,7 +821,8 @@ export default function BendAllowanceCalculator() {
                 </label>
 
                 <p className='zyco-bend-field__hint'>
-                  Recommended K-Factor for {selectedMaterial.name}:{' '}
+                  {t.common.recommendedKFactorFor}{' '}
+                  {t.materialNames[selectedMaterial.materialKey]}:{' '}
                   {selectedMaterial.recommendedKFactor.toFixed(2)}
                 </p>
               </div>
@@ -837,7 +830,7 @@ export default function BendAllowanceCalculator() {
 
             <article className='zyco-bend-card'>
               <h2 className='zyco-bend-card__title'>
-                Calculation Output
+                {t.common.calculationOutput}
               </h2>
 
               <dl className='zyco-bend-results'>
@@ -858,11 +851,11 @@ export default function BendAllowanceCalculator() {
               </dl>
 
               <h3 className='zyco-bend-card__title'>
-                Formula Reference
+                {page.formulaReference}
               </h3>
 
               <p className='zyco-bend__text'>
-                Bend allowance uses the neutral axis arc length formula:
+                {page.formulaIntro}
               </p>
 
               <ul className='zyco-bend__formula'>
@@ -871,26 +864,20 @@ export default function BendAllowanceCalculator() {
                 </li>
 
                 <li className='zyco-bend__formula-item'>
-                  Where: A = bend angle in degrees, R = inside radius,
-                  K = K-factor, T = material thickness
+                  {page.formulaWhere}
                 </li>
 
                 <li className='zyco-bend__formula-item'>
-                  Outside setback: OSSB = tan(A / 2) x (R + T)
+                  {page.formulaOutsideSetback}
                 </li>
 
                 <li className='zyco-bend__formula-item'>
-                  Bend deduction: BD = 2 x OSSB - BA
+                  {page.formulaBendDeduction}
                 </li>
               </ul>
 
               <p className='zyco-bend__text'>
-                These formulas are standard sheet metal development
-                references. Actual flat pattern results may vary depending on
-                material grade, grain direction, tooling, bend method,
-                springback compensation and production tolerance. For
-                production parts, trial bending and measurement are
-                recommended.
+                {page.formulaNote}
               </p>
 
               <div className='zyco-bend__actions'>
@@ -898,14 +885,14 @@ export default function BendAllowanceCalculator() {
                   className='zyco-bend__action'
                   href='/engineering-tools/v-die-selection'
                 >
-                  Use Estimated Radius from V Die Tool {'\u2192'}
+                  {t.common.useEstimatedRadiusFromVDieTool} {'\u2192'}
                 </a>
 
                 <a
                   className='zyco-bend__action'
                   href={`/engineering-tools/press-brake-calculator?material=${materialKey}`}
                 >
-                  Calculate Bending Force {'\u2192'}
+                  {t.common.calculateBendingForce} {'\u2192'}
                 </a>
               </div>
             </article>
@@ -919,24 +906,15 @@ export default function BendAllowanceCalculator() {
               className='zyco-bend__panel-title'
               id='bend-allowance-engineering-overview'
             >
-              Engineering Overview
+              {t.common.engineeringOverview}
             </h2>
 
             <p className='zyco-bend__text'>
-              Bend allowance is used to estimate the developed length needed
-              for a sheet metal flat pattern before press brake forming. It is
-              affected by material thickness, inside bend radius, bend angle,
-              K-Factor, material ductility and the bending method. In practical
-              air bending, the selected V-opening, tooling geometry and
-              material condition can shift the neutral axis and change the
-              final flat pattern reference value.
+              {page.overview}
             </p>
 
             <p className='zyco-bend__text'>
-              In air bending, the inside radius is mainly determined by the
-              V-opening and material properties. Bend angle can slightly
-              influence the formed radius, so this calculator applies a
-              conservative angle adjustment for engineering reference.
+              {page.overview2}
             </p>
           </section>
 
@@ -948,24 +926,18 @@ export default function BendAllowanceCalculator() {
               className='zyco-bend__panel-title'
               id='bend-allowance-reference-notes'
             >
-              Engineering Reference Notes
+              {t.common.engineeringReferenceNotes}
             </h2>
 
             <ul className='zyco-bend__notes'>
-              <li className='zyco-bend__note'>
-                K-Factor is an engineering reference value.
-              </li>
-
-              <li className='zyco-bend__note'>
-                Actual flat pattern results may vary depending on material
-                grade, grain direction, tooling, bend method and production
-                tolerance.
-              </li>
-
-              <li className='zyco-bend__note'>
-                For production parts, trial bending and measurement are
-                recommended.
-              </li>
+              {page.notes.map((note) => (
+                <li
+                  className='zyco-bend__note'
+                  key={note}
+                >
+                  {note}
+                </li>
+              ))}
             </ul>
           </section>
 
@@ -977,21 +949,21 @@ export default function BendAllowanceCalculator() {
               className='zyco-bend__panel-title'
               id='bend-allowance-faq'
             >
-              Bend Allowance FAQ
+              {page.faqTitle}
             </h2>
 
             <div className='zyco-bend__faq'>
-              {faqItems.map((item) => (
+              {page.faq.map(([question, answer]) => (
                 <article
                   className='zyco-bend__faq-item'
-                  key={item.question}
+                  key={question}
                 >
                   <h3 className='zyco-bend__question'>
-                    {item.question}
+                    {question}
                   </h3>
 
                   <p className='zyco-bend__answer'>
-                    {item.answer}
+                    {answer}
                   </p>
                 </article>
               ))}
@@ -1006,20 +978,20 @@ export default function BendAllowanceCalculator() {
               className='zyco-bend__panel-title'
               id='bend-allowance-related-tools'
             >
-              Related Engineering Tools
+              {t.common.relatedEngineeringTools}
             </h2>
 
             <nav
               className='zyco-bend__tools'
-              aria-label='Related engineering tools'
+              aria-label={t.common.relatedToolsAria}
             >
               {relatedTools.map((tool) => (
                 <a
                   className='zyco-bend__action'
                   href={tool.href}
-                  key={tool.title}
+                  key={tool.key}
                 >
-                  {tool.title}
+                  {t.relatedTools[tool.key]}
                 </a>
               ))}
             </nav>
