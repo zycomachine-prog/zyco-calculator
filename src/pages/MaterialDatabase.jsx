@@ -107,6 +107,10 @@ const relatedTools = [
     key: 'pressBrakeTonnageGuide',
     href: '/engineering/press-brake-tonnage-guide',
   },
+  {
+    key: 'vDieOpeningGuide',
+    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+  },
 ]
 
 const backToEngineeringToolsLabels = {

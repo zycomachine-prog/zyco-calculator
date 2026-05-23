@@ -54,6 +54,10 @@ const relatedEngineeringTools = [
     labelKey: 'pressBrakeTonnageGuide',
     href: '/engineering/press-brake-tonnage-guide',
   },
+  {
+    labelKey: 'vDieOpeningGuide',
+    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+  },
 ]
 
 const relatedToolFallbackLabels = {
@@ -85,6 +89,17 @@ relatedToolFallbackLabels.es.pressBrakeTonnageGuide =
   'Guía de tonelaje para plegadoras'
 relatedToolFallbackLabels.tr.pressBrakeTonnageGuide = 'Abkant Pres Tonaj Kılavuzu'
 relatedToolFallbackLabels.id.pressBrakeTonnageGuide = 'Panduan Tonase Press Brake'
+relatedToolFallbackLabels.en.vDieOpeningGuide =
+  'How to Choose Press Brake V-Die Opening'
+relatedToolFallbackLabels.zh.vDieOpeningGuide = '如何选择折弯机 V 型模开口'
+relatedToolFallbackLabels.ru.vDieOpeningGuide =
+  'Как выбрать раскрытие V-матрицы листогибочного пресса'
+relatedToolFallbackLabels.es.vDieOpeningGuide =
+  'Cómo elegir la abertura de matriz V para una plegadora'
+relatedToolFallbackLabels.tr.vDieOpeningGuide =
+  'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir'
+relatedToolFallbackLabels.id.vDieOpeningGuide =
+  'Cara Memilih Bukaan Cetakan V Press Brake'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

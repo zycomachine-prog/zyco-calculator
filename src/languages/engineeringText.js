@@ -92,6 +92,12 @@ relatedTools.ru.pressBrakeTonnageGuide = 'Руководство по тонна
 relatedTools.es.pressBrakeTonnageGuide = 'Guía de tonelaje para plegadoras'
 relatedTools.tr.pressBrakeTonnageGuide = 'Abkant Pres Tonaj Kılavuzu'
 relatedTools.id.pressBrakeTonnageGuide = 'Panduan Tonase Press Brake'
+relatedTools.en.vDieOpeningGuide = 'How to Choose Press Brake V-Die Opening'
+relatedTools.zh.vDieOpeningGuide = '如何选择折弯机 V 型模开口'
+relatedTools.ru.vDieOpeningGuide = 'Как выбрать раскрытие V-матрицы листогибочного пресса'
+relatedTools.es.vDieOpeningGuide = 'Cómo elegir la abertura de matriz V para una plegadora'
+relatedTools.tr.vDieOpeningGuide = 'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir'
+relatedTools.id.vDieOpeningGuide = 'Cara Memilih Bukaan Cetakan V Press Brake'
 
 const materialNames = {
   en: {
@@ -442,6 +448,7 @@ const pages = {
           'Inside bend radius and minimum radius reference',
         ],
         ['pressBrakeTonnageGuide', 'Practical reference for bending force and machine capacity selection'],
+        ['vDieOpeningGuide', 'Practical reference for selecting V-die opening in air bending'],
         ['toolingGuide', 'Punch and die application guide'],
       ],
     },
@@ -708,6 +715,7 @@ const localizedOverrides = {
         ['vDieSelectionTool', '用于选择推荐 V 开口和模具方案'],
         ['insideRadiusGuide', '用于查询内折弯半径和最小半径参考'],
         ['pressBrakeTonnageGuide', '折弯力与设备能力选型的实用参考指南'],
+        ['vDieOpeningGuide', '空气折弯中选择 V 型模开口的实用参考指南'],
         ['toolingGuide', '冲头与下模应用参考指南'],
       ],
     },
@@ -961,6 +969,7 @@ const localizedOverrides = {
         ['vDieSelectionTool', 'Рекомендации по раскрытию V-матрицы и выбору оснастки'],
         ['insideRadiusGuide', 'Справка по внутреннему и минимальному радиусу гибки'],
         ['pressBrakeTonnageGuide', 'Практическое руководство по усилию гибки и выбору мощности станка'],
+        ['vDieOpeningGuide', 'Практический справочник по выбору раскрытия V-матрицы при воздушной гибке'],
         ['toolingGuide', 'Справочник по применению пуансонов и матриц'],
       ],
     },
@@ -1153,6 +1162,7 @@ const localizedOverrides = {
         ['vDieSelectionTool', 'Abertura V recomendada y selección de utillaje'],
         ['insideRadiusGuide', 'Referencia de radio interior y radio mínimo'],
         ['pressBrakeTonnageGuide', 'Guía práctica para fuerza de plegado y selección de capacidad de máquina'],
+        ['vDieOpeningGuide', 'Guía práctica para seleccionar la abertura de matriz V en plegado al aire'],
         ['toolingGuide', 'Guía de aplicación de punzón y matriz'],
       ],
     },
@@ -1349,6 +1359,7 @@ const localizedOverrides = {
         ['vDieSelectionTool', 'Önerilen V açıklığı ve takım seçimi'],
         ['insideRadiusGuide', 'İç büküm radyüsü ve minimum radyüs referansı'],
         ['pressBrakeTonnageGuide', 'Bükme kuvveti ve makine kapasitesi seçimi için pratik kılavuz'],
+        ['vDieOpeningGuide', 'Havada bükmede V kalıp açıklığı seçimi için pratik kılavuz'],
         ['toolingGuide', 'Zımba ve kalıp uygulama kılavuzu'],
       ],
     },
@@ -1542,6 +1553,7 @@ const localizedOverrides = {
         ['vDieSelectionTool', 'Bukaan V rekomendasi dan pemilihan tooling'],
         ['insideRadiusGuide', 'Referensi radius dalam dan radius minimum'],
         ['pressBrakeTonnageGuide', 'Panduan praktis gaya bending dan pemilihan kapasitas mesin'],
+        ['vDieOpeningGuide', 'Panduan praktis pemilihan bukaan cetakan V pada tekuk udara'],
         ['toolingGuide', 'Panduan aplikasi punch dan die'],
       ],
     },
