@@ -3215,6 +3215,8 @@ overflow: 'hidden',
                     'translateY(-2px)'
                   e.currentTarget.style.boxShadow =
                     '0 14px 28px rgba(37,99,235,0.36)'
+                  e.currentTarget.style.borderColor =
+                    'rgba(255,255,255,0.9)'
                   e.currentTarget.style.filter =
                     'brightness(1.04)'
                 }}
@@ -3223,6 +3225,8 @@ overflow: 'hidden',
                     'translateY(0px)'
                   e.currentTarget.style.boxShadow =
                     '0 8px 20px rgba(37,99,235,0.28)'
+                  e.currentTarget.style.borderColor =
+                    'rgba(191,219,254,0.44)'
                   e.currentTarget.style.filter =
                     'brightness(1)'
                 }}
@@ -3248,7 +3252,7 @@ overflow: 'hidden',
                   filter: 'brightness(1)',
                   transform: 'translateY(0px)',
                   transition:
-                    'transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease',
+                    'transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, filter 0.24s ease',
                   overflowWrap: 'anywhere',
                 }}
               >

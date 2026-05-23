@@ -419,6 +419,18 @@ export default function EngineeringHub({
             gap: 12px;
           }
 
+          .zyco-hub__tools .zyco-tool-card__action {
+            border: 1px solid rgba(96, 165, 250, 0.18);
+            transition:
+              transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+          }
+
+          .zyco-hub__tools .zyco-tool-card__action:hover {
+            border-color: rgba(191, 219, 254, 0.72);
+          }
+
           .zyco-tool-card__badge {
             min-height: 36px;
             display: inline-flex;

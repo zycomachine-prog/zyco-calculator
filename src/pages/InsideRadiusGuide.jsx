@@ -512,6 +512,18 @@ export default function InsideRadiusGuide({
             gap: 12px;
           }
 
+          .zyco-radius__tools .zyco-radius-card__action {
+            border: 1px solid rgba(96, 165, 250, 0.18);
+            transition:
+              transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+          }
+
+          .zyco-radius__tools .zyco-radius-card__action:hover {
+            border-color: rgba(191, 219, 254, 0.72);
+          }
+
           @media (max-width: 980px) {
             .zyco-radius__grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));

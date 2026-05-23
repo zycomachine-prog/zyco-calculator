@@ -623,6 +623,18 @@ export default function BendAllowanceCalculator({
             gap: 12px;
           }
 
+          .zyco-bend__tools .zyco-bend__action {
+            border: 1px solid rgba(96, 165, 250, 0.18);
+            transition:
+              transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+          }
+
+          .zyco-bend__tools .zyco-bend__action:hover {
+            border-color: rgba(191, 219, 254, 0.72);
+          }
+
           .zyco-bend__actions {
             margin-top: 24px;
           }

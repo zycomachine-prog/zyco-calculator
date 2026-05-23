@@ -522,6 +522,18 @@ export default function SpringbackDatabase({
             gap: 12px;
           }
 
+          .zyco-springback__tools .zyco-springback-tool-link {
+            border: 1px solid rgba(96, 165, 250, 0.18);
+            transition:
+              transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+          }
+
+          .zyco-springback__tools .zyco-springback-tool-link:hover {
+            border-color: rgba(191, 219, 254, 0.72);
+          }
+
           @media (max-width: 980px) {
             .zyco-springback__grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));

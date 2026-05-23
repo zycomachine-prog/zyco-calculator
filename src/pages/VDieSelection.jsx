@@ -572,6 +572,18 @@ export default function VDieSelection({
             gap: 12px;
           }
 
+          .zyco-vdie__tools .zyco-vdie-card__action {
+            border: 1px solid rgba(96, 165, 250, 0.18);
+            transition:
+              transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+          }
+
+          .zyco-vdie__tools .zyco-vdie-card__action:hover {
+            border-color: rgba(191, 219, 254, 0.72);
+          }
+
           @media (max-width: 900px) {
             .zyco-vdie__grid {
               grid-template-columns: 1fr;
