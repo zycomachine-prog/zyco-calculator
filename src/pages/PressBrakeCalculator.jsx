@@ -249,6 +249,8 @@ const vDie =
     brass: 0.6,
   }
 
+  const TONNAGE_CALIBRATION_FACTOR = 1.33
+
   const targetAngle = 90
 
   const springbackRanges = {
@@ -281,7 +283,7 @@ const vDie =
       materialFactors[material] || 1
 
     const tonnage =
-      (1.34 *
+      (TONNAGE_CALIBRATION_FACTOR *
         T *
         T *
         L *
@@ -885,6 +887,17 @@ const backToEngineeringToolsLabel =
   }[calculatorLanguage] ||
   '← Back to Engineering Tools'
   // 鎺ㄨ崘鏈哄瀷
+ const getUtilizationRatio = (machineTonnage) => {
+  if ([30, 40, 50].includes(machineTonnage)) {
+    return 0.85
+  }
+
+  if ([300, 400, 500, 600].includes(machineTonnage)) {
+    return 0.92
+  }
+
+  return 0.9
+}
  const recommendMachine = () => {
   if (!thickness || !length) {
     return '--'
@@ -899,9 +912,10 @@ const backToEngineeringToolsLabel =
 
   for (const machine of machineList) {
     const [ton, len] = machine
+    const utilizationRatio = getUtilizationRatio(ton)
 
     if (
-      ton >= Number(tonnage) &&
+      Number(tonnage) / utilizationRatio <= ton &&
       len >= Number(length)
     ) {
       return `${ton}T/${len}`
