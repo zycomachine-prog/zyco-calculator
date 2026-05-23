@@ -5,8 +5,6 @@ import {
   useRef,
 } from 'react'
 import CountUp from 'react-countup'
-import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas'
 import { calculatorLanguageMap } from '../languages/engineeringText.js'
 import {
   createWebApplicationStructuredData,
@@ -1058,6 +1056,9 @@ const suggestedBendAngleValue =
     : '--'
 const downloadPDF = async () => {
   try {
+    const { jsPDF } = await import('jspdf')
+    const html2canvas = (await import('html2canvas')).default
+
     setIsExportingPDF(true)
 
     await new Promise((resolve) =>
