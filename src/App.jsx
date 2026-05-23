@@ -14,6 +14,7 @@ import EngineeringHub from './pages/EngineeringHub.jsx'
 import InsideRadiusGuide from './pages/InsideRadiusGuide.jsx'
 import MaterialDatabase from './pages/MaterialDatabase.jsx'
 import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
+import PressBrakeTonnageGuide from './pages/PressBrakeTonnageGuide.jsx'
 import SpringbackDatabase from './pages/SpringbackDatabase.jsx'
 import VDieSelection from './pages/VDieSelection.jsx'
 import { getStoredLanguage } from './languages/engineeringText.js'
@@ -76,6 +77,11 @@ export default function App() {
         <Route
           path='/engineering-tools/v-die-selection'
           element={<VDieSelection {...languageProps} />}
+        />
+
+        <Route
+          path='/engineering/press-brake-tonnage-guide'
+          element={<PressBrakeTonnageGuide {...languageProps} />}
         />
 
         <Route

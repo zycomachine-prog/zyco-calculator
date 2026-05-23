@@ -138,6 +138,10 @@ const relatedTools = [
     key: 'airBendingGuide',
     href: '/engineering-tools/air-bending-guide',
   },
+  {
+    key: 'pressBrakeTonnageGuide',
+    href: '/engineering/press-brake-tonnage-guide',
+  },
 ]
 
 const seoDescription =

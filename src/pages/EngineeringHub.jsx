@@ -44,6 +44,11 @@ const tools = [
     href: '/engineering-tools/air-bending-guide',
   },
   {
+    key: 'pressBrakeTonnageGuide',
+    status: 'active',
+    href: '/engineering/press-brake-tonnage-guide',
+  },
+  {
     key: 'toolingGuide',
     status: 'soon',
   },
@@ -77,6 +82,10 @@ const relatedTools = [
   {
     key: 'airBendingGuide',
     href: '/engineering-tools/air-bending-guide',
+  },
+  {
+    key: 'pressBrakeTonnageGuide',
+    href: '/engineering/press-brake-tonnage-guide',
   },
 ]
 

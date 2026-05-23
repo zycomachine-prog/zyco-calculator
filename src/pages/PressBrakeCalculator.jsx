@@ -50,6 +50,10 @@ const relatedEngineeringTools = [
     labelKey: 'airBendingGuide',
     href: '/engineering-tools/air-bending-guide',
   },
+  {
+    labelKey: 'pressBrakeTonnageGuide',
+    href: '/engineering/press-brake-tonnage-guide',
+  },
 ]
 
 const relatedToolFallbackLabels = {
@@ -72,6 +76,15 @@ const relatedToolFallbackLabels = {
     airBendingGuide: 'Panduan Air Bending',
   },
 }
+
+relatedToolFallbackLabels.en.pressBrakeTonnageGuide = 'Press Brake Tonnage Guide'
+relatedToolFallbackLabels.zh.pressBrakeTonnageGuide = '折弯机吨位指南'
+relatedToolFallbackLabels.ru.pressBrakeTonnageGuide =
+  'Руководство по тоннажу листогибочного пресса'
+relatedToolFallbackLabels.es.pressBrakeTonnageGuide =
+  'Guía de tonelaje para plegadoras'
+relatedToolFallbackLabels.tr.pressBrakeTonnageGuide = 'Abkant Pres Tonaj Kılavuzu'
+relatedToolFallbackLabels.id.pressBrakeTonnageGuide = 'Panduan Tonase Press Brake'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

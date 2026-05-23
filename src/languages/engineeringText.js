@@ -86,6 +86,13 @@ relatedTools.es.airBendingGuide = 'Guía de Air Bending'
 relatedTools.tr.airBendingGuide = 'Air Bending kılavuzu'
 relatedTools.id.airBendingGuide = 'Panduan Air Bending'
 
+relatedTools.en.pressBrakeTonnageGuide = 'Press Brake Tonnage Guide'
+relatedTools.zh.pressBrakeTonnageGuide = '折弯机吨位指南'
+relatedTools.ru.pressBrakeTonnageGuide = 'Руководство по тоннажу листогибочного пресса'
+relatedTools.es.pressBrakeTonnageGuide = 'Guía de tonelaje para plegadoras'
+relatedTools.tr.pressBrakeTonnageGuide = 'Abkant Pres Tonaj Kılavuzu'
+relatedTools.id.pressBrakeTonnageGuide = 'Panduan Tonase Press Brake'
+
 const materialNames = {
   en: {
     mildSteel: 'Mild Steel',
@@ -434,6 +441,7 @@ const pages = {
           'insideRadiusGuide',
           'Inside bend radius and minimum radius reference',
         ],
+        ['pressBrakeTonnageGuide', 'Practical reference for bending force and machine capacity selection'],
         ['toolingGuide', 'Punch and die application guide'],
       ],
     },
@@ -699,6 +707,7 @@ const localizedOverrides = {
         ['springbackDatabase', '按材料整理的工业回弹参考数据'],
         ['vDieSelectionTool', '用于选择推荐 V 开口和模具方案'],
         ['insideRadiusGuide', '用于查询内折弯半径和最小半径参考'],
+        ['pressBrakeTonnageGuide', '折弯力与设备能力选型的实用参考指南'],
         ['toolingGuide', '冲头与下模应用参考指南'],
       ],
     },
@@ -951,6 +960,7 @@ const localizedOverrides = {
         ['springbackDatabase', 'Промышленный справочник по пружинению'],
         ['vDieSelectionTool', 'Рекомендации по раскрытию V-матрицы и выбору оснастки'],
         ['insideRadiusGuide', 'Справка по внутреннему и минимальному радиусу гибки'],
+        ['pressBrakeTonnageGuide', 'Практическое руководство по усилию гибки и выбору мощности станка'],
         ['toolingGuide', 'Справочник по применению пуансонов и матриц'],
       ],
     },
@@ -1142,6 +1152,7 @@ const localizedOverrides = {
         ['springbackDatabase', 'Sistema industrial de referencia de recuperación elástica'],
         ['vDieSelectionTool', 'Abertura V recomendada y selección de utillaje'],
         ['insideRadiusGuide', 'Referencia de radio interior y radio mínimo'],
+        ['pressBrakeTonnageGuide', 'Guía práctica para fuerza de plegado y selección de capacidad de máquina'],
         ['toolingGuide', 'Guía de aplicación de punzón y matriz'],
       ],
     },
@@ -1337,6 +1348,7 @@ const localizedOverrides = {
         ['springbackDatabase', 'Endüstriyel geri esneme referans sistemi'],
         ['vDieSelectionTool', 'Önerilen V açıklığı ve takım seçimi'],
         ['insideRadiusGuide', 'İç büküm radyüsü ve minimum radyüs referansı'],
+        ['pressBrakeTonnageGuide', 'Bükme kuvveti ve makine kapasitesi seçimi için pratik kılavuz'],
         ['toolingGuide', 'Zımba ve kalıp uygulama kılavuzu'],
       ],
     },
@@ -1529,6 +1541,7 @@ const localizedOverrides = {
         ['springbackDatabase', 'Sistem referensi springback industri'],
         ['vDieSelectionTool', 'Bukaan V rekomendasi dan pemilihan tooling'],
         ['insideRadiusGuide', 'Referensi radius dalam dan radius minimum'],
+        ['pressBrakeTonnageGuide', 'Panduan praktis gaya bending dan pemilihan kapasitas mesin'],
         ['toolingGuide', 'Panduan aplikasi punch dan die'],
       ],
     },
