@@ -22,6 +22,7 @@ const relatedTools = [
   ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
   ['crowningGuide', '/engineering/press-brake-crowning-guide'],
   ['stainlessSteelBendingGuide', '/engineering/stainless-steel-bending-guide'],
+  ['aluminumBendingGuide', '/engineering/aluminum-bending-guide'],
 ]
 
 const englishContent = {
@@ -108,6 +109,7 @@ const englishContent = {
     toolingSelectionGuide: 'Press Brake Tooling Selection Guide',
     crowningGuide: 'Press Brake Crowning Guide',
     stainlessSteelBendingGuide: 'Stainless Steel Bending Guide',
+    aluminumBendingGuide: 'Aluminum Bending Guide',
   },
 }
 
@@ -187,6 +189,7 @@ const localizedContent = {
       toolingSelectionGuide: '折弯机模具选型指南',
       crowningGuide: '折弯机挠度补偿指南',
       stainlessSteelBendingGuide: '不锈钢折弯指南',
+      aluminumBendingGuide: '铝板折弯指南',
     },
   },
   ru: {
@@ -264,6 +267,7 @@ const localizedContent = {
       toolingSelectionGuide: 'Руководство по выбору оснастки листогибочного пресса',
       crowningGuide: 'Руководство по компенсации прогиба листогиба',
       stainlessSteelBendingGuide: 'Руководство по гибке нержавеющей стали',
+      aluminumBendingGuide: 'Руководство по гибке алюминия',
     },
   },
   es: {
@@ -341,6 +345,7 @@ const localizedContent = {
       toolingSelectionGuide: 'Guía de selección de utillaje para plegadora',
       crowningGuide: 'Guía de compensación de flecha para plegadoras',
       stainlessSteelBendingGuide: 'Guía de plegado de acero inoxidable',
+      aluminumBendingGuide: 'Guía de plegado de aluminio',
     },
   },
   tr: {
@@ -418,6 +423,7 @@ const localizedContent = {
       toolingSelectionGuide: 'Abkant pres takım seçimi kılavuzu',
       crowningGuide: 'Abkant pres sehim kompanzasyonu kılavuzu',
       stainlessSteelBendingGuide: 'Paslanmaz Çelik Büküm Kılavuzu',
+      aluminumBendingGuide: 'Alüminyum Büküm Kılavuzu',
     },
   },
   id: {
@@ -495,6 +501,7 @@ const localizedContent = {
       toolingSelectionGuide: 'Panduan pemilihan perkakas mesin tekuk',
       crowningGuide: 'Panduan kompensasi lendutan press brake',
       stainlessSteelBendingGuide: 'Panduan Tekuk Stainless Steel',
+      aluminumBendingGuide: 'Panduan Tekuk Aluminium',
     },
   },
 }

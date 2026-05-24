@@ -70,6 +70,10 @@ const relatedEngineeringTools = [
     labelKey: 'stainlessSteelBendingGuide',
     href: '/engineering/stainless-steel-bending-guide',
   },
+  {
+    labelKey: 'aluminumBendingGuide',
+    href: '/engineering/aluminum-bending-guide',
+  },
 ]
 
 const relatedToolFallbackLabels = {
@@ -143,6 +147,16 @@ relatedToolFallbackLabels.tr.stainlessSteelBendingGuide =
   'Paslanmaz Çelik Büküm Kılavuzu'
 relatedToolFallbackLabels.id.stainlessSteelBendingGuide =
   'Panduan Tekuk Stainless Steel'
+relatedToolFallbackLabels.en.aluminumBendingGuide = 'Aluminum Bending Guide'
+relatedToolFallbackLabels.zh.aluminumBendingGuide = '铝板折弯指南'
+relatedToolFallbackLabels.ru.aluminumBendingGuide =
+  'Руководство по гибке алюминия'
+relatedToolFallbackLabels.es.aluminumBendingGuide =
+  'Guía de plegado de aluminio'
+relatedToolFallbackLabels.tr.aluminumBendingGuide =
+  'Alüminyum Büküm Kılavuzu'
+relatedToolFallbackLabels.id.aluminumBendingGuide =
+  'Panduan Tekuk Aluminium'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

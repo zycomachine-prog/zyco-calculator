@@ -116,6 +116,12 @@ relatedTools.ru.stainlessSteelBendingGuide = 'Руководство по гиб
 relatedTools.es.stainlessSteelBendingGuide = 'Guía de plegado de acero inoxidable'
 relatedTools.tr.stainlessSteelBendingGuide = 'Paslanmaz Çelik Büküm Kılavuzu'
 relatedTools.id.stainlessSteelBendingGuide = 'Panduan Tekuk Stainless Steel'
+relatedTools.en.aluminumBendingGuide = 'Aluminum Bending Guide'
+relatedTools.zh.aluminumBendingGuide = '铝板折弯指南'
+relatedTools.ru.aluminumBendingGuide = 'Руководство по гибке алюминия'
+relatedTools.es.aluminumBendingGuide = 'Guía de plegado de aluminio'
+relatedTools.tr.aluminumBendingGuide = 'Alüminyum Büküm Kılavuzu'
+relatedTools.id.aluminumBendingGuide = 'Panduan Tekuk Aluminium'
 
 const materialNames = {
   en: {
@@ -470,6 +476,7 @@ const pages = {
         ['toolingSelectionGuide', 'Structured reference for punch and die selection'],
         ['crowningGuide', 'Engineering reference for long-bend deflection compensation and angle consistency'],
         ['stainlessSteelBendingGuide', 'Engineering reference for stainless grades, springback, surface control and tooling decisions'],
+        ['aluminumBendingGuide', 'Engineering reference for aluminum alloys, springback, surface protection and tooling selection'],
       ],
     },
     material: {
@@ -739,6 +746,7 @@ const localizedOverrides = {
         ['toolingSelectionGuide', '冲头与下模选型的结构化参考指南'],
         ['crowningGuide', '长工件折弯挠度补偿与角度一致性的工程参考指南'],
         ['stainlessSteelBendingGuide', '针对不锈钢牌号、回弹、表面保护与模具决策的工程参考指南'],
+        ['aluminumBendingGuide', '针对铝合金牌号、回弹、表面保护与模具选择的工程参考指南'],
       ],
     },
     material: {
@@ -995,6 +1003,7 @@ const localizedOverrides = {
         ['toolingSelectionGuide', 'Структурированный справочник по выбору пуансона и матрицы'],
         ['crowningGuide', 'Инженерный справочник по компенсации прогиба и точности длинного гиба'],
         ['stainlessSteelBendingGuide', 'Инженерный справочник по маркам нержавеющей стали, пружинению, поверхности и оснастке'],
+        ['aluminumBendingGuide', 'Инженерный справочник по алюминиевым сплавам, пружинению, защите поверхности и оснастке'],
       ],
     },
     material: {
@@ -1190,6 +1199,7 @@ const localizedOverrides = {
         ['toolingSelectionGuide', 'Referencia estructurada para seleccionar punzón y matriz'],
         ['crowningGuide', 'Referencia técnica para compensación de flecha y precisión en pliegues largos'],
         ['stainlessSteelBendingGuide', 'Referencia técnica para calidades inoxidables, retorno, protección superficial y utillaje'],
+        ['aluminumBendingGuide', 'Referencia técnica para aleaciones de aluminio, retorno elástico, protección superficial y utillaje'],
       ],
     },
     material: {
@@ -1389,6 +1399,7 @@ const localizedOverrides = {
         ['toolingSelectionGuide', 'Zımba ve kalıp seçimi için yapılandırılmış başvuru'],
         ['crowningGuide', 'Uzun büküm sehimi kompanzasyonu ve açı tutarlılığı için mühendislik referansı'],
         ['stainlessSteelBendingGuide', 'Paslanmaz kaliteler, geri esneme, yüzey koruması ve takım kararları için mühendislik referansı'],
+        ['aluminumBendingGuide', 'Alüminyum alaşımları, geri esneme, yüzey koruması ve takım seçimi için mühendislik referansı'],
       ],
     },
     material: {
@@ -1585,6 +1596,7 @@ const localizedOverrides = {
         ['toolingSelectionGuide', 'Referensi terstruktur untuk pemilihan penekan dan cetakan'],
         ['crowningGuide', 'Referensi teknik kompensasi lendutan dan keseragaman sudut pada tekukan panjang'],
         ['stainlessSteelBendingGuide', 'Referensi teknik grade stainless, springback, kontrol permukaan dan keputusan perkakas'],
+        ['aluminumBendingGuide', 'Referensi teknik paduan aluminium, springback, perlindungan permukaan, dan pemilihan perkakas'],
       ],
     },
     material: {

@@ -68,6 +68,11 @@ const tools = [
     status: 'active',
     href: '/engineering/stainless-steel-bending-guide',
   },
+  {
+    key: 'aluminumBendingGuide',
+    status: 'active',
+    href: '/engineering/aluminum-bending-guide',
+  },
 ]
 
 const relatedTools = [
@@ -118,6 +123,10 @@ const relatedTools = [
   {
     key: 'stainlessSteelBendingGuide',
     href: '/engineering/stainless-steel-bending-guide',
+  },
+  {
+    key: 'aluminumBendingGuide',
+    href: '/engineering/aluminum-bending-guide',
   },
 ]
 
