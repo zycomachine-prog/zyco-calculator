@@ -19,6 +19,7 @@ const EngineeringHub = lazy(() => import('./pages/EngineeringHub.jsx'))
 const InsideRadiusGuide = lazy(() => import('./pages/InsideRadiusGuide.jsx'))
 const MaterialDatabase = lazy(() => import('./pages/MaterialDatabase.jsx'))
 const PressBrakeTonnageGuide = lazy(() => import('./pages/PressBrakeTonnageGuide.jsx'))
+const PressBrakeToolingSelectionGuide = lazy(() => import('./pages/PressBrakeToolingSelectionGuide.jsx'))
 const PressBrakeVDieOpeningGuide = lazy(() => import('./pages/PressBrakeVDieOpeningGuide.jsx'))
 const SpringbackDatabase = lazy(() => import('./pages/SpringbackDatabase.jsx'))
 const VDieSelection = lazy(() => import('./pages/VDieSelection.jsx'))
@@ -105,6 +106,11 @@ export default function App() {
           <Route
             path='/engineering/press-brake-tonnage-guide'
             element={<PressBrakeTonnageGuide {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering/press-brake-tooling-selection-guide'
+            element={<PressBrakeToolingSelectionGuide {...languageProps} />}
           />
 
           <Route

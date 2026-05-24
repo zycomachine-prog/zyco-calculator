@@ -58,6 +58,10 @@ const relatedEngineeringTools = [
     labelKey: 'vDieOpeningGuide',
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
   },
+  {
+    labelKey: 'toolingSelectionGuide',
+    href: '/engineering/press-brake-tooling-selection-guide',
+  },
 ]
 
 const relatedToolFallbackLabels = {
@@ -100,6 +104,17 @@ relatedToolFallbackLabels.tr.vDieOpeningGuide =
   'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir'
 relatedToolFallbackLabels.id.vDieOpeningGuide =
   'Cara Memilih Bukaan Cetakan V Press Brake'
+relatedToolFallbackLabels.en.toolingSelectionGuide =
+  'Press Brake Tooling Selection Guide'
+relatedToolFallbackLabels.zh.toolingSelectionGuide = '折弯机模具选型指南'
+relatedToolFallbackLabels.ru.toolingSelectionGuide =
+  'Руководство по выбору оснастки листогибочного пресса'
+relatedToolFallbackLabels.es.toolingSelectionGuide =
+  'Guía de selección de utillaje para plegadora'
+relatedToolFallbackLabels.tr.toolingSelectionGuide =
+  'Abkant pres takım seçimi kılavuzu'
+relatedToolFallbackLabels.id.toolingSelectionGuide =
+  'Panduan pemilihan perkakas mesin tekuk'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

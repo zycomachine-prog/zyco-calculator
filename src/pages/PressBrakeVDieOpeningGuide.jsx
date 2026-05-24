@@ -19,10 +19,11 @@ const relatedTools = [
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
   ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
+  ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
 ]
 
 const englishContent = {
-  back: 'Back to Engineering Tools',
+  back: '← Back to Engineering Tools',
   eyebrow: 'Engineering Guide',
   title: 'How to Choose Press Brake V-Die Opening',
   subtitle:
@@ -102,12 +103,13 @@ const englishContent = {
     airBendingGuide: 'Air Bending Guide',
     pressBrakeTonnageGuide: 'Press Brake Tonnage Guide',
     vDieOpeningGuide: 'How to Choose Press Brake V-Die Opening',
+    toolingSelectionGuide: 'Press Brake Tooling Selection Guide',
   },
 }
 
 const localizedContent = {
   zh: {
-    back: '返回工程工具中心',
+    back: '← 返回工程工具中心',
     eyebrow: '工程指南',
     title: '如何选择折弯机 V 型模开口',
     subtitle: '用于在空气折弯中平衡吨位、内圆角与工艺稳定性的 V 型模开口选择参考。',
@@ -178,10 +180,11 @@ const localizedContent = {
       airBendingGuide: '空气折弯指南',
       pressBrakeTonnageGuide: '折弯机吨位指南',
       vDieOpeningGuide: '如何选择折弯机 V 型模开口',
+      toolingSelectionGuide: '折弯机模具选型指南',
     },
   },
   ru: {
-    back: 'Назад к инженерным инструментам',
+    back: '← Назад к инженерным инструментам',
     eyebrow: 'Инженерное руководство',
     title: 'Как выбрать раскрытие V-матрицы для листогибочного пресса',
     subtitle: 'Практический справочник по выбору раскрытия V-матрицы для воздушной гибки с учетом усилия, внутреннего радиуса и стабильности процесса.',
@@ -252,10 +255,11 @@ const localizedContent = {
       airBendingGuide: 'Руководство по воздушной гибке',
       pressBrakeTonnageGuide: 'Руководство по тоннажу пресса',
       vDieOpeningGuide: 'Как выбрать раскрытие V-матрицы листогибочного пресса',
+      toolingSelectionGuide: 'Руководство по выбору оснастки листогибочного пресса',
     },
   },
   es: {
-    back: 'Volver al centro de herramientas de ingeniería',
+    back: '← Volver al centro de herramientas de ingeniería',
     eyebrow: 'Guía de ingeniería',
     title: 'Cómo elegir la abertura de matriz V para una plegadora',
     subtitle: 'Referencia práctica para seleccionar la abertura de matriz V en plegado al aire equilibrando fuerza, radio interior y estabilidad del proceso.',
@@ -326,10 +330,11 @@ const localizedContent = {
       airBendingGuide: 'Guía de plegado al aire',
       pressBrakeTonnageGuide: 'Guía de tonelaje para plegadoras',
       vDieOpeningGuide: 'Cómo elegir la abertura de matriz V para una plegadora',
+      toolingSelectionGuide: 'Guía de selección de utillaje para plegadora',
     },
   },
   tr: {
-    back: 'Mühendislik araçları merkezine dön',
+    back: '← Mühendislik araçları merkezine dön',
     eyebrow: 'Mühendislik Kılavuzu',
     title: 'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir',
     subtitle: 'Havada bükmede kuvvet, iç radyüs ve proses kararlılığını dengeleyen V kalıp açıklığı seçimi için pratik referans.',
@@ -400,10 +405,11 @@ const localizedContent = {
       airBendingGuide: 'Havada bükme kılavuzu',
       pressBrakeTonnageGuide: 'Abkant pres tonaj kılavuzu',
       vDieOpeningGuide: 'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir',
+      toolingSelectionGuide: 'Abkant pres takım seçimi kılavuzu',
     },
   },
   id: {
-    back: 'Kembali ke pusat alat teknik',
+    back: '← Kembali ke pusat alat teknik',
     eyebrow: 'Panduan Teknik',
     title: 'Cara Memilih Bukaan Cetakan V Press Brake',
     subtitle: 'Referensi praktis untuk memilih bukaan cetakan V pada tekuk udara dengan menyeimbangkan gaya, radius dalam, dan kestabilan proses.',
@@ -474,6 +480,7 @@ const localizedContent = {
       airBendingGuide: 'Panduan tekuk udara',
       pressBrakeTonnageGuide: 'Panduan tonase press brake',
       vDieOpeningGuide: 'Cara Memilih Bukaan Cetakan V Press Brake',
+      toolingSelectionGuide: 'Panduan pemilihan perkakas mesin tekuk',
     },
   },
 }
@@ -1135,6 +1142,8 @@ export default function PressBrakeVDieOpeningGuide({
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: fit-content;
+            max-width: min(100%, 460px);
             min-height: 44px;
             box-sizing: border-box;
             margin: 0 0 22px;
@@ -1147,7 +1156,16 @@ export default function PressBrakeVDieOpeningGuide({
             line-height: 1.35;
             font-weight: 850;
             text-decoration: none;
-            transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+            box-shadow:
+              0 10px 28px rgba(15, 23, 42, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            transition:
+              transform 0.22s ease,
+              border-color 0.22s ease,
+              color 0.22s ease,
+              background 0.22s ease,
+              box-shadow 0.22s ease;
           }
 
           .zyco-v-guide__back:hover,

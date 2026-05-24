@@ -90,6 +90,10 @@ const relatedTools = [
     key: 'vDieOpeningGuide',
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
   },
+  {
+    key: 'toolingSelectionGuide',
+    href: '/engineering/press-brake-tooling-selection-guide',
+  },
 ]
 
 const backToEngineeringToolsLabels = {

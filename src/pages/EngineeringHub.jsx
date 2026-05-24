@@ -54,8 +54,9 @@ const tools = [
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
   },
   {
-    key: 'toolingGuide',
-    status: 'soon',
+    key: 'toolingSelectionGuide',
+    status: 'active',
+    href: '/engineering/press-brake-tooling-selection-guide',
   },
 ]
 
@@ -95,6 +96,10 @@ const relatedTools = [
   {
     key: 'vDieOpeningGuide',
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
+  },
+  {
+    key: 'toolingSelectionGuide',
+    href: '/engineering/press-brake-tooling-selection-guide',
   },
 ]
 
@@ -168,6 +173,12 @@ export default function EngineeringHub({
                 position: 7,
                 name: 'Air Bending Guide',
                 url: getSiteUrl('/engineering-tools/air-bending-guide'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 8,
+                name: 'Press Brake Tooling Selection Guide',
+                url: getSiteUrl('/engineering/press-brake-tooling-selection-guide'),
               },
             ],
           },
