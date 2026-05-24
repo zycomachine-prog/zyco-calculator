@@ -66,6 +66,10 @@ const relatedEngineeringTools = [
     labelKey: 'crowningGuide',
     href: '/engineering/press-brake-crowning-guide',
   },
+  {
+    labelKey: 'stainlessSteelBendingGuide',
+    href: '/engineering/stainless-steel-bending-guide',
+  },
 ]
 
 const relatedToolFallbackLabels = {
@@ -129,6 +133,16 @@ relatedToolFallbackLabels.tr.crowningGuide =
   'Abkant pres sehim kompanzasyonu kılavuzu'
 relatedToolFallbackLabels.id.crowningGuide =
   'Panduan kompensasi lendutan press brake'
+relatedToolFallbackLabels.en.stainlessSteelBendingGuide = 'Stainless Steel Bending Guide'
+relatedToolFallbackLabels.zh.stainlessSteelBendingGuide = '不锈钢折弯指南'
+relatedToolFallbackLabels.ru.stainlessSteelBendingGuide =
+  'Руководство по гибке нержавеющей стали'
+relatedToolFallbackLabels.es.stainlessSteelBendingGuide =
+  'Guía de plegado de acero inoxidable'
+relatedToolFallbackLabels.tr.stainlessSteelBendingGuide =
+  'Paslanmaz Çelik Büküm Kılavuzu'
+relatedToolFallbackLabels.id.stainlessSteelBendingGuide =
+  'Panduan Tekuk Stainless Steel'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

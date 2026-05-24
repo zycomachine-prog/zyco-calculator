@@ -92,6 +92,10 @@ const relatedTools = [
     key: 'crowningGuide',
     href: '/engineering/press-brake-crowning-guide',
   },
+  {
+    key: 'stainlessSteelBendingGuide',
+    href: '/engineering/stainless-steel-bending-guide',
+  },
 ]
 
 const backToEngineeringToolsLabels = {

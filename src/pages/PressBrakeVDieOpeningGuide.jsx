@@ -21,6 +21,7 @@ const relatedTools = [
   ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
   ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
   ['crowningGuide', '/engineering/press-brake-crowning-guide'],
+  ['stainlessSteelBendingGuide', '/engineering/stainless-steel-bending-guide'],
 ]
 
 const englishContent = {
@@ -106,6 +107,7 @@ const englishContent = {
     vDieOpeningGuide: 'How to Choose Press Brake V-Die Opening',
     toolingSelectionGuide: 'Press Brake Tooling Selection Guide',
     crowningGuide: 'Press Brake Crowning Guide',
+    stainlessSteelBendingGuide: 'Stainless Steel Bending Guide',
   },
 }
 
@@ -184,6 +186,7 @@ const localizedContent = {
       vDieOpeningGuide: '如何选择折弯机 V 型模开口',
       toolingSelectionGuide: '折弯机模具选型指南',
       crowningGuide: '折弯机挠度补偿指南',
+      stainlessSteelBendingGuide: '不锈钢折弯指南',
     },
   },
   ru: {
@@ -260,6 +263,7 @@ const localizedContent = {
       vDieOpeningGuide: 'Как выбрать раскрытие V-матрицы листогибочного пресса',
       toolingSelectionGuide: 'Руководство по выбору оснастки листогибочного пресса',
       crowningGuide: 'Руководство по компенсации прогиба листогиба',
+      stainlessSteelBendingGuide: 'Руководство по гибке нержавеющей стали',
     },
   },
   es: {
@@ -336,6 +340,7 @@ const localizedContent = {
       vDieOpeningGuide: 'Cómo elegir la abertura de matriz V para una plegadora',
       toolingSelectionGuide: 'Guía de selección de utillaje para plegadora',
       crowningGuide: 'Guía de compensación de flecha para plegadoras',
+      stainlessSteelBendingGuide: 'Guía de plegado de acero inoxidable',
     },
   },
   tr: {
@@ -412,6 +417,7 @@ const localizedContent = {
       vDieOpeningGuide: 'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir',
       toolingSelectionGuide: 'Abkant pres takım seçimi kılavuzu',
       crowningGuide: 'Abkant pres sehim kompanzasyonu kılavuzu',
+      stainlessSteelBendingGuide: 'Paslanmaz Çelik Büküm Kılavuzu',
     },
   },
   id: {
@@ -488,6 +494,7 @@ const localizedContent = {
       vDieOpeningGuide: 'Cara Memilih Bukaan Cetakan V Press Brake',
       toolingSelectionGuide: 'Panduan pemilihan perkakas mesin tekuk',
       crowningGuide: 'Panduan kompensasi lendutan press brake',
+      stainlessSteelBendingGuide: 'Panduan Tekuk Stainless Steel',
     },
   },
 }
