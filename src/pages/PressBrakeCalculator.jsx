@@ -62,6 +62,10 @@ const relatedEngineeringTools = [
     labelKey: 'toolingSelectionGuide',
     href: '/engineering/press-brake-tooling-selection-guide',
   },
+  {
+    labelKey: 'crowningGuide',
+    href: '/engineering/press-brake-crowning-guide',
+  },
 ]
 
 const relatedToolFallbackLabels = {
@@ -115,6 +119,16 @@ relatedToolFallbackLabels.tr.toolingSelectionGuide =
   'Abkant pres takım seçimi kılavuzu'
 relatedToolFallbackLabels.id.toolingSelectionGuide =
   'Panduan pemilihan perkakas mesin tekuk'
+relatedToolFallbackLabels.en.crowningGuide = 'Press Brake Crowning Guide'
+relatedToolFallbackLabels.zh.crowningGuide = '折弯机挠度补偿指南'
+relatedToolFallbackLabels.ru.crowningGuide =
+  'Руководство по компенсации прогиба листогиба'
+relatedToolFallbackLabels.es.crowningGuide =
+  'Guía de compensación de flecha para plegadoras'
+relatedToolFallbackLabels.tr.crowningGuide =
+  'Abkant pres sehim kompanzasyonu kılavuzu'
+relatedToolFallbackLabels.id.crowningGuide =
+  'Panduan kompensasi lendutan press brake'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

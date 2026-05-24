@@ -88,6 +88,10 @@ const relatedTools = [
     key: 'toolingSelectionGuide',
     href: '/engineering/press-brake-tooling-selection-guide',
   },
+  {
+    key: 'crowningGuide',
+    href: '/engineering/press-brake-crowning-guide',
+  },
 ]
 
 const backToEngineeringToolsLabels = {

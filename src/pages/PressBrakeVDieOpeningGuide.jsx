@@ -20,6 +20,7 @@ const relatedTools = [
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
   ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
   ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
+  ['crowningGuide', '/engineering/press-brake-crowning-guide'],
 ]
 
 const englishContent = {
@@ -104,6 +105,7 @@ const englishContent = {
     pressBrakeTonnageGuide: 'Press Brake Tonnage Guide',
     vDieOpeningGuide: 'How to Choose Press Brake V-Die Opening',
     toolingSelectionGuide: 'Press Brake Tooling Selection Guide',
+    crowningGuide: 'Press Brake Crowning Guide',
   },
 }
 
@@ -181,6 +183,7 @@ const localizedContent = {
       pressBrakeTonnageGuide: '折弯机吨位指南',
       vDieOpeningGuide: '如何选择折弯机 V 型模开口',
       toolingSelectionGuide: '折弯机模具选型指南',
+      crowningGuide: '折弯机挠度补偿指南',
     },
   },
   ru: {
@@ -256,6 +259,7 @@ const localizedContent = {
       pressBrakeTonnageGuide: 'Руководство по тоннажу пресса',
       vDieOpeningGuide: 'Как выбрать раскрытие V-матрицы листогибочного пресса',
       toolingSelectionGuide: 'Руководство по выбору оснастки листогибочного пресса',
+      crowningGuide: 'Руководство по компенсации прогиба листогиба',
     },
   },
   es: {
@@ -331,6 +335,7 @@ const localizedContent = {
       pressBrakeTonnageGuide: 'Guía de tonelaje para plegadoras',
       vDieOpeningGuide: 'Cómo elegir la abertura de matriz V para una plegadora',
       toolingSelectionGuide: 'Guía de selección de utillaje para plegadora',
+      crowningGuide: 'Guía de compensación de flecha para plegadoras',
     },
   },
   tr: {
@@ -406,6 +411,7 @@ const localizedContent = {
       pressBrakeTonnageGuide: 'Abkant pres tonaj kılavuzu',
       vDieOpeningGuide: 'Abkant Pres İçin V Kalıp Açıklığı Nasıl Seçilir',
       toolingSelectionGuide: 'Abkant pres takım seçimi kılavuzu',
+      crowningGuide: 'Abkant pres sehim kompanzasyonu kılavuzu',
     },
   },
   id: {
@@ -481,6 +487,7 @@ const localizedContent = {
       pressBrakeTonnageGuide: 'Panduan tonase press brake',
       vDieOpeningGuide: 'Cara Memilih Bukaan Cetakan V Press Brake',
       toolingSelectionGuide: 'Panduan pemilihan perkakas mesin tekuk',
+      crowningGuide: 'Panduan kompensasi lendutan press brake',
     },
   },
 }

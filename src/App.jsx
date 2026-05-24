@@ -19,6 +19,7 @@ const EngineeringHub = lazy(() => import('./pages/EngineeringHub.jsx'))
 const InsideRadiusGuide = lazy(() => import('./pages/InsideRadiusGuide.jsx'))
 const MaterialDatabase = lazy(() => import('./pages/MaterialDatabase.jsx'))
 const PressBrakeTonnageGuide = lazy(() => import('./pages/PressBrakeTonnageGuide.jsx'))
+const PressBrakeCrowningGuide = lazy(() => import('./pages/PressBrakeCrowningGuide.jsx'))
 const PressBrakeToolingSelectionGuide = lazy(() => import('./pages/PressBrakeToolingSelectionGuide.jsx'))
 const PressBrakeVDieOpeningGuide = lazy(() => import('./pages/PressBrakeVDieOpeningGuide.jsx'))
 const SpringbackDatabase = lazy(() => import('./pages/SpringbackDatabase.jsx'))
@@ -69,6 +70,11 @@ export default function App() {
           />
 
           <Route
+            path='/engineering'
+            element={<EngineeringHub {...languageProps} />}
+          />
+
+          <Route
             path='/engineering-tools/press-brake-calculator'
             element={<PressBrakeCalculator {...languageProps} />}
           />
@@ -106,6 +112,11 @@ export default function App() {
           <Route
             path='/engineering/press-brake-tonnage-guide'
             element={<PressBrakeTonnageGuide {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering/press-brake-crowning-guide'
+            element={<PressBrakeCrowningGuide {...languageProps} />}
           />
 
           <Route

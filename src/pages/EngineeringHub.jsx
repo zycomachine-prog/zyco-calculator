@@ -58,6 +58,11 @@ const tools = [
     status: 'active',
     href: '/engineering/press-brake-tooling-selection-guide',
   },
+  {
+    key: 'crowningGuide',
+    status: 'active',
+    href: '/engineering/press-brake-crowning-guide',
+  },
 ]
 
 const relatedTools = [
@@ -100,6 +105,10 @@ const relatedTools = [
   {
     key: 'toolingSelectionGuide',
     href: '/engineering/press-brake-tooling-selection-guide',
+  },
+  {
+    key: 'crowningGuide',
+    href: '/engineering/press-brake-crowning-guide',
   },
 ]
 
@@ -179,6 +188,12 @@ export default function EngineeringHub({
                 position: 8,
                 name: 'Press Brake Tooling Selection Guide',
                 url: getSiteUrl('/engineering/press-brake-tooling-selection-guide'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 9,
+                name: 'Press Brake Crowning Guide',
+                url: getSiteUrl('/engineering/press-brake-crowning-guide'),
               },
             ],
           },
