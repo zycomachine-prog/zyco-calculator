@@ -19,6 +19,7 @@ const relatedTools = [
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
   ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
+  ['minimumFlangeLengthGuide', '/engineering/minimum-flange-length-guide'],
   ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
   ['crowningGuide', '/engineering/press-brake-crowning-guide'],
   ['stainlessSteelBendingGuide', '/engineering/stainless-steel-bending-guide'],
@@ -110,6 +111,7 @@ const englishContent = {
     crowningGuide: 'Press Brake Crowning Guide',
     stainlessSteelBendingGuide: 'Stainless Steel Bending Guide',
     aluminumBendingGuide: 'Aluminum Bending Guide',
+    minimumFlangeLengthGuide: 'Minimum Flange Length Guide',
   },
 }
 
@@ -189,7 +191,8 @@ const localizedContent = {
       toolingSelectionGuide: '折弯机模具选型指南',
       crowningGuide: '折弯机挠度补偿指南',
       stainlessSteelBendingGuide: '不锈钢折弯指南',
-      aluminumBendingGuide: '铝板折弯指南',
+    aluminumBendingGuide: '铝板折弯指南',
+    minimumFlangeLengthGuide: '最小翻边长度指南',
     },
   },
   ru: {
@@ -267,7 +270,8 @@ const localizedContent = {
       toolingSelectionGuide: 'Руководство по выбору оснастки листогибочного пресса',
       crowningGuide: 'Руководство по компенсации прогиба листогиба',
       stainlessSteelBendingGuide: 'Руководство по гибке нержавеющей стали',
-      aluminumBendingGuide: 'Руководство по гибке алюминия',
+    aluminumBendingGuide: 'Руководство по гибке алюминия',
+    minimumFlangeLengthGuide: 'Руководство по минимальной длине полки',
     },
   },
   es: {
@@ -345,7 +349,8 @@ const localizedContent = {
       toolingSelectionGuide: 'Guía de selección de utillaje para plegadora',
       crowningGuide: 'Guía de compensación de flecha para plegadoras',
       stainlessSteelBendingGuide: 'Guía de plegado de acero inoxidable',
-      aluminumBendingGuide: 'Guía de plegado de aluminio',
+    aluminumBendingGuide: 'Guía de plegado de aluminio',
+    minimumFlangeLengthGuide: 'Guía de longitud mínima de pestaña',
     },
   },
   tr: {
@@ -423,7 +428,8 @@ const localizedContent = {
       toolingSelectionGuide: 'Abkant pres takım seçimi kılavuzu',
       crowningGuide: 'Abkant pres sehim kompanzasyonu kılavuzu',
       stainlessSteelBendingGuide: 'Paslanmaz Çelik Büküm Kılavuzu',
-      aluminumBendingGuide: 'Alüminyum Büküm Kılavuzu',
+    aluminumBendingGuide: 'Alüminyum Büküm Kılavuzu',
+    minimumFlangeLengthGuide: 'Minimum Flanş Boyu Kılavuzu',
     },
   },
   id: {
@@ -501,7 +507,8 @@ const localizedContent = {
       toolingSelectionGuide: 'Panduan pemilihan perkakas mesin tekuk',
       crowningGuide: 'Panduan kompensasi lendutan press brake',
       stainlessSteelBendingGuide: 'Panduan Tekuk Stainless Steel',
-      aluminumBendingGuide: 'Panduan Tekuk Aluminium',
+    aluminumBendingGuide: 'Panduan Tekuk Aluminium',
+    minimumFlangeLengthGuide: 'Panduan Panjang Flange Minimum',
     },
   },
 }

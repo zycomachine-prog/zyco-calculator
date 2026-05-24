@@ -59,6 +59,10 @@ const relatedEngineeringTools = [
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
   },
   {
+    labelKey: 'minimumFlangeLengthGuide',
+    href: '/engineering/minimum-flange-length-guide',
+  },
+  {
     labelKey: 'toolingSelectionGuide',
     href: '/engineering/press-brake-tooling-selection-guide',
   },
@@ -157,6 +161,14 @@ relatedToolFallbackLabels.tr.aluminumBendingGuide =
   'Alüminyum Büküm Kılavuzu'
 relatedToolFallbackLabels.id.aluminumBendingGuide =
   'Panduan Tekuk Aluminium'
+relatedToolFallbackLabels.en.minimumFlangeLengthGuide = 'Minimum Flange Length Guide'
+relatedToolFallbackLabels.zh.minimumFlangeLengthGuide = '最小翻边长度指南'
+relatedToolFallbackLabels.ru.minimumFlangeLengthGuide =
+  'Руководство по минимальной длине полки'
+relatedToolFallbackLabels.es.minimumFlangeLengthGuide =
+  'Guía de longitud mínima de pestaña'
+relatedToolFallbackLabels.tr.minimumFlangeLengthGuide = 'Minimum Flanş Boyu Kılavuzu'
+relatedToolFallbackLabels.id.minimumFlangeLengthGuide = 'Panduan Panjang Flange Minimum'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

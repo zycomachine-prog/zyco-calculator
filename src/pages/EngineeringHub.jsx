@@ -54,6 +54,11 @@ const tools = [
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
   },
   {
+    key: 'minimumFlangeLengthGuide',
+    status: 'active',
+    href: '/engineering/minimum-flange-length-guide',
+  },
+  {
     key: 'toolingSelectionGuide',
     status: 'active',
     href: '/engineering/press-brake-tooling-selection-guide',
@@ -111,6 +116,10 @@ const relatedTools = [
   {
     key: 'vDieOpeningGuide',
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
+  },
+  {
+    key: 'minimumFlangeLengthGuide',
+    href: '/engineering/minimum-flange-length-guide',
   },
   {
     key: 'toolingSelectionGuide',
@@ -212,6 +221,12 @@ export default function EngineeringHub({
                 position: 9,
                 name: 'Press Brake Crowning Guide',
                 url: getSiteUrl('/engineering/press-brake-crowning-guide'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 10,
+                name: 'Minimum Flange Length Guide',
+                url: getSiteUrl('/engineering/minimum-flange-length-guide'),
               },
             ],
           },

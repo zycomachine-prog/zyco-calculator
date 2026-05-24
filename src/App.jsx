@@ -22,6 +22,7 @@ const PressBrakeTonnageGuide = lazy(() => import('./pages/PressBrakeTonnageGuide
 const PressBrakeCrowningGuide = lazy(() => import('./pages/PressBrakeCrowningGuide.jsx'))
 const PressBrakeToolingSelectionGuide = lazy(() => import('./pages/PressBrakeToolingSelectionGuide.jsx'))
 const PressBrakeVDieOpeningGuide = lazy(() => import('./pages/PressBrakeVDieOpeningGuide.jsx'))
+const MinimumFlangeLengthGuide = lazy(() => import('./pages/MinimumFlangeLengthGuide.jsx'))
 const StainlessSteelBendingGuide = lazy(() => import('./pages/StainlessSteelBendingGuide.jsx'))
 const AluminumBendingGuide = lazy(() => import('./pages/AluminumBendingGuide.jsx'))
 const SpringbackDatabase = lazy(() => import('./pages/SpringbackDatabase.jsx'))
@@ -129,6 +130,11 @@ export default function App() {
           <Route
             path='/engineering/how-to-choose-press-brake-v-die-opening'
             element={<PressBrakeVDieOpeningGuide {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering/minimum-flange-length-guide'
+            element={<MinimumFlangeLengthGuide {...languageProps} />}
           />
 
           <Route

@@ -79,6 +79,10 @@ const relatedTools = [
     href: '/engineering/how-to-choose-press-brake-v-die-opening',
   },
   {
+    key: 'minimumFlangeLengthGuide',
+    href: '/engineering/minimum-flange-length-guide',
+  },
+  {
     key: 'toolingSelectionGuide',
     href: '/engineering/press-brake-tooling-selection-guide',
   },
