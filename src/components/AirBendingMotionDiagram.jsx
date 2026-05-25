@@ -5,20 +5,26 @@ import {
 } from 'react'
 
 const defaultLabels = {
-  eyebrow: 'Motion Diagram V1',
-  title: 'Air bending load path and three-point contact',
+  eyebrow: 'Process Animation',
+  title: 'Air bending process: forming without bottoming',
+  intro:
+    'Air bending forms the angle while the sheet is supported by the V-die shoulders. The material does not fully bottom out in the die, so the final angle depends on punch depth, V-opening, material behavior and springback compensation.',
   punchStroke: 'Punch stroke',
   sheetBending: 'Sheet bending',
   springbackReference: 'Springback reference',
+  punch: 'Punch',
+  sheetMetal: 'Sheet Metal',
+  vDie: 'V-Die',
+  vDieShoulders: 'V-Die Shoulders',
+  airBending: 'Air Bending',
+  insideRadius: 'Inside Radius',
+  springback: 'Springback',
+  noBottoming: 'No Bottoming',
   punchDownstroke: 'Punch downstroke',
-  leftSupport: 'left support',
-  rightSupport: 'right support',
-  angleFormation: 'angle formation',
-  vDieSupport: 'V-die support',
   highlightsAria: 'Diagram highlights',
-  svgTitle: 'Air bending motion diagram',
+  svgTitle: 'Animated air bending process diagram',
   svgDescription:
-    'Animated SVG showing punch downstroke, sheet bending over a V die, three-point contact and a springback reference line.',
+    'Animated SVG showing a punch descending, sheet metal bending on the V-die shoulders without bottoming, the naturally formed inside radius and slight springback after unloading.',
 }
 
 export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
@@ -39,21 +45,16 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
       return undefined
     }
 
-    let syncFrame = 0
-
     const readyFrame = window.requestAnimationFrame(() => {
       setIsAnimationReady(true)
 
-      syncFrame = window.requestAnimationFrame(() => {
-        sheetAnimationRefs.current.forEach((animation) => {
-          animation?.beginElement()
-        })
+      sheetAnimationRefs.current.forEach((animation) => {
+        animation?.beginElement()
       })
     })
 
     return () => {
       window.cancelAnimationFrame(readyFrame)
-      window.cancelAnimationFrame(syncFrame)
     }
   }, [])
 
@@ -148,6 +149,15 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             letter-spacing: 0;
           }
 
+          .zyco-air-motion__intro {
+            max-width: 900px;
+            margin: 0 0 18px;
+            color: #dbeafe;
+            font-size: 14px;
+            line-height: 1.72;
+            font-weight: 620;
+          }
+
           .zyco-air-motion__legend {
             display: flex;
             flex-wrap: wrap;
@@ -180,11 +190,12 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             border: 1px solid rgba(191, 219, 254, 0.24);
             border-radius: 22px;
             background:
-              radial-gradient(circle at 50% 42%, rgba(96, 165, 250, 0.2), transparent 42%),
+              radial-gradient(circle at 50% 54%, rgba(186, 230, 253, 0.12), transparent 25%),
+              radial-gradient(circle at 50% 52%, rgba(96, 165, 250, 0.22), transparent 48%),
               linear-gradient(rgba(148, 197, 255, 0.06) 1px, transparent 1px),
               linear-gradient(90deg, rgba(148, 197, 255, 0.052) 1px, transparent 1px),
               linear-gradient(180deg, rgba(38, 84, 143, 0.42), rgba(18, 49, 93, 0.38));
-            background-size: 100% 100%, 32px 32px, 32px 32px, 100% 100%;
+            background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px, 100% 100%;
             box-shadow:
               0 14px 34px rgba(2, 8, 23, 0.13),
               inset 0 1px 0 rgba(255, 255, 255, 0.14),
@@ -195,7 +206,9 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%);
+            background:
+              radial-gradient(circle at 50% 54%, transparent 34%, rgba(10, 37, 82, 0.16) 100%),
+              linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%);
             pointer-events: none;
           }
 
@@ -206,8 +219,47 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             min-height: 280px;
           }
 
-          .zyco-air-motion--ready .zyco-air-motion__punch {
-            animation: zyco-air-punch-cycle 10s ease-in-out infinite;
+          .zyco-air-motion__springback {
+            opacity: 0;
+          }
+
+          .zyco-air-motion__load-line {
+            opacity: 0.78;
+            transform: translateY(4px);
+          }
+
+          .zyco-air-motion__label {
+            fill: #dbeafe;
+            font-size: 14px;
+            font-weight: 760;
+          }
+
+          .zyco-air-motion__callout {
+            fill: #7dd3fc;
+            font-size: 13px;
+            font-weight: 800;
+          }
+
+          .zyco-air-motion__focus-ring {
+            fill: rgba(125, 211, 252, 0.035);
+            stroke: rgba(147, 197, 253, 0.12);
+            stroke-width: 1;
+          }
+
+          .zyco-air-motion__leader {
+            fill: none;
+            stroke: rgba(125, 211, 252, 0.82);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-dasharray: 3 4;
+          }
+
+          .zyco-air-motion__no-bottom {
+            opacity: 0.84;
+          }
+
+          .zyco-air-motion__inside-radius {
+            opacity: 0.18;
           }
 
           .zyco-air-motion--ready .zyco-air-motion__springback {
@@ -219,75 +271,112 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             animation: zyco-air-contact-cycle 10s ease-in-out infinite;
           }
 
-          .zyco-air-motion--ready .zyco-air-motion__angle {
-            animation: zyco-air-angle-cycle 10s ease-in-out infinite;
+          .zyco-air-motion--ready .zyco-air-motion__inside-radius {
+            animation: zyco-air-inside-radius-cycle 10s ease-in-out infinite;
+          }
+
+          .zyco-air-motion--ready .zyco-air-motion__no-bottom {
+            animation: zyco-air-no-bottom-cycle 10s ease-in-out infinite;
           }
 
           .zyco-air-motion--ready .zyco-air-motion__load-line {
             animation: zyco-air-load-cycle 10s ease-in-out infinite;
           }
 
-          @keyframes zyco-air-punch-cycle {
-            0%, 100% {
-              transform: translateY(0);
-            }
-
-            43%, 64% {
-              transform: translateY(72px);
-            }
-          }
-
           @keyframes zyco-air-springback-cycle {
-            0%, 26%, 100% {
+            0%, 68% {
               opacity: 0;
-              transform: scale(0.98);
+              transform: scale(0.99);
             }
 
-            70%, 88% {
-              opacity: 1;
+            70%, 84% {
+              opacity: 0.84;
+              transform: scale(1);
+            }
+
+            88% {
+              opacity: 0.4;
+              transform: scale(1);
+            }
+
+            100% {
+              opacity: 0;
               transform: scale(1);
             }
           }
 
+          @keyframes zyco-air-inside-radius-cycle {
+            0%, 35%, 100% {
+              opacity: 0.08;
+            }
+
+            40%, 55% {
+              opacity: 1;
+            }
+
+            75% {
+              opacity: 0.24;
+            }
+          }
+
+          @keyframes zyco-air-no-bottom-cycle {
+            0%, 35%, 100% {
+              opacity: 0.06;
+            }
+
+            40%, 60% {
+              opacity: 0.9;
+            }
+
+            75% {
+              opacity: 0.16;
+            }
+          }
+
           @keyframes zyco-air-contact-cycle {
-            0%, 18%, 100% {
+            0%, 30%, 100% {
               opacity: 0.38;
               transform: scale(0.9);
             }
 
-            42%, 68% {
+            40%, 55% {
               opacity: 1;
               transform: scale(1.08);
             }
-          }
 
-          @keyframes zyco-air-angle-cycle {
-            0%, 28%, 100% {
-              opacity: 0.22;
-            }
-
-            48%, 82% {
-              opacity: 0.86;
+            75% {
+              opacity: 0.62;
+              transform: scale(1);
             }
           }
 
           @keyframes zyco-air-load-cycle {
-            0%, 18%, 100% {
+            0%, 30%, 100% {
               opacity: 0.26;
               transform: translateY(-8px);
             }
 
-            42%, 68% {
+            40%, 55% {
               opacity: 0.78;
               transform: translateY(4px);
+            }
+
+            75% {
+              opacity: 0.42;
+              transform: translateY(-2px);
             }
           }
 
           @media (prefers-reduced-motion: reduce) {
+            .zyco-air-motion__punch {
+              transform: translateY(88px);
+            }
+
             .zyco-air-motion__punch,
             .zyco-air-motion__springback,
             .zyco-air-motion__contact,
-            .zyco-air-motion__angle,
+            .zyco-air-motion__inside-radius,
+            .zyco-air-motion__no-bottom,
             .zyco-air-motion__load-line {
               animation: none;
             }
@@ -350,6 +439,10 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
         </p>
       </div>
 
+      <p className='zyco-air-motion__intro'>
+        {diagramLabels.intro}
+      </p>
+
       <div className='zyco-air-motion__stage'>
         <svg
           className='zyco-air-motion__svg'
@@ -369,29 +462,18 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             <linearGradient id='airPunchGradient' x1='0' y1='0' x2='0' y2='1'>
               <stop offset='0%' stopColor='#7dd3fc' />
               <stop offset='48%' stopColor='#2563eb' />
-              <stop offset='100%' stopColor='#0f2f6f' />
+              <stop offset='100%' stopColor='#1d4ed8' />
             </linearGradient>
             <linearGradient id='airSheetGradient' x1='0' y1='0' x2='1' y2='0'>
-              <stop offset='0%' stopColor='#94a3b8' />
+              <stop offset='0%' stopColor='#bfdbfe' />
               <stop offset='42%' stopColor='#f8fafc' />
-              <stop offset='58%' stopColor='#cbd5e1' />
-              <stop offset='100%' stopColor='#64748b' />
+              <stop offset='58%' stopColor='#e0f2fe' />
+              <stop offset='100%' stopColor='#bfdbfe' />
             </linearGradient>
             <linearGradient id='airDieGradient' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='0%' stopColor='#1d4ed8' />
-              <stop offset='55%' stopColor='#0f2f6f' />
-              <stop offset='100%' stopColor='#071a3d' />
+              <stop offset='0%' stopColor='#3b82f6' />
+              <stop offset='100%' stopColor='#1e40af' />
             </linearGradient>
-            <filter id='airSoftShadow' x='-20%' y='-20%' width='140%' height='150%'>
-              <feDropShadow dx='0' dy='14' stdDeviation='13' floodColor='#020617' floodOpacity='0.28' />
-            </filter>
-            <filter id='airContactGlow' x='-80%' y='-80%' width='260%' height='260%'>
-              <feGaussianBlur stdDeviation='5' result='blur' />
-              <feMerge>
-                <feMergeNode in='blur' />
-                <feMergeNode in='SourceGraphic' />
-              </feMerge>
-            </filter>
           </defs>
 
           <rect
@@ -409,45 +491,59 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             <path d='M480 82 V430' stroke='#93c5fd' strokeWidth='1' strokeDasharray='7 13' />
           </g>
 
+          <ellipse className='zyco-air-motion__focus-ring' cx='480' cy='316' rx='196' ry='136' />
+
           <g className='zyco-air-motion__load-line'>
             <path d='M480 112 V202' stroke='#bfdbfe' strokeWidth='2' strokeLinecap='round' strokeDasharray='8 10' />
             <path d='M468 190 L480 208 L492 190' fill='none' stroke='#bfdbfe' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
           </g>
 
-          <g className='zyco-air-motion__punch' filter='url(#airSoftShadow)'>
+          <g className='zyco-air-motion__punch'>
             <rect x='386' y='58' width='188' height='74' rx='12' fill='url(#airPunchGradient)' />
             <path d='M414 132 H546 L500 248 Q480 270 460 248 Z' fill='url(#airPunchGradient)' />
             <path d='M414 132 H546' stroke='rgba(255, 255, 255, 0.42)' strokeWidth='2' />
             <path d='M430 84 H530' stroke='rgba(255, 255, 255, 0.28)' strokeWidth='2' strokeLinecap='round' />
             <path d='M480 145 V239' stroke='rgba(219, 234, 254, 0.34)' strokeWidth='2' strokeLinecap='round' />
+            <animateTransform
+              attributeName='transform'
+              begin='indefinite'
+              dur='10s'
+              repeatCount='indefinite'
+              type='translate'
+              calcMode='spline'
+              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
+              keyTimes='0; 0.4; 0.55; 0.75; 1'
+              ref={(animation) => {
+                sheetAnimationRefs.current[0] = animation
+              }}
+              values='0 0; 0 52; 0 88; 0 48; 0 0'
+            />
           </g>
 
-          <g filter='url(#airSoftShadow)'>
-            <path d='M148 408 L304 302 H408 L318 438 H148 Z' fill='url(#airDieGradient)' />
-            <path d='M812 408 L656 302 H552 L642 438 H812 Z' fill='url(#airDieGradient)' />
-            <path d='M304 302 H408' stroke='#93c5fd' strokeWidth='3' strokeLinecap='round' opacity='0.62' />
-            <path d='M552 302 H656' stroke='#93c5fd' strokeWidth='3' strokeLinecap='round' opacity='0.62' />
-            <path d='M166 414 H292' stroke='rgba(255, 255, 255, 0.18)' strokeWidth='2' strokeLinecap='round' />
-            <path d='M668 414 H794' stroke='rgba(255, 255, 255, 0.18)' strokeWidth='2' strokeLinecap='round' />
-            <path d='M152 438 H808' stroke='rgba(147, 197, 253, 0.24)' strokeWidth='3' strokeLinecap='round' />
+          <g>
+            <path d='M142 310 H302 L480 432 H142 Z' fill='url(#airDieGradient)' stroke='#60a5fa' strokeWidth='2' strokeLinejoin='round' />
+            <path d='M658 310 H818 V432 H480 Z' fill='url(#airDieGradient)' stroke='#60a5fa' strokeWidth='2' strokeLinejoin='round' />
+            <path d='M302 310 L480 432 L658 310' fill='none' stroke='#93c5fd' strokeWidth='4' strokeLinejoin='round' />
+            <path d='M152 432 H808' stroke='rgba(147, 197, 253, 0.42)' strokeWidth='3' strokeLinecap='round' />
           </g>
 
           <path
-            d='M184 254 C304 254 390 264 480 276 C570 264 656 254 776 254'
+            d='M178 288 L302 302 Q390 304 452 338 Q480 352 508 338 Q570 304 658 302 L782 288'
             fill='none'
-            stroke='rgba(219, 234, 254, 0.2)'
-            strokeWidth='18'
+            stroke='rgba(186, 230, 253, 0.78)'
+            strokeWidth='5'
+            strokeDasharray='9 7'
             strokeLinecap='round'
             className='zyco-air-motion__springback'
           />
 
           <path
-            d='M184 244 C304 244 390 250 480 254 C570 250 656 244 776 244'
+            d='M178 288 L302 302 Q390 304 452 346 Q480 366 508 346 Q570 304 658 302 L782 288'
             fill='none'
             stroke='url(#airSheetGradient)'
-            strokeWidth='20'
+            strokeWidth='16'
             strokeLinecap='round'
-            filter='url(#airSoftShadow)'
+            strokeLinejoin='round'
           >
             <animate
               attributeName='d'
@@ -455,17 +551,17 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
               dur='10s'
               repeatCount='indefinite'
               calcMode='spline'
-              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
-              keyTimes='0; 0.45; 0.66; 1'
+              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
+              keyTimes='0; 0.4; 0.55; 0.75; 1'
               ref={(animation) => {
-                sheetAnimationRefs.current[0] = animation
+                sheetAnimationRefs.current[1] = animation
               }}
-              values='M184 244 C304 244 390 250 480 254 C570 250 656 244 776 244; M184 252 C306 252 376 316 480 334 C584 316 654 252 776 252; M184 252 C306 252 376 316 480 334 C584 316 654 252 776 252; M184 244 C304 244 390 250 480 254 C570 250 656 244 776 244'
+              values='M178 298 L302 298 Q390 298 452 298 Q480 298 508 298 Q570 298 658 298 L782 298; M178 292 L302 302 Q390 303 452 319 Q480 328 508 319 Q570 303 658 302 L782 292; M178 288 L302 302 Q390 304 452 346 Q480 366 508 346 Q570 304 658 302 L782 288; M178 288 L302 302 Q390 304 452 338 Q480 352 508 338 Q570 304 658 302 L782 288; M178 298 L302 298 Q390 298 452 298 Q480 298 508 298 Q570 298 658 298 L782 298'
             />
           </path>
 
           <path
-            d='M202 234 C312 234 396 240 480 244 C564 240 648 234 758 234'
+            d='M190 281 L302 295 Q390 296 452 337 Q480 356 508 337 Q570 296 658 295 L770 281'
             fill='none'
             stroke='rgba(255, 255, 255, 0.42)'
             strokeWidth='2'
@@ -477,42 +573,60 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
               dur='10s'
               repeatCount='indefinite'
               calcMode='spline'
-              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
-              keyTimes='0; 0.45; 0.66; 1'
+              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
+              keyTimes='0; 0.4; 0.55; 0.75; 1'
               ref={(animation) => {
-                sheetAnimationRefs.current[1] = animation
+                sheetAnimationRefs.current[2] = animation
               }}
-              values='M202 234 C312 234 396 240 480 244 C564 240 648 234 758 234; M202 242 C312 242 390 304 480 322 C570 304 648 242 758 242; M202 242 C312 242 390 304 480 322 C570 304 648 242 758 242; M202 234 C312 234 396 240 480 244 C564 240 648 234 758 234'
+              values='M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291; M190 285 L302 295 Q390 295 452 311 Q480 320 508 311 Q570 295 658 295 L770 285; M190 281 L302 295 Q390 296 452 337 Q480 356 508 337 Q570 296 658 295 L770 281; M190 281 L302 295 Q390 296 452 329 Q480 342 508 329 Q570 296 658 295 L770 281; M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291'
             />
           </path>
 
           <g className='zyco-air-motion__angle'>
-            <path d='M430 342 A58 58 0 0 0 530 342' fill='none' stroke='#93c5fd' strokeWidth='2' strokeLinecap='round' />
-            <path d='M450 350 L480 320 L510 350' fill='none' stroke='rgba(219, 234, 254, 0.5)' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-            <text x='480' y='394' textAnchor='middle' fill='#bfdbfe' fontSize='15' fontWeight='750'>
-              {diagramLabels.angleFormation}
+            <g className='zyco-air-motion__inside-radius'>
+              <path d='M450 347 Q480 370 510 347' fill='none' stroke='#7dd3fc' strokeWidth='2' strokeLinecap='round' />
+              <path className='zyco-air-motion__leader' d='M506 349 L582 224 L690 214' />
+              <text className='zyco-air-motion__callout' x='698' y='218'>
+                {diagramLabels.insideRadius}
+              </text>
+            </g>
+            <text className='zyco-air-motion__label' x='92' y='112'>
+              {diagramLabels.airBending}
             </text>
           </g>
 
           <g
             className='zyco-air-motion__contact'
-            filter='url(#airContactGlow)'
             fill='#7dd3fc'
-            style={{ transformOrigin: '480px 316px' }}
+            style={{ transformOrigin: '480px 358px' }}
           >
-            <circle cx='480' cy='322' r='7' />
-            <circle cx='304' cy='302' r='7' />
-            <circle cx='656' cy='302' r='7' />
-            <circle cx='480' cy='322' r='18' fill='none' stroke='#7dd3fc' strokeWidth='1.5' opacity='0.42' />
-            <circle cx='304' cy='302' r='18' fill='none' stroke='#7dd3fc' strokeWidth='1.5' opacity='0.42' />
-            <circle cx='656' cy='302' r='18' fill='none' stroke='#7dd3fc' strokeWidth='1.5' opacity='0.42' />
+            <circle cx='480' cy='358' r='5' />
+            <circle cx='302' cy='310' r='5' />
+            <circle cx='658' cy='310' r='5' />
+            <circle cx='302' cy='310' r='11' fill='none' stroke='#7dd3fc' strokeWidth='1.5' opacity='0.6' />
+            <circle cx='658' cy='310' r='11' fill='none' stroke='#7dd3fc' strokeWidth='1.5' opacity='0.6' />
           </g>
 
-          <g fill='#dbeafe' fontSize='14' fontWeight='760' opacity='0.9'>
-            <text x='480' y='44' textAnchor='middle'>{diagramLabels.punchDownstroke}</text>
-            <text x='208' y='298' textAnchor='middle'>{diagramLabels.leftSupport}</text>
-            <text x='752' y='298' textAnchor='middle'>{diagramLabels.rightSupport}</text>
-            <text x='480' y='464' textAnchor='middle'>{diagramLabels.vDieSupport}</text>
+          <g className='zyco-air-motion__label' opacity='0.94'>
+            <text x='480' y='44' textAnchor='middle'>{diagramLabels.punch}</text>
+            <text x='108' y='174'>{diagramLabels.sheetMetal}</text>
+            <path className='zyco-air-motion__leader' d='M100 170 H82 V270 H206 L244 298' />
+            <text x='108' y='208'>{diagramLabels.vDieShoulders}</text>
+            <path className='zyco-air-motion__leader' d='M100 204 H68 V246 H264 L302 310' />
+            <text x='92' y='462'>{diagramLabels.vDie}</text>
+            <path className='zyco-air-motion__leader' d='M152 456 L168 432 L194 410' />
+          </g>
+
+          <g>
+            <text className='zyco-air-motion__callout zyco-air-motion__springback' x='698' y='176'>{diagramLabels.springback}</text>
+            <path className='zyco-air-motion__leader zyco-air-motion__springback' d='M690 180 L664 238 L636 303' />
+          </g>
+
+          <g className='zyco-air-motion__no-bottom'>
+            <path className='zyco-air-motion__leader' d='M480 385 V410 L530 456' />
+            <text className='zyco-air-motion__callout' x='538' y='462'>
+              {diagramLabels.noBottoming}
+            </text>
           </g>
         </svg>
       </div>
