@@ -404,6 +404,10 @@ const relatedTools = [
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
+    key: 'kFactorGuide',
+    href: '/engineering/k-factor-guide',
+  },
+  {
     key: 'bendDeductionGuide',
     href: '/engineering/bend-deduction-guide',
   },

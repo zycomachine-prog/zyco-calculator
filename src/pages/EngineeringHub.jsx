@@ -19,6 +19,11 @@ const tools = [
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
+    key: 'kFactorGuide',
+    status: 'active',
+    href: '/engineering/k-factor-guide',
+  },
+  {
     key: 'bendDeductionGuide',
     status: 'active',
     href: '/engineering/bend-deduction-guide',
@@ -109,6 +114,10 @@ const relatedTools = [
   {
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
+  },
+  {
+    key: 'kFactorGuide',
+    href: '/engineering/k-factor-guide',
   },
   {
     key: 'bendDeductionGuide',
@@ -236,6 +245,12 @@ export default function EngineeringHub({
                 position: 10,
                 name: 'Minimum Flange Length Guide',
                 url: getSiteUrl('/engineering/minimum-flange-length-guide'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 11,
+                name: 'K-Factor Guide',
+                url: getSiteUrl('/engineering/k-factor-guide'),
               },
             ],
           },

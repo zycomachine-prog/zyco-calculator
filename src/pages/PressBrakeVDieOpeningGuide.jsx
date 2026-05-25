@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import VDieOpeningDiagram from '../components/VDieOpeningDiagram.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
   setPageSEO,
@@ -16,6 +17,7 @@ const relatedTools = [
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
+  ['kFactorGuide', '/engineering/k-factor-guide'],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
@@ -1125,6 +1127,7 @@ export default function PressBrakeVDieOpeningGuide({
   }, [])
 
   const page = getPageContent(language)
+  const sharedText = getEngineeringText(language)
 
   return (
     <>
@@ -1731,7 +1734,7 @@ export default function PressBrakeVDieOpeningGuide({
                   href={href}
                   key={key}
                 >
-                  {page.relatedLabels[key]}
+                  {page.relatedLabels[key] || sharedText.relatedTools[key]}
                 </a>
               ))}
             </nav>

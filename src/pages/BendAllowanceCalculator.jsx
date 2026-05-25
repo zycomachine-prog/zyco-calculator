@@ -73,6 +73,10 @@ const relatedTools = [
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
+    key: 'kFactorGuide',
+    href: '/engineering/k-factor-guide',
+  },
+  {
     key: 'bendDeductionGuide',
     href: '/engineering/bend-deduction-guide',
   },
@@ -996,7 +1000,7 @@ export default function BendAllowanceCalculator({
 
               <ul className='zyco-bend__formula'>
                 <li className='zyco-bend__formula-item'>
-                  BA = A x pi / 180 x (R + K x T)
+                  BA = A × π / 180 × (R + K × T)
                 </li>
 
                 <li className='zyco-bend__formula-item'>

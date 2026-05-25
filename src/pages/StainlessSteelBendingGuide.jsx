@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import StainlessSteelBendingDiagram from '../components/StainlessSteelBendingDiagram.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
   setPageSEO,
@@ -16,6 +17,7 @@ const relatedTools = [
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
+  ['kFactorGuide', '/engineering/k-factor-guide'],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
@@ -221,6 +223,7 @@ export default function StainlessSteelBendingGuide({
   setLanguage = () => {},
 }) {
   const page = content[language] || content.en
+  const sharedText = getEngineeringText(language)
 
   useEffect(() => {
     setPageSEO({
@@ -336,7 +339,7 @@ export default function StainlessSteelBendingGuide({
             <h2 className='zyco-stainless__section-title' id='stainless-related'>{page.relatedTitle}</h2>
             <nav className='zyco-stainless__tools' aria-label={page.relatedAria}>
               {relatedTools.map(([key, href]) => (
-                <a className='zyco-stainless__tool' href={href} key={key}>{page.relatedLabels[key]}</a>
+                <a className='zyco-stainless__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>
               ))}
             </nav>
           </section>

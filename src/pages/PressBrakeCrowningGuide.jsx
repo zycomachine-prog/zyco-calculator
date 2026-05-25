@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import CrowningDiagram from '../components/CrowningDiagram.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
   setPageSEO,
@@ -16,6 +17,7 @@ const relatedTools = [
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
+  ['kFactorGuide', '/engineering/k-factor-guide'],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
@@ -258,6 +260,7 @@ export default function PressBrakeCrowningGuide({
   setLanguage = () => {},
 }) {
   const page = content[language] || content.en
+  const sharedText = getEngineeringText(language)
 
   useEffect(() => {
     setPageSEO({
@@ -436,7 +439,7 @@ export default function PressBrakeCrowningGuide({
             <h2 className='zyco-crowning__section-title' id='crowning-related'>{page.relatedTitle}</h2>
             <nav className='zyco-crowning__tools' aria-label={page.relatedAria}>
               {relatedTools.map(([key, href]) => (
-                <a className='zyco-crowning__tool' href={href} key={key}>{page.relatedLabels[key]}</a>
+                <a className='zyco-crowning__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>
               ))}
             </nav>
           </section>

@@ -47,6 +47,10 @@ const relatedEngineeringTools = [
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
+    labelKey: 'kFactorGuide',
+    href: '/engineering/k-factor-guide',
+  },
+  {
     labelKey: 'bendDeductionGuide',
     href: '/engineering/bend-deduction-guide',
   },
@@ -179,6 +183,12 @@ relatedToolFallbackLabels.ru.bendDeductionGuide = 'Руководство по �
 relatedToolFallbackLabels.es.bendDeductionGuide = 'Guía de deducción de plegado'
 relatedToolFallbackLabels.tr.bendDeductionGuide = 'Büküm Düşümü Kılavuzu'
 relatedToolFallbackLabels.id.bendDeductionGuide = 'Panduan Bend Deduction'
+relatedToolFallbackLabels.en.kFactorGuide = 'K-Factor Guide'
+relatedToolFallbackLabels.zh.kFactorGuide = 'K因子指南'
+relatedToolFallbackLabels.ru.kFactorGuide = 'Руководство по K-фактору'
+relatedToolFallbackLabels.es.kFactorGuide = 'Guía del factor K'
+relatedToolFallbackLabels.tr.kFactorGuide = 'K-Faktörü Kılavuzu'
+relatedToolFallbackLabels.id.kFactorGuide = 'Panduan K-Factor'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

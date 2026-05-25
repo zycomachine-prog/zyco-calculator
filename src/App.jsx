@@ -16,6 +16,7 @@ import { getStoredLanguage } from './languages/engineeringText.js'
 const AirBendingGuide = lazy(() => import('./pages/AirBendingGuide.jsx'))
 const BendAllowanceCalculator = lazy(() => import('./pages/BendAllowanceCalculator.jsx'))
 const BendDeductionGuide = lazy(() => import('./pages/BendDeductionGuide.jsx'))
+const KFactorGuide = lazy(() => import('./pages/KFactorGuide.jsx'))
 const EngineeringHub = lazy(() => import('./pages/EngineeringHub.jsx'))
 const InsideRadiusGuide = lazy(() => import('./pages/InsideRadiusGuide.jsx'))
 const MaterialDatabase = lazy(() => import('./pages/MaterialDatabase.jsx'))
@@ -91,6 +92,11 @@ export default function App() {
           <Route
             path='/engineering/bend-deduction-guide'
             element={<BendDeductionGuide {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering/k-factor-guide'
+            element={<KFactorGuide {...languageProps} />}
           />
 
           <Route

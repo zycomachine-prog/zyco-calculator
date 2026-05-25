@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import ToolingSelectionDiagramSystem from '../components/ToolingSelectionDiagramSystem.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
   setPageSEO,
@@ -16,6 +17,7 @@ const relatedTools = [
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
+  ['kFactorGuide', '/engineering/k-factor-guide'],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
@@ -547,6 +549,7 @@ export default function PressBrakeToolingSelectionGuide({
   setLanguage = () => {},
 }) {
   const page = content[language] || content.en
+  const sharedText = getEngineeringText(language)
 
   useEffect(() => {
     setPageSEO({
@@ -917,7 +920,7 @@ export default function PressBrakeToolingSelectionGuide({
                   href={href}
                   key={key}
                 >
-                  {page.relatedLabels[key]}
+                  {page.relatedLabels[key] || sharedText.relatedTools[key]}
                 </a>
               ))}
             </nav>

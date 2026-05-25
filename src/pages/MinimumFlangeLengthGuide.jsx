@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import MinimumFlangeDiagram from '../components/MinimumFlangeDiagram.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 import { getSiteUrl, setPageSEO, setStructuredData } from '../utils/seo.js'
 
 const routePath = '/engineering/minimum-flange-length-guide'
@@ -11,6 +12,7 @@ const relatedTools = [
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
+  ['kFactorGuide', '/engineering/k-factor-guide'],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
@@ -139,6 +141,7 @@ function Card({ title, text }) { return <article className='zyco-flange__card'><
 
 export default function MinimumFlangeLengthGuide({ language = 'en', setLanguage = () => {} }) {
   const page = content[language] || content.en
+  const sharedText = getEngineeringText(language)
   useEffect(() => {
     setPageSEO({ title: `${content.en.title} | ZYCO Engineering Hub`, description: content.en.seoDescription, keywords: content.en.keywords, canonicalPath: routePath })
     setStructuredData({ id: 'minimum-flange-length-guide-jsonld', data: createStructuredData() })
@@ -200,7 +203,7 @@ export default function MinimumFlangeLengthGuide({ language = 'en', setLanguage 
             <section className='zyco-flange__panel' aria-labelledby='flange-notes'><h2 className='zyco-flange__section-title' id='flange-notes'>{page.notes.title}</h2><ul className='zyco-flange__list'>{page.notes.items.map((item) => <li className='zyco-flange__copy' key={item}>{item}</li>)}</ul></section>
           </div>
           <section className='zyco-flange__panel' aria-labelledby='flange-faq'><h2 className='zyco-flange__section-title' id='flange-faq'>{page.faqTitle}</h2><div className='zyco-flange__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p className='zyco-flange__copy'>{answer}</p></article>)}</div></section>
-          <section className='zyco-flange__panel' aria-labelledby='flange-related'><h2 className='zyco-flange__section-title' id='flange-related'>{page.relatedTitle}</h2><nav className='zyco-flange__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-flange__tool' href={href} key={key}>{page.relatedLabels[key]}</a>)}</nav></section>
+          <section className='zyco-flange__panel' aria-labelledby='flange-related'><h2 className='zyco-flange__section-title' id='flange-related'>{page.relatedTitle}</h2><nav className='zyco-flange__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-flange__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>)}</nav></section>
         </div>
       </main>
     </>
