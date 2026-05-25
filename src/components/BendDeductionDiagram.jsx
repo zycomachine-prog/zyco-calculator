@@ -7,10 +7,33 @@ const formedDimensionNotes = {
   'referensi dimensi luar': ['Dimensi luar harus dikoreksi', 'menggunakan BA / BD'],
 }
 
+const wrapLabel = (label, maxLength) => {
+  if (label.length <= maxLength || !label.includes(' ')) return [label]
+
+  return label.split(' ').reduce((lines, word) => {
+    const current = lines[lines.length - 1]
+
+    if (!current || `${current} ${word}`.length > maxLength) {
+      lines.push(word)
+    } else {
+      lines[lines.length - 1] = `${current} ${word}`
+    }
+
+    return lines
+  }, [])
+}
+
 export default function BendDeductionDiagram({ labels }) {
   const formedDimensionNote =
     formedDimensionNotes[labels.formedCaption] ||
     formedDimensionNotes['outside-dimension reference']
+  const thicknessLabelLines = wrapLabel(labels.thickness, 15)
+  const insideRadiusLabelLines = wrapLabel(labels.insideRadius, 14)
+  const neutralAxisLabelLines = wrapLabel(labels.neutralAxis, 14)
+  const calloutFontSize =
+    Math.max(labels.insideRadius.length, labels.neutralAxis.length) > 14
+      ? 11
+      : 12
 
   return (
     <section className='zyco-bd-diagram' aria-labelledby='bd-diagram-title'>
@@ -78,7 +101,7 @@ export default function BendDeductionDiagram({ labels }) {
               stroke='#bfdbfe'
               strokeWidth='1.2'
             />
-            <path className='zyco-bd-diagram__neutral' d='M156 426 V210 A58 58 0 0 1 214 152 H426' fill='none' stroke='#0ea5e9' strokeWidth='2.6'/>
+            <path className='zyco-bd-diagram__neutral' d='M160 426 V210 A54 54 0 0 1 214 156 H426' fill='none' stroke='#0ea5e9' strokeWidth='2.6'/>
             <path className='zyco-bd-diagram__focus' d='M170 210 A44 44 0 0 1 214 166' fill='none' stroke='#38bdf8' strokeWidth='3.5' filter='url(#bdGlow)'/>
 
             {/* Virtual outside corner and tangent points establish the setback. */}
@@ -103,16 +126,28 @@ export default function BendDeductionDiagram({ labels }) {
             <text x='178' y='108' textAnchor='middle' fill='#7dd3fc' fontSize='12' fontWeight='800'>{labels.ossb}</text>
 
             {/* Leaders land on the inside arc and the dashed neutral arc. */}
-            <path d='M185 181 L272 236 H385' fill='none' stroke='#93c5fd' markerStart='url(#bdArrow)'/>
-            <text x='391' y='240' fill='#dbeafe' fontSize='13' fontWeight='700'>{labels.insideRadius}</text>
-            <path d='M163 189 L246 284 H385' fill='none' stroke='#38bdf8' markerStart='url(#bdCyanArrow)'/>
-            <text x='391' y='288' fill='#7dd3fc' fontSize='13' fontWeight='700'>{labels.neutralAxis}</text>
+            <path d='M185 181 L246 236 H305' fill='none' stroke='#93c5fd' markerStart='url(#bdArrow)'/>
+            <text x='312' y='240' fill='#dbeafe' fontSize={calloutFontSize} fontWeight='700'>
+              {insideRadiusLabelLines.map((line, index) => (
+                <tspan x='312' dy={index === 0 ? 0 : 14} key={line}>{line}</tspan>
+              ))}
+            </text>
+            <path d='M160 278 L238 284 H305' fill='none' stroke='#38bdf8' markerStart='url(#bdCyanArrow)'/>
+            <text x='312' y='288' fill='#7dd3fc' fontSize={calloutFontSize} fontWeight='700'>
+              {neutralAxisLabelLines.map((line, index) => (
+                <tspan x='312' dy={index === 0 ? 0 : 14} key={line}>{line}</tspan>
+              ))}
+            </text>
 
-            {/* Thickness is measured across the horizontal sheet cross-section. */}
+            {/* Thickness is measured across the sheet; its label sits in clear space below the flange. */}
             <path d='M347 138 V166' fill='none' stroke='#93c5fd' markerStart='url(#bdArrow)' markerEnd='url(#bdArrow)'/>
             <path d='M333 138 H359 M333 166 H359' stroke='#93c5fd' strokeWidth='1.2'/>
-            <path d='M359 151 H390' stroke='#93c5fd' strokeWidth='1.2'/>
-            <text x='395' y='155' fill='#dbeafe' fontSize='12' fontWeight='700'>{labels.thickness}</text>
+            <path d='M359 166 V184 H398' fill='none' stroke='#93c5fd' strokeWidth='1.2'/>
+            <text x='405' y='188' fill='#dbeafe' fontSize={calloutFontSize} fontWeight='700'>
+              {thicknessLabelLines.map((line, index) => (
+                <tspan x='405' dy={index === 0 ? 0 : 14} key={line}>{line}</tspan>
+              ))}
+            </text>
 
             <rect x='57' y='505' width='391' height='58' rx='16' fill='rgba(37,99,235,.13)' stroke='rgba(125,211,252,.18)'/>
             <text x='252' y='534' textAnchor='middle' dominantBaseline='middle' fill='#93c5fd' fontSize='12' fontWeight='750'>
@@ -141,7 +176,7 @@ export default function BendDeductionDiagram({ labels }) {
             <rect x='48' y='156' width='409' height='58' rx='7' fill='url(#bdFlat)' stroke='#e0f2fe' strokeWidth='1.3'/>
             <rect className='zyco-bd-diagram__focus' x='211' y='156' width='78' height='58' fill='url(#bdAllowance)' opacity='.92' filter='url(#bdGlow)'/>
             <path d='M211 149 V221 M289 149 V221' stroke='#38bdf8' strokeWidth='1.5' strokeDasharray='4 4'/>
-            <path className='zyco-bd-diagram__neutral' d='M48 185 H457' fill='none' stroke='#0ea5e9' strokeWidth='2'/>
+            <path className='zyco-bd-diagram__neutral' d='M48 191 H457' fill='none' stroke='#0ea5e9' strokeWidth='2'/>
 
             <text x='130' y='185' textAnchor='middle' dominantBaseline='central' fill='#0b2143' fontSize='18' fontWeight='900'>A</text>
             <text x='250' y='185' textAnchor='middle' dominantBaseline='central' fill='#ffffff' fontSize='15' fontWeight='900'>BA</text>

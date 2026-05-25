@@ -80,7 +80,7 @@ export default function KFactorNeutralAxisDiagram({ labels }) {
             <text x='310' y='40' fill='#bae6fd' textAnchor='middle' fontSize='18' fontWeight='800'>{labels.bentSection}</text>
 
             <path d='M156 462 V242 A92 92 0 0 1 248 150 H507 V192 H248 A50 50 0 0 0 198 242 V462 Z' fill='url(#kSheet)' stroke='#e0f2fe' strokeWidth='1.4'/>
-            <path className='zyco-kdiagram__neutral' d='M178 462 V242 A70 70 0 0 1 248 172 H507' fill='none' stroke='#0ea5e9' strokeWidth='3' filter='url(#kGlow)'/>
+            <path className='zyco-kdiagram__neutral' d='M184 462 V242 A64 64 0 0 1 248 178 H507' fill='none' stroke='#0ea5e9' strokeWidth='3' filter='url(#kGlow)'/>
             <path d='M198 242 A50 50 0 0 1 248 192' fill='none' stroke='#38bdf8' strokeWidth='3.2'/>
 
             {/* T spans the full sheet thickness and is labeled above clear space. */}
@@ -89,8 +89,8 @@ export default function KFactorNeutralAxisDiagram({ labels }) {
             <DiagramLabel label={`T - ${labels.thickness}`} x='292' y='106' fill='#dbeafe' fontSize='13' fontWeight='750' textAnchor='middle' maxLength={22}/>
 
             {/* t measures only from the inside surface to the dashed neutral axis. */}
-            <path d='M352 192 V172' fill='none' stroke='#38bdf8' markerStart='url(#kCyanArrow)' markerEnd='url(#kCyanArrow)'/>
-            <path d='M344 192 H362 M344 172 H362 M352 200 V211' stroke='#38bdf8' fill='none'/>
+            <path d='M352 192 V178' fill='none' stroke='#38bdf8' markerStart='url(#kCyanArrow)' markerEnd='url(#kCyanArrow)'/>
+            <path d='M344 192 H362 M344 178 H362 M352 200 V211' stroke='#38bdf8' fill='none'/>
             <DiagramLabel label={`t - ${labels.offset}`} x='352' y='228' fill='#7dd3fc' fontSize='12' fontWeight='750' textAnchor='middle' maxLength={22}/>
 
             {/* Each leader terminates on its own engineering feature. */}
@@ -100,7 +100,7 @@ export default function KFactorNeutralAxisDiagram({ labels }) {
             <path d='M214 214 L278 302 H440' fill='none' stroke='#38bdf8' markerStart='url(#kCyanArrow)'/>
             <DiagramLabel label={`R - ${labels.insideRadius}`} x='448' y='306' fill='#7dd3fc' maxLength={18}/>
 
-            <path d='M178 356 H286 L352 356 H440' fill='none' stroke='#38bdf8' markerStart='url(#kCyanArrow)'/>
+            <path d='M184 356 H286 L352 356 H440' fill='none' stroke='#38bdf8' markerStart='url(#kCyanArrow)'/>
             <DiagramLabel label={labels.neutralAxis} x='448' y='360' fill='#7dd3fc' maxLength={17}/>
 
             <rect x='52' y='500' width='516' height='50' rx='14' fill='rgba(37,99,235,.18)' stroke='rgba(125,211,252,.26)'/>
@@ -113,7 +113,7 @@ export default function KFactorNeutralAxisDiagram({ labels }) {
 
             <rect x='43' y='112' width='308' height='54' rx='8' fill='url(#kSheet)' stroke='#e0f2fe'/>
             <rect x='150' y='112' width='94' height='54' rx='4' fill='url(#kBa)' filter='url(#kGlow)'/>
-            <path className='zyco-kdiagram__neutral' d='M43 139 H351' stroke='#0ea5e9' strokeWidth='2.2'/>
+            <path className='zyco-kdiagram__neutral' d='M43 146 H351' stroke='#0ea5e9' strokeWidth='2.2'/>
             <path d='M150 184 H244' stroke='#38bdf8' markerStart='url(#kCyanArrow)' markerEnd='url(#kCyanArrow)'/>
             <text x='197' y='209' fill='#7dd3fc' textAnchor='middle' fontSize='14' fontWeight='800'>{labels.baArc}</text>
             <text x='197' y='257' fill='#eff6ff' textAnchor='middle' fontSize='17' fontWeight='850'>BA = A × π / 180</text>
