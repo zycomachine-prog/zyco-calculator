@@ -17,6 +17,7 @@ const relatedTools = [
   ['vDieSelectionTool', '/engineering-tools/v-die-selection'],
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
+  ['springbackCompensationGuide', '/springback-compensation-guide'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
   ['kFactorGuide', routePath],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],

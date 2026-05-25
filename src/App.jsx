@@ -28,6 +28,7 @@ const MinimumFlangeLengthGuide = lazy(() => import('./pages/MinimumFlangeLengthG
 const StainlessSteelBendingGuide = lazy(() => import('./pages/StainlessSteelBendingGuide.jsx'))
 const AluminumBendingGuide = lazy(() => import('./pages/AluminumBendingGuide.jsx'))
 const SpringbackDatabase = lazy(() => import('./pages/SpringbackDatabase.jsx'))
+const SpringbackCompensationGuide = lazy(() => import('./pages/SpringbackCompensationGuide.jsx'))
 const VDieSelection = lazy(() => import('./pages/VDieSelection.jsx'))
 
 export default function App() {
@@ -107,6 +108,11 @@ export default function App() {
           <Route
             path='/engineering-tools/springback-database'
             element={<SpringbackDatabase {...languageProps} />}
+          />
+
+          <Route
+            path='/springback-compensation-guide'
+            element={<SpringbackCompensationGuide {...languageProps} />}
           />
 
           <Route

@@ -43,6 +43,10 @@ const relatedEngineeringTools = [
     href: '/engineering-tools/springback-database',
   },
   {
+    labelKey: 'springbackCompensationGuide',
+    href: '/springback-compensation-guide',
+  },
+  {
     labelKey: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
@@ -108,6 +112,17 @@ const relatedToolFallbackLabels = {
     airBendingGuide: 'Panduan Air Bending',
   },
 }
+
+relatedToolFallbackLabels.en.springbackCompensationGuide = 'Springback Compensation Guide'
+relatedToolFallbackLabels.zh.springbackCompensationGuide = '回弹补偿指南'
+relatedToolFallbackLabels.ru.springbackCompensationGuide =
+  'Руководство по компенсации пружинения'
+relatedToolFallbackLabels.es.springbackCompensationGuide =
+  'Guía de compensación de recuperación elástica'
+relatedToolFallbackLabels.tr.springbackCompensationGuide =
+  'Geri Esneme Kompanzasyonu Kılavuzu'
+relatedToolFallbackLabels.id.springbackCompensationGuide =
+  'Panduan Kompensasi Springback'
 
 relatedToolFallbackLabels.en.pressBrakeTonnageGuide = 'Press Brake Tonnage Guide'
 relatedToolFallbackLabels.zh.pressBrakeTonnageGuide = '折弯机吨位指南'

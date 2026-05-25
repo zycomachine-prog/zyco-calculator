@@ -39,6 +39,11 @@ const tools = [
     href: '/engineering-tools/springback-database',
   },
   {
+    key: 'springbackCompensationGuide',
+    status: 'active',
+    href: '/springback-compensation-guide',
+  },
+  {
     key: 'vDieSelectionTool',
     status: 'active',
     href: '/engineering-tools/v-die-selection',
@@ -110,6 +115,10 @@ const relatedTools = [
   {
     key: 'springbackDatabase',
     href: '/engineering-tools/springback-database',
+  },
+  {
+    key: 'springbackCompensationGuide',
+    href: '/springback-compensation-guide',
   },
   {
     key: 'bendAllowanceCalculator',
@@ -219,36 +228,42 @@ export default function EngineeringHub({
               {
                 '@type': 'ListItem',
                 position: 6,
+                name: 'Springback Compensation Guide',
+                url: getSiteUrl('/springback-compensation-guide'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 7,
                 name: 'Bend Allowance Calculator',
                 url: getSiteUrl('/engineering-tools/bend-allowance-calculator'),
               },
               {
                 '@type': 'ListItem',
-                position: 7,
+                position: 8,
                 name: 'Air Bending Guide',
                 url: getSiteUrl('/engineering-tools/air-bending-guide'),
               },
               {
                 '@type': 'ListItem',
-                position: 8,
+                position: 9,
                 name: 'Press Brake Tooling Selection Guide',
                 url: getSiteUrl('/engineering/press-brake-tooling-selection-guide'),
               },
               {
                 '@type': 'ListItem',
-                position: 9,
+                position: 10,
                 name: 'Press Brake Crowning Guide',
                 url: getSiteUrl('/engineering/press-brake-crowning-guide'),
               },
               {
                 '@type': 'ListItem',
-                position: 10,
+                position: 11,
                 name: 'Minimum Flange Length Guide',
                 url: getSiteUrl('/engineering/minimum-flange-length-guide'),
               },
               {
                 '@type': 'ListItem',
-                position: 11,
+                position: 12,
                 name: 'K-Factor Guide',
                 url: getSiteUrl('/engineering/k-factor-guide'),
               },

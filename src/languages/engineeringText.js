@@ -86,6 +86,13 @@ relatedTools.es.airBendingGuide = 'Guía de Air Bending'
 relatedTools.tr.airBendingGuide = 'Air Bending kılavuzu'
 relatedTools.id.airBendingGuide = 'Panduan Air Bending'
 
+relatedTools.en.springbackCompensationGuide = 'Springback Compensation Guide'
+relatedTools.zh.springbackCompensationGuide = '回弹补偿指南'
+relatedTools.ru.springbackCompensationGuide = 'Руководство по компенсации пружинения'
+relatedTools.es.springbackCompensationGuide = 'Guía de compensación de recuperación elástica'
+relatedTools.tr.springbackCompensationGuide = 'Geri Esneme Kompanzasyonu Kılavuzu'
+relatedTools.id.springbackCompensationGuide = 'Panduan Kompensasi Springback'
+
 relatedTools.en.pressBrakeTonnageGuide = 'Press Brake Tonnage Guide'
 relatedTools.zh.pressBrakeTonnageGuide = '折弯机吨位指南'
 relatedTools.ru.pressBrakeTonnageGuide = 'Руководство по тоннажу листогибочного пресса'
@@ -486,6 +493,7 @@ const pages = {
           'Yield strength, tensile strength, K-factor and bending properties',
         ],
         ['springbackDatabase', 'Industrial springback reference system'],
+        ['springbackCompensationGuide', 'Learn how to compensate sheet metal springback using press brake angle correction, overbending, material behavior, V-die selection and practical trial bending experience'],
         ['vDieSelectionTool', 'Recommended V opening and tooling selection'],
         [
           'insideRadiusGuide',
@@ -762,6 +770,7 @@ const localizedOverrides = {
         ['bendDeductionGuide', '用于折弯扣除量、外形尺寸、K 因子与试折校准展开的工程指南'],
         ['materialDatabase', '汇总屈服强度、抗拉强度、K 因子和折弯性能参考'],
         ['springbackDatabase', '按材料整理的工业回弹参考数据'],
+        ['springbackCompensationGuide', '了解如何根据材料回弹、折弯角度修正、过弯补偿、V 模选择和试折经验来控制钣金折弯角度'],
         ['vDieSelectionTool', '用于选择推荐 V 开口和模具方案'],
         ['insideRadiusGuide', '用于查询内折弯半径和最小半径参考'],
         ['pressBrakeTonnageGuide', '折弯力与设备能力选型的实用参考指南'],
@@ -1022,6 +1031,7 @@ const localizedOverrides = {
         ['bendDeductionGuide', 'Руководство по вычету гиба, наружным размерам, K-фактору и проверенной развертке'],
         ['materialDatabase', 'Предел текучести, прочность, K-фактор и свойства гибки'],
         ['springbackDatabase', 'Промышленный справочник по пружинению'],
+        ['springbackCompensationGuide', 'Практическая компенсация пружинения: коррекция угла, перегиб, выбор V-матрицы и подтвержденная пробная гибка'],
         ['vDieSelectionTool', 'Рекомендации по раскрытию V-матрицы и выбору оснастки'],
         ['insideRadiusGuide', 'Справка по внутреннему и минимальному радиусу гибки'],
         ['pressBrakeTonnageGuide', 'Практическое руководство по усилию гибки и выбору мощности станка'],
@@ -1221,6 +1231,7 @@ const localizedOverrides = {
         ['bendDeductionGuide', 'Guía técnica de deducción, cotas exteriores, factor K y patrón plano verificado'],
         ['materialDatabase', 'Límite elástico, resistencia, K-Factor y propiedades de plegado'],
         ['springbackDatabase', 'Sistema industrial de referencia de recuperación elástica'],
+        ['springbackCompensationGuide', 'Compensación práctica del retorno elástico mediante corrección angular, sobreplegado, matriz V y pliegues de prueba'],
         ['vDieSelectionTool', 'Abertura V recomendada y selección de utillaje'],
         ['insideRadiusGuide', 'Referencia de radio interior y radio mínimo'],
         ['pressBrakeTonnageGuide', 'Guía práctica para fuerza de plegado y selección de capacidad de máquina'],
@@ -1424,6 +1435,7 @@ const localizedOverrides = {
         ['bendDeductionGuide', 'Büküm düşümü, dış ölçüler, K-faktörü ve doğrulanmış açınım için mühendislik kılavuzu'],
         ['materialDatabase', 'Akma dayanımı, çekme dayanımı, K-Faktörü ve bükme özellikleri'],
         ['springbackDatabase', 'Endüstriyel geri esneme referans sistemi'],
+        ['springbackCompensationGuide', 'Açı düzeltmesi, aşırı büküm, V kalıp seçimi ve deneme bükümü ile geri esneme kompanzasyonu'],
         ['vDieSelectionTool', 'Önerilen V açıklığı ve takım seçimi'],
         ['insideRadiusGuide', 'İç büküm radyüsü ve minimum radyüs referansı'],
         ['pressBrakeTonnageGuide', 'Bükme kuvveti ve makine kapasitesi seçimi için pratik kılavuz'],
@@ -1624,6 +1636,7 @@ const localizedOverrides = {
         ['bendDeductionGuide', 'Panduan teknik bend deduction, dimensi luar, K-factor, dan flat pattern tervalidasi'],
         ['materialDatabase', 'Yield strength, tensile strength, K-Factor, dan properti bending'],
         ['springbackDatabase', 'Sistem referensi springback industri'],
+        ['springbackCompensationGuide', 'Kompensasi springback praktis melalui koreksi sudut, overbending, pemilihan V-die, dan trial bending'],
         ['vDieSelectionTool', 'Bukaan V rekomendasi dan pemilihan tooling'],
         ['insideRadiusGuide', 'Referensi radius dalam dan radius minimum'],
         ['pressBrakeTonnageGuide', 'Panduan praktis gaya bending dan pemilihan kapasitas mesin'],

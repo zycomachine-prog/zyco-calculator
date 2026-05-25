@@ -75,6 +75,10 @@ const relatedTools = [
     href: '/engineering-tools/springback-database',
   },
   {
+    key: 'springbackCompensationGuide',
+    href: '/springback-compensation-guide',
+  },
+  {
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
