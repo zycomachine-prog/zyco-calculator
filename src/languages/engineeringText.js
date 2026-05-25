@@ -128,6 +128,12 @@ relatedTools.ru.minimumFlangeLengthGuide = 'Руководство по мини
 relatedTools.es.minimumFlangeLengthGuide = 'Guía de longitud mínima de pestaña'
 relatedTools.tr.minimumFlangeLengthGuide = 'Minimum Flanş Boyu Kılavuzu'
 relatedTools.id.minimumFlangeLengthGuide = 'Panduan Panjang Flange Minimum'
+relatedTools.en.bendDeductionGuide = 'Bend Deduction Guide'
+relatedTools.zh.bendDeductionGuide = '折弯扣除量指南'
+relatedTools.ru.bendDeductionGuide = 'Руководство по вычету гиба'
+relatedTools.es.bendDeductionGuide = 'Guía de deducción de plegado'
+relatedTools.tr.bendDeductionGuide = 'Büküm Düşümü Kılavuzu'
+relatedTools.id.bendDeductionGuide = 'Panduan Bend Deduction'
 
 const materialNames = {
   en: {
@@ -467,6 +473,7 @@ const pages = {
           'bendAllowanceCalculator',
           'Sheet metal bend allowance, bend deduction and flat pattern reference',
         ],
+        ['bendDeductionGuide', 'Engineering guide to bend deduction, outside dimensions, K-factor and verified flat patterns'],
         [
           'materialDatabase',
           'Yield strength, tensile strength, K-factor and bending properties',
@@ -744,6 +751,7 @@ const localizedOverrides = {
       tools: [
         ['pressBrakeCalculator', '用于估算折弯力和设备吨位的专业计算工具'],
         ['bendAllowanceCalculator', '用于钣金展开量、折弯扣除和展开尺寸参考'],
+        ['bendDeductionGuide', '用于折弯扣除量、外形尺寸、K 因子与试折校准展开的工程指南'],
         ['materialDatabase', '汇总屈服强度、抗拉强度、K 因子和折弯性能参考'],
         ['springbackDatabase', '按材料整理的工业回弹参考数据'],
         ['vDieSelectionTool', '用于选择推荐 V 开口和模具方案'],
@@ -1002,6 +1010,7 @@ const localizedOverrides = {
       tools: [
         ['pressBrakeCalculator', 'Профессиональный расчет усилия гибки'],
         ['bendAllowanceCalculator', 'Припуск на гиб, вычет гиба и справка по развертке листа'],
+        ['bendDeductionGuide', 'Руководство по вычету гиба, наружным размерам, K-фактору и проверенной развертке'],
         ['materialDatabase', 'Предел текучести, прочность, K-фактор и свойства гибки'],
         ['springbackDatabase', 'Промышленный справочник по пружинению'],
         ['vDieSelectionTool', 'Рекомендации по раскрытию V-матрицы и выбору оснастки'],
@@ -1199,6 +1208,7 @@ const localizedOverrides = {
       tools: [
         ['pressBrakeCalculator', 'Sistema profesional para calcular la fuerza de plegado'],
         ['bendAllowanceCalculator', 'Desarrollo, deducción de plegado y referencia de patrón plano'],
+        ['bendDeductionGuide', 'Guía técnica de deducción, cotas exteriores, factor K y patrón plano verificado'],
         ['materialDatabase', 'Límite elástico, resistencia, K-Factor y propiedades de plegado'],
         ['springbackDatabase', 'Sistema industrial de referencia de recuperación elástica'],
         ['vDieSelectionTool', 'Abertura V recomendada y selección de utillaje'],
@@ -1400,6 +1410,7 @@ const localizedOverrides = {
       tools: [
         ['pressBrakeCalculator', 'Profesyonel bükme kuvveti hesaplama sistemi'],
         ['bendAllowanceCalculator', 'Sac büküm payı, büküm düşümü ve açınım referansı'],
+        ['bendDeductionGuide', 'Büküm düşümü, dış ölçüler, K-faktörü ve doğrulanmış açınım için mühendislik kılavuzu'],
         ['materialDatabase', 'Akma dayanımı, çekme dayanımı, K-Faktörü ve bükme özellikleri'],
         ['springbackDatabase', 'Endüstriyel geri esneme referans sistemi'],
         ['vDieSelectionTool', 'Önerilen V açıklığı ve takım seçimi'],
@@ -1598,6 +1609,7 @@ const localizedOverrides = {
       tools: [
         ['pressBrakeCalculator', 'Sistem profesional untuk menghitung gaya bending'],
         ['bendAllowanceCalculator', 'Bend allowance, bend deduction, dan referensi flat pattern'],
+        ['bendDeductionGuide', 'Panduan teknik bend deduction, dimensi luar, K-factor, dan flat pattern tervalidasi'],
         ['materialDatabase', 'Yield strength, tensile strength, K-Factor, dan properti bending'],
         ['springbackDatabase', 'Sistem referensi springback industri'],
         ['vDieSelectionTool', 'Bukaan V rekomendasi dan pemilihan tooling'],

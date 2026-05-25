@@ -47,6 +47,10 @@ const relatedEngineeringTools = [
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
+    labelKey: 'bendDeductionGuide',
+    href: '/engineering/bend-deduction-guide',
+  },
+  {
     labelKey: 'airBendingGuide',
     href: '/engineering-tools/air-bending-guide',
   },
@@ -169,6 +173,12 @@ relatedToolFallbackLabels.es.minimumFlangeLengthGuide =
   'Guía de longitud mínima de pestaña'
 relatedToolFallbackLabels.tr.minimumFlangeLengthGuide = 'Minimum Flanş Boyu Kılavuzu'
 relatedToolFallbackLabels.id.minimumFlangeLengthGuide = 'Panduan Panjang Flange Minimum'
+relatedToolFallbackLabels.en.bendDeductionGuide = 'Bend Deduction Guide'
+relatedToolFallbackLabels.zh.bendDeductionGuide = '折弯扣除量指南'
+relatedToolFallbackLabels.ru.bendDeductionGuide = 'Руководство по вычету гиба'
+relatedToolFallbackLabels.es.bendDeductionGuide = 'Guía de deducción de plegado'
+relatedToolFallbackLabels.tr.bendDeductionGuide = 'Büküm Düşümü Kılavuzu'
+relatedToolFallbackLabels.id.bendDeductionGuide = 'Panduan Bend Deduction'
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {

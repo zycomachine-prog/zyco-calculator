@@ -404,6 +404,10 @@ const relatedTools = [
     href: '/engineering-tools/bend-allowance-calculator',
   },
   {
+    key: 'bendDeductionGuide',
+    href: '/engineering/bend-deduction-guide',
+  },
+  {
     key: 'airBendingGuide',
     href: '/engineering-tools/air-bending-guide',
   },
