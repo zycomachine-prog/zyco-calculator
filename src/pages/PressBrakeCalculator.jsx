@@ -63,6 +63,10 @@ const relatedEngineeringTools = [
     href: '/engineering-tools/air-bending-guide',
   },
   {
+    labelKey: 'bottomingVsCoiningGuide',
+    href: '/engineering-tools/bottoming-vs-coining-guide',
+  },
+  {
     labelKey: 'pressBrakeTonnageGuide',
     href: '/engineering/press-brake-tonnage-guide',
   },
@@ -112,6 +116,13 @@ const relatedToolFallbackLabels = {
     airBendingGuide: 'Panduan Air Bending',
   },
 }
+
+relatedToolFallbackLabels.en.bottomingVsCoiningGuide = 'Bottoming vs Coining Guide'
+relatedToolFallbackLabels.zh.bottomingVsCoiningGuide = '压底折弯与压印折弯指南'
+relatedToolFallbackLabels.ru.bottomingVsCoiningGuide = 'Bottoming и Coining: руководство'
+relatedToolFallbackLabels.es.bottomingVsCoiningGuide = 'Guía de Bottoming y Coining'
+relatedToolFallbackLabels.tr.bottomingVsCoiningGuide = 'Bottoming ve Coining Kılavuzu'
+relatedToolFallbackLabels.id.bottomingVsCoiningGuide = 'Panduan Bottoming vs Coining'
 
 relatedToolFallbackLabels.en.springbackCompensationGuide = 'Springback Compensation Guide'
 relatedToolFallbackLabels.zh.springbackCompensationGuide = '回弹补偿指南'

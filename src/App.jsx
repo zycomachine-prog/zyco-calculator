@@ -14,6 +14,7 @@ import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
 import { getStoredLanguage } from './languages/engineeringText.js'
 
 const AirBendingGuide = lazy(() => import('./pages/AirBendingGuide.jsx'))
+const BottomingVsCoiningGuide = lazy(() => import('./pages/BottomingVsCoiningGuide.jsx'))
 const BendAllowanceCalculator = lazy(() => import('./pages/BendAllowanceCalculator.jsx'))
 const BendDeductionGuide = lazy(() => import('./pages/BendDeductionGuide.jsx'))
 const KFactorGuide = lazy(() => import('./pages/KFactorGuide.jsx'))
@@ -123,6 +124,11 @@ export default function App() {
           <Route
             path='/engineering-tools/air-bending-guide'
             element={<AirBendingGuide {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering-tools/bottoming-vs-coining-guide'
+            element={<BottomingVsCoiningGuide {...languageProps} />}
           />
 
           <Route

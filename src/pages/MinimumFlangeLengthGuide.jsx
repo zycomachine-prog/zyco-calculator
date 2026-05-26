@@ -16,6 +16,7 @@ const relatedTools = [
   ['kFactorGuide', '/engineering/k-factor-guide'],
   ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
+  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
   ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
   ['minimumFlangeLengthGuide', routePath],

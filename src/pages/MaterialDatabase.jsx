@@ -116,6 +116,10 @@ const relatedTools = [
     href: '/engineering-tools/air-bending-guide',
   },
   {
+    key: 'bottomingVsCoiningGuide',
+    href: '/engineering-tools/bottoming-vs-coining-guide',
+  },
+  {
     key: 'pressBrakeTonnageGuide',
     href: '/engineering/press-brake-tonnage-guide',
   },

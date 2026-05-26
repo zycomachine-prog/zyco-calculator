@@ -85,6 +85,12 @@ relatedTools.ru.airBendingGuide = 'Руководство по Air Bending'
 relatedTools.es.airBendingGuide = 'Guía de Air Bending'
 relatedTools.tr.airBendingGuide = 'Air Bending kılavuzu'
 relatedTools.id.airBendingGuide = 'Panduan Air Bending'
+relatedTools.en.bottomingVsCoiningGuide = 'Bottoming vs Coining Guide'
+relatedTools.zh.bottomingVsCoiningGuide = '压底折弯与压印折弯指南'
+relatedTools.ru.bottomingVsCoiningGuide = 'Bottoming и Coining: руководство'
+relatedTools.es.bottomingVsCoiningGuide = 'Guía de Bottoming y Coining'
+relatedTools.tr.bottomingVsCoiningGuide = 'Bottoming ve Coining Kılavuzu'
+relatedTools.id.bottomingVsCoiningGuide = 'Panduan Bottoming vs Coining'
 
 relatedTools.en.springbackCompensationGuide = 'Springback Compensation Guide'
 relatedTools.zh.springbackCompensationGuide = '回弹补偿指南'
@@ -1848,6 +1854,29 @@ Object.entries(airBendingHubDescriptions).forEach(([language, description]) => {
   }
 })
 
+const bottomingVsCoiningHubDescriptions = {
+  en: 'Engineering comparison of air bending, bottoming and coining by contact, springback, radius, force, accuracy and tooling wear.',
+  zh: '从接触方式、回弹、内 R、吨位、精度与模具磨损对比空气折弯、压底折弯和压印折弯。',
+  ru: 'Сравнение air bending, bottoming и coining по контакту, пружинению, радиусу, усилию, точности и износу.',
+  es: 'Comparación técnica de air bending, bottoming y coining por contacto, retorno, radio, fuerza, precisión y desgaste.',
+  tr: 'Air bending, bottoming ve coining yöntemlerini temas, geri esneme, radyüs, kuvvet, hassasiyet ve aşınma açısından karşılaştırır.',
+  id: 'Perbandingan teknik air bending, bottoming, dan coining berdasarkan kontak, springback, radius, gaya, akurasi, dan keausan.',
+}
+
+pages.en.hub.tools.splice(7, 0, [
+  'bottomingVsCoiningGuide',
+  bottomingVsCoiningHubDescriptions.en,
+])
+
+Object.entries(bottomingVsCoiningHubDescriptions).forEach(([language, description]) => {
+  if (language !== 'en') {
+    localizedOverrides[language].hub.tools.splice(7, 0, [
+      'bottomingVsCoiningGuide',
+      description,
+    ])
+  }
+})
+
 const airBendingPageTranslations = {
   en: {
     backToEngineeringTools: '← Back to Engineering Tools',
@@ -2307,11 +2336,125 @@ const airBendingPageTranslations = {
   },
 }
 
+const bottomingVsCoiningPageTranslations = {
+  en: {
+    back: '\u2190 Back to Engineering Tools',
+    eyebrow: 'Forming Process Guide',
+    title: 'Bottoming vs Coining vs Air Bending',
+    subtitle:
+      'Explain the real differences between air bending, bottoming, and coining in press brake sheet metal forming.',
+    shopNote:
+      'Process selection starts with material grade, thickness, specified inside radius, bend length, surface requirement and the rated capacity of both machine and tooling. A tighter angle result is never a valid reason to exceed permitted tonnage.',
+    methodsAria: 'Press brake bending process definitions',
+    methods: [
+      ['What Is Air Bending', 'Air bending loads the sheet at the punch nose and the two V-die shoulders without seating it into the die bottom. Ram penetration controls the angle; the material forms a natural inside radius and visibly recovers after unloading.'],
+      ['What Is Bottoming', 'Bottoming drives the sheet substantially against the V-die flanks at a defined tool angle. Greater restraint reduces springback and improves repeatability, but forming force rises materially and the tool angle is less flexible.'],
+      ['What Is Coining', 'Coining uses very high local pressure at the punch nose to plastically imprint the bend zone. It can force a small inside radius and leave minimal springback, at the cost of exceptional tonnage demand, marking and accelerated tooling wear.'],
+    ],
+    motion: {
+      title: 'Animated Process Comparison',
+      intro: 'The synchronized stroke below compares the actual contact condition: a suspended air bend, a seated bottom bend, and a locally impressed coined bend. Springback annotations appear only as the punch unloads.',
+      svgTitle: 'Industrial comparison of air bending bottoming and coining',
+      svgDescription: 'Three synchronized press brake diagrams with solid sheet thickness, descending punches, V dies, forming contact and unloading behavior.',
+      air: { title: 'Air Bending', force: 'Lowest force / three-point contact', contact: 'No Bottoming', springback: 'Springback', radius: 'Natural Inside R' },
+      bottoming: { title: 'Bottoming', force: 'Higher force / seated contact', contact: 'More Die Contact', springback: 'Reduced Springback', radius: 'Controlled Inside R' },
+      coining: { title: 'Coining', force: 'High Tonnage / imprinting', contact: 'Plastic Deformation', springback: 'Minimal Springback', radius: 'Sharp Inside R' },
+    },
+    comparisonTitle: 'Process Comparison Table',
+    comparisonIntro: 'These tendencies describe matched material, thickness and bend length. Exact force and capability must be verified against tooling ratings, machine capacity and trial bends.',
+    comparisonHeaders: ['Engineering factor', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [
+      ['Forming Method', 'Penetration-controlled free bend', 'Sheet seated to die angle', 'Bend zone plastically impressed'],
+      ['Tool Contact', 'Punch nose plus two shoulders', 'Extended flank contact', 'Heavy nose and die-angle contact'],
+      ['Springback', 'Highest; compensate after release', 'Reduced by seating pressure', 'Minimal after plastic imprint'],
+      ['Accuracy', 'Good with controlled material and correction', 'High in repeat jobs', 'Very high when tooling is suitable'],
+      ['Tonnage', 'Lowest', 'Significantly above air bending', 'Extremely high'],
+      ['Radius Control', 'Natural radius tied strongly to V opening', 'Closer to punch/tool geometry', 'Small radius forced by imprint'],
+      ['Flexibility', 'High; several angles per tool set', 'Medium; tool angle matters', 'Low; application specific'],
+      ['Tool Wear', 'Lowest', 'Increased contact wear', 'Highest pressure and marking risk'],
+      ['Production Speed', 'Efficient for mixed work', 'Efficient for stable repeats', 'Capacity and tool life constrain use'],
+      ['Typical Applications', 'General CNC fabrication', 'Repeat angles needing less recovery', 'Special tight-radius precision work'],
+    ],
+    sections: [
+      ['Springback, Accuracy and Set-Up Control', ['Air bending normally needs overbend or angle correction because elastic recovery remains active after the ram reverses. Bottoming reduces recovery by seating the part against the die flanks, but a changed batch or thickness still shifts the result. Coining minimizes recovery by imposing severe permanent deformation; this does not eliminate the need to inspect radius, cracking and marks.', 'In production, accuracy is obtained from a controlled process record: material certificate or verified batch, actual thickness, punch and die identity, bend direction, measured first-off angle and permitted machine load.']],
+      ['Tonnage, Inside Radius and Tool Life', ['Force does not rise modestly from air bending to coining. Bottoming requires a meaningful load increase because contact spreads along the die; coining demands far higher pressure concentrated at the bend zone. A machine sized for air bending must not be assumed capable of coining the same part.', 'Air bending forms a natural radius largely governed by V opening and material behavior. Bottoming pulls the result closer to punch and die geometry. Coining can press a tighter inside R, but that concentrated plastic deformation increases marking, cracking risk on low-ductility material and wear on the punch nose and die surfaces.']],
+      ['Selecting the Forming Method', ['Air bending is normally the production choice for CNC work, mixed angles and reduced tool loading. Bottoming is considered where a stable repeated angle justifies higher force and matched tooling. Coining should be reserved for justified tight-radius or precision requirements after force, tooling hardness, surface finish and material ductility have been checked.', 'No process name replaces verification: calculate capacity, confirm die load rating, complete a trial bend and inspect the bend line before releasing batch production.']],
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faq: [
+      ['What is the main difference between air bending and bottoming?', 'Air bending leaves the sheet suspended over the V opening, while bottoming seats much more of the sheet against the die flanks and therefore reduces springback at higher force.'],
+      ['Does bottoming eliminate springback?', 'No. Bottoming reduces springback, but grade, thickness, radius, tooling and batch variation still affect the released angle.'],
+      ['Why does coining require very high tonnage?', 'Coining must impose concentrated plastic deformation in the bend zone rather than simply rotate the sheet into an angle.'],
+      ['Which method gives the smallest inside radius?', 'Coining can force the smallest radius when compatible tooling and ductile material are available, but the higher strain and marking risk must be accepted and checked.'],
+      ['Which method causes the least tool wear?', 'Air bending generally creates the least tool wear because its contact pressure and required force are lower than bottoming or coining.'],
+      ['When should a shop choose air bending?', 'Air bending is usually preferred for modern CNC production, multiple angles, lower tonnage and flexible tool use, provided springback is controlled.'],
+    ],
+  },
+  zh: {
+    back: '\u2190 返回工程工具中心', eyebrow: '成形工艺指南', title: '压底折弯、压印折弯与空气折弯对比', subtitle: '从折弯机钣金成形实践解释 Air Bending、Bottoming 与 Coining 的真实差异。',
+    shopNote: '工艺选择必须结合材料牌号、板厚、指定内 R、折弯长度、表面要求以及设备和模具额定承载能力。不能为了减少回弹而超过允许吨位。',
+    methodsAria: '折弯成形工艺定义',
+    methods: [['什么是空气折弯', '板材仅在冲头鼻端及 V 模两肩形成三点接触，不压到底部。角度由行程控制，内 R 自然形成，卸载后回弹明显。'], ['什么是压底折弯', '板材被压至与 V 模斜面更充分贴合，工具角度约束增强，因此回弹减小、重复性提高，但所需吨位明显增大。'], ['什么是压印折弯', '冲头以极高局部压力对折弯区产生永久塑性压印，可强制得到较小内 R 和很小回弹，但模具负荷、压痕和磨损显著增加。']],
+    motion: { title: '动态工艺对比', intro: '同步行程展示悬空成形、贴模压底与局部压印的接触区别；回弹标注仅在冲头卸载阶段显示。', svgTitle: '空气折弯压底折弯与压印折弯工业对比图', svgDescription: '三组同步折弯机图示，包含实体板材、冲头下降、V 模接触与卸载行为。', air: { title: '空气折弯', force: '最低吨位 / 三点接触', contact: '不压底', springback: '回弹明显', radius: '自然内 R' }, bottoming: { title: '压底折弯', force: '较高吨位 / 贴模接触', contact: '更多模具接触', springback: '回弹减小', radius: '受控内 R' }, coining: { title: '压印折弯', force: '极高吨位 / 局部压印', contact: '塑性压印', springback: '极小回弹', radius: '小内 R' } },
+    comparisonTitle: '核心工艺对比表', comparisonIntro: '下表描述相同材料、板厚与折弯长度下的趋势；实际工艺仍需核对设备吨位、模具额定载荷与试折结果。', comparisonHeaders: ['工程因素', '空气折弯', '压底折弯', '压印折弯'],
+    comparison: [['成形方式', '按压入深度自由成形', '板材贴近模具角度', '折弯区被塑性压印'], ['模具接触', '冲头加两侧模肩', '斜面扩大接触', '高压鼻端与模角接触'], ['回弹', '最大，需补偿', '因贴模压力而减小', '压印后极小'], ['精度', '补偿控制后良好', '重复生产中较高', '条件适合时很高'], ['吨位', '最低', '明显高于空气折弯', '极高'], ['内 R 控制', '主要随 V 开口自然形成', '更接近模具几何', '可强制较小内 R'], ['灵活性', '高', '中', '低'], ['模具磨损', '最低', '接触磨损增加', '压力与压痕风险最大'], ['生产速度', '适合多品种生产', '适合稳定重复件', '受吨位和寿命限制'], ['典型用途', '通用 CNC 钣金', '回弹要求较低的重复角度', '特殊紧 R 精密零件']],
+    sections: [['回弹、精度与设定控制', ['空气折弯卸载后仍有弹性恢复，因此通常需要过弯或角度修正。压底可降低恢复量，但材料批次和板厚变化仍会影响角度。压印依靠严重永久变形减少回弹，同时必须检查裂纹、压痕和内 R。', '稳定精度来自受控工艺记录：材料批次、实测板厚、模具编号、折弯方向、首件测量和允许载荷缺一不可。']], ['吨位、内 R 与模具寿命', ['从空气折弯到压底、再到压印，吨位不是小幅上升。压印在折弯区集中施压，原本适合空气折弯的设备不能直接假定可进行同件压印。', '空气折弯的内 R 多由 V 开口和材料决定；压底更接近工具几何；压印能压出更小内 R，但会提高低塑性材料开裂、表面压伤和模具磨损风险。']], ['如何选择工艺', ['现代 CNC 多品种生产通常优先空气折弯。稳定重复角度且允许提高吨位时可评估压底。压印只应在紧 R 或特殊精度确有必要，并完成载荷、硬度、表面和塑性验证后采用。', '任何工艺均应核算容量、确认模具承载、完成试折并检查折弯线后再批量放行。']]],
+    faqTitle: '常见问题', faq: [['空气折弯与压底折弯最主要区别是什么？', '空气折弯不将板材压至模底；压底会增加板材与 V 模斜面的接触，从而以更高吨位降低回弹。'], ['压底折弯是否完全没有回弹？', '不是。它会减少回弹，但材料、板厚、内 R、模具和批次差异仍影响卸载角度。'], ['为什么压印折弯需要极高吨位？', '因为它需要在折弯区造成集中永久塑性压印，而不是仅把板材旋转成角度。'], ['哪种工艺得到的内 R 最小？', '在模具和材料允许时压印可获得更小内 R，但必须接受并验证更大的应变和压痕风险。'], ['哪种工艺对模具磨损最小？', '空气折弯通常吨位和接触压力最低，因此磨损最小。'], ['何时优先选择空气折弯？', '需要多角度、较低吨位、模具灵活性且能控制回弹的现代 CNC 生产通常优先选择空气折弯。']],
+  },
+  ru: {
+    back: '\u2190 К инженерным инструментам', eyebrow: 'Руководство по формовке', title: 'Bottoming, Coining и Air Bending', subtitle: 'Практическое сравнение трех методов гибки листа на листогибочном прессе.',
+    shopNote: 'Метод выбирают по марке и толщине материала, требуемому внутреннему радиусу, длине гиба, поверхности и паспортной нагрузке пресса и инструмента. Точность не оправдывает перегрузку.',
+    methodsAria: 'Определения методов гибки', methods: [['Что такое Air Bending', 'Лист опирается на плечи V-матрицы и носик пуансона, не садясь на дно. Угол задается ходом, радиус формируется естественно, а после разгрузки заметно пружинение.'], ['Что такое Bottoming', 'Лист в большей степени садится на боковые поверхности V-матрицы. Пружинение уменьшается и повторяемость растет, но усилие существенно выше.'], ['Что такое Coining', 'Очень высокое локальное давление вдавливает материал в зоне сгиба. Получаются малый радиус и минимальное пружинение ценой высокой нагрузки и износа.']],
+    motion: { title: 'Анимированное сравнение процесса', intro: 'Синхронный ход показывает свободную гибку, посадку в матрицу и локальное вдавливание. Обозначение пружинения появляется только при разгрузке.', svgTitle: 'Сравнение Air Bending Bottoming и Coining', svgDescription: 'Три промышленные SVG-схемы гибки с объемным листом, пуансоном, V-матрицей и разгрузкой.', air: { title: 'Air Bending', force: 'Минимальное усилие / три контакта', contact: 'Без посадки', springback: 'Пружинение', radius: 'Естественный R' }, bottoming: { title: 'Bottoming', force: 'Больше усилия / посадка', contact: 'Больше контакта', springback: 'Меньше пружинения', radius: 'Управляемый R' }, coining: { title: 'Coining', force: 'Высокий тоннаж / вдавливание', contact: 'Пластическая деформация', springback: 'Минимум пружинения', radius: 'Малый R' } },
+    comparisonTitle: 'Таблица сравнения', comparisonIntro: 'Тенденции относятся к одинаковым материалу, толщине и длине гиба; нагрузку всегда подтверждают расчетом и пробной гибкой.', comparisonHeaders: ['Фактор', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [['Метод', 'Свободная гибка по ходу', 'Посадка к углу матрицы', 'Пластическое вдавливание'], ['Контакт', 'Носик и два плеча', 'Расширенный контакт граней', 'Сильный контакт в угле'], ['Пружинение', 'Наибольшее', 'Уменьшенное', 'Минимальное'], ['Точность', 'Хорошая с коррекцией', 'Высокая в серии', 'Очень высокая при пригодной оснастке'], ['Тоннаж', 'Минимальный', 'Значительно выше', 'Чрезвычайно высокий'], ['Радиус', 'Зависит от V-раскрытия', 'Ближе к геометрии инструмента', 'Принудительно малый'], ['Гибкость', 'Высокая', 'Средняя', 'Низкая'], ['Износ', 'Низкий', 'Повышенный', 'Наибольший'], ['Скорость', 'Для смешанных работ', 'Для стабильных серий', 'Ограничена нагрузкой'], ['Применение', 'Общее производство', 'Повторяемые углы', 'Специальные точные детали']],
+    sections: [['Пружинение и точность', ['Air Bending требует компенсации разгрузки. Bottoming снижает ее, но не отменяет влияние партии и толщины. Coining оставляет мало восстановления, однако требует проверки трещин и следов.', 'Рабочая карта должна фиксировать материал, толщину, инструмент, направление гиба, первый замер и допустимую нагрузку.']], ['Тоннаж, радиус и ресурс', ['Переход к bottoming и особенно coining резко повышает силу; пресс для свободной гибки нельзя автоматически считать пригодным для вдавливания.', 'Малый радиус coining сопровождается более высоким риском повреждения поверхности, трещин и износа инструмента.']], ['Выбор метода', ['Для современного CNC обычно выбирают Air Bending. Bottoming применяют для стабильной повторяемости при допустимой нагрузке. Coining оставляют для обоснованных требований малого радиуса или высокой точности.', 'Перед серией проверяют нагрузку, паспорт матрицы, пробную деталь и линию гиба.']]],
+    faqTitle: 'Частые вопросы', faq: [['Чем Air Bending отличается от Bottoming?', 'При Air Bending лист не садится на дно; при Bottoming увеличивается контакт с матрицей и уменьшается пружинение при большей силе.'], ['Устраняет ли Bottoming пружинение?', 'Нет, он только снижает его; материал и настройка все еще влияют на угол.'], ['Почему Coining требует высокого тоннажа?', 'Нужно локально и пластически вдавить зону сгиба.'], ['Какой метод дает меньший радиус?', 'Coining может получить наименьший радиус при пригодном материале и инструменте.'], ['Где меньше износ?', 'Обычно при Air Bending.'], ['Когда выбирать Air Bending?', 'Для гибкого CNC-производства с контролируемой компенсацией пружинения.']],
+  },
+  es: {
+    back: '\u2190 Volver a herramientas de ingeniería', eyebrow: 'Guía de proceso de formado', title: 'Bottoming vs Coining vs Air Bending', subtitle: 'Diferencias reales de los tres métodos de plegado de chapa en plegadora.',
+    shopNote: 'La selección depende de calidad, espesor, radio interior, longitud, acabado y capacidad nominal de máquina y utillaje. Nunca se debe sobrecargar para reducir retorno.',
+    methodsAria: 'Definiciones de procesos de plegado', methods: [['Qué es Air Bending', 'La chapa toca la nariz del punzón y ambos hombros de la matriz V sin asentarse en el fondo. La carrera controla el ángulo, se forma un radio natural y existe retorno al descargar.'], ['Qué es Bottoming', 'La chapa se asienta ampliamente contra las caras de la matriz. Disminuye el retorno y mejora repetibilidad, pero exige claramente más tonelaje.'], ['Qué es Coining', 'Una presión local extrema imprime plásticamente la zona doblada. Puede forzar un radio pequeño y retorno mínimo, aumentando tonelaje, marcas y desgaste.']],
+    motion: { title: 'Comparación animada del proceso', intro: 'La carrera sincronizada compara plegado suspendido, asiento en matriz e impresión local; las etiquetas de retorno aparecen únicamente durante la descarga.', svgTitle: 'Comparación industrial de Air Bending Bottoming y Coining', svgDescription: 'Tres esquemas sincronizados con chapa sólida, punzón, matriz V, contacto y descarga.', air: { title: 'Air Bending', force: 'Menor fuerza / tres contactos', contact: 'Sin fondo', springback: 'Retorno elástico', radius: 'R interior natural' }, bottoming: { title: 'Bottoming', force: 'Mayor fuerza / asentado', contact: 'Más contacto', springback: 'Retorno reducido', radius: 'R controlado' }, coining: { title: 'Coining', force: 'Alto tonelaje / impresión', contact: 'Deformación plástica', springback: 'Retorno mínimo', radius: 'R interior pequeño' } },
+    comparisonTitle: 'Tabla comparativa', comparisonIntro: 'Son tendencias para igual material, espesor y longitud; valide carga y utillaje con cálculo y prueba.', comparisonHeaders: ['Factor', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [['Método', 'Plegado libre por carrera', 'Asentado al ángulo de matriz', 'Impresión plástica'], ['Contacto', 'Nariz y dos hombros', 'Contacto de caras extendido', 'Contacto intenso en ángulo'], ['Retorno', 'Mayor; compensar', 'Reducido', 'Mínimo'], ['Precisión', 'Buena con corrección', 'Alta en series', 'Muy alta si es adecuado'], ['Tonelaje', 'Menor', 'Mucho mayor', 'Extremadamente alto'], ['Radio', 'Natural según abertura V', 'Cercano a herramienta', 'Pequeño forzado'], ['Flexibilidad', 'Alta', 'Media', 'Baja'], ['Desgaste', 'Menor', 'Mayor', 'Máximo'], ['Velocidad', 'Producción mixta', 'Series estables', 'Limitada por carga'], ['Aplicación', 'Fabricación general', 'Ángulos repetitivos', 'Trabajo especial de radio cerrado']],
+    sections: [['Retorno y precisión', ['Air Bending suele requerir sobreplegado o corrección. Bottoming reduce el retorno pero no anula variaciones de material. Coining limita la recuperación con deformación permanente y exige inspección de grietas y marcas.', 'La precisión requiere registrar material, espesor real, herramientas, dirección, medida inicial y carga admisible.']], ['Tonelaje, radio y vida del útil', ['La fuerza aumenta fuertemente en bottoming y de forma extrema en coining; una plegadora válida para air bending no queda automáticamente aprobada para coining.', 'El radio pequeño impreso incrementa deformación, posibles marcas, grietas en material poco dúctil y desgaste.']], ['Selección del método', ['Air Bending suele ser la opción CNC flexible. Bottoming puede servir para repetición estable si la carga está admitida. Coining se reserva para requisitos justificados.', 'Verifique capacidad, carga del dado, prueba de plegado e inspección antes de producir en serie.']]],
+    faqTitle: 'Preguntas frecuentes', faq: [['¿Diferencia principal entre Air Bending y Bottoming?', 'Bottoming asienta más chapa en la matriz y reduce retorno usando más fuerza.'], ['¿Bottoming elimina el retorno?', 'No; lo reduce, pero material y configuración siguen influyendo.'], ['¿Por qué Coining exige alto tonelaje?', 'Porque imprime plásticamente la zona de pliegue con presión concentrada.'], ['¿Qué método produce menor radio?', 'Coining, si material y herramientas lo admiten.'], ['¿Qué método desgasta menos el útil?', 'Normalmente Air Bending.'], ['¿Cuándo se elige Air Bending?', 'En producción CNC flexible donde se puede controlar el retorno.']],
+  },
+  tr: {
+    back: '\u2190 Mühendislik araçlarına dön', eyebrow: 'Şekillendirme prosesi kılavuzu', title: 'Bottoming, Coining ve Air Bending', subtitle: 'Abkant sac şekillendirmede üç büküm yönteminin gerçek mühendislik farkları.',
+    shopNote: 'Yöntem; kalite, kalınlık, iç radyüs, büküm boyu, yüzey ve makine ile takımın anma kapasitesine göre seçilir. Daha az geri esneme için kapasite aşılmaz.',
+    methodsAria: 'Büküm yöntemlerinin tanımları', methods: [['Air Bending nedir', 'Sac, tabana oturmadan zımba burnu ve iki V kalıp omzunda taşınır. Açı strokla kontrol edilir; doğal iç radyüs ve boşaltma sonrası geri esneme oluşur.'], ['Bottoming nedir', 'Sac V kalıp yüzeylerine daha çok oturtulur. Kısıtlama geri esnemeyi azaltır ve tekrarı artırır, fakat tonaj belirgin artar.'], ['Coining nedir', 'Çok yüksek yerel basınç büküm bölgesini kalıcı olarak izleyerek küçük iç radyüs ve çok az geri esneme sağlar; takım yükü ve aşınma yükselir.']],
+    motion: { title: 'Animasyonlu proses karşılaştırması', intro: 'Senkron strok; havada form verme, kalıba oturma ve yerel izlemeyi gösterir. Geri esneme etiketi sadece boşaltmada görünür.', svgTitle: 'Air Bending Bottoming ve Coining endüstriyel karşılaştırması', svgDescription: 'Kalınlıklı sac, zımba, V kalıp, temas ve boşaltma gösteren üç senkron SVG.', air: { title: 'Air Bending', force: 'En düşük kuvvet / üç temas', contact: 'Tabana oturma yok', springback: 'Geri esneme', radius: 'Doğal iç R' }, bottoming: { title: 'Bottoming', force: 'Daha yüksek kuvvet / oturma', contact: 'Daha fazla temas', springback: 'Azalan geri esneme', radius: 'Kontrollü iç R' }, coining: { title: 'Coining', force: 'Yüksek tonaj / izleme', contact: 'Plastik deformasyon', springback: 'Minimum geri esneme', radius: 'Küçük iç R' } },
+    comparisonTitle: 'Proses karşılaştırma tablosu', comparisonIntro: 'Eğilimler aynı malzeme, kalınlık ve büküm boyu içindir; kapasite hesap ve deneme ile doğrulanır.', comparisonHeaders: ['Faktör', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [['Yöntem', 'Strok kontrollü serbest büküm', 'Kalıp açısına oturma', 'Plastik izleme'], ['Temas', 'Burun ve iki omuz', 'Geniş yüzey teması', 'Yoğun açı teması'], ['Geri esneme', 'En yüksek', 'Azaltılmış', 'Minimum'], ['Hassasiyet', 'Düzeltmeyle iyi', 'Seride yüksek', 'Uygunsa çok yüksek'], ['Tonaj', 'En düşük', 'Belirgin yüksek', 'Aşırı yüksek'], ['Radyüs', 'V açıklığına bağlı doğal', 'Takıma yakın', 'Zorlanmış küçük'], ['Esneklik', 'Yüksek', 'Orta', 'Düşük'], ['Aşınma', 'En düşük', 'Artmış', 'En yüksek'], ['Hız', 'Karma iş', 'Kararlı seri', 'Yükle sınırlı'], ['Kullanım', 'Genel CNC üretim', 'Tekrarlı açı', 'Özel dar radyüs']],
+    sections: [['Geri esneme ve hassasiyet', ['Air Bending boşaltma telafisi ister. Bottoming geri esnemeyi azaltır ancak malzeme değişimini kaldırmaz. Coining kalıcı deformasyonla toparlanmayı sınırlar; çatlak ve iz denetlenmelidir.', 'Kontrollü kayıt; malzeme, gerçek kalınlık, takım, yön, ilk parça ölçümü ve izinli yükü içerir.']], ['Tonaj, radyüs ve takım ömrü', ['Bottoming ve özellikle coining için kuvvet ciddi artar; air bending için uygun pres otomatik olarak coining için uygun değildir.', 'Zorlanmış küçük radyüs yüzey izi, düşük sünek malzemede çatlak ve takım aşınmasını artırır.']], ['Yöntem seçimi', ['Modern CNC işlerinde çoğunlukla Air Bending seçilir. Bottoming izinli yükte stabil tekrar için değerlendirilir. Coining yalnız gerekçeli dar radyüs veya hassasiyet için kullanılır.', 'Seriden önce kapasiteyi, kalıp yükünü, deneme bükümünü ve büküm hattını doğrulayın.']]],
+    faqTitle: 'Sık sorulan sorular', faq: [['Air Bending ile Bottoming farkı nedir?', 'Bottoming sacı kalıba daha çok oturtur ve daha yüksek kuvvetle geri esnemeyi azaltır.'], ['Bottoming geri esnemeyi yok eder mi?', 'Hayır; azaltır fakat malzeme ve ayar hala etkilidir.'], ['Coining neden yüksek tonaj ister?', 'Büküm bölgesinde yoğun plastik izleme yaratır.'], ['En küçük radyüsü hangisi verir?', 'Uygun malzeme ve takım varsa Coining.'], ['Takımı en az hangisi aşındırır?', 'Genellikle Air Bending.'], ['Air Bending ne zaman seçilir?', 'Geri esneme kontrol edilebilen esnek CNC üretimde.']],
+  },
+  id: {
+    back: '\u2190 Kembali ke alat teknik', eyebrow: 'Panduan proses forming', title: 'Bottoming vs Coining vs Air Bending', subtitle: 'Perbedaan teknik nyata tiga metode pembentukan plat pada press brake.',
+    shopNote: 'Pilih proses berdasarkan grade, ketebalan, radius dalam, panjang tekuk, permukaan, serta rating mesin dan tooling. Akurasi tidak membenarkan beban berlebih.',
+    methodsAria: 'Definisi proses bending', methods: [['Apa itu Air Bending', 'Plat ditumpu pada hidung punch dan dua bahu V-die tanpa menyentuh dasar. Stroke mengontrol sudut; radius alami terbentuk dan springback terlihat setelah unloading.'], ['Apa itu Bottoming', 'Plat duduk lebih penuh pada sisi V-die. Springback berkurang dan repeatability meningkat, tetapi kebutuhan tonase naik nyata.'], ['Apa itu Coining', 'Tekanan lokal sangat tinggi mengimpresi zona tekuk secara plastis. Radius kecil dan springback minimal dibayar dengan tonase serta keausan tooling tinggi.']],
+    motion: { title: 'Perbandingan Proses Animasi', intro: 'Stroke tersinkron menunjukkan tekukan menggantung, kontak seated, dan imprint lokal. Label springback hanya muncul ketika unloading.', svgTitle: 'Perbandingan industri Air Bending Bottoming dan Coining', svgDescription: 'Tiga diagram SVG sinkron dengan plat solid, punch, V-die, kontak pembentukan dan unloading.', air: { title: 'Air Bending', force: 'Gaya terendah / tiga kontak', contact: 'Tidak bottoming', springback: 'Springback', radius: 'Radius alami' }, bottoming: { title: 'Bottoming', force: 'Gaya lebih tinggi / seated', contact: 'Kontak die lebih banyak', springback: 'Springback berkurang', radius: 'Radius terkontrol' }, coining: { title: 'Coining', force: 'Tonase tinggi / imprint', contact: 'Deformasi plastis', springback: 'Springback minimal', radius: 'Radius kecil' } },
+    comparisonTitle: 'Tabel perbandingan proses', comparisonIntro: 'Tren berlaku untuk material, ketebalan dan panjang tekuk yang sama; validasi kapasitas dengan perhitungan dan trial bend.', comparisonHeaders: ['Faktor', 'Air Bending', 'Bottoming', 'Coining'],
+    comparison: [['Metode', 'Free bend menurut stroke', 'Seated ke sudut die', 'Imprint plastis'], ['Kontak', 'Hidung dan dua bahu', 'Kontak sisi meluas', 'Kontak berat di sudut'], ['Springback', 'Paling tinggi', 'Berkurang', 'Minimal'], ['Akurasi', 'Baik dengan koreksi', 'Tinggi pada batch stabil', 'Sangat tinggi bila sesuai'], ['Tonase', 'Terendah', 'Jauh lebih tinggi', 'Sangat tinggi'], ['Radius', 'Alami menurut V opening', 'Mendekati tooling', 'Kecil dipaksakan'], ['Fleksibilitas', 'Tinggi', 'Sedang', 'Rendah'], ['Keausan', 'Terendah', 'Meningkat', 'Tertinggi'], ['Kecepatan', 'Produksi campuran', 'Batch stabil', 'Dibatasi beban'], ['Aplikasi', 'Fabrikasi CNC umum', 'Sudut berulang', 'Part khusus radius ketat']],
+    sections: [['Springback dan akurasi', ['Air Bending biasanya memerlukan overbend atau koreksi sudut. Bottoming mengurangi springback tetapi variasi material tetap berpengaruh. Coining menekan pemulihan melalui deformasi permanen dan membutuhkan pemeriksaan retak serta tanda permukaan.', 'Catatan proses yang terkendali mencakup material, ketebalan nyata, tooling, arah tekuk, ukur part pertama dan beban yang diizinkan.']], ['Tonase, radius dan usia tooling', ['Gaya naik kuat pada bottoming dan sangat ekstrem pada coining; mesin yang cukup untuk air bending tidak otomatis boleh melakukan coining pada part yang sama.', 'Radius kecil hasil imprint meningkatkan risiko marking, retak pada material kurang ulet dan keausan tooling.']], ['Memilih metode', ['Air Bending umumnya dipilih untuk produksi CNC fleksibel. Bottoming dievaluasi untuk repeatability dengan beban yang diizinkan. Coining hanya untuk kebutuhan radius ketat atau presisi yang terverifikasi.', 'Sebelum batch, konfirmasi kapasitas, rating die, trial bending dan inspeksi garis tekuk.']]],
+    faqTitle: 'Pertanyaan umum', faq: [['Apa beda utama Air Bending dan Bottoming?', 'Bottoming membuat plat lebih banyak menyentuh die sehingga springback berkurang dengan gaya yang lebih tinggi.'], ['Apakah Bottoming menghilangkan springback?', 'Tidak; metode ini mengurangi, tetapi material dan setup tetap memengaruhi sudut.'], ['Mengapa Coining membutuhkan tonase tinggi?', 'Karena zona tekuk harus diberi deformasi plastis terkonsentrasi.'], ['Metode mana memberi radius terkecil?', 'Coining dapat memberi radius paling kecil bila material dan tooling sesuai.'], ['Metode mana paling ringan pada tooling?', 'Umumnya Air Bending.'], ['Kapan memilih Air Bending?', 'Untuk produksi CNC fleksibel ketika springback dapat dikontrol.']],
+  },
+}
+
 pages.en.air = airBendingPageTranslations.en
+pages.en.bottoming = bottomingVsCoiningPageTranslations.en
 
 Object.entries(airBendingPageTranslations).forEach(([language, page]) => {
   if (language !== 'en') {
     localizedOverrides[language].air = page
+  }
+})
+
+Object.entries(bottomingVsCoiningPageTranslations).forEach(([language, page]) => {
+  if (language !== 'en') {
+    localizedOverrides[language].bottoming = page
   }
 })
 
