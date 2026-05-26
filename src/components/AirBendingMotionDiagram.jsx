@@ -259,11 +259,11 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
           }
 
           .zyco-air-motion__inside-radius {
-            opacity: 0.18;
+            opacity: 0;
           }
 
           .zyco-air-motion--ready .zyco-air-motion__springback {
-            animation: zyco-air-springback-cycle 10s ease-in-out infinite;
+            animation: zyco-air-springback-cycle 10s linear infinite;
             transform-origin: 480px 306px;
           }
 
@@ -284,17 +284,17 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
           }
 
           @keyframes zyco-air-springback-cycle {
-            0%, 68% {
+            0%, 62% {
               opacity: 0;
               transform: scale(0.99);
             }
 
-            70%, 84% {
+            66%, 76% {
               opacity: 0.84;
               transform: scale(1);
             }
 
-            88% {
+            80% {
               opacity: 0.4;
               transform: scale(1);
             }
@@ -306,15 +306,15 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
           }
 
           @keyframes zyco-air-inside-radius-cycle {
-            0%, 35%, 100% {
-              opacity: 0.08;
+            0%, 55%, 100% {
+              opacity: 0;
             }
 
-            40%, 55% {
+            62%, 74% {
               opacity: 1;
             }
 
-            75% {
+            82% {
               opacity: 0.24;
             }
           }
@@ -487,7 +487,6 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
           />
 
           <g opacity='0.48'>
-            <path d='M126 402 H834' stroke='#60a5fa' strokeWidth='1' strokeDasharray='8 14' />
             <path d='M480 82 V430' stroke='#93c5fd' strokeWidth='1' strokeDasharray='7 13' />
           </g>
 
@@ -511,12 +510,12 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
               repeatCount='indefinite'
               type='translate'
               calcMode='spline'
-              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
-              keyTimes='0; 0.4; 0.55; 0.75; 1'
+              keySplines='0 0 1 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
+              keyTimes='0; 0.55; 0.75; 1'
               ref={(animation) => {
                 sheetAnimationRefs.current[0] = animation
               }}
-              values='0 0; 0 52; 0 88; 0 48; 0 0'
+              values='0 0; 0 88; 0 48; 0 0'
             />
           </g>
 
@@ -538,12 +537,10 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
           />
 
           <path
-            d='M178 288 L302 302 Q390 304 452 346 Q480 366 508 346 Q570 304 658 302 L782 288'
-            fill='none'
-            stroke='url(#airSheetGradient)'
-            strokeWidth='16'
-            strokeLinecap='round'
-            strokeLinejoin='round'
+            className='zyco-air-motion__sheet-body'
+            d='M178 286 L302 286 Q390 286 452 286 Q480 286 508 286 Q570 286 658 286 L782 286 L782 310 L658 310 Q570 310 508 310 Q480 310 452 310 Q390 310 302 310 L178 310 Z'
+            fill='url(#airSheetGradient)'
+            style={{ opacity: 1, visibility: 'visible' }}
           >
             <animate
               attributeName='d'
@@ -551,12 +548,12 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
               dur='10s'
               repeatCount='indefinite'
               calcMode='spline'
-              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
-              keyTimes='0; 0.4; 0.55; 0.75; 1'
+              keySplines='0 0 1 1; 0 0 1 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
+              keyTimes='0; 0.22; 0.55; 0.75; 1'
               ref={(animation) => {
                 sheetAnimationRefs.current[1] = animation
               }}
-              values='M178 298 L302 298 Q390 298 452 298 Q480 298 508 298 Q570 298 658 298 L782 298; M178 292 L302 302 Q390 303 452 319 Q480 328 508 319 Q570 303 658 302 L782 292; M178 288 L302 302 Q390 304 452 346 Q480 366 508 346 Q570 304 658 302 L782 288; M178 288 L302 302 Q390 304 452 338 Q480 352 508 338 Q570 304 658 302 L782 288; M178 298 L302 298 Q390 298 452 298 Q480 298 508 298 Q570 298 658 298 L782 298'
+              values='M178 286 L302 286 Q390 286 452 286 Q480 286 508 286 Q570 286 658 286 L782 286 L782 310 L658 310 Q570 310 508 310 Q480 310 452 310 Q390 310 302 310 L178 310 Z; M178 286 L302 286 Q390 286 452 286 Q480 286 508 286 Q570 286 658 286 L782 286 L782 310 L658 310 Q570 310 508 310 Q480 310 452 310 Q390 310 302 310 L178 310 Z; M178 276 L302 290 Q390 292 452 334 Q480 354 508 334 Q570 292 658 290 L782 276 L782 300 L658 314 Q570 316 508 358 Q480 378 452 358 Q390 316 302 314 L178 300 Z; M178 276 L302 290 Q390 292 452 326 Q480 340 508 326 Q570 292 658 290 L782 276 L782 300 L658 314 Q570 316 508 350 Q480 364 452 350 Q390 316 302 314 L178 300 Z; M178 286 L302 286 Q390 286 452 286 Q480 286 508 286 Q570 286 658 286 L782 286 L782 310 L658 310 Q570 310 508 310 Q480 310 452 310 Q390 310 302 310 L178 310 Z'
             />
           </path>
 
@@ -565,6 +562,7 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
             fill='none'
             stroke='rgba(255, 255, 255, 0.42)'
             strokeWidth='2'
+            opacity='0'
             strokeLinecap='round'
           >
             <animate
@@ -573,12 +571,12 @@ export default function AirBendingMotionDiagram({ labels = defaultLabels }) {
               dur='10s'
               repeatCount='indefinite'
               calcMode='spline'
-              keySplines='0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
-              keyTimes='0; 0.4; 0.55; 0.75; 1'
+              keySplines='0 0 1 1; 0 0 1 1; 0.42 0 0.58 1; 0.42 0 0.58 1'
+              keyTimes='0; 0.22; 0.55; 0.75; 1'
               ref={(animation) => {
                 sheetAnimationRefs.current[2] = animation
               }}
-              values='M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291; M190 285 L302 295 Q390 295 452 311 Q480 320 508 311 Q570 295 658 295 L770 285; M190 281 L302 295 Q390 296 452 337 Q480 356 508 337 Q570 296 658 295 L770 281; M190 281 L302 295 Q390 296 452 329 Q480 342 508 329 Q570 296 658 295 L770 281; M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291'
+              values='M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291; M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291; M190 281 L302 295 Q390 296 452 337 Q480 356 508 337 Q570 296 658 295 L770 281; M190 281 L302 295 Q390 296 452 329 Q480 342 508 329 Q570 296 658 295 L770 281; M190 291 L302 291 Q390 291 452 291 Q480 291 508 291 Q570 291 658 291 L770 291'
             />
           </path>
 
