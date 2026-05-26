@@ -126,6 +126,25 @@ export default function BottomingVsCoiningGuide({
             background: rgba(30,64,175,.32);
             font-weight: 760;
             text-decoration: none;
+            transition: all .25s ease;
+          }
+          .zyco-method-guide__back:hover {
+            transform: translateY(-2px);
+            border-color: rgba(191,219,254,.72);
+            color: #fff;
+            background: rgba(37,99,235,.42);
+            box-shadow: 0 14px 32px rgba(37,99,235,.32), 0 0 0 1px rgba(125,211,252,.16);
+          }
+          .zyco-method-guide__tool:hover {
+            transform: translateY(-4px);
+            border-color: rgba(125,211,252,.7);
+            color: #fff;
+            background: rgba(37,99,235,.4);
+            box-shadow: 0 14px 30px rgba(56,189,248,.22), 0 7px 22px rgba(2,8,23,.22);
+          }
+          .zyco-method-guide__back:focus-visible, .zyco-method-guide__tool:focus-visible {
+            outline: 3px solid rgba(147,197,253,.46);
+            outline-offset: 3px;
           }
           .zyco-method-guide__eyebrow { margin: 24px 0 10px; color: #93c5fd; letter-spacing: 2px; font-weight: 850; text-transform: uppercase; font-size: 12px; }
           .zyco-method-guide__title { max-width: 880px; margin: 0; font-size: clamp(34px, 5vw, 48px); line-height: 1.12; font-weight: 900; }

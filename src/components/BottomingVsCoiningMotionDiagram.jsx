@@ -4,29 +4,41 @@ import {
 } from 'react'
 
 const initialSheet =
-  'M44 232 H316 V248 H44 Z'
+  'M44 232 L120 232 Q152 232 174 232 Q180 232 186 232 Q208 232 240 232 L316 232 L316 248 L240 248 Q208 248 186 248 Q180 248 174 248 Q152 248 120 248 L44 248 Z'
 
 const processGeometry = {
   air: {
     punchTravel: 110,
+    sheetForming:
+      'M44 226 L120 234 Q152 236 174 248 Q180 254 186 248 Q208 236 240 234 L316 226 L316 242 L240 250 Q208 252 186 264 Q180 270 174 264 Q152 252 120 250 L44 242 Z',
     sheetFormed:
       'M44 220 L120 236 Q152 240 174 267 Q180 274 186 267 Q208 240 240 236 L316 220 L316 236 L240 252 Q208 256 186 283 Q180 290 174 283 Q152 256 120 252 L44 236 Z',
     sheetReleased:
       'M44 222 L120 236 Q152 240 174 260 Q180 267 186 260 Q208 240 240 236 L316 222 L316 238 L240 252 Q208 256 186 276 Q180 283 174 276 Q152 256 120 252 L44 238 Z',
+    contactLeader: 'M120 252 L16 224 V100 H24',
+    radiusLeader: 'M186 267 L250 204',
   },
   bottoming: {
     punchTravel: 140,
+    sheetForming:
+      'M44 226 L120 234 Q146 244 172 264 Q180 272 188 264 Q214 244 240 234 L316 226 L316 242 L240 250 Q214 260 188 280 Q180 288 172 280 Q146 260 120 250 L44 242 Z',
     sheetFormed:
-      'M44 220 L120 236 L170 300 Q180 310 190 300 L240 236 L316 220 L316 236 L240 252 L190 316 Q180 326 170 316 L120 252 L44 236 Z',
+      'M44 220 L120 236 Q146 266 170 300 Q180 310 190 300 Q214 266 240 236 L316 220 L316 236 L240 252 Q214 282 190 316 Q180 326 170 316 Q146 282 120 252 L44 236 Z',
     sheetReleased:
-      'M44 221 L120 236 L170 296 Q180 306 190 296 L240 236 L316 221 L316 237 L240 252 L190 312 Q180 322 170 312 L120 252 L44 237 Z',
+      'M44 221 L120 236 Q146 264 170 296 Q180 306 190 296 Q214 264 240 236 L316 221 L316 237 L240 252 Q214 280 190 312 Q180 322 170 312 Q146 280 120 252 L44 237 Z',
+    contactLeader: 'M150 276 L16 214 V100 H24',
+    radiusLeader: 'M190 300 L250 204',
   },
   coining: {
     punchTravel: 149,
+    sheetForming:
+      'M44 226 L120 234 Q150 248 174 272 Q180 278 186 272 Q210 248 240 234 L316 226 L316 242 L240 250 Q210 264 186 288 Q180 294 174 288 Q150 264 120 250 L44 242 Z',
     sheetFormed:
-      'M44 220 L120 236 L174 310 Q180 316 186 310 L240 236 L316 220 L316 236 L240 252 L186 324 Q180 330 174 324 L120 252 L44 236 Z',
+      'M44 220 L120 236 Q150 272 174 310 Q180 316 186 310 Q210 272 240 236 L316 220 L316 236 L240 252 Q210 288 186 324 Q180 330 174 324 Q150 288 120 252 L44 236 Z',
     sheetReleased:
-      'M44 220 L120 236 L174 309 Q180 315 186 309 L240 236 L316 220 L316 236 L240 252 L186 323 Q180 329 174 323 L120 252 L44 236 Z',
+      'M44 220 L120 236 Q150 271 174 309 Q180 315 186 309 Q210 271 240 236 L316 220 L316 236 L240 252 Q210 287 186 323 Q180 329 174 323 Q150 287 120 252 L44 236 Z',
+    contactLeader: 'M180 316 L16 204 V100 H24',
+    radiusLeader: 'M186 310 L250 204',
   },
 }
 
@@ -65,9 +77,9 @@ function ProcessCell({
             dur='9s'
             repeatCount='indefinite'
             calcMode='spline'
-            keyTimes='0;0.2;0.52;0.68;1'
-            keySplines='0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1'
-            values={`0 0;0 0;0 ${geometry.punchTravel};0 34;0 0`}
+            keyTimes='0;0.23;0.38;0.55;0.75;1'
+            keySplines='0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1'
+            values={`0 0;0 64;0 ${64 + ((geometry.punchTravel - 64) * 0.48)};0 ${geometry.punchTravel};0 64;0 0`}
           />
         )}
       </g>
@@ -79,9 +91,9 @@ function ProcessCell({
             dur='9s'
             repeatCount='indefinite'
             calcMode='spline'
-            keyTimes='0;0.2;0.52;0.68;1'
-            keySplines='0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1'
-            values={`${initialSheet};${initialSheet};${geometry.sheetFormed};${geometry.sheetReleased};${initialSheet}`}
+            keyTimes='0;0.23;0.38;0.55;0.75;1'
+            keySplines='0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1'
+            values={`${initialSheet};${initialSheet};${geometry.sheetForming};${geometry.sheetFormed};${geometry.sheetReleased};${initialSheet}`}
           />
         )}
       </path>
@@ -101,22 +113,22 @@ function ProcessCell({
       </g>
 
       <g className={`zyco-method-motion__formed-callout${reduceMotion ? ' zyco-method-motion__visible' : ''}`}>
-        <path className='zyco-method-motion__leader' d='M120 252 L16 224 V100 H24' />
+        <path className='zyco-method-motion__leader' d={geometry.contactLeader} />
         <text className='zyco-method-motion__callout' x='24' y='94'>
           {labels[kind].contact}
         </text>
       </g>
 
       <g className={`zyco-method-motion__springback zyco-method-motion__springback--${kind}`}>
-        <path className='zyco-method-motion__leader' d='M244 238 L298 178' />
-        <text className='zyco-method-motion__callout' x='210' y='170'>
+        <path className='zyco-method-motion__leader' d='M240 238 L286 180' />
+        <text className='zyco-method-motion__callout' x='204' y='170'>
           {labels[kind].springback}
         </text>
       </g>
 
       <g className={`zyco-method-motion__radius${reduceMotion ? ' zyco-method-motion__visible' : ''}`}>
-        <path className='zyco-method-motion__leader' d='M186 286 L218 292' />
-        <text className='zyco-method-motion__callout' x='222' y='296'>
+        <path className='zyco-method-motion__leader' d={geometry.radiusLeader} />
+        <text className='zyco-method-motion__callout' x='254' y='200'>
           {labels[kind].radius}
         </text>
       </g>
@@ -162,6 +174,18 @@ export default function BottomingVsCoiningMotionDiagram({ labels }) {
             color: #dbeafe;
             line-height: 1.7;
           }
+          .zyco-method-motion__process-note {
+            display: inline-flex;
+            margin: 16px 0 0;
+            padding: 8px 12px;
+            border: 1px solid rgba(125, 211, 252, 0.36);
+            border-radius: 999px;
+            color: #dbeafe;
+            background: rgba(30, 64, 175, 0.24);
+            font-size: 12.5px;
+            font-weight: 680;
+            line-height: 1.5;
+          }
           .zyco-method-motion__frame {
             overflow-x: auto;
             border: 1px solid rgba(147, 197, 253, 0.18);
@@ -200,21 +224,21 @@ export default function BottomingVsCoiningMotionDiagram({ labels }) {
           .zyco-method-motion__springback--bottoming { animation-name: method-release-small; }
           .zyco-method-motion__springback--coining { animation-name: method-release-minimal; }
           @keyframes method-forming-note {
-            0%, 27%, 76%, 100% { opacity: 0; }
-            43%, 58% { opacity: 1; }
-            68% { opacity: .35; }
+            0%, 28%, 77%, 100% { opacity: 0; }
+            42%, 58% { opacity: 1; }
+            70% { opacity: .35; }
           }
           @keyframes method-release-note {
-            0%, 58%, 100% { opacity: 0; }
-            65%, 73% { opacity: 1; }
+            0%, 59%, 100% { opacity: 0; }
+            65%, 74% { opacity: 1; }
           }
           @keyframes method-release-small {
-            0%, 58%, 100% { opacity: 0; }
-            65%, 73% { opacity: .78; }
+            0%, 59%, 100% { opacity: 0; }
+            65%, 74% { opacity: .78; }
           }
           @keyframes method-release-minimal {
-            0%, 58%, 100% { opacity: 0; }
-            65%, 73% { opacity: .52; }
+            0%, 59%, 100% { opacity: 0; }
+            65%, 74% { opacity: .52; }
           }
           @media (prefers-reduced-motion: reduce) {
             .zyco-method-motion * { animation: none !important; }
@@ -252,6 +276,7 @@ export default function BottomingVsCoiningMotionDiagram({ labels }) {
           <ProcessCell kind='coining' x='768' labels={labels} reduceMotion={reduceMotion} />
         </svg>
       </div>
+      <p className='zyco-method-motion__process-note'>{labels.coining.pressNote}</p>
     </section>
   )
 }
