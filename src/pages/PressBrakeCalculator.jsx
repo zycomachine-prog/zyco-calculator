@@ -1109,21 +1109,16 @@ const animationStyle = `
   box-shadow:
     0 10px 24px rgba(15, 23, 42, 0.13),
     0 4px 12px rgba(37, 99, 235, 0.12);
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    color 0.22s ease,
-    background 0.22s ease,
-    box-shadow 0.22s ease;
+  transition: all 0.25s ease;
 }
 
 .zyco-press-brake-back-to-hub:hover {
-  border-color: rgba(29, 78, 216, 0.72);
-  background-color: #bfdbfe;
-  color: #0b2454;
+  border-color: rgba(125, 211, 252, 0.7);
+  background-color: rgba(37, 99, 235, 0.42);
+  color: #ffffff;
   box-shadow:
-    0 14px 30px rgba(15, 23, 42, 0.16),
-    0 6px 16px rgba(37, 99, 235, 0.16);
+    0 14px 32px rgba(37, 99, 235, 0.32),
+    0 0 0 1px rgba(125, 211, 252, 0.16);
   transform: translateY(-2px);
 }
 
@@ -3342,11 +3337,13 @@ overflow: 'hidden',
                 key={tool.labelKey}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform =
-                    'translateY(-2px)'
+                    'translateY(-4px)'
                   e.currentTarget.style.boxShadow =
-                    '0 14px 28px rgba(37,99,235,0.36)'
+                    '0 14px 30px rgba(56,189,248,0.22), 0 7px 22px rgba(2,8,23,0.22)'
                   e.currentTarget.style.borderColor =
-                    'rgba(255,255,255,0.9)'
+                    'rgba(125,211,252,0.7)'
+                  e.currentTarget.style.background =
+                    'rgba(37,99,235,0.4)'
                   e.currentTarget.style.filter =
                     'brightness(1.04)'
                 }}
@@ -3357,6 +3354,8 @@ overflow: 'hidden',
                     '0 8px 20px rgba(37,99,235,0.28)'
                   e.currentTarget.style.borderColor =
                     'rgba(191,219,254,0.44)'
+                  e.currentTarget.style.background =
+                    'linear-gradient(135deg,#1e3a8a 0%,#2563eb 52%,#3b82f6 100%)'
                   e.currentTarget.style.filter =
                     'brightness(1)'
                 }}
@@ -3382,7 +3381,7 @@ overflow: 'hidden',
                   filter: 'brightness(1)',
                   transform: 'translateY(0px)',
                   transition:
-                    'transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, filter 0.24s ease',
+                    'all 0.25s ease',
                   overflowWrap: 'anywhere',
                 }}
               >

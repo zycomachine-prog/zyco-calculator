@@ -313,14 +313,14 @@ export default function PressBrakeCrowningGuide({
           }
           .zyco-crowning__back, .zyco-crowning__tool {
             display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; text-decoration: none;
-            color: #ffffff; font-size: 15px; font-weight: 800; transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+            color: #ffffff; font-size: 15px; font-weight: 800; transition: all .25s ease;
           }
           .zyco-crowning__back {
             width: fit-content; max-width: min(100%, 460px); min-height: 44px; margin: 0 0 22px; padding: 0 16px;
             border: 1px solid rgba(147,197,253,0.46); border-radius: 999px;
             background: linear-gradient(145deg, rgba(15,23,42,0.34), rgba(37,99,235,0.12)); color: #bfdbfe;
           }
-          .zyco-crowning__back:hover, .zyco-crowning__tool:hover { transform: translateY(-2px); border-color: rgba(191,219,254,0.72); color: #fff; }
+          .zyco-crowning__back:hover { transform: translateY(-2px); border-color: rgba(125,211,252,0.7); color: #fff; background: rgba(37,99,235,0.42); box-shadow: 0 14px 32px rgba(37,99,235,0.32), 0 0 0 1px rgba(125,211,252,0.16); }
           .zyco-crowning__eyebrow { margin: 0; color: #7dd3fc; font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
           .zyco-crowning__title { max-width: 900px; margin: 14px 0 18px; font-size: clamp(34px, 5vw, 54px); line-height: 1.08; letter-spacing: -.05em; }
           .zyco-crowning__subtitle { max-width: 830px; margin: 0; color: #dbeafe; font-size: 18px; line-height: 1.72; }
@@ -352,7 +352,7 @@ export default function PressBrakeCrowningGuide({
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 48%, #60a5fa 100%);
             box-shadow: 0 12px 30px rgba(37,99,235,0.34);
           }
-          .zyco-crowning__tool:hover { box-shadow: 0 18px 38px rgba(37,99,235,0.42); }
+          .zyco-crowning__tool:hover { transform: translateY(-4px); border-color: rgba(125,211,252,0.7); color: #fff; background: rgba(37,99,235,0.4); box-shadow: 0 14px 30px rgba(56,189,248,0.22), 0 7px 22px rgba(2,8,23,0.22); }
           @media (max-width: 840px) { .zyco-crowning__grid, .zyco-crowning__cards { grid-template-columns: 1fr; } }
           @media (max-width: 760px) {
             .zyco-crowning { padding: 22px 14px; }

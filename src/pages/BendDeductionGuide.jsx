@@ -202,9 +202,9 @@ export default function BendDeductionGuide({ language = 'en', setLanguage = () =
         .zyco-bd::before { content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(96,165,250,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.08) 1px,transparent 1px); background-size:42px 42px; mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 78%); pointer-events:none; }
         .zyco-bd__shell { width:min(1180px,100%); margin:0 auto; position:relative; z-index:1; }
         .zyco-bd__hero { padding:38px 36px; margin-bottom:22px; border:1px solid rgba(191,219,254,.2); border-radius:30px; background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.06)); backdrop-filter:blur(16px); box-shadow:0 28px 68px rgba(2,8,23,.2); }
-        .zyco-bd__back,.zyco-bd__tool { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; text-decoration:none; font-size:15px; font-weight:800; transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,color .24s ease; }
+        .zyco-bd__back,.zyco-bd__tool { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; text-decoration:none; font-size:15px; font-weight:800; transition:all .25s ease; }
         .zyco-bd__back { width:fit-content; max-width:min(100%,480px); min-height:44px; margin:0 0 22px; padding:0 16px; border:1px solid rgba(147,197,253,.46); border-radius:999px; background:linear-gradient(145deg,rgba(15,23,42,.34),rgba(37,99,235,.12)); color:#bfdbfe; }
-        .zyco-bd__back:hover,.zyco-bd__tool:hover { transform:translateY(-2px); border-color:rgba(191,219,254,.72); color:#fff; }
+        .zyco-bd__back:hover { transform:translateY(-2px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.42); box-shadow:0 14px 32px rgba(37,99,235,.32),0 0 0 1px rgba(125,211,252,.16); }
         .zyco-bd__eyebrow { margin:0; color:#7dd3fc; font-size:12px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; }
         .zyco-bd__title { max-width:920px; margin:14px 0 18px; font-size:clamp(34px,5vw,54px); line-height:1.08; letter-spacing:-.05em; }
         .zyco-bd__subtitle { max-width:970px; margin:0; color:#dbeafe; font-size:18px; line-height:1.72; }
@@ -231,7 +231,7 @@ export default function BendDeductionGuide({ language = 'en', setLanguage = () =
         .zyco-bd__faq h3 { margin:0 0 8px; color:#eff6ff; font-size:16px; line-height:1.5; }
         .zyco-bd__tools { display:flex; flex-wrap:wrap; gap:12px; }
         .zyco-bd__tool { min-height:46px; padding:0 18px; border:1px solid rgba(96,165,250,.18); border-radius:16px; background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 48%,#60a5fa 100%); color:#fff; box-shadow:0 12px 30px rgba(37,99,235,.34); }
-        .zyco-bd__tool:hover { box-shadow:0 18px 38px rgba(37,99,235,.42); }
+        .zyco-bd__tool:hover { transform:translateY(-4px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.4); box-shadow:0 14px 30px rgba(56,189,248,.22),0 7px 22px rgba(2,8,23,.22); }
         @media (max-width:840px) { .zyco-bd__grid,.zyco-bd__cards { grid-template-columns:1fr; } }
         @media (max-width:760px) { .zyco-bd { padding:22px 14px; } .zyco-bd__hero,.zyco-bd__panel { padding:22px; border-radius:22px; } .zyco-bd__subtitle { font-size:16px; } }
         @media (max-width:640px) { .zyco-bd__back,.zyco-bd__tool { width:100%; } }

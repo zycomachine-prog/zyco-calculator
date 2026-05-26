@@ -130,7 +130,7 @@ export default function BottomingVsCoiningGuide({
           }
           .zyco-method-guide__back:hover {
             transform: translateY(-2px);
-            border-color: rgba(191,219,254,.72);
+            border-color: rgba(125,211,252,.7);
             color: #fff;
             background: rgba(37,99,235,.42);
             box-shadow: 0 14px 32px rgba(37,99,235,.32), 0 0 0 1px rgba(125,211,252,.16);

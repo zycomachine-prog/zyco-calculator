@@ -265,23 +265,17 @@ export default function SpringbackDatabase({
               0 10px 28px rgba(15, 23, 42, 0.18),
               inset 0 1px 0 rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(16px);
-            transition:
-              transform 0.22s ease,
-              border-color 0.22s ease,
-              color 0.22s ease,
-              background 0.22s ease,
-              box-shadow 0.22s ease;
+            transition: all 0.25s ease;
           }
 
           .zyco-tool-back-to-hub:hover {
             transform: translateY(-2px);
-            border-color: rgba(191, 219, 254, 0.72);
-            background:
-              linear-gradient(145deg, rgba(30, 64, 175, 0.42), rgba(59, 130, 246, 0.18));
+            border-color: rgba(125, 211, 252, 0.7);
+            background: rgba(37, 99, 235, 0.42);
             color: #ffffff;
             box-shadow:
-              0 16px 34px rgba(37, 99, 235, 0.26),
-              inset 0 1px 0 rgba(255, 255, 255, 0.16);
+              0 14px 32px rgba(37, 99, 235, 0.32),
+              0 0 0 1px rgba(125, 211, 252, 0.16);
           }
 
           .zyco-tool-back-to-hub:focus-visible {
@@ -567,11 +561,15 @@ export default function SpringbackDatabase({
             transition:
               transform 0.25s ease,
               box-shadow 0.25s ease,
-              border-color 0.25s ease;
+              border-color 0.25s ease,
+              background 0.25s ease;
           }
 
           .zyco-springback__tools .zyco-springback-tool-link:hover {
-            border-color: rgba(191, 219, 254, 0.72);
+            transform: translateY(-4px);
+            border-color: rgba(125, 211, 252, 0.7);
+            background: rgba(37, 99, 235, 0.4);
+            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.22), 0 7px 22px rgba(2, 8, 23, 0.22);
           }
 
           @media (max-width: 980px) {

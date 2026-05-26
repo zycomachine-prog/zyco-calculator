@@ -232,11 +232,11 @@ export default function KFactorGuide({ language = 'en', setLanguage = () => {} }
         .zyco-kfactor__shell { width:min(1160px,100%); margin:0 auto; }
         .zyco-kfactor__hero,.zyco-kfactor__panel { position:relative; margin-bottom:18px; padding:28px; border:1px solid rgba(147,197,253,.19); border-radius:26px; background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045)); box-shadow:0 20px 58px rgba(0,0,0,.24); backdrop-filter:blur(16px); }
         .zyco-kfactor__hero { padding:32px; }
-        .zyco-kfactor__back,.zyco-kfactor__tool { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; text-decoration:none; font-size:15px; font-weight:800; transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,color .24s ease; }
+        .zyco-kfactor__back,.zyco-kfactor__tool { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; text-decoration:none; font-size:15px; font-weight:800; transition:all .25s ease; }
         .zyco-kfactor__back { width:fit-content; max-width:min(100%,480px); min-height:44px; margin:0 0 22px; padding:0 16px; border:1px solid rgba(147,197,253,.46); border-radius:999px; background:linear-gradient(145deg,rgba(15,23,42,.34),rgba(37,99,235,.12)); color:#bfdbfe; }
         .zyco-kfactor__tool { min-height:46px; padding:0 18px; border:1px solid rgba(96,165,250,.18); border-radius:16px; color:#fff; background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 48%,#60a5fa 100%); box-shadow:0 12px 30px rgba(37,99,235,.34); }
-        .zyco-kfactor__back:hover,.zyco-kfactor__tool:hover { transform:translateY(-2px); border-color:rgba(191,219,254,.72); color:#fff; }
-        .zyco-kfactor__tool:hover { box-shadow:0 18px 38px rgba(37,99,235,.42); }
+        .zyco-kfactor__back:hover { transform:translateY(-2px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.42); box-shadow:0 14px 32px rgba(37,99,235,.32),0 0 0 1px rgba(125,211,252,.16); }
+        .zyco-kfactor__tool:hover { transform:translateY(-4px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.4); box-shadow:0 14px 30px rgba(56,189,248,.22),0 7px 22px rgba(2,8,23,.22); }
         .zyco-kfactor__eyebrow { margin:0 0 12px; color:#93c5fd; font-size:12px; font-weight:850; letter-spacing:2.2px; text-transform:uppercase; }
         .zyco-kfactor__title { margin:0; color:#fff; font-size:clamp(34px,5vw,48px); line-height:1.08; font-weight:900; }
         .zyco-kfactor__subtitle { max-width:820px; margin:15px 0 0; color:#dbeafe; font-size:17px; line-height:1.72; font-weight:600; }
