@@ -1127,6 +1127,26 @@ const animationStyle = `
   outline-offset: 3px;
 }
 
+.zyco-press-brake-related-tool {
+  border: 1px solid rgba(147, 197, 253, 0.38);
+  background: linear-gradient(180deg, rgba(30, 64, 175, 0.92), rgba(30, 58, 138, 0.9));
+  color: #dbeafe;
+  box-shadow: none;
+  transform: translateY(0);
+  transition: all 0.25s ease;
+}
+
+.zyco-press-brake-related-tool:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125, 211, 252, 0.9);
+  color: #ffffff;
+  background: linear-gradient(180deg, rgba(30, 64, 175, 0.94), rgba(30, 58, 138, 0.92));
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.12),
+    0 10px 24px rgba(59, 130, 246, 0.18),
+    0 6px 18px rgba(2, 8, 23, 0.2);
+}
+
 .zyco-press-brake-title-shine {
   position: relative;
 }
@@ -3335,30 +3355,7 @@ overflow: 'hidden',
               <a
                 href={tool.href}
                 key={tool.labelKey}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform =
-                    'translateY(-4px)'
-                  e.currentTarget.style.boxShadow =
-                    '0 14px 30px rgba(56,189,248,0.22), 0 7px 22px rgba(2,8,23,0.22)'
-                  e.currentTarget.style.borderColor =
-                    'rgba(125,211,252,0.7)'
-                  e.currentTarget.style.color =
-                    '#ffffff'
-                  e.currentTarget.style.background =
-                    'rgba(37,99,235,0.4)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform =
-                    'translateY(0px)'
-                  e.currentTarget.style.boxShadow =
-                    '0 8px 20px rgba(37,99,235,0.28)'
-                  e.currentTarget.style.borderColor =
-                    'rgba(147,197,253,0.38)'
-                  e.currentTarget.style.color =
-                    '#dbeafe'
-                  e.currentTarget.style.background =
-                    'rgba(30,64,175,0.32)'
-                }}
+                className='zyco-press-brake-related-tool'
                 style={{
                   minHeight: '42px',
                   display: 'inline-flex',
@@ -3366,19 +3363,12 @@ overflow: 'hidden',
                   justifyContent: 'center',
                   boxSizing: 'border-box',
                   padding: '0 14px',
-                  border: '1px solid rgba(147,197,253,0.38)',
                   borderRadius: '14px',
-                  background: 'rgba(30,64,175,0.32)',
-                  color: '#dbeafe',
                   fontSize: isMobile ? '14px' : '13px',
                   fontWeight: 850,
                   lineHeight: 1.25,
                   textDecoration: 'none',
                   textAlign: 'center',
-                  boxShadow: 'none',
-                  transform: 'translateY(0px)',
-                  transition:
-                    'all 0.25s ease',
                   overflowWrap: 'anywhere',
                 }}
               >
