@@ -3342,10 +3342,10 @@ overflow: 'hidden',
                     '0 14px 30px rgba(56,189,248,0.22), 0 7px 22px rgba(2,8,23,0.22)'
                   e.currentTarget.style.borderColor =
                     'rgba(125,211,252,0.7)'
+                  e.currentTarget.style.color =
+                    '#ffffff'
                   e.currentTarget.style.background =
                     'rgba(37,99,235,0.4)'
-                  e.currentTarget.style.filter =
-                    'brightness(1.04)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform =
@@ -3353,11 +3353,11 @@ overflow: 'hidden',
                   e.currentTarget.style.boxShadow =
                     '0 8px 20px rgba(37,99,235,0.28)'
                   e.currentTarget.style.borderColor =
-                    'rgba(191,219,254,0.44)'
+                    'rgba(147,197,253,0.38)'
+                  e.currentTarget.style.color =
+                    '#dbeafe'
                   e.currentTarget.style.background =
-                    'linear-gradient(135deg,#1e3a8a 0%,#2563eb 52%,#3b82f6 100%)'
-                  e.currentTarget.style.filter =
-                    'brightness(1)'
+                    'rgba(30,64,175,0.32)'
                 }}
                 style={{
                   minHeight: '42px',
@@ -3366,19 +3366,16 @@ overflow: 'hidden',
                   justifyContent: 'center',
                   boxSizing: 'border-box',
                   padding: '0 14px',
-                  border: '1px solid rgba(191,219,254,0.44)',
+                  border: '1px solid rgba(147,197,253,0.38)',
                   borderRadius: '14px',
-                  background:
-                    'linear-gradient(135deg,#1e3a8a 0%,#2563eb 52%,#3b82f6 100%)',
-                  color: '#ffffff',
+                  background: 'rgba(30,64,175,0.32)',
+                  color: '#dbeafe',
                   fontSize: isMobile ? '14px' : '13px',
                   fontWeight: 850,
                   lineHeight: 1.25,
                   textDecoration: 'none',
                   textAlign: 'center',
-                  textShadow: '0 1px 1px rgba(15,23,42,0.28)',
-                  boxShadow: '0 8px 20px rgba(37,99,235,0.28)',
-                  filter: 'brightness(1)',
+                  boxShadow: 'none',
                   transform: 'translateY(0px)',
                   transition:
                     'all 0.25s ease',

@@ -348,9 +348,8 @@ export default function PressBrakeCrowningGuide({
           }
           .zyco-crowning__tools { display: flex; flex-wrap: wrap; gap: 12px; }
           .zyco-crowning__tool {
-            min-height: 46px; padding: 0 18px; border: 1px solid rgba(96,165,250,0.18); border-radius: 16px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 48%, #60a5fa 100%);
-            box-shadow: 0 12px 30px rgba(37,99,235,0.34);
+            min-height: 46px; padding: 0 18px; border: 1px solid rgba(147,197,253,0.38); border-radius: 14px;
+            color: #dbeafe; background: rgba(30,64,175,0.32); box-shadow: none;
           }
           .zyco-crowning__tool:hover { transform: translateY(-4px); border-color: rgba(125,211,252,0.7); color: #fff; background: rgba(37,99,235,0.4); box-shadow: 0 14px 30px rgba(56,189,248,0.22), 0 7px 22px rgba(2,8,23,0.22); }
           @media (max-width: 840px) { .zyco-crowning__grid, .zyco-crowning__cards { grid-template-columns: 1fr; } }

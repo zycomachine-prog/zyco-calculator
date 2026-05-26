@@ -286,7 +286,7 @@ export default function SpringbackCompensationGuide({ language = 'en', setLangua
         .zyco-comp__hero { padding:32px; }
         .zyco-comp__back,.zyco-comp__tool { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; text-decoration:none; font-size:15px; font-weight:800; transition:all .25s ease; }
         .zyco-comp__back { width:fit-content; max-width:min(100%,480px); min-height:44px; margin:0 0 22px; padding:0 16px; border:1px solid rgba(147,197,253,.46); border-radius:999px; background:linear-gradient(145deg,rgba(15,23,42,.34),rgba(37,99,235,.12)); color:#bfdbfe; }
-        .zyco-comp__tool { min-height:46px; padding:0 18px; border:1px solid rgba(96,165,250,.18); border-radius:16px; color:#fff; background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 48%,#60a5fa 100%); box-shadow:0 12px 30px rgba(37,99,235,.34); }
+        .zyco-comp__tool { min-height:46px; padding:0 18px; border:1px solid rgba(147,197,253,.38); border-radius:14px; color:#dbeafe; background:rgba(30,64,175,.32); box-shadow:none; }
         .zyco-comp__back:hover { transform:translateY(-2px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.42); box-shadow:0 14px 32px rgba(37,99,235,.32),0 0 0 1px rgba(125,211,252,.16); }
         .zyco-comp__tool:hover { transform:translateY(-4px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.4); box-shadow:0 14px 30px rgba(56,189,248,.22),0 7px 22px rgba(2,8,23,.22); }
         .zyco-comp__eyebrow { margin:0 0 12px; color:#93c5fd; font-size:12px; font-weight:850; letter-spacing:2.2px; text-transform:uppercase; }

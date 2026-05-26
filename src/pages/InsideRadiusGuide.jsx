@@ -547,17 +547,18 @@ export default function InsideRadiusGuide({
           }
 
           .zyco-radius__tools .zyco-radius-card__action {
-            border: 1px solid rgba(96, 165, 250, 0.18);
-            transition:
-              transform 0.25s ease,
-              box-shadow 0.25s ease,
-              border-color 0.25s ease,
-              background 0.25s ease;
+            border: 1px solid rgba(147, 197, 253, 0.38);
+            border-radius: 14px;
+            background: rgba(30, 64, 175, 0.32);
+            color: #dbeafe;
+            box-shadow: none;
+            transition: all 0.25s ease;
           }
 
           .zyco-radius__tools .zyco-radius-card__action:hover {
             transform: translateY(-4px);
             border-color: rgba(125, 211, 252, 0.7);
+            color: #ffffff;
             background: rgba(37, 99, 235, 0.4);
             box-shadow: 0 14px 30px rgba(56, 189, 248, 0.22), 0 7px 22px rgba(2, 8, 23, 0.22);
           }

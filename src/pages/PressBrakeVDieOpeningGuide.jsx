@@ -1387,15 +1387,15 @@ export default function PressBrakeVDieOpeningGuide({
             justify-content: center;
             box-sizing: border-box;
             padding: 0 18px;
-            border: 1px solid rgba(96, 165, 250, 0.18);
-            border-radius: 16px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 48%, #60a5fa 100%);
-            color: #ffffff;
+            border: 1px solid rgba(147, 197, 253, 0.38);
+            border-radius: 14px;
+            background: rgba(30, 64, 175, 0.32);
+            color: #dbeafe;
             font-size: 15px;
             font-weight: 800;
             text-decoration: none;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.34);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            box-shadow: none;
+            transition: all 0.25s ease;
           }
 
           .zyco-v-guide__tool:hover {

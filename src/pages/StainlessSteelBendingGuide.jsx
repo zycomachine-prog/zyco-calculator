@@ -275,7 +275,7 @@ export default function StainlessSteelBendingGuide({
           .zyco-stainless__list li, .zyco-stainless__faq article { padding:17px 20px; border:1px solid rgba(191,219,254,.12); border-radius:18px; background:rgba(30,64,112,.3); }
           .zyco-stainless__faq h3 { margin:0 0 8px; color:#eff6ff; font-size:16px; }
           .zyco-stainless__tools { display:flex; flex-wrap:wrap; gap:12px; }
-          .zyco-stainless__tool { min-height:46px; padding:0 18px; border:1px solid rgba(96,165,250,.18); border-radius:16px; background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 48%,#60a5fa 100%); box-shadow:0 12px 30px rgba(37,99,235,.34); }
+          .zyco-stainless__tool { min-height:46px; padding:0 18px; border:1px solid rgba(147,197,253,.38); border-radius:14px; color:#dbeafe; background:rgba(30,64,175,.32); box-shadow:none; }
           .zyco-stainless__tool:hover { transform:translateY(-4px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.4); box-shadow:0 14px 30px rgba(56,189,248,.22),0 7px 22px rgba(2,8,23,.22); }
           @media (max-width:840px) { .zyco-stainless__grid, .zyco-stainless__cards { grid-template-columns:1fr; } }
           @media (max-width:760px) { .zyco-stainless { padding:22px 14px; } .zyco-stainless__hero, .zyco-stainless__panel { padding:22px; border-radius:22px; } .zyco-stainless__subtitle { font-size:16px; } }

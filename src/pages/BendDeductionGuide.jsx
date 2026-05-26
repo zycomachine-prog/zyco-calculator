@@ -230,7 +230,7 @@ export default function BendDeductionGuide({ language = 'en', setLanguage = () =
         .zyco-bd__list { margin-top:14px; }
         .zyco-bd__faq h3 { margin:0 0 8px; color:#eff6ff; font-size:16px; line-height:1.5; }
         .zyco-bd__tools { display:flex; flex-wrap:wrap; gap:12px; }
-        .zyco-bd__tool { min-height:46px; padding:0 18px; border:1px solid rgba(96,165,250,.18); border-radius:16px; background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 48%,#60a5fa 100%); color:#fff; box-shadow:0 12px 30px rgba(37,99,235,.34); }
+        .zyco-bd__tool { min-height:46px; padding:0 18px; border:1px solid rgba(147,197,253,.38); border-radius:14px; background:rgba(30,64,175,.32); color:#dbeafe; box-shadow:none; }
         .zyco-bd__tool:hover { transform:translateY(-4px); border-color:rgba(125,211,252,.7); color:#fff; background:rgba(37,99,235,.4); box-shadow:0 14px 30px rgba(56,189,248,.22),0 7px 22px rgba(2,8,23,.22); }
         @media (max-width:840px) { .zyco-bd__grid,.zyco-bd__cards { grid-template-columns:1fr; } }
         @media (max-width:760px) { .zyco-bd { padding:22px 14px; } .zyco-bd__hero,.zyco-bd__panel { padding:22px; border-radius:22px; } .zyco-bd__subtitle { font-size:16px; } }
