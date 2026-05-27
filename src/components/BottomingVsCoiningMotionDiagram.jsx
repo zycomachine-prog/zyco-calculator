@@ -65,70 +65,80 @@ function ProcessCell({
       <path className='zyco-method-motion__die-edge' d='M120 252 L180 330 L240 252' />
 
       <g
-        className='zyco-method-motion__punch'
+        className={`zyco-method-motion__punch zyco-method-motion__punch--${kind}`}
         transform={punchTransform}
       >
         <rect x='139' y='66' width='82' height='48' rx='7' />
         <path d={isAir ? 'M150 114 H210 L188 160 Q180 168 172 160 Z' : isBottoming ? 'M148 114 H212 L188 160 Q180 170 172 160 Z' : 'M150 114 H210 L185 163 Q180 169 175 163 Z'} />
-        {!reduceMotion && (
-          <animateTransform
-            attributeName='transform'
-            type='translate'
-            dur='9s'
-            repeatCount='indefinite'
-            calcMode='spline'
-            keyTimes='0;0.23;0.38;0.55;0.75;1'
-            keySplines='0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1'
-            values={`0 0;0 64;0 ${64 + ((geometry.punchTravel - 64) * 0.48)};0 ${geometry.punchTravel};0 64;0 0`}
-          />
-        )}
       </g>
 
-      <path className='zyco-method-motion__sheet' d={formedSheet}>
-        {!reduceMotion && (
-          <animate
-            attributeName='d'
-            dur='9s'
-            repeatCount='indefinite'
-            calcMode='spline'
-            keyTimes='0;0.23;0.38;0.55;0.75;1'
-            keySplines='0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1'
-            values={`${initialSheet};${initialSheet};${geometry.sheetForming};${geometry.sheetFormed};${geometry.sheetReleased};${initialSheet}`}
-          />
-        )}
-      </path>
+      <path className={`zyco-method-motion__sheet zyco-method-motion__sheet--${kind}`} d={formedSheet} />
 
       {kind === 'coining' && (
-        <g className={`zyco-method-motion__imprint${reduceMotion ? ' zyco-method-motion__visible' : ''}`}>
+        <g
+          className={`zyco-method-motion__annotation zyco-method-motion__imprint${reduceMotion ? ' zyco-method-motion__visible' : ''}`}
+          opacity={reduceMotion ? 1 : 0}
+          visibility={reduceMotion ? 'visible' : 'hidden'}
+        >
           <path d='M168 305 Q180 320 192 305' />
           <path d='M172 311 Q180 319 188 311' />
         </g>
       )}
 
-      <g className={`zyco-method-motion__contact zyco-method-motion__contact--${kind}${reduceMotion ? ' zyco-method-motion__visible' : ''}`}>
+      <g
+        className={`zyco-method-motion__annotation zyco-method-motion__contact zyco-method-motion__contact--${kind}${reduceMotion ? ' zyco-method-motion__visible' : ''}`}
+        opacity={reduceMotion ? 1 : 0}
+        visibility={reduceMotion ? 'visible' : 'hidden'}
+      >
         <circle cx='120' cy='252' r='4' />
         <circle cx='240' cy='252' r='4' />
         {!isAir && <path d='M136 272 L180 326 L224 272' />}
         {isAir && <circle cx='180' cy='274' r='4' />}
       </g>
 
-      <g className={`zyco-method-motion__formed-callout${reduceMotion ? ' zyco-method-motion__visible' : ''}`}>
-        <path className='zyco-method-motion__leader' d={geometry.contactLeader} />
-        <text className='zyco-method-motion__callout' x='24' y='94'>
+      <g
+        className={`zyco-method-motion__annotation zyco-method-motion__formed-callout${reduceMotion ? ' zyco-method-motion__visible' : ''}`}
+        opacity={reduceMotion ? 1 : 0}
+        visibility={reduceMotion ? 'visible' : 'hidden'}
+      >
+        <path
+          className='zyco-method-motion__leader'
+          d={geometry.contactLeader}
+        />
+        <text
+          className='zyco-method-motion__callout'
+          x='24'
+          y='94'
+        >
           {labels[kind].contact}
         </text>
       </g>
 
-      <g className={`zyco-method-motion__springback zyco-method-motion__springback--${kind}`}>
+      <g
+        className={`zyco-method-motion__annotation zyco-method-motion__springback zyco-method-motion__springback--${kind}`}
+        opacity='0'
+        visibility='hidden'
+      >
         <path className='zyco-method-motion__leader' d='M240 238 L286 180' />
         <text className='zyco-method-motion__callout' x='204' y='170'>
           {labels[kind].springback}
         </text>
       </g>
 
-      <g className={`zyco-method-motion__radius${reduceMotion ? ' zyco-method-motion__visible' : ''}`}>
-        <path className='zyco-method-motion__leader' d={geometry.radiusLeader} />
-        <text className='zyco-method-motion__callout' x='254' y='200'>
+      <g
+        className={`zyco-method-motion__annotation zyco-method-motion__radius${reduceMotion ? ' zyco-method-motion__visible' : ''}`}
+        opacity={reduceMotion ? 1 : 0}
+        visibility={reduceMotion ? 'visible' : 'hidden'}
+      >
+        <path
+          className='zyco-method-motion__leader'
+          d={geometry.radiusLeader}
+        />
+        <text
+          className='zyco-method-motion__callout'
+          x='254'
+          y='200'
+        >
           {labels[kind].radius}
         </text>
       </g>
@@ -204,41 +214,92 @@ export default function BottomingVsCoiningMotionDiagram({ labels }) {
           .zyco-method-motion__die-edge { fill: none; stroke: #bfdbfe; stroke-width: 2.5; }
           .zyco-method-motion__punch { fill: url(#methodPunch); }
           .zyco-method-motion__sheet { fill: url(#methodSheet); stroke: rgba(255,255,255,0.82); stroke-width: 1; }
+          .zyco-method-motion__punch--air { animation: method-punch-air 9s cubic-bezier(0.4, 0, 0.2, 1) 0s infinite both; }
+          .zyco-method-motion__punch--bottoming { animation: method-punch-bottoming 9s cubic-bezier(0.4, 0, 0.2, 1) 0s infinite both; }
+          .zyco-method-motion__punch--coining { animation: method-punch-coining 9s cubic-bezier(0.4, 0, 0.2, 1) 0s infinite both; }
+          .zyco-method-motion__sheet--air { animation: method-sheet-air 9s cubic-bezier(0.4, 0, 0.2, 1) 0s infinite both; }
+          .zyco-method-motion__sheet--bottoming { animation: method-sheet-bottoming 9s cubic-bezier(0.4, 0, 0.2, 1) 0s infinite both; }
+          .zyco-method-motion__sheet--coining { animation: method-sheet-coining 9s cubic-bezier(0.4, 0, 0.2, 1) 0s infinite both; }
           .zyco-method-motion__contact { fill: #38bdf8; stroke: #7dd3fc; opacity: 0; }
           .zyco-method-motion__contact path { fill: none; stroke-width: 4; opacity: 0.82; }
           .zyco-method-motion__leader { fill: none; stroke: #7dd3fc; stroke-width: 1.2; stroke-dasharray: 3 3; }
           .zyco-method-motion__callout { fill: #bae6fd; font-size: 10.5px; font-weight: 760; }
+          .zyco-method-motion__annotation {
+            opacity: 0;
+            visibility: hidden;
+          }
           .zyco-method-motion__formed-callout,
           .zyco-method-motion__radius,
           .zyco-method-motion__springback,
           .zyco-method-motion__imprint { opacity: 0; }
           .zyco-method-motion__imprint path { fill: none; stroke: #38bdf8; stroke-width: 2.5; }
-          .zyco-method-motion__visible { opacity: 1; }
+          .zyco-method-motion__visible {
+            opacity: 1;
+            visibility: visible;
+          }
           .zyco-method-motion__contact:not(.zyco-method-motion__visible),
           .zyco-method-motion__formed-callout:not(.zyco-method-motion__visible),
           .zyco-method-motion__radius:not(.zyco-method-motion__visible),
           .zyco-method-motion__imprint:not(.zyco-method-motion__visible) {
-            animation: method-forming-note 9s ease-in-out infinite;
+            animation: method-forming-note 9s ease-in-out 0s infinite both;
           }
-          .zyco-method-motion__springback { animation: method-release-note 9s ease-in-out infinite; }
+          .zyco-method-motion__springback {
+            animation: method-release-note 9s ease-in-out 0s infinite both;
+          }
           .zyco-method-motion__springback--bottoming { animation-name: method-release-small; }
           .zyco-method-motion__springback--coining { animation-name: method-release-minimal; }
           @keyframes method-forming-note {
-            0%, 28%, 77%, 100% { opacity: 0; }
-            42%, 58% { opacity: 1; }
-            70% { opacity: .35; }
+            0%, 28%, 77%, 100% { opacity: 0; visibility: hidden; }
+            42%, 58% { opacity: 1; visibility: visible; }
+            70% { opacity: .35; visibility: visible; }
           }
           @keyframes method-release-note {
-            0%, 59%, 100% { opacity: 0; }
-            65%, 74% { opacity: 1; }
+            0%, 59%, 100% { opacity: 0; visibility: hidden; }
+            65%, 74% { opacity: 1; visibility: visible; }
           }
           @keyframes method-release-small {
-            0%, 59%, 100% { opacity: 0; }
-            65%, 74% { opacity: .78; }
+            0%, 59%, 100% { opacity: 0; visibility: hidden; }
+            65%, 74% { opacity: .78; visibility: visible; }
           }
           @keyframes method-release-minimal {
-            0%, 59%, 100% { opacity: 0; }
-            65%, 74% { opacity: .52; }
+            0%, 59%, 100% { opacity: 0; visibility: hidden; }
+            65%, 74% { opacity: .52; visibility: visible; }
+          }
+          @keyframes method-punch-air {
+            0%, 100% { transform: translate(0, 0); }
+            23%, 75% { transform: translate(0, 64px); }
+            38% { transform: translate(0, 86.08px); }
+            55% { transform: translate(0, 110px); }
+          }
+          @keyframes method-punch-bottoming {
+            0%, 100% { transform: translate(0, 0); }
+            23%, 75% { transform: translate(0, 64px); }
+            38% { transform: translate(0, 100.48px); }
+            55% { transform: translate(0, 140px); }
+          }
+          @keyframes method-punch-coining {
+            0%, 100% { transform: translate(0, 0); }
+            23%, 75% { transform: translate(0, 64px); }
+            38% { transform: translate(0, 104.8px); }
+            55% { transform: translate(0, 149px); }
+          }
+          @keyframes method-sheet-air {
+            0%, 23%, 100% { d: path('${initialSheet}'); }
+            38% { d: path('${processGeometry.air.sheetForming}'); }
+            55% { d: path('${processGeometry.air.sheetFormed}'); }
+            75% { d: path('${processGeometry.air.sheetReleased}'); }
+          }
+          @keyframes method-sheet-bottoming {
+            0%, 23%, 100% { d: path('${initialSheet}'); }
+            38% { d: path('${processGeometry.bottoming.sheetForming}'); }
+            55% { d: path('${processGeometry.bottoming.sheetFormed}'); }
+            75% { d: path('${processGeometry.bottoming.sheetReleased}'); }
+          }
+          @keyframes method-sheet-coining {
+            0%, 23%, 100% { d: path('${initialSheet}'); }
+            38% { d: path('${processGeometry.coining.sheetForming}'); }
+            55% { d: path('${processGeometry.coining.sheetFormed}'); }
+            75% { d: path('${processGeometry.coining.sheetReleased}'); }
           }
           @media (prefers-reduced-motion: reduce) {
             .zyco-method-motion * { animation: none !important; }
