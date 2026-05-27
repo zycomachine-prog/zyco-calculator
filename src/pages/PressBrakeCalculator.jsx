@@ -67,6 +67,10 @@ const relatedEngineeringTools = [
     href: '/engineering-tools/bottoming-vs-coining-guide',
   },
   {
+    labelKey: 'bendSequenceGuide',
+    href: '/engineering-tools/bend-sequence-guide',
+  },
+  {
     labelKey: 'pressBrakeTonnageGuide',
     href: '/engineering/press-brake-tonnage-guide',
   },
@@ -123,6 +127,12 @@ relatedToolFallbackLabels.ru.bottomingVsCoiningGuide = 'Bottoming и Coining: р
 relatedToolFallbackLabels.es.bottomingVsCoiningGuide = 'Guía de Bottoming y Coining'
 relatedToolFallbackLabels.tr.bottomingVsCoiningGuide = 'Bottoming ve Coining Kılavuzu'
 relatedToolFallbackLabels.id.bottomingVsCoiningGuide = 'Panduan Bottoming vs Coining'
+relatedToolFallbackLabels.en.bendSequenceGuide = 'Bend Sequence Guide'
+relatedToolFallbackLabels.zh.bendSequenceGuide = '折弯顺序指南'
+relatedToolFallbackLabels.ru.bendSequenceGuide = 'Руководство по последовательности гибки'
+relatedToolFallbackLabels.es.bendSequenceGuide = 'Guía de secuencia de plegado'
+relatedToolFallbackLabels.tr.bendSequenceGuide = 'Büküm Sırası Kılavuzu'
+relatedToolFallbackLabels.id.bendSequenceGuide = 'Panduan Urutan Bending'
 
 relatedToolFallbackLabels.en.springbackCompensationGuide = 'Springback Compensation Guide'
 relatedToolFallbackLabels.zh.springbackCompensationGuide = '回弹补偿指南'

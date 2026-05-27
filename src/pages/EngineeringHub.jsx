@@ -64,6 +64,11 @@ const tools = [
     href: '/engineering-tools/bottoming-vs-coining-guide',
   },
   {
+    key: 'bendSequenceGuide',
+    status: 'active',
+    href: '/engineering-tools/bend-sequence-guide',
+  },
+  {
     key: 'pressBrakeTonnageGuide',
     status: 'active',
     href: '/engineering/press-brake-tonnage-guide',
@@ -144,6 +149,10 @@ const relatedTools = [
   {
     key: 'bottomingVsCoiningGuide',
     href: '/engineering-tools/bottoming-vs-coining-guide',
+  },
+  {
+    key: 'bendSequenceGuide',
+    href: '/engineering-tools/bend-sequence-guide',
   },
   {
     key: 'pressBrakeTonnageGuide',
