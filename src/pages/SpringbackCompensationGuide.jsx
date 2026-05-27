@@ -303,6 +303,7 @@ export default function SpringbackCompensationGuide({ language = 'en', setLangua
         .zyco-comp__factors,.zyco-comp__list,.zyco-comp__faq { display:grid; gap:11px; margin:14px 0 0; padding:0; list-style:none; }
         .zyco-comp__factors { grid-template-columns:repeat(4,minmax(0,1fr)); }
         .zyco-comp__factors li,.zyco-comp__list li,.zyco-comp__faq article { padding:14px 17px; border:1px solid rgba(191,219,254,.12); border-radius:16px; background:rgba(30,64,112,.29); color:#dbeafe; font-size:14px; line-height:1.65; }
+        .zyco-comp__factors li { display:flex; align-items:center; justify-content:center; text-align:center; }
         .zyco-comp__list li::before { content:""; display:inline-block; width:7px; height:7px; margin:0 11px 2px 0; border-radius:999px; background:#38bdf8; }
         .zyco-comp__faq h3 { margin:0 0 7px; color:#eff6ff; font-size:16px; line-height:1.48; }
         .zyco-comp__faq p { margin:0; color:#dbeafe; font-size:14px; line-height:1.65; }
