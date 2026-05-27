@@ -111,26 +111,6 @@ const relatedTools = [
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    key: 'materialDatabase',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection',
-  },
-  {
-    key: 'insideRadiusGuide',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    key: 'springbackDatabase',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    key: 'springbackCompensationGuide',
-    href: '/springback-compensation-guide',
-  },
-  {
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
@@ -141,6 +121,26 @@ const relatedTools = [
   {
     key: 'bendDeductionGuide',
     href: '/engineering/bend-deduction-guide',
+  },
+  {
+    key: 'materialDatabase',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    key: 'springbackDatabase',
+    href: '/engineering-tools/springback-database',
+  },
+  {
+    key: 'springbackCompensationGuide',
+    href: '/springback-compensation-guide',
+  },
+  {
+    key: 'vDieSelectionTool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    key: 'insideRadiusGuide',
+    href: '/engineering-tools/inside-radius-guide',
   },
   {
     key: 'airBendingGuide',
@@ -545,15 +545,22 @@ export default function EngineeringHub({
           }
 
           .zyco-hub__tools .zyco-tool-card__action {
-            border: 1px solid rgba(96, 165, 250, 0.18);
-            transition:
-              transform 0.25s ease,
-              box-shadow 0.25s ease,
-              border-color 0.25s ease;
+            min-height: 50px;
+            padding: 0 20px;
+            border: 1px solid rgba(147, 197, 253, 0.38);
+            border-radius: 14px;
+            background: rgba(30, 64, 175, 0.32);
+            color: #dbeafe;
+            box-shadow: none;
+            transition: all 0.25s ease;
           }
 
           .zyco-hub__tools .zyco-tool-card__action:hover {
-            border-color: rgba(191, 219, 254, 0.72);
+            transform: translateY(-4px);
+            border-color: rgba(125, 211, 252, 0.7);
+            color: #ffffff;
+            background: rgba(37, 99, 235, 0.4);
+            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.22), 0 7px 22px rgba(2, 8, 23, 0.22);
           }
 
           .zyco-tool-card__badge {

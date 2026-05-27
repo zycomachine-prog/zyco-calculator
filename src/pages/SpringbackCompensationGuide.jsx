@@ -13,6 +13,8 @@ const routePath = '/springback-compensation-guide'
 const relatedTools = [
   ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
+  ['kFactorGuide', '/engineering/k-factor-guide'],
+  ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
   ['materialDatabase', '/engineering-tools/material-database'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['springbackCompensationGuide', routePath],
@@ -23,13 +25,11 @@ const relatedTools = [
   ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
   ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
   ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
+  ['minimumFlangeLengthGuide', '/engineering/minimum-flange-length-guide'],
   ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
   ['crowningGuide', '/engineering/press-brake-crowning-guide'],
   ['stainlessSteelBendingGuide', '/engineering/stainless-steel-bending-guide'],
   ['aluminumBendingGuide', '/engineering/aluminum-bending-guide'],
-  ['minimumFlangeLengthGuide', '/engineering/minimum-flange-length-guide'],
-  ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
-  ['kFactorGuide', '/engineering/k-factor-guide'],
 ]
 
 const content = {

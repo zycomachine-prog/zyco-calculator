@@ -384,26 +384,6 @@ const relatedTools = [
     href: '/engineering-tools/press-brake-calculator',
   },
   {
-    key: 'materialDatabase',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection',
-  },
-  {
-    key: 'insideRadiusGuide',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    key: 'springbackDatabase',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    key: 'springbackCompensationGuide',
-    href: '/springback-compensation-guide',
-  },
-  {
     key: 'bendAllowanceCalculator',
     href: '/engineering-tools/bend-allowance-calculator',
   },
@@ -414,6 +394,26 @@ const relatedTools = [
   {
     key: 'bendDeductionGuide',
     href: '/engineering/bend-deduction-guide',
+  },
+  {
+    key: 'materialDatabase',
+    href: '/engineering-tools/material-database',
+  },
+  {
+    key: 'springbackDatabase',
+    href: '/engineering-tools/springback-database',
+  },
+  {
+    key: 'springbackCompensationGuide',
+    href: '/springback-compensation-guide',
+  },
+  {
+    key: 'vDieSelectionTool',
+    href: '/engineering-tools/v-die-selection',
+  },
+  {
+    key: 'insideRadiusGuide',
+    href: '/engineering-tools/inside-radius-guide',
   },
   {
     key: 'airBendingGuide',
