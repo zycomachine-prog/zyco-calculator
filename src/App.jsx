@@ -13,6 +13,15 @@ import {
 import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
 import { getStoredLanguage } from './languages/engineeringText.js'
 
+const htmlLanguageMap = {
+  en: 'en',
+  zh: 'zh-CN',
+  ru: 'ru',
+  es: 'es',
+  tr: 'tr',
+  id: 'id',
+}
+
 const AirBendingGuide = lazy(() => import('./pages/AirBendingGuide.jsx'))
 const BottomingVsCoiningGuide = lazy(() => import('./pages/BottomingVsCoiningGuide.jsx'))
 const BendSequenceGuide = lazy(() => import('./pages/BendSequenceGuide.jsx'))
@@ -38,6 +47,7 @@ export default function App() {
 
   useEffect(() => {
     window.localStorage.setItem('zyco-language', language)
+    document.documentElement.lang = htmlLanguageMap[language] || 'en'
   }, [language])
 
   const languageProps = {

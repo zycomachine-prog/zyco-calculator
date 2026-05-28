@@ -3205,11 +3205,13 @@ linear-gradient(
           href='https://wa.me/8613813072498'
           target='_blank'
           rel='noopener noreferrer'
+          aria-label={t.whatsapp}
           style={{
+            display: 'block',
             textDecoration: 'none',
           }}
         >
-          <button
+          <span
           onMouseEnter={(e) => {
   e.currentTarget.style.transform =
     'translateY(-3px)'
@@ -3226,6 +3228,9 @@ onMouseLeave={(e) => {
             style={{
               width: '100%',
               height: '54px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               marginTop: '20px',
               border: 'none',
               borderRadius: '22px',
@@ -3239,7 +3244,7 @@ onMouseLeave={(e) => {
 transform: 'translateY(0px)',
               boxShadow:
                 '0 12px 35px rgba(34,197,94,0.38)',
-                position: 'relative',
+              position: 'relative',
 overflow: 'hidden',
             }}
           >
@@ -3266,7 +3271,7 @@ overflow: 'hidden',
       'titleScan 3s linear infinite',
   }}
 />
-          </button>
+          </span>
         </a>
 
         <section

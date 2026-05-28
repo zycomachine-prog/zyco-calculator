@@ -56,6 +56,8 @@ const upsertCanonical = (href) => {
   link.setAttribute('href', href)
 }
 
+const SOCIAL_IMAGE_URL = getCanonicalUrl('/cover.jpg')
+
 const findStructuredDataScript = (id) => {
   if (!id) {
     return document.querySelector(
@@ -152,8 +154,10 @@ export const setPageSEO = ({
   upsertMetaByProperty('og:description', description)
   upsertMetaByProperty('og:type', 'website')
   upsertMetaByProperty('og:url', canonicalUrl)
+  upsertMetaByProperty('og:image', SOCIAL_IMAGE_URL)
 
   upsertMetaByName('twitter:card', 'summary_large_image')
   upsertMetaByName('twitter:title', title)
   upsertMetaByName('twitter:description', description)
+  upsertMetaByName('twitter:image', SOCIAL_IMAGE_URL)
 }
