@@ -10,27 +10,27 @@ import {
   setStructuredData,
 } from '../utils/seo.js'
 
-const routePath = '/engineering/k-factor-guide'
+const routePath = '/engineering-tools/k-factor-guide'
 const relatedTools = [
   ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
   ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
   ['kFactorGuide', routePath],
-  ['bendDeductionGuide', '/engineering/bend-deduction-guide'],
+  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
   ['materialDatabase', '/engineering-tools/material-database'],
   ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection'],
+  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
+  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
   ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', '/engineering/minimum-flange-length-guide'],
-  ['toolingSelectionGuide', '/engineering/press-brake-tooling-selection-guide'],
-  ['crowningGuide', '/engineering/press-brake-crowning-guide'],
-  ['stainlessSteelBendingGuide', '/engineering/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering/aluminum-bending-guide'],
+  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
+  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
+  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
+  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
+  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
+  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
+  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
 ]
 
 const content = {

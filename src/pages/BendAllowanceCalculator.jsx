@@ -58,11 +58,11 @@ const relatedTools = [
   },
   {
     key: 'kFactorGuide',
-    href: '/engineering/k-factor-guide',
+    href: '/engineering-tools/k-factor-guide',
   },
   {
     key: 'bendDeductionGuide',
-    href: '/engineering/bend-deduction-guide',
+    href: '/engineering-tools/bend-deduction-guide',
   },
   {
     key: 'materialDatabase',
@@ -74,11 +74,11 @@ const relatedTools = [
   },
   {
     key: 'springbackCompensationGuide',
-    href: '/springback-compensation-guide',
+    href: '/engineering-tools/springback-compensation-guide',
   },
   {
     key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection',
+    href: '/engineering-tools/v-die-selection-tool',
   },
   {
     key: 'insideRadiusGuide',
@@ -98,31 +98,31 @@ const relatedTools = [
   },
   {
     key: 'pressBrakeTonnageGuide',
-    href: '/engineering/press-brake-tonnage-guide',
+    href: '/engineering-tools/press-brake-tonnage-guide',
   },
   {
     key: 'vDieOpeningGuide',
-    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
   },
   {
     key: 'minimumFlangeLengthGuide',
-    href: '/engineering/minimum-flange-length-guide',
+    href: '/engineering-tools/minimum-flange-length-guide',
   },
   {
     key: 'toolingSelectionGuide',
-    href: '/engineering/press-brake-tooling-selection-guide',
+    href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
     key: 'crowningGuide',
-    href: '/engineering/press-brake-crowning-guide',
+    href: '/engineering-tools/press-brake-crowning-guide',
   },
   {
     key: 'stainlessSteelBendingGuide',
-    href: '/engineering/stainless-steel-bending-guide',
+    href: '/engineering-tools/stainless-steel-bending-guide',
   },
   {
     key: 'aluminumBendingGuide',
-    href: '/engineering/aluminum-bending-guide',
+    href: '/engineering-tools/aluminum-bending-guide',
   },
 ]
 
@@ -1034,7 +1034,7 @@ export default function BendAllowanceCalculator({
               <div className='zyco-bend__actions'>
                 <a
                   className='zyco-bend__action'
-                  href='/engineering-tools/v-die-selection'
+                  href='/engineering-tools/v-die-selection-tool'
                 >
                   {t.common.useEstimatedRadiusFromVDieTool} {'\u2192'}
                 </a>

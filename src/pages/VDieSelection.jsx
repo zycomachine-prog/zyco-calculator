@@ -64,11 +64,11 @@ const relatedTools = [
   },
   {
     key: 'kFactorGuide',
-    href: '/engineering/k-factor-guide',
+    href: '/engineering-tools/k-factor-guide',
   },
   {
     key: 'bendDeductionGuide',
-    href: '/engineering/bend-deduction-guide',
+    href: '/engineering-tools/bend-deduction-guide',
   },
   {
     key: 'materialDatabase',
@@ -80,11 +80,11 @@ const relatedTools = [
   },
   {
     key: 'springbackCompensationGuide',
-    href: '/springback-compensation-guide',
+    href: '/engineering-tools/springback-compensation-guide',
   },
   {
     key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection',
+    href: '/engineering-tools/v-die-selection-tool',
   },
   {
     key: 'insideRadiusGuide',
@@ -104,31 +104,31 @@ const relatedTools = [
   },
   {
     key: 'pressBrakeTonnageGuide',
-    href: '/engineering/press-brake-tonnage-guide',
+    href: '/engineering-tools/press-brake-tonnage-guide',
   },
   {
     key: 'vDieOpeningGuide',
-    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
   },
   {
     key: 'minimumFlangeLengthGuide',
-    href: '/engineering/minimum-flange-length-guide',
+    href: '/engineering-tools/minimum-flange-length-guide',
   },
   {
     key: 'toolingSelectionGuide',
-    href: '/engineering/press-brake-tooling-selection-guide',
+    href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
     key: 'crowningGuide',
-    href: '/engineering/press-brake-crowning-guide',
+    href: '/engineering-tools/press-brake-crowning-guide',
   },
   {
     key: 'stainlessSteelBendingGuide',
-    href: '/engineering/stainless-steel-bending-guide',
+    href: '/engineering-tools/stainless-steel-bending-guide',
   },
   {
     key: 'aluminumBendingGuide',
-    href: '/engineering/aluminum-bending-guide',
+    href: '/engineering-tools/aluminum-bending-guide',
   },
 ]
 
@@ -170,7 +170,7 @@ export default function VDieSelection({
         'Select recommended V-die opening for press brake air bending based on material and thickness. Understand standard V-opening rules, inside radius influence, tonnage effect and cracking risk.',
       keywords:
         'V die selection, V opening calculator, press brake tooling, press brake die selection, air bending V die, sheet metal V die',
-      canonicalPath: '/engineering-tools/v-die-selection',
+      canonicalPath: '/engineering-tools/v-die-selection-tool',
     })
 
     setStructuredData({
@@ -182,7 +182,7 @@ export default function VDieSelection({
             name: 'V Die Selection Tool',
             description:
               'Select recommended V-die opening for press brake air bending based on material and thickness. Understand standard V-opening rules, inside radius influence, tonnage effect and cracking risk.',
-            path: '/engineering-tools/v-die-selection',
+            path: '/engineering-tools/v-die-selection-tool',
           }),
           createFAQPageStructuredData(englishPage.faq),
         ],

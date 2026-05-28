@@ -21,12 +21,12 @@ const tools = [
   {
     key: 'kFactorGuide',
     status: 'active',
-    href: '/engineering/k-factor-guide',
+    href: '/engineering-tools/k-factor-guide',
   },
   {
     key: 'bendDeductionGuide',
     status: 'active',
-    href: '/engineering/bend-deduction-guide',
+    href: '/engineering-tools/bend-deduction-guide',
   },
   {
     key: 'materialDatabase',
@@ -41,12 +41,12 @@ const tools = [
   {
     key: 'springbackCompensationGuide',
     status: 'active',
-    href: '/springback-compensation-guide',
+    href: '/engineering-tools/springback-compensation-guide',
   },
   {
     key: 'vDieSelectionTool',
     status: 'active',
-    href: '/engineering-tools/v-die-selection',
+    href: '/engineering-tools/v-die-selection-tool',
   },
   {
     key: 'insideRadiusGuide',
@@ -71,37 +71,37 @@ const tools = [
   {
     key: 'pressBrakeTonnageGuide',
     status: 'active',
-    href: '/engineering/press-brake-tonnage-guide',
+    href: '/engineering-tools/press-brake-tonnage-guide',
   },
   {
     key: 'vDieOpeningGuide',
     status: 'active',
-    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
   },
   {
     key: 'minimumFlangeLengthGuide',
     status: 'active',
-    href: '/engineering/minimum-flange-length-guide',
+    href: '/engineering-tools/minimum-flange-length-guide',
   },
   {
     key: 'toolingSelectionGuide',
     status: 'active',
-    href: '/engineering/press-brake-tooling-selection-guide',
+    href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
     key: 'crowningGuide',
     status: 'active',
-    href: '/engineering/press-brake-crowning-guide',
+    href: '/engineering-tools/press-brake-crowning-guide',
   },
   {
     key: 'stainlessSteelBendingGuide',
     status: 'active',
-    href: '/engineering/stainless-steel-bending-guide',
+    href: '/engineering-tools/stainless-steel-bending-guide',
   },
   {
     key: 'aluminumBendingGuide',
     status: 'active',
-    href: '/engineering/aluminum-bending-guide',
+    href: '/engineering-tools/aluminum-bending-guide',
   },
 ]
 
@@ -116,11 +116,11 @@ const relatedTools = [
   },
   {
     key: 'kFactorGuide',
-    href: '/engineering/k-factor-guide',
+    href: '/engineering-tools/k-factor-guide',
   },
   {
     key: 'bendDeductionGuide',
-    href: '/engineering/bend-deduction-guide',
+    href: '/engineering-tools/bend-deduction-guide',
   },
   {
     key: 'materialDatabase',
@@ -132,11 +132,11 @@ const relatedTools = [
   },
   {
     key: 'springbackCompensationGuide',
-    href: '/springback-compensation-guide',
+    href: '/engineering-tools/springback-compensation-guide',
   },
   {
     key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection',
+    href: '/engineering-tools/v-die-selection-tool',
   },
   {
     key: 'insideRadiusGuide',
@@ -156,31 +156,31 @@ const relatedTools = [
   },
   {
     key: 'pressBrakeTonnageGuide',
-    href: '/engineering/press-brake-tonnage-guide',
+    href: '/engineering-tools/press-brake-tonnage-guide',
   },
   {
     key: 'vDieOpeningGuide',
-    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
   },
   {
     key: 'minimumFlangeLengthGuide',
-    href: '/engineering/minimum-flange-length-guide',
+    href: '/engineering-tools/minimum-flange-length-guide',
   },
   {
     key: 'toolingSelectionGuide',
-    href: '/engineering/press-brake-tooling-selection-guide',
+    href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
     key: 'crowningGuide',
-    href: '/engineering/press-brake-crowning-guide',
+    href: '/engineering-tools/press-brake-crowning-guide',
   },
   {
     key: 'stainlessSteelBendingGuide',
-    href: '/engineering/stainless-steel-bending-guide',
+    href: '/engineering-tools/stainless-steel-bending-guide',
   },
   {
     key: 'aluminumBendingGuide',
-    href: '/engineering/aluminum-bending-guide',
+    href: '/engineering-tools/aluminum-bending-guide',
   },
 ]
 

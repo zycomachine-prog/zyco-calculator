@@ -32,11 +32,11 @@ const relatedEngineeringTools = [
   },
   {
     labelKey: 'kFactorGuide',
-    href: '/engineering/k-factor-guide',
+    href: '/engineering-tools/k-factor-guide',
   },
   {
     labelKey: 'bendDeductionGuide',
-    href: '/engineering/bend-deduction-guide',
+    href: '/engineering-tools/bend-deduction-guide',
   },
   {
     labelKey: 'materialDatabase',
@@ -48,11 +48,11 @@ const relatedEngineeringTools = [
   },
   {
     labelKey: 'springbackCompensationGuide',
-    href: '/springback-compensation-guide',
+    href: '/engineering-tools/springback-compensation-guide',
   },
   {
     labelKey: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection',
+    href: '/engineering-tools/v-die-selection-tool',
   },
   {
     labelKey: 'insideRadiusGuide',
@@ -72,31 +72,31 @@ const relatedEngineeringTools = [
   },
   {
     labelKey: 'pressBrakeTonnageGuide',
-    href: '/engineering/press-brake-tonnage-guide',
+    href: '/engineering-tools/press-brake-tonnage-guide',
   },
   {
     labelKey: 'vDieOpeningGuide',
-    href: '/engineering/how-to-choose-press-brake-v-die-opening',
+    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
   },
   {
     labelKey: 'minimumFlangeLengthGuide',
-    href: '/engineering/minimum-flange-length-guide',
+    href: '/engineering-tools/minimum-flange-length-guide',
   },
   {
     labelKey: 'toolingSelectionGuide',
-    href: '/engineering/press-brake-tooling-selection-guide',
+    href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
     labelKey: 'crowningGuide',
-    href: '/engineering/press-brake-crowning-guide',
+    href: '/engineering-tools/press-brake-crowning-guide',
   },
   {
     labelKey: 'stainlessSteelBendingGuide',
-    href: '/engineering/stainless-steel-bending-guide',
+    href: '/engineering-tools/stainless-steel-bending-guide',
   },
   {
     labelKey: 'aluminumBendingGuide',
-    href: '/engineering/aluminum-bending-guide',
+    href: '/engineering-tools/aluminum-bending-guide',
   },
 ]
 

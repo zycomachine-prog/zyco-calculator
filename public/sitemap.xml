@@ -13,10 +13,10 @@
     <loc>https://calculator.zycomachine.com/engineering-tools/bend-allowance-calculator</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/bend-deduction-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/k-factor-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/k-factor-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/bend-deduction-guide</loc>
   </url>
   <url>
     <loc>https://calculator.zycomachine.com/engineering-tools/material-database</loc>
@@ -25,7 +25,7 @@
     <loc>https://calculator.zycomachine.com/engineering-tools/springback-database</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/springback-compensation-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/springback-compensation-guide</loc>
   </url>
   <url>
     <loc>https://calculator.zycomachine.com/engineering-tools/inside-radius-guide</loc>
@@ -40,27 +40,27 @@
     <loc>https://calculator.zycomachine.com/engineering-tools/bend-sequence-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering-tools/v-die-selection</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/v-die-selection-tool</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/press-brake-tonnage-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/press-brake-tonnage-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/press-brake-crowning-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/press-brake-crowning-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/press-brake-tooling-selection-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/press-brake-tooling-selection-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/how-to-choose-press-brake-v-die-opening</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/how-to-choose-press-brake-v-die-opening</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/minimum-flange-length-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/minimum-flange-length-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/stainless-steel-bending-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/stainless-steel-bending-guide</loc>
   </url>
   <url>
-    <loc>https://calculator.zycomachine.com/engineering/aluminum-bending-guide</loc>
+    <loc>https://calculator.zycomachine.com/engineering-tools/aluminum-bending-guide</loc>
   </url>
 </urlset>

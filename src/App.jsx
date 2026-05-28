@@ -89,7 +89,12 @@ export default function App() {
 
           <Route
             path='/engineering'
-            element={<EngineeringHub {...languageProps} />}
+            element={
+              <Navigate
+                to='/engineering-tools'
+                replace
+              />
+            }
           />
 
           <Route
@@ -103,12 +108,12 @@ export default function App() {
           />
 
           <Route
-            path='/engineering/bend-deduction-guide'
+            path='/engineering-tools/bend-deduction-guide'
             element={<BendDeductionGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/k-factor-guide'
+            path='/engineering-tools/k-factor-guide'
             element={<KFactorGuide {...languageProps} />}
           />
 
@@ -123,7 +128,7 @@ export default function App() {
           />
 
           <Route
-            path='/springback-compensation-guide'
+            path='/engineering-tools/springback-compensation-guide'
             element={<SpringbackCompensationGuide {...languageProps} />}
           />
 
@@ -148,43 +153,153 @@ export default function App() {
           />
 
           <Route
-            path='/engineering-tools/v-die-selection'
+            path='/engineering-tools/v-die-selection-tool'
             element={<VDieSelection {...languageProps} />}
           />
 
           <Route
-            path='/engineering/press-brake-tonnage-guide'
+            path='/engineering-tools/press-brake-tonnage-guide'
             element={<PressBrakeTonnageGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/press-brake-crowning-guide'
+            path='/engineering-tools/press-brake-crowning-guide'
             element={<PressBrakeCrowningGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/press-brake-tooling-selection-guide'
+            path='/engineering-tools/press-brake-tooling-selection-guide'
             element={<PressBrakeToolingSelectionGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/how-to-choose-press-brake-v-die-opening'
+            path='/engineering-tools/how-to-choose-press-brake-v-die-opening'
             element={<PressBrakeVDieOpeningGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/minimum-flange-length-guide'
+            path='/engineering-tools/minimum-flange-length-guide'
             element={<MinimumFlangeLengthGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/stainless-steel-bending-guide'
+            path='/engineering-tools/stainless-steel-bending-guide'
             element={<StainlessSteelBendingGuide {...languageProps} />}
           />
 
           <Route
-            path='/engineering/aluminum-bending-guide'
+            path='/engineering-tools/aluminum-bending-guide'
             element={<AluminumBendingGuide {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering/k-factor-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/k-factor-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/bend-deduction-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/bend-deduction-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/springback-compensation-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/springback-compensation-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering-tools/v-die-selection'
+            element={
+              <Navigate
+                to='/engineering-tools/v-die-selection-tool'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/press-brake-tonnage-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/press-brake-tonnage-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/how-to-choose-press-brake-v-die-opening'
+            element={
+              <Navigate
+                to='/engineering-tools/how-to-choose-press-brake-v-die-opening'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/minimum-flange-length-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/minimum-flange-length-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/press-brake-tooling-selection-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/press-brake-tooling-selection-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/press-brake-crowning-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/press-brake-crowning-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/stainless-steel-bending-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/stainless-steel-bending-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/aluminum-bending-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/aluminum-bending-guide'
+                replace
+              />
+            }
           />
 
           <Route
