@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://www.zycomachine.com'
+export const SITE_URL = 'https://calculator.zycomachine.com'
 
 export const ZYCO_PUBLISHER = {
   '@type': 'Organization',
