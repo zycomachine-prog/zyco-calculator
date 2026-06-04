@@ -21,6 +21,24 @@ const validMaterialKeys = [
   'brass',
 ]
 
+const ZYCO_STANDARD_MACHINE_MAX_V_OPENINGS = {
+  30: 32,
+  40: 32,
+  50: 32,
+  63: 32,
+  80: 50,
+  100: 60,
+  125: 60,
+  135: 60,
+  160: 80,
+  200: 90,
+  250: 90,
+  300: 90,
+  400: 120,
+  500: 140,
+  600: 150,
+}
+
 const relatedEngineeringTools = [
   {
     labelKey: 'pressBrakeCalculator',
@@ -669,6 +687,28 @@ const vDie =
         "For long-term stable operation, it is recommended to avoid continuous use near the machine's maximum rated tonnage. For high-load production conditions, selecting a larger machine model or increasing the V-die opening is recommended to reduce stress on tooling and machine components.",
       machineAdvisoryNote:
         "For long-term stable operation, it is recommended to avoid continuous use near the machine's maximum rated tonnage. For high-load production conditions, selecting a larger machine model or increasing the V-die opening is recommended to reduce stress on tooling and machine components.",
+      machineToolingCompatibilityTitle:
+        'MACHINE & TOOLING COMPATIBILITY',
+      compatibilityStatus: 'Status',
+      vOpeningUsedForCheck: 'V-opening used for check',
+      recommendedVOpeningSource:
+        'Recommended V-opening',
+      manualVOpeningSource: 'Manual V-opening',
+      maximumStandardVOpening:
+        'Maximum Standard V-opening',
+      compatibilityMessages: {
+        compatible:
+          'The V-opening used for check is within the standard tooling capacity of the recommended machine class.',
+        check:
+          'The V-opening used for check exceeds the standard tooling capacity of the recommended machine class. Please confirm die size, table width, daylight and stroke before machine selection.',
+        custom:
+          'The V-opening used for check significantly exceeds the standard tooling capacity of the recommended machine class. Custom tooling or a larger machine configuration may be required.',
+      },
+      compatibilityStatuses: {
+        compatible: 'Compatible',
+        check: 'Engineering Check Required',
+        custom: 'Custom Configuration Recommended',
+      },
       engineeringOverviewTitle: 'Engineering Overview',
       engineeringOverviewText:
         'This press brake calculator estimates bending force for air bending based on sheet thickness, bend length, material factor and V-die opening. It is useful for early machine capacity checks, quotation review and tooling setup planning. Real production results can change with material tensile strength, die condition, punch radius, bend angle, grain direction, lubrication and machine deflection, so calculated tonnage should be treated as an engineering estimate rather than a substitute for trial bending.',
@@ -734,6 +774,30 @@ const vDie =
         '为保证设备长期稳定运行，建议避免长时间接近或达到机器最大额定压力使用。对于长期高负载工况，建议选择更大型号设备或适当增大 V 开口，以降低模具与设备负载。',
       machineAdvisoryNote:
         '为保证设备长期稳定运行，建议避免长时间接近或达到机器最大额定压力使用。对于长期高负载工况，建议选择更大型号设备或适当增大 V 开口，以降低模具与设备负载。',
+      machineToolingCompatibilityTitle:
+        '\u8bbe\u5907\u4e0e\u6a21\u5177\u517c\u5bb9\u6027',
+      compatibilityStatus: '\u72b6\u6001',
+      vOpeningUsedForCheck:
+        '\u7528\u4e8e\u68c0\u67e5\u7684 V \u5f00\u53e3',
+      recommendedVOpeningSource:
+        '\u63a8\u8350 V \u5f00\u53e3',
+      manualVOpeningSource:
+        '\u624b\u52a8 V \u5f00\u53e3',
+      maximumStandardVOpening:
+        '\u6700\u5927\u6807\u51c6 V \u5f00\u53e3',
+      compatibilityMessages: {
+        compatible:
+          '\u7528\u4e8e\u68c0\u67e5\u7684 V \u5f00\u53e3\u5904\u4e8e\u63a8\u8350\u673a\u578b\u6807\u51c6\u6a21\u5177\u80fd\u529b\u8303\u56f4\u5185\u3002',
+        check:
+          '\u7528\u4e8e\u68c0\u67e5\u7684 V \u5f00\u53e3\u8d85\u8fc7\u63a8\u8350\u673a\u578b\u7684\u6807\u51c6\u6a21\u5177\u80fd\u529b\u3002\u9009\u578b\u524d\u8bf7\u786e\u8ba4\u4e0b\u6a21\u5c3a\u5bf8\u3001\u5de5\u4f5c\u53f0\u5bbd\u5ea6\u3001\u5f00\u53e3\u9ad8\u5ea6\u548c\u6ed1\u5757\u884c\u7a0b\u3002',
+        custom:
+          '\u7528\u4e8e\u68c0\u67e5\u7684 V \u5f00\u53e3\u660e\u663e\u8d85\u8fc7\u63a8\u8350\u673a\u578b\u7684\u6807\u51c6\u6a21\u5177\u80fd\u529b\uff0c\u53ef\u80fd\u9700\u8981\u5b9a\u5236\u6a21\u5177\u6216\u66f4\u5927\u7684\u8bbe\u5907\u914d\u7f6e\u3002',
+      },
+      compatibilityStatuses: {
+        compatible: '\u517c\u5bb9',
+        check: '\u9700\u8981\u5de5\u7a0b\u786e\u8ba4',
+        custom: '\u5efa\u8bae\u5b9a\u5236\u914d\u7f6e',
+      },
       engineeringOverviewTitle: '工程说明',
       engineeringOverviewText:
         '这款折弯机计算器可根据板材厚度、折弯长度、材料系数和 V 型模具开口大小，估算空气折弯所需的折弯力。它适用于早期设备能力判断、报价审核和模具设定规划。实际生产结果会因材料抗拉强度、模具状态、冲头半径、折弯角度、纹理方向、润滑情况和机器挠度等因素而变化，因此计算出的吨位应视为工程估算值，而非试弯结果的替代。',
@@ -799,6 +863,30 @@ const vDie =
         'Для долгосрочной стабильной работы рекомендуется избегать продолжительной эксплуатации вблизи максимального номинального усилия станка. При высоких производственных нагрузках рекомендуется выбрать более крупную модель станка или увеличить раскрытие V-матрицы, чтобы снизить нагрузку на оснастку и узлы станка.',
       machineAdvisoryNote:
         'Для долгосрочной стабильной работы рекомендуется избегать продолжительной эксплуатации вблизи максимального номинального усилия станка. При высоких производственных нагрузках рекомендуется выбрать более крупную модель станка или увеличить раскрытие V-матрицы, чтобы снизить нагрузку на оснастку и узлы станка.',
+      machineToolingCompatibilityTitle:
+        '\u0421\u041e\u0412\u041c\u0415\u0421\u0422\u0418\u041c\u041e\u0421\u0422\u042c \u0421\u0422\u0410\u041d\u041a\u0410 \u0418 \u041e\u0421\u041d\u0410\u0421\u0422\u041a\u0418',
+      compatibilityStatus: '\u0421\u0442\u0430\u0442\u0443\u0441',
+      vOpeningUsedForCheck:
+        '\u0420\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u043e\u0435 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438',
+      recommendedVOpeningSource:
+        '\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u043c\u043e\u0435 \u0440\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V',
+      manualVOpeningSource:
+        '\u0420\u0443\u0447\u043d\u043e\u0435 \u0440\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V',
+      maximumStandardVOpening:
+        '\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u043e\u0435 \u0440\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V',
+      compatibilityMessages: {
+        compatible:
+          '\u0420\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u043e\u0435 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438, \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0432 \u043f\u0440\u0435\u0434\u0435\u043b\u0430\u0445 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u043e\u0439 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u043e\u0439 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u0438 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u043a\u043b\u0430\u0441\u0441\u0430 \u0441\u0442\u0430\u043d\u043a\u0430.',
+        check:
+          '\u0420\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u043e\u0435 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438, \u043f\u0440\u0435\u0432\u044b\u0448\u0430\u0435\u0442 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u0443\u044e \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u0443\u044e \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u043a\u043b\u0430\u0441\u0441\u0430 \u0441\u0442\u0430\u043d\u043a\u0430. \u041f\u0435\u0440\u0435\u0434 \u0432\u044b\u0431\u043e\u0440\u043e\u043c \u0441\u0442\u0430\u043d\u043a\u0430 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0440\u0430\u0437\u043c\u0435\u0440 \u043c\u0430\u0442\u0440\u0438\u0446\u044b, \u0448\u0438\u0440\u0438\u043d\u0443 \u0441\u0442\u043e\u043b\u0430, daylight \u0438 \u0445\u043e\u0434.',
+        custom:
+          '\u0420\u0430\u0441\u043a\u0440\u044b\u0442\u0438\u0435 V, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u043e\u0435 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438, \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u043f\u0440\u0435\u0432\u044b\u0448\u0430\u0435\u0442 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u0443\u044e \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u0443\u044e \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u043a\u043b\u0430\u0441\u0441\u0430 \u0441\u0442\u0430\u043d\u043a\u0430. \u041c\u043e\u0436\u0435\u0442 \u043f\u043e\u0442\u0440\u0435\u0431\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u0430\u044f \u043e\u0441\u043d\u0430\u0441\u0442\u043a\u0430 \u0438\u043b\u0438 \u0431\u043e\u043b\u0435\u0435 \u043a\u0440\u0443\u043f\u043d\u0430\u044f \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f \u0441\u0442\u0430\u043d\u043a\u0430.',
+      },
+      compatibilityStatuses: {
+        compatible: '\u0421\u043e\u0432\u043c\u0435\u0441\u0442\u0438\u043c\u043e',
+        check: '\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0438\u043d\u0436\u0435\u043d\u0435\u0440\u043d\u0430\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430',
+        custom: '\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f',
+      },
       engineeringOverviewTitle: 'Инженерный обзор',
       engineeringOverviewText:
         'Этот калькулятор листогиба оценивает усилие воздушной гибки на основе толщины листа, длины гиба, коэффициента материала и раскрытия V-матрицы. Он полезен для предварительной проверки мощности станка, оценки коммерческого предложения и планирования настройки оснастки. Фактический результат в производстве может изменяться из-за прочности материала на растяжение, состояния матрицы, радиуса пуансона, угла гибки, направления прокатки, смазки и прогиба станка, поэтому рассчитанный тоннаж следует рассматривать как инженерную оценку, а не замену пробной гибки.',
@@ -864,6 +952,29 @@ const vDie =
         'Para una operación estable a largo plazo, se recomienda evitar el uso continuo cerca del tonelaje nominal máximo de la máquina. En condiciones de producción de alta carga, se recomienda seleccionar un modelo de máquina más grande o aumentar la abertura de la matriz V para reducir el esfuerzo sobre la herramienta y los componentes de la máquina.',
       machineAdvisoryNote:
         'Para una operación estable a largo plazo, se recomienda evitar el uso continuo cerca del tonelaje nominal máximo de la máquina. En condiciones de producción de alta carga, se recomienda seleccionar un modelo de máquina más grande o aumentar la abertura de la matriz V para reducir el esfuerzo sobre la herramienta y los componentes de la máquina.',
+      machineToolingCompatibilityTitle:
+        'COMPATIBILIDAD ENTRE M\u00c1QUINA Y UTILLAJE',
+      compatibilityStatus: 'Estado',
+      vOpeningUsedForCheck:
+        'Abertura V usada para la comprobaci\u00f3n',
+      recommendedVOpeningSource:
+        'Abertura V recomendada',
+      manualVOpeningSource: 'Abertura V manual',
+      maximumStandardVOpening:
+        'Abertura V est\u00e1ndar m\u00e1xima',
+      compatibilityMessages: {
+        compatible:
+          'La abertura V usada para la comprobaci\u00f3n est\u00e1 dentro de la capacidad de utillaje est\u00e1ndar de la clase de m\u00e1quina recomendada.',
+        check:
+          'La abertura V usada para la comprobaci\u00f3n supera la capacidad de utillaje est\u00e1ndar de la clase de m\u00e1quina recomendada. Confirme el tama\u00f1o de la matriz, el ancho de mesa, el daylight y la carrera antes de seleccionar la m\u00e1quina.',
+        custom:
+          'La abertura V usada para la comprobaci\u00f3n supera significativamente la capacidad de utillaje est\u00e1ndar de la clase de m\u00e1quina recomendada. Puede requerirse utillaje personalizado o una configuraci\u00f3n de m\u00e1quina mayor.',
+      },
+      compatibilityStatuses: {
+        compatible: 'Compatible',
+        check: 'Requiere comprobaci\u00f3n de ingenier\u00eda',
+        custom: 'Configuraci\u00f3n personalizada recomendada',
+      },
       engineeringOverviewTitle: 'Resumen de ingeniería',
       engineeringOverviewText:
         'Esta calculadora de plegadora estima la fuerza de plegado para plegado al aire según el espesor de la chapa, la longitud de plegado, el factor del material y la abertura de la matriz V. Es útil para verificaciones iniciales de capacidad de máquina, revisión de cotizaciones y planificación de ajustes de utillaje. Los resultados reales de producción pueden variar por la resistencia a la tracción del material, el estado de la matriz, el radio del punzón, el ángulo de plegado, la dirección de laminación, la lubricación y la deflexión de la máquina, por lo que el tonelaje calculado debe tratarse como una estimación de ingeniería y no como sustituto de una prueba de plegado.',
@@ -929,6 +1040,30 @@ const vDie =
         'Uzun süreli kararlı çalışma için makinenin maksimum nominal tonajına yakın sürekli kullanımından kaçınılması önerilir. Yüksek yüklü üretim koşullarında, takım ve makine bileşenleri üzerindeki gerilimi azaltmak için daha büyük bir makine modeli seçilmesi veya V kalıp açıklığının artırılması önerilir.',
       machineAdvisoryNote:
         'Uzun süreli kararlı çalışma için makinenin maksimum nominal tonajına yakın sürekli kullanımından kaçınılması önerilir. Yüksek yüklü üretim koşullarında, takım ve makine bileşenleri üzerindeki gerilimi azaltmak için daha büyük bir makine modeli seçilmesi veya V kalıp açıklığının artırılması önerilir.',
+      machineToolingCompatibilityTitle:
+        'MAK\u0130NE VE TAKIM UYUMLULU\u011eU',
+      compatibilityStatus: 'Durum',
+      vOpeningUsedForCheck:
+        'Kontrol i\u00e7in kullan\u0131lan V a\u00e7\u0131kl\u0131\u011f\u0131',
+      recommendedVOpeningSource:
+        '\u00d6nerilen V a\u00e7\u0131kl\u0131\u011f\u0131',
+      manualVOpeningSource:
+        'Manuel V a\u00e7\u0131kl\u0131\u011f\u0131',
+      maximumStandardVOpening:
+        'Maksimum standart V a\u00e7\u0131kl\u0131\u011f\u0131',
+      compatibilityMessages: {
+        compatible:
+          'Kontrol i\u00e7in kullan\u0131lan V a\u00e7\u0131kl\u0131\u011f\u0131, \u00f6nerilen makine s\u0131n\u0131f\u0131n\u0131n standart tak\u0131m kapasitesi i\u00e7indedir.',
+        check:
+          'Kontrol i\u00e7in kullan\u0131lan V a\u00e7\u0131kl\u0131\u011f\u0131, \u00f6nerilen makine s\u0131n\u0131f\u0131n\u0131n standart tak\u0131m kapasitesini a\u015f\u0131yor. Makine se\u00e7imi \u00f6ncesinde kal\u0131p \u00f6l\u00e7\u00fcs\u00fcn\u00fc, tabla geni\u015fli\u011fini, daylight de\u011ferini ve stroku do\u011frulay\u0131n.',
+        custom:
+          'Kontrol i\u00e7in kullan\u0131lan V a\u00e7\u0131kl\u0131\u011f\u0131, \u00f6nerilen makine s\u0131n\u0131f\u0131n\u0131n standart tak\u0131m kapasitesini belirgin \u015fekilde a\u015f\u0131yor. \u00d6zel tak\u0131m veya daha b\u00fcy\u00fck makine konfig\u00fcrasyonu gerekebilir.',
+      },
+      compatibilityStatuses: {
+        compatible: 'Uyumlu',
+        check: 'M\u00fchendislik kontrol\u00fc gerekli',
+        custom: '\u00d6zel konfig\u00fcrasyon \u00f6nerilir',
+      },
       engineeringOverviewTitle: 'Mühendislik özeti',
       engineeringOverviewText:
         'Bu abkant pres hesaplayıcısı, sac kalınlığı, bükme uzunluğu, malzeme katsayısı ve V kalıp açıklığına göre havada bükme için gerekli bükme kuvvetini tahmin eder. Erken makine kapasitesi kontrolü, teklif değerlendirmesi ve takım ayarı planlaması için kullanışlıdır. Gerçek üretim sonuçları malzeme çekme dayanımı, kalıp durumu, zımba radyüsü, bükme açısı, hadde yönü, yağlama ve makine sehimi gibi etkenlere göre değişebilir; bu nedenle hesaplanan tonaj deneme bükümünün yerine geçen kesin değer değil, mühendislik tahmini olarak değerlendirilmelidir.',
@@ -994,6 +1129,29 @@ const vDie =
         'Untuk operasi jangka panjang yang stabil, disarankan menghindari penggunaan terus-menerus mendekati tonase maksimum mesin. Untuk kondisi produksi beban tinggi, disarankan memilih model mesin yang lebih besar atau memperbesar bukaan V-die untuk mengurangi beban pada tooling dan komponen mesin.',
       machineAdvisoryNote:
         'Untuk operasi jangka panjang yang stabil, disarankan menghindari penggunaan terus-menerus mendekati tonase maksimum mesin. Untuk kondisi produksi beban tinggi, disarankan memilih model mesin yang lebih besar atau memperbesar bukaan V-die untuk mengurangi beban pada tooling dan komponen mesin.',
+      machineToolingCompatibilityTitle:
+        'KOMPATIBILITAS MESIN & TOOLING',
+      compatibilityStatus: 'Status',
+      vOpeningUsedForCheck:
+        'V-opening yang digunakan untuk pemeriksaan',
+      recommendedVOpeningSource:
+        'V-opening rekomendasi',
+      manualVOpeningSource: 'V-opening manual',
+      maximumStandardVOpening:
+        'V-opening standar maksimum',
+      compatibilityMessages: {
+        compatible:
+          'V-opening yang digunakan untuk pemeriksaan berada dalam kapasitas tooling standar kelas mesin yang direkomendasikan.',
+        check:
+          'V-opening yang digunakan untuk pemeriksaan melebihi kapasitas tooling standar kelas mesin yang direkomendasikan. Konfirmasi ukuran die, lebar meja, daylight, dan stroke sebelum pemilihan mesin.',
+        custom:
+          'V-opening yang digunakan untuk pemeriksaan jauh melebihi kapasitas tooling standar kelas mesin yang direkomendasikan. Tooling khusus atau konfigurasi mesin yang lebih besar mungkin diperlukan.',
+      },
+      compatibilityStatuses: {
+        compatible: 'Compatible',
+        check: 'Perlu pemeriksaan engineering',
+        custom: 'Konfigurasi khusus direkomendasikan',
+      },
       engineeringOverviewTitle: 'Ringkasan teknik',
       engineeringOverviewText:
         'Kalkulator press brake ini memperkirakan gaya tekuk untuk air bending berdasarkan ketebalan plat, panjang tekukan, faktor material, dan bukaan V-die. Alat ini berguna untuk pemeriksaan awal kapasitas mesin, evaluasi penawaran, dan perencanaan setelan tooling. Hasil produksi aktual dapat berubah karena kekuatan tarik material, kondisi die, radius punch, sudut tekuk, arah serat material, pelumasan, dan defleksi mesin, sehingga tonase hasil perhitungan harus diperlakukan sebagai estimasi teknik, bukan pengganti trial bending.',
@@ -1075,6 +1233,99 @@ const backToEngineeringToolsLabel =
 
   return t.custom
 }
+const machineToolingCompatibility = (() => {
+  const machineRecommendation = recommendMachine()
+  const machineTonnage =
+    Number.parseInt(machineRecommendation, 10)
+  const manualVOpening = Number(customVdie)
+  const isManualVOpeningActive =
+    customVdie !== '' &&
+    Number.isFinite(manualVOpening) &&
+    manualVOpening > 0
+  const activeVOpening =
+    isManualVOpeningActive
+      ? manualVOpening
+      : Number(recommendedVdie)
+  const maxStandardVOpening =
+    ZYCO_STANDARD_MACHINE_MAX_V_OPENINGS[
+      machineTonnage
+    ]
+
+  if (
+    !Number.isFinite(activeVOpening) ||
+    activeVOpening <= 0
+  ) {
+    return null
+  }
+
+  if (!maxStandardVOpening) {
+    return {
+      statusKey: 'custom',
+      activeVOpening,
+      vOpeningSourceKey: isManualVOpeningActive
+        ? 'manual'
+        : 'recommended',
+      maxStandardVOpening: null,
+    }
+  }
+
+  if (activeVOpening <= maxStandardVOpening) {
+    return {
+      statusKey: 'compatible',
+      activeVOpening,
+      vOpeningSourceKey: isManualVOpeningActive
+        ? 'manual'
+        : 'recommended',
+      maxStandardVOpening,
+    }
+  }
+
+  if (
+    activeVOpening <=
+    maxStandardVOpening * 1.5
+  ) {
+    return {
+      statusKey: 'check',
+      activeVOpening,
+      vOpeningSourceKey: isManualVOpeningActive
+        ? 'manual'
+        : 'recommended',
+      maxStandardVOpening,
+    }
+  }
+
+  return {
+    statusKey: 'custom',
+    activeVOpening,
+    vOpeningSourceKey: isManualVOpeningActive
+      ? 'manual'
+      : 'recommended',
+    maxStandardVOpening,
+  }
+})()
+const compatibilityStatusStyle = {
+  compatible: {
+    color: '#16a34a',
+    background: 'rgba(22,163,74,0.14)',
+    border: '1px solid rgba(22,163,74,0.35)',
+  },
+  check: {
+    color: '#ea580c',
+    background: 'rgba(234,88,12,0.14)',
+    border: '1px solid rgba(234,88,12,0.35)',
+  },
+  custom: {
+    color: '#dc2626',
+    background: 'rgba(220,38,38,0.14)',
+    border: '1px solid rgba(220,38,38,0.35)',
+  },
+}
+const activeCompatibilityStatusStyle =
+  machineToolingCompatibility
+    ? compatibilityStatusStyle[
+        machineToolingCompatibility.statusKey
+      ]
+    : compatibilityStatusStyle.compatible
 const animationStyle = `
 @keyframes titleScan {
   0% {
@@ -2809,6 +3060,277 @@ PRESS </text>
             </div>
           </div>
         </div>
+
+{machineToolingCompatibility && (
+  <div
+    style={{
+      marginTop: '20px',
+
+      padding: '18px',
+
+      borderRadius: '24px',
+
+      background:
+        'rgba(255,255,255,0.06)',
+
+      border:
+        '1px solid rgba(255,255,255,0.12)',
+
+      color: '#dbeafe',
+    }}
+  >
+    <div
+      style={{
+        display: 'inline-flex',
+
+        alignItems: 'center',
+
+        gap: '10px',
+
+        fontSize: '14px',
+
+        letterSpacing: '2.2px',
+
+        color: '#1d4ed8',
+
+        fontWeight: '900',
+
+        textShadow:
+          '0 1px 8px rgba(37,99,235,0.12)',
+
+        marginBottom: '16px',
+      }}
+    >
+      <span
+        aria-hidden='true'
+        style={{
+          width: '28px',
+
+          height: '3px',
+
+          borderRadius: '999px',
+
+          background:
+            'linear-gradient(90deg,#38bdf8 0%,#2563eb 100%)',
+
+          boxShadow:
+            '0 0 10px rgba(37,99,235,0.22)',
+
+          flexShrink: 0,
+        }}
+      />
+
+      {t.machineToolingCompatibilityTitle}
+    </div>
+
+    <div
+      style={{
+        display: 'grid',
+
+        gridTemplateColumns:
+          isMobile
+            ? '1fr'
+            : '1fr 1fr 1fr',
+
+        gap: '14px',
+
+        marginBottom: '14px',
+      }}
+    >
+      <div
+        style={{
+          ...(calculatorLanguage === 'RU'
+            ? russianDetailCardStyle
+            : detailCardStyle),
+
+          display: 'flex',
+
+          flexDirection: 'column',
+
+          alignItems: 'center',
+
+          justifyContent: 'center',
+
+          gap: '8px',
+
+          minHeight: '78px',
+
+          textAlign: 'center',
+        }}
+      >
+        <div>{t.compatibilityStatus}</div>
+
+        <strong
+          style={{
+            display: 'inline-flex',
+
+            alignItems: 'center',
+
+            gap: '6px',
+
+            padding: '4px 9px',
+
+            borderRadius: '999px',
+
+            fontWeight: '800',
+
+            ...activeCompatibilityStatusStyle,
+          }}
+        >
+          <span
+            aria-hidden='true'
+            style={{
+              width: '7px',
+
+              height: '7px',
+
+              borderRadius: '999px',
+
+              background:
+                activeCompatibilityStatusStyle.color,
+
+              flexShrink: 0,
+            }}
+          />
+          {' '}
+          {
+            t.compatibilityStatuses[
+              machineToolingCompatibility.statusKey
+            ]
+          }
+        </strong>
+      </div>
+
+      <div
+        style={{
+          ...(calculatorLanguage === 'RU'
+            ? russianDetailCardStyle
+            : detailCardStyle),
+
+          display: 'flex',
+
+          flexDirection: 'column',
+
+          alignItems: 'center',
+
+          justifyContent: 'center',
+
+          gap: '6px',
+
+          minHeight: '78px',
+
+          textAlign: 'center',
+        }}
+      >
+        <strong
+          style={{
+            color: '#ffffff',
+
+            display: 'block',
+
+            fontWeight: '800',
+
+            fontSize: '20px',
+
+            lineHeight: '1.2',
+          }}
+        >
+          {machineToolingCompatibility.activeVOpening} mm
+        </strong>
+
+        <div
+          style={{
+            color: '#bfdbfe',
+
+            fontSize: '13px',
+
+            fontWeight: '700',
+
+            lineHeight: '1.35',
+
+            marginTop: '6px',
+          }}
+        >
+          {
+            machineToolingCompatibility.vOpeningSourceKey ===
+            'manual'
+              ? t.manualVOpeningSource
+              : t.recommendedVOpeningSource
+          }
+        </div>
+      </div>
+
+      <div
+        style={{
+          ...(calculatorLanguage === 'RU'
+            ? russianDetailCardStyle
+            : detailCardStyle),
+
+          display: 'flex',
+
+          flexDirection: 'column',
+
+          alignItems: 'center',
+
+          justifyContent: 'center',
+
+          gap: '6px',
+
+          minHeight: '78px',
+
+          textAlign: 'center',
+        }}
+      >
+        <strong
+          style={{
+            color: '#ffffff',
+
+            fontWeight: '800',
+
+            fontSize: '20px',
+
+            lineHeight: '1.2',
+          }}
+        >
+          {machineToolingCompatibility.maxStandardVOpening ||
+            '--'}{' '}
+          mm
+        </strong>
+
+        <div
+          style={{
+            color: '#bfdbfe',
+
+            fontSize: '13px',
+
+            fontWeight: '700',
+
+            lineHeight: '1.35',
+          }}
+        >
+          {t.maximumStandardVOpening}
+        </div>
+      </div>
+    </div>
+
+    <div
+      style={{
+        ...machineAdvisoryStyle,
+
+        color: '#1e40af',
+
+        background:
+          'linear-gradient(180deg,#dbeafe 0%,#bfdbfe 100%)',
+      }}
+    >
+      {
+        t.compatibilityMessages[
+          machineToolingCompatibility.statusKey
+        ]
+      }
+    </div>
+  </div>
+)}
 
 <div
   style={{
