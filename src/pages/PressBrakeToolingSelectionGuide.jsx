@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import ToolingSelectionDiagramSystem from '../components/ToolingSelectionDiagramSystem.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
@@ -909,6 +910,8 @@ export default function PressBrakeToolingSelectionGuide({
               ))}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section
             className='zyco-tooling-guide__panel'

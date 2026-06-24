@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import AirBendingMotionDiagram from '../components/AirBendingMotionDiagram.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
@@ -769,6 +770,8 @@ export default function AirBendingGuide({
               ))}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section
             className='zyco-air__panel zyco-air__related-panel'

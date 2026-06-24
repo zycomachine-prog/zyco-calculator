@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import BottomingVsCoiningMotionDiagram from '../components/BottomingVsCoiningMotionDiagram.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
@@ -221,6 +222,8 @@ export default function BottomingVsCoiningGuide({
               {page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section className='zyco-method-guide__panel' aria-labelledby='method-related-title'>
             <h2 className='zyco-method-guide__section-title' id='method-related-title'>{t.common.relatedEngineeringTools}</h2>
