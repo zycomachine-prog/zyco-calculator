@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import AluminumBendingDiagram from '../components/AluminumBendingDiagram.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
@@ -304,6 +305,7 @@ export default function AluminumBendingGuide({ language = 'en', setLanguage = ()
             <h2 className='zyco-aluminum__section-title' id='aluminum-faq'>{page.faqTitle}</h2>
             <div className='zyco-aluminum__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p className='zyco-aluminum__copy'>{answer}</p></article>)}</div>
           </section>
+          <EngineeringCTA language={language} />
           <section className='zyco-aluminum__panel' aria-labelledby='aluminum-related'>
             <h2 className='zyco-aluminum__section-title' id='aluminum-related'>{page.relatedTitle}</h2>
             <nav className='zyco-aluminum__tools' aria-label={page.relatedAria}>
