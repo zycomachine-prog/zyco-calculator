@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import {
   ZYCO_PUBLISHER,
   createFAQPageStructuredData,
@@ -351,6 +352,7 @@ export default function SpringbackCompensationGuide({ language = 'en', setLangua
           <section className='zyco-comp__panel' aria-labelledby='comp-materials'><h2 className='zyco-comp__section-title' id='comp-materials'>{page.materials.title}</h2><div className='zyco-comp__cards zyco-comp__cards--four'>{page.materials.cards.map(([title, text]) => <Card key={title} title={title} text={text} />)}</div></section>
           <section className='zyco-comp__panel' aria-labelledby='comp-production'><h2 className='zyco-comp__section-title' id='comp-production'>{page.production.title}</h2><ul className='zyco-comp__list'>{page.production.items.map((item) => <li key={item}>{item}</li>)}</ul></section>
           <section className='zyco-comp__panel' aria-labelledby='comp-faq'><h2 className='zyco-comp__section-title' id='comp-faq'>{page.faqTitle}</h2><div className='zyco-comp__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div></section>
+          <EngineeringCTA language={language} />
           <section className='zyco-comp__panel' aria-labelledby='comp-related'><h2 className='zyco-comp__section-title' id='comp-related'>{page.relatedTitle}</h2><nav className='zyco-comp__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-comp__tool' href={href} key={key}>{page.relatedLabels[key]}</a>)}</nav></section>
         </div>
       </main>

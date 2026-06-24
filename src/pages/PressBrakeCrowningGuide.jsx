@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import CrowningDiagram from '../components/CrowningDiagram.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
@@ -436,6 +437,8 @@ export default function PressBrakeCrowningGuide({
               ))}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section className='zyco-crowning__panel' aria-labelledby='crowning-related'>
             <h2 className='zyco-crowning__section-title' id='crowning-related'>{page.relatedTitle}</h2>

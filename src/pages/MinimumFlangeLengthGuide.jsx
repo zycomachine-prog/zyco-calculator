@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import MinimumFlangeDiagram from '../components/MinimumFlangeDiagram.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import { getSiteUrl, setPageSEO, setStructuredData } from '../utils/seo.js'
 
@@ -206,6 +207,7 @@ export default function MinimumFlangeLengthGuide({ language = 'en', setLanguage 
             <section className='zyco-flange__panel' aria-labelledby='flange-notes'><h2 className='zyco-flange__section-title' id='flange-notes'>{page.notes.title}</h2><ul className='zyco-flange__list'>{page.notes.items.map((item) => <li className='zyco-flange__copy' key={item}>{item}</li>)}</ul></section>
           </div>
           <section className='zyco-flange__panel' aria-labelledby='flange-faq'><h2 className='zyco-flange__section-title' id='flange-faq'>{page.faqTitle}</h2><div className='zyco-flange__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p className='zyco-flange__copy'>{answer}</p></article>)}</div></section>
+          <EngineeringCTA language={language} />
           <section className='zyco-flange__panel' aria-labelledby='flange-related'><h2 className='zyco-flange__section-title' id='flange-related'>{page.relatedTitle}</h2><nav className='zyco-flange__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-flange__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>)}</nav></section>
         </div>
       </main>
