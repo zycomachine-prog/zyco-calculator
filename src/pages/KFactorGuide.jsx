@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import KFactorNeutralAxisDiagram from '../components/KFactorNeutralAxisDiagram.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
@@ -355,6 +356,8 @@ export default function KFactorGuide({ language = 'en', setLanguage = () => {} }
             <h2 className='zyco-kfactor__section-title' id='kfactor-faq'>{page.faqTitle}</h2>
             <div className='zyco-kfactor__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section className='zyco-kfactor__panel' aria-labelledby='kfactor-related'>
             <h2 className='zyco-kfactor__section-title' id='kfactor-related'>{page.relatedTitle}</h2>
