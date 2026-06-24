@@ -651,6 +651,7 @@ const vDie =
       machine: 'Recommended Machine',
       vdie: 'Recommended V Die',
       whatsapp: 'WhatsApp Contact',
+      website: 'Visit ZYCO Website',
       custom: 'Custom Machine',
       ton: 'Ton',
       diagram: 'PRESS BRAKE DIAGRAM',
@@ -738,6 +739,7 @@ const vDie =
       machine: '推荐设备',
       vdie: '推荐V槽',
       whatsapp: 'WhatsApp 联系',
+      website: '访问 ZYCO 官网',
       custom: '定制设备',
       ton: '吨',
       diagram: '折弯机示意图',
@@ -827,6 +829,7 @@ const vDie =
       machine: 'Рекомендуемый станок',
       vdie: 'Рекомендуемая V-матрица',
       whatsapp: 'Связаться в WhatsApp',
+      website: 'Посетить сайт ZYCO',
       custom: 'Индивидуальный станок',
       ton: 'Тонн',
       diagram: 'СХЕМА ЛИСТОГИБА',
@@ -916,6 +919,7 @@ const vDie =
       machine: 'Máquina recomendada',
       vdie: 'Matriz V recomendada',
       whatsapp: 'Contacto WhatsApp',
+      website: 'Visitar el sitio web de ZYCO',
       custom: 'Máquina personalizada',
       ton: 'Ton',
       diagram: 'DIAGRAMA DE PLEGADORA',
@@ -1004,6 +1008,7 @@ const vDie =
       machine: 'Önerilen Makine',
       vdie: 'Önerilen V Kalıp',
       whatsapp: 'WhatsApp İletişim',
+      website: 'ZYCO Web Sitesini Ziyaret Edin',
       custom: 'Özel Makine',
       ton: 'Ton',
       diagram: 'ABKANT PRES ŞEMASI',
@@ -1093,6 +1098,7 @@ const vDie =
       machine: 'Mesin Rekomendasi',
       vdie: 'V Die Rekomendasi',
       whatsapp: 'Kontak WhatsApp',
+      website: 'Kunjungi Website ZYCO',
       custom: 'Mesin Khusus',
       ton: 'Ton',
       diagram: 'DIAGRAM PRESS BRAKE',
@@ -3722,79 +3728,165 @@ linear-gradient(
   />
 </button>
 
-        {/* WhatsApp */}
-        <a
-          href='https://wa.me/8613813072498'
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label={t.whatsapp}
+        <div
           style={{
-            display: 'block',
-            textDecoration: 'none',
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '12px' : '16px',
+            marginTop: '20px',
+            width: '100%',
           }}
         >
-          <span
-          onMouseEnter={(e) => {
-  e.currentTarget.style.transform =
-    'translateY(-3px)'
-  e.currentTarget.style.boxShadow =
-    '0 20px 40px rgba(34,197,94,0.45)'
-}}
-
-onMouseLeave={(e) => {
-  e.currentTarget.style.transform =
-    'translateY(0px)'
-  e.currentTarget.style.boxShadow =
-    '0 12px 35px rgba(34,197,94,0.38)'
-}}
+          {/* WhatsApp */}
+          <a
+            href='https://wa.me/8613813072498'
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label={t.whatsapp}
             style={{
-              width: '100%',
-              height: '54px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: '20px',
-              border: 'none',
-              borderRadius: '22px',
-              background:
-                'linear-gradient(135deg,#16a34a 0%,#22c55e 45%,#4ade80 100%)',
-              color: '#fff',
-              fontSize: '18px',
-              fontWeight: '700',
-              cursor: 'pointer',
-              transition: 'all 0.25s ease',
-transform: 'translateY(0px)',
-              boxShadow:
-                '0 12px 35px rgba(34,197,94,0.38)',
-              position: 'relative',
-overflow: 'hidden',
+              display: 'block',
+              flex: 1,
+              textDecoration: 'none',
             }}
           >
             <span
-  style={{
-    position: 'relative',
-    zIndex: 2,
+            onMouseEnter={(e) => {
+    e.currentTarget.style.transform =
+      'translateY(-3px)'
+    e.currentTarget.style.boxShadow =
+      '0 20px 40px rgba(34,197,94,0.45)'
   }}
->
-  {t.whatsapp}
-</span>
 
-<div
-  style={{
-    position: 'absolute',
-    top: 0,
-    left: '-40%',
-    width: '30%',
-    height: '100%',
-    background:
-      'linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent)',
-    transform: 'skewX(-25deg)',
-    animation:
-      'titleScan 3s linear infinite',
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform =
+      'translateY(0px)'
+    e.currentTarget.style.boxShadow =
+      '0 12px 35px rgba(34,197,94,0.38)'
   }}
-/>
-          </span>
-        </a>
+              style={{
+                width: '100%',
+                height: '54px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: 'none',
+                borderRadius: '22px',
+                background:
+                  'linear-gradient(135deg,#16a34a 0%,#22c55e 45%,#4ade80 100%)',
+                color: '#fff',
+                fontSize: '18px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease',
+  transform: 'translateY(0px)',
+                boxShadow:
+                  '0 12px 35px rgba(34,197,94,0.38)',
+                position: 'relative',
+  overflow: 'hidden',
+              }}
+            >
+              <span
+    style={{
+      position: 'relative',
+      zIndex: 2,
+    }}
+  >
+    {t.whatsapp}
+  </span>
+
+  <div
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: '-40%',
+      width: '30%',
+      height: '100%',
+      background:
+        'linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent)',
+      transform: 'skewX(-25deg)',
+      animation:
+        'titleScan 3s linear infinite',
+    }}
+  />
+            </span>
+          </a>
+
+          <a
+            href='https://www.zycomachine.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label={t.website}
+            style={{
+              display: 'block',
+              flex: 1,
+              textDecoration: 'none',
+            }}
+          >
+            <span
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform =
+                  'translateY(-3px)'
+                e.currentTarget.style.boxShadow =
+                  '0 18px 36px rgba(37,99,235,0.28)'
+                e.currentTarget.style.borderColor =
+                  'rgba(147,197,253,0.72)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform =
+                  'translateY(0px)'
+                e.currentTarget.style.boxShadow =
+                  '0 12px 32px rgba(30,64,175,0.2)'
+                e.currentTarget.style.borderColor =
+                  'rgba(147,197,253,0.36)'
+              }}
+              style={{
+                width: '100%',
+                height: '54px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid rgba(147,197,253,0.36)',
+                borderRadius: '22px',
+                background:
+                  'linear-gradient(135deg,rgba(15,23,42,0.92),rgba(30,64,175,0.72))',
+                color: '#dbeafe',
+                fontSize: '18px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease',
+                transform: 'translateY(0px)',
+                boxShadow:
+                  '0 12px 32px rgba(30,64,175,0.2)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <span
+                style={{
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              >
+                {t.website}
+              </span>
+
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '-40%',
+                  width: '30%',
+                  height: '100%',
+                  background:
+                    'linear-gradient(90deg,transparent,rgba(191,219,254,0.32),transparent)',
+                  transform: 'skewX(-25deg)',
+                  animation:
+                    'titleScan 3s linear infinite',
+                }}
+              />
+            </span>
+          </a>
+        </div>
 
         <section
           aria-labelledby='press-brake-engineering-overview'
