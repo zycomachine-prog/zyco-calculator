@@ -1165,6 +1165,7 @@ export default function PressBrakeVDieOpeningGuide({
 
           .zyco-v-guide__shell {
             width: min(1180px, 100%);
+            min-width: 0;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -1249,6 +1250,7 @@ export default function PressBrakeVDieOpeningGuide({
           }
 
           .zyco-v-guide__panel {
+            min-width: 0;
             padding: 28px;
             margin-top: 18px;
             border: 1px solid rgba(191, 219, 254, 0.16);
@@ -1274,7 +1276,12 @@ export default function PressBrakeVDieOpeningGuide({
           .zyco-v-guide__grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
+            min-width: 0;
             gap: 18px;
+          }
+
+          .zyco-v-guide__grid > * {
+            min-width: 0;
           }
 
           .zyco-v-guide__three {
@@ -1326,8 +1333,12 @@ export default function PressBrakeVDieOpeningGuide({
           }
 
           .zyco-v-guide__table-wrap {
+            width: 100%;
+            max-width: 100%;
             margin-top: 18px;
             overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
             border: 1px solid rgba(191, 219, 254, 0.16);
             border-radius: 18px;
           }
