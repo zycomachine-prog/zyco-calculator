@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
@@ -1143,6 +1144,8 @@ export default function PressBrakeTonnageGuide({
               ))}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section
             className='zyco-tonnage-guide__panel'

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import VDieOpeningDiagram from '../components/VDieOpeningDiagram.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
@@ -1718,6 +1719,8 @@ export default function PressBrakeVDieOpeningGuide({
               ))}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section
             className='zyco-v-guide__panel'
