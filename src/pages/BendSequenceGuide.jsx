@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import BendSequenceMotionDiagram from '../components/BendSequenceMotionDiagram.jsx'
+import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
@@ -601,6 +602,8 @@ export default function BendSequenceGuide({
               {page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}
             </div>
           </section>
+
+          <EngineeringCTA language={language} />
 
           <section className='zyco-sequence-guide__panel' aria-labelledby='sequence-related-title'>
             <h2 className='zyco-sequence-guide__section-title' id='sequence-related-title'>{sharedText.common.relatedEngineeringTools}</h2>
