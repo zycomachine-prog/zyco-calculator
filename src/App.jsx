@@ -10,7 +10,6 @@ import {
   useEffect,
   useState,
 } from 'react'
-import PressBrakeCalculator from './pages/PressBrakeCalculator.jsx'
 import { getStoredLanguage } from './languages/engineeringText.js'
 
 const htmlLanguageMap = {
@@ -22,6 +21,7 @@ const htmlLanguageMap = {
   id: 'id',
 }
 
+const PressBrakeCalculator = lazy(() => import('./pages/PressBrakeCalculator.jsx'))
 const AirBendingGuide = lazy(() => import('./pages/AirBendingGuide.jsx'))
 const BottomingVsCoiningGuide = lazy(() => import('./pages/BottomingVsCoiningGuide.jsx'))
 const BendSequenceGuide = lazy(() => import('./pages/BendSequenceGuide.jsx'))
