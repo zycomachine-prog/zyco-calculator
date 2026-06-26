@@ -31,6 +31,14 @@ const englishContent = {
     'Other materials are calculated using their relative material factor.',
     'This formula is used as an air-bending reference value.',
   ],
+  productionExampleTitle: 'Real Production Example',
+  productionExampleIntro:
+    'For example, when bending 3 mm mild steel over a 2500 mm length with a V24 die opening, the required bending force is typically around 62-64 tons using the ZYCO reference formula.',
+  productionExampleItems: [
+    ['Condition', '3 mm mild steel, 2500 mm bending length, V24 die opening, material factor 1.00.'],
+    ['Calculation Result', 'The estimated bending force is approximately 62-64 tons.'],
+    ['Engineering Judgment', 'In real production, the selected press brake should also consider continuous load ratio, tooling condition, material variation, and safety margin. A calculated tonnage value should not be treated as the only machine selection criterion.'],
+  ],
   factorsTitle: 'Factors That Influence Tonnage',
   factors: [
     ['Material strength', 'Higher-strength sheet requires more bending force than mild steel at the same geometry.'],
@@ -41,6 +49,14 @@ const englishContent = {
   recommendationTitle: 'Engineering Recommendation',
   recommendationText:
     'For continuous production, avoid long-term operation close to maximum tonnage. Increasing the V-die opening or selecting a larger machine can improve long-term machine stability when part geometry permits.',
+  mistakesTitle: 'Common Tonnage Calculation Mistakes',
+  mistakes: [
+    'Selecting a machine only by the calculated tonnage value, without considering continuous production load ratio.',
+    'Using the wrong material factor, especially when comparing mild steel, stainless steel, aluminum, and brass.',
+    'Ignoring the effect of V opening. A smaller V opening increases required tonnage, while a larger V opening reduces force but increases inside radius.',
+    'Forgetting that short and thick plates create concentrated load, which can stress the ram, tooling, and machine frame differently from long thin sheets.',
+    'Treating theoretical calculation as a final production guarantee instead of a reference for machine and tooling selection.',
+  ],
   capacityTitle: 'Continuous Production Load Ratio',
   capacityText:
     'Rated tonnage is the machine maximum, not the preferred continuous working point. For repeat production, the recommended model is selected so calculated force remains within a practical continuous-load share of rated capacity.',
@@ -72,6 +88,14 @@ const englishContent = {
       'Why is the calculated force not matched directly to rated capacity?',
       'Continuous production should not normally run at maximum rating. Selection margin helps reduce sustained load on the frame, hydraulics and tooling.',
     ],
+    [
+      'Why does press brake tonnage increase when the V opening becomes smaller?',
+      'A smaller V opening gives the sheet less forming space and requires higher bending force. It may help achieve a smaller inside radius, but it also increases tool load, machine load, and the risk of exceeding safe capacity.',
+    ],
+    [
+      'Can the calculated tonnage be equal to the press brake rated capacity?',
+      'It is not recommended for continuous production. The calculated tonnage should normally leave a reasonable safety margin because material variation, tooling wear, V opening tolerance, and bending length accuracy can all change the actual load.',
+    ],
   ],
   notesTitle: 'Engineering Notes',
   notes: [
@@ -99,6 +123,14 @@ const localizedContent = {
       '其它材料按照各自相对材料系数进行计算。',
       '本公式用于空气折弯的参考吨位估算。',
     ],
+    productionExampleTitle: '实际生产示例',
+    productionExampleIntro:
+      '例如，使用 V24 下模对 3 mm 低碳钢进行 2500 mm 长度折弯时，按 ZYCO 参考公式估算，所需折弯力通常约为 62-64 吨。',
+    productionExampleItems: [
+      ['条件', '3 mm 低碳钢，2500 mm 折弯长度，V24 下模开口，材料系数 1.00。'],
+      ['计算结果', '估算折弯力约为 62-64 吨。'],
+      ['工程判断', '实际生产中，所选折弯机还应考虑连续负载比例、模具状态、材料波动和安全余量。计算吨位不应作为唯一的设备选型依据。'],
+    ],
     factorsTitle: '影响吨位的因素',
     factors: [
       ['材料强度', '在相同几何条件下，高强度板材所需折弯力高于低碳钢。'],
@@ -109,6 +141,14 @@ const localizedContent = {
     recommendationTitle: '工程建议',
     recommendationText:
       '对于持续生产，应避免长期接近最大吨位运行。在零件几何允许的条件下，增大 V 槽开口或选择更大吨位设备，有助于提高机器长期运行稳定性。',
+    mistakesTitle: '常见吨位计算错误',
+    mistakes: [
+      '只按计算吨位选择设备，而没有考虑连续生产负载比例。',
+      '使用错误的材料系数，尤其是在比较低碳钢、不锈钢、铝和黄铜时。',
+      '忽略 V 槽开口的影响。较小的 V 槽会增加所需吨位，较大的 V 槽可降低压力但会增大内半径。',
+      '忘记短而厚的板材会形成集中载荷，对滑块、模具和机架的受力方式不同于长而薄的板材。',
+      '把理论计算当作最终生产保证，而不是作为设备和模具选型参考。',
+    ],
     capacityTitle: '持续生产负载率',
     capacityText: '额定吨位是设备最大能力，并非建议的持续工作点。重复生产选型时，应使计算折弯力处于额定能力的合理持续负载范围内。',
     capacityCards: [
@@ -129,6 +169,8 @@ const localizedContent = {
       ['折弯机吨位是什么？', '它是选定材料和模具条件下，沿设定折弯长度完成成形所需的总力。'],
       ['为什么有时应选择更大的 V 槽？', '更大的 V 槽能够降低所需吨位和模具载荷，但通常会产生更大的自然内圆角，并可能影响法兰要求。'],
       ['为什么不能将计算吨位直接等同于额定能力？', '持续生产通常不宜长期运行在最大额定吨位附近，适当余量有助于降低机架、液压系统和模具的持续载荷。'],
+      ['为什么 V 槽开口越小，折弯吨位越高？', '较小的 V 槽开口会减少板材成形空间，因此需要更高折弯力。它可能有助于获得较小内半径，但也会增加模具负载、设备负载以及超过安全能力的风险。'],
+      ['计算吨位可以等于折弯机额定吨位吗？', '连续生产中不建议这样选型。计算吨位通常应保留合理安全余量，因为材料波动、模具磨损、V 槽公差和折弯长度精度都会改变实际负载。'],
     ],
     notesTitle: '工程说明',
     notes: [
@@ -157,6 +199,14 @@ const localizedContent = {
       'Другие материалы рассчитываются по их относительному коэффициенту материала.',
       'Формула используется как справочное значение для воздушной гибки.',
     ],
+    productionExampleTitle: 'Реальный производственный пример',
+    productionExampleIntro:
+      'Например, при гибке низкоуглеродистой стали толщиной 3 мм на длине 2500 мм с раскрытием матрицы V24 требуемое усилие по справочной формуле ZYCO обычно составляет около 62-64 тонн.',
+    productionExampleItems: [
+      ['Условия', 'Низкоуглеродистая сталь 3 мм, длина гиба 2500 мм, раскрытие матрицы V24, коэффициент материала 1.00.'],
+      ['Результат расчета', 'Оценочное усилие гибки составляет примерно 62-64 тонн.'],
+      ['Инженерная оценка', 'В реальном производстве выбранный листогибочный пресс должен также учитывать коэффициент непрерывной нагрузки, состояние инструмента, разброс материала и запас безопасности. Расчетный тоннаж не следует считать единственным критерием выбора станка.'],
+    ],
     factorsTitle: 'Факторы, влияющие на тоннаж',
     factors: [
       ['Прочность материала', 'При одинаковой геометрии высокопрочный лист требует большего усилия, чем низкоуглеродистая сталь.'],
@@ -167,6 +217,14 @@ const localizedContent = {
     recommendationTitle: 'Инженерная рекомендация',
     recommendationText:
       'При непрерывном производстве следует избегать длительной работы вблизи максимального тоннажа. Если геометрия детали допускает, увеличение раскрытия V-матрицы или выбор более мощного станка повышают долговременную стабильность оборудования.',
+    mistakesTitle: 'Типичные ошибки при расчете тоннажа',
+    mistakes: [
+      'Выбор станка только по расчетному тоннажу без учета коэффициента нагрузки при непрерывном производстве.',
+      'Использование неправильного коэффициента материала, особенно при сравнении низкоуглеродистой стали, нержавеющей стали, алюминия и латуни.',
+      'Игнорирование влияния раскрытия V. Меньшее раскрытие V увеличивает требуемый тоннаж, а большее раскрытие снижает усилие, но увеличивает внутренний радиус.',
+      'Недооценка того, что короткие и толстые заготовки создают сосредоточенную нагрузку, которая иначе нагружает ползун, инструмент и раму станка, чем длинные тонкие листы.',
+      'Восприятие теоретического расчета как окончательной гарантии производства, а не как ориентира для выбора станка и инструмента.',
+    ],
     capacityTitle: 'Коэффициент непрерывной производственной нагрузки',
     capacityText:
       'Номинальный тоннаж является максимальной возможностью станка, а не предпочтительной точкой постоянной работы. Для серийного производства расчетное усилие должно оставаться в практическом диапазоне непрерывной нагрузки.',
@@ -189,6 +247,8 @@ const localizedContent = {
       ['Что означает тоннаж листогибочного пресса?', 'Это полное формовочное усилие по заданной длине гиба для выбранных материала и инструмента.'],
       ['Почему иногда выбирают большее раскрытие V?', 'Большее раскрытие снижает требуемый тоннаж и нагрузку на инструмент, но обычно увеличивает естественный внутренний радиус и может влиять на полку детали.'],
       ['Почему расчетное усилие не приравнивают к номиналу станка?', 'При серийной работе не рекомендуется постоянно использовать максимальный номинал; запас уменьшает длительную нагрузку на раму, гидравлику и инструмент.'],
+      ['Почему тоннаж листогибочного пресса увеличивается при меньшем раскрытии V?', 'Меньшее раскрытие V оставляет листу меньше пространства для формования и требует большего усилия гибки. Это может помочь получить меньший внутренний радиус, но также повышает нагрузку на инструмент, станок и риск превышения безопасной мощности.'],
+      ['Может ли расчетный тоннаж быть равен номинальной мощности листогибочного пресса?', 'Для непрерывного производства это не рекомендуется. Расчетный тоннаж обычно должен оставлять разумный запас безопасности, поскольку разброс материала, износ инструмента, допуск раскрытия V и точность длины гиба могут изменить фактическую нагрузку.'],
     ],
     notesTitle: 'Инженерные примечания',
     notes: [
@@ -217,6 +277,14 @@ const localizedContent = {
       'Los demás materiales se calculan según su factor de material relativo.',
       'Esta fórmula se utiliza como valor de referencia para el plegado al aire.',
     ],
+    productionExampleTitle: 'Ejemplo real de producción',
+    productionExampleIntro:
+      'Por ejemplo, al plegar acero dulce de 3 mm en una longitud de 2500 mm con una abertura de matriz V24, la fuerza requerida suele estar alrededor de 62-64 toneladas usando la fórmula de referencia de ZYCO.',
+    productionExampleItems: [
+      ['Condición', 'Acero dulce de 3 mm, longitud de plegado de 2500 mm, abertura de matriz V24, factor de material 1.00.'],
+      ['Resultado del cálculo', 'La fuerza de plegado estimada es aproximadamente de 62-64 toneladas.'],
+      ['Criterio de ingeniería', 'En producción real, la plegadora seleccionada también debe considerar la relación de carga continua, el estado del utillaje, la variación del material y el margen de seguridad. El tonelaje calculado no debe tratarse como el único criterio de selección de máquina.'],
+    ],
     factorsTitle: 'Factores que influyen en el tonelaje',
     factors: [
       ['Resistencia del material', 'Con la misma geometría, una chapa de mayor resistencia requiere más fuerza que el acero dulce.'],
@@ -227,6 +295,14 @@ const localizedContent = {
     recommendationTitle: 'Recomendación de ingeniería',
     recommendationText:
       'En producción continua, evite trabajar durante largos periodos cerca del tonelaje máximo. Si la geometría de la pieza lo permite, aumentar la abertura de la matriz V o seleccionar una máquina mayor puede mejorar la estabilidad a largo plazo.',
+    mistakesTitle: 'Errores comunes en el cálculo de tonelaje',
+    mistakes: [
+      'Seleccionar una máquina solo por el tonelaje calculado, sin considerar la relación de carga en producción continua.',
+      'Usar un factor de material incorrecto, especialmente al comparar acero dulce, acero inoxidable, aluminio y latón.',
+      'Ignorar el efecto de la abertura V. Una abertura V menor aumenta el tonelaje requerido, mientras que una abertura mayor reduce la fuerza pero aumenta el radio interior.',
+      'Olvidar que las placas cortas y gruesas generan carga concentrada, que puede exigir al carnero, el utillaje y el bastidor de forma diferente a las chapas largas y delgadas.',
+      'Tratar el cálculo teórico como una garantía final de producción en lugar de una referencia para seleccionar máquina y utillaje.',
+    ],
     capacityTitle: 'Relación de carga de producción continua',
     capacityText:
       'El tonelaje nominal es la capacidad máxima de la máquina, no su punto preferido de trabajo continuo. En producción repetitiva, la fuerza calculada debe quedar dentro de una proporción práctica de carga continua.',
@@ -249,6 +325,8 @@ const localizedContent = {
       ['¿Qué significa el tonelaje de una plegadora?', 'Es la fuerza total de conformado requerida a lo largo de la longitud programada con el material y el utillaje seleccionados.'],
       ['¿Por qué se utiliza a veces una abertura V mayor?', 'Una abertura mayor reduce el tonelaje y la carga del utillaje, pero normalmente aumenta el radio interior natural y puede influir en la pestaña.'],
       ['¿Por qué la fuerza calculada no se iguala a la capacidad nominal?', 'La producción continua no debería trabajar habitualmente al máximo nominal; el margen reduce la carga sostenida sobre bastidor, hidráulica y utillaje.'],
+      ['¿Por qué aumenta el tonelaje de la plegadora cuando la abertura V es menor?', 'Una abertura V menor deja menos espacio de conformado a la chapa y exige mayor fuerza de plegado. Puede ayudar a conseguir un radio interior menor, pero también aumenta la carga del utillaje, la carga de la máquina y el riesgo de superar la capacidad segura.'],
+      ['¿Puede el tonelaje calculado ser igual a la capacidad nominal de la plegadora?', 'No se recomienda para producción continua. El tonelaje calculado normalmente debe dejar un margen de seguridad razonable, porque la variación del material, el desgaste del utillaje, la tolerancia de la abertura V y la precisión de la longitud de plegado pueden cambiar la carga real.'],
     ],
     notesTitle: 'Notas de ingeniería',
     notes: [
@@ -277,6 +355,14 @@ const localizedContent = {
       'Diğer malzemeler kendi bağıl malzeme katsayılarına göre hesaplanır.',
       'Bu formül havada bükme için referans değer olarak kullanılır.',
     ],
+    productionExampleTitle: 'Gerçek Üretim Örneği',
+    productionExampleIntro:
+      'Örneğin, 3 mm yumuşak çeliği 2500 mm büküm uzunluğunda V24 kalıp açıklığıyla bükerken, ZYCO referans formülüne göre gereken bükme kuvveti genellikle yaklaşık 62-64 tondur.',
+    productionExampleItems: [
+      ['Koşul', '3 mm yumuşak çelik, 2500 mm büküm uzunluğu, V24 kalıp açıklığı, malzeme katsayısı 1.00.'],
+      ['Hesap Sonucu', 'Tahmini bükme kuvveti yaklaşık 62-64 tondur.'],
+      ['Mühendislik Değerlendirmesi', 'Gerçek üretimde seçilen abkant pres, sürekli yük oranını, takım durumunu, malzeme değişkenliğini ve güvenlik payını da dikkate almalıdır. Hesaplanan tonaj değeri tek makine seçim kriteri olarak görülmemelidir.'],
+    ],
     factorsTitle: 'Tonajı Etkileyen Faktörler',
     factors: [
       ['Malzeme dayanımı', 'Aynı geometride yüksek dayanımlı sac, yumuşak çeliğe göre daha fazla kuvvet gerektirir.'],
@@ -287,6 +373,14 @@ const localizedContent = {
     recommendationTitle: 'Mühendislik Önerisi',
     recommendationText:
       'Sürekli üretimde maksimum tonaja yakın uzun süreli çalışmadan kaçınılmalıdır. Parça geometrisi izin verdiğinde V kalıp açıklığını artırmak veya daha büyük bir makine seçmek, uzun dönem makine kararlılığını iyileştirebilir.',
+    mistakesTitle: 'Yaygın Tonaj Hesaplama Hataları',
+    mistakes: [
+      'Makineyi yalnızca hesaplanan tonaj değerine göre seçmek ve sürekli üretim yük oranını dikkate almamak.',
+      'Özellikle yumuşak çelik, paslanmaz çelik, alüminyum ve pirinci karşılaştırırken yanlış malzeme katsayısı kullanmak.',
+      'V açıklığının etkisini göz ardı etmek. Daha küçük V açıklığı gerekli tonajı artırır; daha büyük V açıklığı kuvveti düşürür ancak iç radyüsü büyütür.',
+      'Kısa ve kalın plakaların yoğun yük oluşturduğunu, bunun koç, takım ve makine gövdesini uzun ince saclardan farklı şekilde zorlayabileceğini unutmak.',
+      'Teorik hesabı makine ve takım seçimi için referans yerine nihai üretim garantisi olarak görmek.',
+    ],
     capacityTitle: 'Sürekli Üretim Yük Oranı',
     capacityText:
       'Nominal tonaj makinenin azami kapasitesidir, tercih edilen sürekli çalışma noktası değildir. Seri üretim seçiminde hesaplanan kuvvet, nominal kapasitenin pratik sürekli yük payı içinde kalmalıdır.',
@@ -309,6 +403,8 @@ const localizedContent = {
       ['Abkant pres tonajı ne anlama gelir?', 'Seçilen malzeme ve takım koşullarında programlanan büküm boyu boyunca gereken toplam şekillendirme kuvvetidir.'],
       ['Neden bazen daha büyük V açıklığı kullanılır?', 'Daha büyük açıklık gerekli tonajı ve takım yükünü düşürür; ancak genellikle doğal iç radyüsü büyütür ve flanş gereksinimini etkileyebilir.'],
       ['Hesaplanan kuvvet neden nominal kapasiteye doğrudan eşitlenmez?', 'Sürekli üretim normalde azami nominalde yürütülmemelidir; pay, gövde, hidrolik ve takım üzerindeki sürekli yükü azaltır.'],
+      ['V açıklığı küçüldüğünde abkant pres tonajı neden artar?', 'Daha küçük V açıklığı saca daha az şekillendirme alanı bırakır ve daha yüksek bükme kuvveti gerektirir. Daha küçük iç radyüs elde etmeye yardımcı olabilir, ancak takım yükünü, makine yükünü ve güvenli kapasiteyi aşma riskini de artırır.'],
+      ['Hesaplanan tonaj abkant presin nominal kapasitesine eşit olabilir mi?', 'Sürekli üretim için önerilmez. Hesaplanan tonaj normalde makul bir güvenlik payı bırakmalıdır; çünkü malzeme değişimi, takım aşınması, V açıklığı toleransı ve büküm uzunluğu doğruluğu gerçek yükü değiştirebilir.'],
     ],
     notesTitle: 'Mühendislik Notları',
     notes: [
@@ -337,6 +433,14 @@ const localizedContent = {
       'Material lain dihitung berdasarkan faktor material relatif masing-masing.',
       'Formula ini digunakan sebagai nilai referensi untuk air bending.',
     ],
+    productionExampleTitle: 'Contoh Produksi Nyata',
+    productionExampleIntro:
+      'Sebagai contoh, saat membending mild steel 3 mm sepanjang 2500 mm dengan bukaan die V24, gaya bending yang diperlukan biasanya sekitar 62-64 ton menggunakan formula referensi ZYCO.',
+    productionExampleItems: [
+      ['Kondisi', 'Mild steel 3 mm, panjang bending 2500 mm, bukaan die V24, faktor material 1.00.'],
+      ['Hasil Perhitungan', 'Gaya bending estimasi sekitar 62-64 ton.'],
+      ['Pertimbangan Teknik', 'Dalam produksi nyata, press brake yang dipilih juga harus mempertimbangkan rasio beban kontinu, kondisi tooling, variasi material, dan margin keselamatan. Nilai tonase terhitung tidak boleh dijadikan satu-satunya kriteria pemilihan mesin.'],
+    ],
     factorsTitle: 'Faktor yang Mempengaruhi Tonase',
     factors: [
       ['Kekuatan material', 'Dengan geometri sama, lembaran berkekuatan tinggi memerlukan gaya lebih besar daripada mild steel.'],
@@ -347,6 +451,14 @@ const localizedContent = {
     recommendationTitle: 'Rekomendasi Teknik',
     recommendationText:
       'Untuk produksi kontinu, hindari operasi jangka panjang mendekati tonase maksimum. Jika geometri komponen memungkinkan, memperbesar bukaan V-die atau memilih mesin yang lebih besar dapat meningkatkan stabilitas mesin dalam jangka panjang.',
+    mistakesTitle: 'Kesalahan Umum Perhitungan Tonase',
+    mistakes: [
+      'Memilih mesin hanya berdasarkan nilai tonase terhitung tanpa mempertimbangkan rasio beban produksi kontinu.',
+      'Menggunakan faktor material yang salah, terutama saat membandingkan mild steel, stainless steel, aluminium, dan kuningan.',
+      'Mengabaikan pengaruh bukaan V. Bukaan V yang lebih kecil meningkatkan tonase yang diperlukan, sedangkan bukaan yang lebih besar menurunkan gaya tetapi memperbesar radius dalam.',
+      'Melupakan bahwa pelat pendek dan tebal menghasilkan beban terkonsentrasi, yang dapat membebani ram, tooling, dan rangka mesin secara berbeda dibanding lembaran panjang dan tipis.',
+      'Menganggap perhitungan teoritis sebagai jaminan produksi final, bukan sebagai referensi untuk pemilihan mesin dan tooling.',
+    ],
     capacityTitle: 'Rasio Beban Produksi Kontinu',
     capacityText:
       'Tonase nominal adalah kapasitas maksimum mesin, bukan titik kerja kontinu yang disarankan. Untuk produksi berulang, gaya hasil perhitungan harus berada dalam porsi beban kontinu yang praktis dari kapasitas nominal.',
@@ -369,6 +481,8 @@ const localizedContent = {
       ['Apa arti tonase press brake?', 'Tonase adalah total gaya pembentukan sepanjang panjang bending yang diprogram untuk material dan tooling yang dipilih.'],
       ['Mengapa bukaan V yang lebih besar kadang digunakan?', 'Bukaan lebih besar menurunkan tonase dan beban tooling, tetapi biasanya memperbesar radius dalam alami dan dapat memengaruhi flange.'],
       ['Mengapa gaya terhitung tidak langsung disamakan dengan rating mesin?', 'Produksi kontinu sebaiknya tidak berjalan pada rating maksimum secara terus-menerus; margin mengurangi beban berkelanjutan pada rangka, hidrolik, dan tooling.'],
+      ['Mengapa tonase press brake meningkat saat bukaan V menjadi lebih kecil?', 'Bukaan V yang lebih kecil memberi ruang pembentukan lebih sedikit pada lembaran dan membutuhkan gaya bending lebih tinggi. Hal ini dapat membantu mencapai radius dalam yang lebih kecil, tetapi juga meningkatkan beban tooling, beban mesin, dan risiko melampaui kapasitas aman.'],
+      ['Apakah tonase terhitung boleh sama dengan kapasitas rating press brake?', 'Tidak disarankan untuk produksi kontinu. Tonase terhitung biasanya harus menyisakan margin keselamatan yang wajar karena variasi material, keausan tooling, toleransi bukaan V, dan akurasi panjang bending dapat mengubah beban aktual.'],
     ],
     notesTitle: 'Catatan Teknik',
     notes: [
@@ -753,6 +867,10 @@ export default function PressBrakeTonnageGuide({
             margin-top: 18px;
           }
 
+          .zyco-tonnage-guide__grid .zyco-tonnage-guide__cards {
+            grid-template-columns: 1fr;
+          }
+
           .zyco-tonnage-guide__card,
           .zyco-tonnage-guide__factor {
             padding: 18px;
@@ -1006,6 +1124,34 @@ export default function PressBrakeTonnageGuide({
 
             <section
               className='zyco-tonnage-guide__panel'
+              aria-labelledby='tonnage-guide-production-example'
+            >
+              <h2
+                className='zyco-tonnage-guide__section-title'
+                id='tonnage-guide-production-example'
+              >
+                {page.productionExampleTitle}
+              </h2>
+
+              <p className='zyco-tonnage-guide__copy'>
+                {page.productionExampleIntro}
+              </p>
+
+              <div className='zyco-tonnage-guide__cards'>
+                {page.productionExampleItems.map(([title, description]) => (
+                  <article
+                    className='zyco-tonnage-guide__card'
+                    key={title}
+                  >
+                    <strong>{title}</strong>
+                    <span>{description}</span>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section
+              className='zyco-tonnage-guide__panel'
               aria-labelledby='tonnage-guide-factors'
             >
               <h2
@@ -1029,6 +1175,29 @@ export default function PressBrakeTonnageGuide({
                   <strong>{page.recommendationTitle}</strong>
                   <span>{page.recommendationText}</span>
                 </article>
+              </div>
+            </section>
+
+            <section
+              className='zyco-tonnage-guide__panel'
+              aria-labelledby='tonnage-guide-mistakes'
+            >
+              <h2
+                className='zyco-tonnage-guide__section-title'
+                id='tonnage-guide-mistakes'
+              >
+                {page.mistakesTitle}
+              </h2>
+
+              <div className='zyco-tonnage-guide__notes'>
+                {page.mistakes.map((mistake) => (
+                  <article
+                    className='zyco-tonnage-guide__faq-item'
+                    key={mistake}
+                  >
+                    <p className='zyco-tonnage-guide__copy'>{mistake}</p>
+                  </article>
+                ))}
               </div>
             </section>
           </div>
