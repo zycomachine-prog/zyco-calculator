@@ -546,6 +546,14 @@ const engineeringContent = {
       ['8T range', 'Typical production baseline for general mild-steel sheet and balanced repeatability.'],
       ['10T to 12T range', 'Useful for heavy, hard or surface-sensitive work when radius and flange geometry allow.'],
     ],
+    productionExampleTitle: 'Real Production Selection Example',
+    productionExampleIntro:
+      'Consider a 90-degree air bend in 3 mm mild steel. A V24 die is an 8T starting point that usually balances force, natural radius and flange support before the first trial bend.',
+    productionExampleItems: [
+      ['Starting condition', '3 mm mild steel, 90-degree air bend, V24 opening and tooling rated for the required bending length.'],
+      ['Expected result', 'The opening is approximately 8 times the sheet thickness and commonly produces a natural inside radius in the 3-4 mm range.'],
+      ['Engineering judgment', 'Release the setup only after confirming the drawing radius, shortest-flange support, calculated tonnage, tool load rating and trial-bend angle. If any one limit fails, revise the opening or tooling rather than relying on the 8T rule alone.'],
+    ],
     materialSelectionTitle: 'Material Influence on V Die Selection',
     materialSelectionIntro:
       'The same thickness does not mean the same bending condition. Tensile strength, ductility, finish and accepted inside radius determine whether the opening must be widened or the surface protected.',
@@ -601,11 +609,24 @@ const engineeringContent = {
       ['Balanced opening', 'Moderate', 'Predictable for normal batches', 'Usually the most repeatable setup'],
       ['Wider opening', 'Decreases', 'Larger radius; springback influence increases', 'Lower tool load, but needs longer flange'],
     ],
+    checklistTitle: 'Engineer Selection Checklist Before Releasing a V Opening',
+    checklistIntro:
+      'Before releasing a V opening for production, check the selection as a complete bending condition rather than as a thickness multiple alone.',
+    checklistItems: [
+      ['Thickness and material', 'Start from the thickness multiple, then adjust for material strength, ductility, grain direction and batch variation.'],
+      ['Inside radius', 'Confirm that the natural radius from the selected opening matches the drawing tolerance and functional requirement.'],
+      ['Tonnage margin', 'Verify that the machine and tooling are not operating repeatedly near their maximum rated load.'],
+      ['Minimum flange', 'Check that the shortest flange remains supported on both die shoulders during the bend.'],
+      ['Springback', 'For stainless, aluminum and high-strength grades, confirm whether the opening increases angle recovery or requires compensation.'],
+      ['Tooling life and surface', 'Consider shoulder pressure, visible marks, protective film, anti-mark tooling and long-run wear.'],
+    ],
     faq: [
       ['Why is 8T often used as the first setup?', 'It is commonly a practical compromise: force is manageable, the natural radius is usable for many drawings, and ordinary flanges retain support. It must still be checked against the actual part.'],
       ['Should stainless use the same V opening as mild steel?', 'Not automatically. Stainless normally requires more force and exhibits more springback; surface marking can also be more visible. A wider opening or surface protection may be appropriate.'],
       ['Can I widen the V opening to solve a tonnage shortage?', 'Only after checking the required radius and minimum flange. Reducing force by widening the die can make a short flange unstable or produce an unacceptable radius.'],
       ['Why do marks appear along the die shoulders?', 'The sheet carries high contact pressure at the shoulders during sliding and rotation. Narrow openings, dirty tooling and decorative material increase the risk.'],
+      ['Should I always choose the smallest V opening that makes the drawing radius?', 'No. The smallest opening may exceed machine or tooling capacity, mark the surface, accelerate wear or crack the material. Choose it only after every production limit is verified.'],
+      ['Can one V opening be reused for different sheet thicknesses?', 'Sometimes, but it creates a different V-to-thickness ratio for each sheet. Recheck natural radius, tonnage, flange support and marking every time thickness changes.'],
     ],
     notesTitle: 'Engineering Experience Notes',
     notes: [
@@ -630,6 +651,13 @@ const engineeringContent = {
       ['6T 范围', '适用于较紧半径或受限法兰；必须重点检查吨位、压痕与裂纹倾向。'],
       ['8T 范围', '普通低碳钢钣金生产的常用基准，兼顾负载与重复稳定性。'],
       ['10T 至 12T 范围', '适用于厚板、较硬材料或表面敏感工件，前提是半径和法兰几何允许。'],
+    ],
+    productionExampleTitle: '实际生产选型示例',
+    productionExampleIntro: '以 3 mm 低碳钢 90° 空气折弯为例。V24 下模相当于 8T 起始选择，通常可在首次试折前兼顾吨位、自然内圆角与法兰支撑。',
+    productionExampleItems: [
+      ['起始条件', '3 mm 低碳钢、90° 空气折弯、V24 开口，并使用满足实际折弯长度额定载荷的模具。'],
+      ['预期结果', '开口约为板厚的 8 倍，通常形成约 3-4 mm 的自然内圆角。'],
+      ['工程判断', '只有在确认图纸半径、最短法兰支撑、计算吨位、模具额定载荷和试折角度后才能放行。如果任一条件不满足，应调整开口或模具，而不能只依赖 8T 规则。'],
     ],
     materialSelectionTitle: '材料对 V 型模选择的影响',
     materialSelectionIntro: '相同板厚并不代表相同折弯工况。抗拉强度、延展性、表面状态和允许内圆角共同决定是否需要放大开口或保护表面。',
@@ -681,11 +709,23 @@ const engineeringContent = {
       ['平衡开口', '适中', '普通批次较可预测', '通常最利于重复生产'],
       ['开口变宽', '降低', '圆角变大；回弹影响增加', '模具负载降低，但需更长法兰'],
     ],
+    checklistTitle: '工程师放行 V 型模开口前检查清单',
+    checklistIntro: 'V 型模开口投入生产前，应将选型作为完整折弯工况进行核对，而不能只看板厚倍数。',
+    checklistItems: [
+      ['板厚与材料', '以板厚倍数为起点，再根据材料强度、延展性、轧制方向和批次波动进行调整。'],
+      ['内圆角', '确认所选开口形成的自然内圆角符合图纸公差与功能要求。'],
+      ['吨位余量', '确认设备和模具不会在批量生产中反复接近最大额定载荷。'],
+      ['最小法兰', '检查折弯过程中最短法兰能否始终支撑在两侧模肩上。'],
+      ['回弹', '对于不锈钢、铝材和高强钢，应确认该开口是否会增大角度回弹或需要额外补偿。'],
+      ['模具寿命与表面', '综合考虑模肩压力、可见压痕、保护膜、防压痕模具以及长时间生产磨损。'],
+    ],
     faq: [
       ['为什么常以 8T 作为初始设定？', '它通常是实用折中点：载荷可控，自然半径适用于较多图纸，普通法兰也有足够支撑；但仍须对实际零件验证。'],
       ['不锈钢能否直接使用低碳钢相同开口？', '不能直接套用。不锈钢通常需要更高力并有更明显回弹，表面压痕也更易见，可能需要较宽开口或表面保护。'],
       ['吨位不足时能否直接放大 V 开口？', '只能在核对目标内圆角和最小法兰后进行。宽模虽能降低力，但可能让短边不稳或使圆角超差。'],
       ['为什么模肩会出现长条压痕？', '板材在旋转滑移过程中于模肩承受较高接触压力。窄开口、模面污染和装饰面材料会加大风险。'],
+      ['是否总应选择能满足图纸半径的最小 V 开口？', '不应。最小开口可能超过设备或模具能力，增加压痕、磨损或材料开裂。只有全部生产限制均确认后才能采用。'],
+      ['同一个 V 开口能否用于不同板厚？', '有时可以，但每种板厚对应的 V 与板厚比不同。每次改变板厚都应重新核对自然内圆角、吨位、法兰支撑和压痕。'],
     ],
     notesTitle: '工程经验说明',
     notes: [
@@ -710,6 +750,13 @@ const engineeringContent = {
       ['Диапазон 6T', 'Для меньшего радиуса или ограниченной полки; особенно проверяйте усилие, следы и склонность к трещинам.'],
       ['Диапазон 8T', 'Типовая производственная база для обычной низкоуглеродистой стали с хорошей повторяемостью.'],
       ['Диапазон 10T-12T', 'Для толстого, твердого или чувствительного к поверхности листа, если позволяют радиус и геометрия полки.'],
+    ],
+    productionExampleTitle: 'Реальный пример выбора для производства',
+    productionExampleIntro: 'Рассмотрим воздушную гибку низкоуглеродистой стали толщиной 3 мм на 90°. Матрица V24 соответствует начальному отношению 8T и обычно дает рабочий баланс усилия, естественного радиуса и опоры полки перед первой пробой.',
+    productionExampleItems: [
+      ['Исходные условия', 'Низкоуглеродистая сталь 3 мм, воздушная гибка 90°, раскрытие V24 и оснастка с допустимой нагрузкой для фактической длины гиба.'],
+      ['Ожидаемый результат', 'Раскрытие примерно в 8 раз больше толщины листа и обычно формирует естественный внутренний радиус около 3-4 мм.'],
+      ['Инженерная оценка', 'Разрешайте наладку только после проверки радиуса по чертежу, опоры самой короткой полки, расчетного усилия, допустимой нагрузки инструмента и угла пробной детали. При несоответствии любого условия меняйте раскрытие или оснастку, а не полагайтесь только на правило 8T.'],
     ],
     materialSelectionTitle: 'Влияние материала на выбор V-матрицы',
     materialSelectionIntro: 'Одинаковая толщина не означает одинаковый режим гибки. Прочность, пластичность, отделка и допустимый внутренний радиус определяют необходимость увеличить раскрытие или защитить поверхность.',
@@ -761,11 +808,23 @@ const engineeringContent = {
       ['Сбалансированное', 'Умеренное', 'Предсказуемо для обычных партий', 'Обычно лучшая повторяемость'],
       ['Шире', 'Снижается', 'Радиус больше; влияние пружинения растет', 'Меньше нагрузка, но нужна длинная полка'],
     ],
+    checklistTitle: 'Контрольный список инженера перед запуском раскрытия V',
+    checklistIntro: 'Перед запуском раскрытия V в производство проверяйте выбор как полный режим гибки, а не только как коэффициент толщины.',
+    checklistItems: [
+      ['Толщина и материал', 'Начните с коэффициента толщины, затем скорректируйте выбор с учетом прочности, пластичности, направления прокатки и разброса партии.'],
+      ['Внутренний радиус', 'Убедитесь, что естественный радиус выбранного раскрытия соответствует допуску чертежа и функциональному требованию.'],
+      ['Запас по усилию', 'Проверьте, что станок и оснастка не будут многократно работать вблизи максимальной номинальной нагрузки.'],
+      ['Минимальная полка', 'Убедитесь, что самая короткая полка сохраняет опору на обоих плечах матрицы во время гибки.'],
+      ['Пружинение', 'Для нержавеющей стали, алюминия и высокопрочных марок проверьте, увеличивает ли раскрытие возврат угла и нужна ли компенсация.'],
+      ['Ресурс оснастки и поверхность', 'Учитывайте давление на плечах, видимые следы, защитную пленку, оснастку против следов и износ в длинной серии.'],
+    ],
     faq: [
       ['Почему 8T часто берут первым вариантом?', 'Это практический компромисс: приемлемая нагрузка, подходящий для многих чертежей естественный радиус и достаточная опора обычных полок. Фактическую деталь все равно проверяют.'],
       ['Можно ли для нержавеющей стали применять то же раскрытие, что для обычной стали?', 'Не автоматически. Нержавеющая сталь обычно требует большего усилия, сильнее пружинит и легче показывает следы; может понадобиться большее раскрытие или защита поверхности.'],
       ['Можно ли просто увеличить V при недостатке усилия?', 'Только после проверки радиуса и минимальной полки. Снижение усилия широкой матрицей может сделать короткую сторону неустойчивой или увеличить радиус сверх допуска.'],
       ['Почему появляются полосы на плечах матрицы?', 'Лист при вращении и скольжении испытывает высокое контактное давление на плечах. Узкая матрица, грязный инструмент и декоративная поверхность увеличивают риск.'],
+      ['Всегда ли следует выбирать минимальное раскрытие V, обеспечивающее радиус чертежа?', 'Нет. Минимальное раскрытие может превысить возможности станка или инструмента, оставить следы, ускорить износ или вызвать трещины. Его применяют только после проверки всех производственных ограничений.'],
+      ['Можно ли использовать одно раскрытие V для листов разной толщины?', 'Иногда можно, но отношение V к толщине будет разным. При каждой смене толщины заново проверяйте естественный радиус, усилие, опору полки и следы.'],
     ],
     notesTitle: 'Практические инженерные примечания',
     notes: [
@@ -790,6 +849,13 @@ const engineeringContent = {
       ['Rango 6T', 'Para radio más cerrado o pestaña limitada; revise de cerca fuerza, marcas y tendencia a agrietarse.'],
       ['Rango 8T', 'Base habitual de producción para acero dulce general y repetibilidad equilibrada.'],
       ['Rango 10T a 12T', 'Útil con material grueso, duro o de superficie sensible si radio y pestaña lo permiten.'],
+    ],
+    productionExampleTitle: 'Ejemplo real de selección para producción',
+    productionExampleIntro: 'Considere un plegado al aire de 90° en acero dulce de 3 mm. Una matriz V24 equivale a un punto inicial de 8T y suele equilibrar fuerza, radio natural y apoyo de pestaña antes de la primera prueba.',
+    productionExampleItems: [
+      ['Condición inicial', 'Acero dulce de 3 mm, plegado al aire de 90°, abertura V24 y utillaje clasificado para la longitud real de plegado.'],
+      ['Resultado esperado', 'La abertura es aproximadamente 8 veces el espesor y suele producir un radio interior natural de 3-4 mm.'],
+      ['Criterio de ingeniería', 'Libere el ajuste solo tras confirmar el radio del plano, el apoyo de la pestaña más corta, el tonelaje calculado, la carga admisible del útil y el ángulo de prueba. Si falla un límite, cambie la abertura o el utillaje en vez de confiar solo en la regla 8T.'],
     ],
     materialSelectionTitle: 'Influencia del material en la selección de matriz V',
     materialSelectionIntro: 'El mismo espesor no implica la misma condición de plegado. Resistencia, ductilidad, acabado y radio aceptable determinan si debe ampliarse la abertura o protegerse la superficie.',
@@ -841,11 +907,23 @@ const engineeringContent = {
       ['Equilibrada', 'Moderado', 'Predecible para lotes normales', 'Generalmente más repetible'],
       ['Más ancha', 'Disminuye', 'Radio mayor; aumenta efecto del retorno', 'Menor carga, exige pestaña larga'],
     ],
+    checklistTitle: 'Lista de comprobación del ingeniero antes de aprobar una abertura V',
+    checklistIntro: 'Antes de aprobar una abertura V para producción, compruebe la selección como una condición completa de plegado y no solo como un múltiplo del espesor.',
+    checklistItems: [
+      ['Espesor y material', 'Parta del múltiplo del espesor y ajuste después según resistencia, ductilidad, dirección de laminación y variación del lote.'],
+      ['Radio interior', 'Confirme que el radio natural de la abertura elegida cumple la tolerancia del plano y el requisito funcional.'],
+      ['Margen de tonelaje', 'Verifique que la máquina y el utillaje no trabajen repetidamente cerca de su carga nominal máxima.'],
+      ['Pestaña mínima', 'Compruebe que la pestaña más corta permanezca apoyada en ambos hombros de la matriz durante el plegado.'],
+      ['Retorno elástico', 'En inoxidable, aluminio y aceros de alta resistencia, confirme si la abertura aumenta la recuperación angular o exige compensación.'],
+      ['Vida del útil y superficie', 'Considere la presión en hombros, las marcas visibles, la película protectora, el utillaje antimarcas y el desgaste en series largas.'],
+    ],
     faq: [
       ['¿Por qué se suele comenzar con 8T?', 'Suele ser un compromiso práctico: carga manejable, radio natural útil para muchos planos y apoyo suficiente para pestañas ordinarias. La pieza real debe verificarse.'],
       ['¿Debe usarse en inoxidable la misma V que en acero dulce?', 'No automáticamente. El inoxidable suele exigir más fuerza, recuperar más ángulo y mostrar más las marcas; puede convenir una abertura mayor o protección.'],
       ['¿Puedo ampliar V para resolver falta de tonelaje?', 'Solo después de comprobar radio requerido y pestaña mínima. La reducción de fuerza puede volver inestable una pata corta o producir un radio inaceptable.'],
       ['¿Por qué aparecen marcas en los hombros?', 'Durante el giro y deslizamiento, la chapa soporta alta presión de contacto sobre los hombros. La V estrecha, suciedad y acabado decorativo aumentan el riesgo.'],
+      ['¿Debo elegir siempre la abertura V mínima que consiga el radio del plano?', 'No. La abertura mínima puede superar la capacidad de máquina o útil, marcar la superficie, acelerar el desgaste o agrietar el material. Úsela solo tras verificar todos los límites de producción.'],
+      ['¿Puede reutilizarse una abertura V con distintos espesores?', 'A veces, pero cada espesor tendrá una relación V-espesor distinta. Vuelva a comprobar radio natural, tonelaje, apoyo de pestaña y marcas cada vez que cambie el espesor.'],
     ],
     notesTitle: 'Notas de experiencia de ingeniería',
     notes: [
@@ -870,6 +948,13 @@ const engineeringContent = {
       ['6T aralığı', 'Sıkı radyüs veya sınırlı flanş için; kuvveti, izleri ve çatlak eğilimini dikkatle kontrol edin.'],
       ['8T aralığı', 'Genel yumuşak çelik üretiminde dengeli tekrarlanabilirlik için tipik başlangıç.'],
       ['10T ile 12T aralığı', 'Radyüs ve flanş izin veriyorsa kalın, sert veya yüzeyi hassas işler için uygundur.'],
+    ],
+    productionExampleTitle: 'Gerçek Üretim Seçim Örneği',
+    productionExampleIntro: '3 mm yumuşak çelikte 90° havada bükümü ele alın. V24 kalıp 8T başlangıç değeridir ve ilk denemeden önce kuvvet, doğal radyüs ve flanş desteğini genellikle dengeler.',
+    productionExampleItems: [
+      ['Başlangıç koşulu', '3 mm yumuşak çelik, 90° havada büküm, V24 açıklık ve gerçek büküm uzunluğu için uygun yük değerine sahip takım.'],
+      ['Beklenen sonuç', 'Açıklık sac kalınlığının yaklaşık 8 katıdır ve çoğunlukla 3-4 mm doğal iç radyüs oluşturur.'],
+      ['Mühendislik değerlendirmesi', 'Ayarı ancak resim radyüsü, en kısa flanş desteği, hesaplanan tonaj, takım yük değeri ve deneme açısı doğrulandıktan sonra onaylayın. Bir sınır sağlanmıyorsa yalnızca 8T kuralına güvenmek yerine açıklığı veya takımı değiştirin.'],
     ],
     materialSelectionTitle: 'Malzemenin V Kalıp Seçimine Etkisi',
     materialSelectionIntro: 'Aynı kalınlık aynı bükme koşulu anlamına gelmez. Dayanım, süneklik, yüzey ve kabul edilen iç radyüs; açıklığın büyütülmesi veya yüzeyin korunması gereğini belirler.',
@@ -921,11 +1006,23 @@ const engineeringContent = {
       ['Dengeli', 'Orta', 'Normal partilerde öngörülebilir', 'Genelde en tekrarlanabilir ayar'],
       ['Genişler', 'Azalır', 'Radyüs büyür; geri esneme etkisi artar', 'Yük düşük, daha uzun flanş gerekir'],
     ],
+    checklistTitle: 'V Açıklığını Onaylamadan Önce Mühendis Seçim Kontrol Listesi',
+    checklistIntro: 'Bir V açıklığını üretim için onaylamadan önce seçimi yalnızca kalınlık katı olarak değil, eksiksiz bir büküm koşulu olarak kontrol edin.',
+    checklistItems: [
+      ['Kalınlık ve malzeme', 'Kalınlık katından başlayın; ardından malzeme dayanımı, süneklik, hadde yönü ve parti değişimine göre ayarlayın.'],
+      ['İç radyüs', 'Seçilen açıklığın doğal radyüsünün resim toleransına ve işlevsel gereksinime uyduğunu doğrulayın.'],
+      ['Tonaj payı', 'Makine ve takımın azami nominal yüke yakın sürekli çalışmadığını doğrulayın.'],
+      ['Minimum flanş', 'En kısa flanşın büküm boyunca iki kalıp omzunda da destekli kaldığını kontrol edin.'],
+      ['Geri esneme', 'Paslanmaz, alüminyum ve yüksek dayanımlı kalitelerde açıklığın açı geri dönüşünü artırıp artırmadığını veya telafi gerektirip gerektirmediğini doğrulayın.'],
+      ['Takım ömrü ve yüzey', 'Omuz basıncını, görünür izleri, koruyucu filmi, iz bırakmayan takımı ve uzun seri aşınmasını değerlendirin.'],
+    ],
     faq: [
       ['Neden ilk ayar olarak sıkça 8T kullanılır?', 'Çoğu zaman uygulanabilir bir dengedir: yük yönetilebilir, doğal radyüs birçok resme uyar ve normal flanşlar destekli kalır. Gerçek parça yine de doğrulanmalıdır.'],
       ['Paslanmaz için yumuşak çelikle aynı V kullanılmalı mı?', 'Otomatik olarak hayır. Paslanmaz genellikle daha fazla kuvvet ve geri esneme gösterir, izler daha görünürdür; geniş açıklık veya yüzey koruması uygun olabilir.'],
       ['Tonaj yetersizliğini V açıklığını büyüterek çözebilir miyim?', 'Yalnızca gereken radyüs ve minimum flanş kontrolünden sonra. Kuvvet azalırken kısa kenar kararsızlaşabilir veya radyüs kabul dışına çıkabilir.'],
       ['Kalıp omuzlarında neden çizgi izleri oluşur?', 'Sac dönüp kayarken omuzlarda yüksek temas basıncı taşır. Dar açıklık, kirli takım ve dekoratif yüzey riski artırır.'],
+      ['Resim radyüsünü sağlayan en küçük V açıklığını her zaman seçmeli miyim?', 'Hayır. En küçük açıklık makine veya takım kapasitesini aşabilir, yüzeyi işaretleyebilir, aşınmayı hızlandırabilir ya da malzemeyi çatlatabilir. Yalnızca tüm üretim sınırları doğrulandıktan sonra kullanın.'],
+      ['Tek V açıklığı farklı sac kalınlıklarında kullanılabilir mi?', 'Bazen, ancak her kalınlık farklı bir V-kalınlık oranı oluşturur. Kalınlık her değiştiğinde doğal radyüsü, tonajı, flanş desteğini ve izleri yeniden kontrol edin.'],
     ],
     notesTitle: 'Mühendislik Deneyimi Notları',
     notes: [
@@ -950,6 +1047,13 @@ const engineeringContent = {
       ['Rentang 6T', 'Untuk radius lebih rapat atau sayap terbatas; periksa gaya, bekas, dan kecenderungan retak secara teliti.'],
       ['Rentang 8T', 'Dasar produksi umum untuk baja lunak dengan pengulangan yang seimbang.'],
       ['Rentang 10T hingga 12T', 'Berguna untuk material tebal, keras, atau sensitif permukaan jika radius dan sayap memungkinkan.'],
+    ],
+    productionExampleTitle: 'Contoh Nyata Pemilihan Produksi',
+    productionExampleIntro: 'Pertimbangkan tekuk udara 90° pada baja lunak 3 mm. Cetakan V24 adalah titik awal 8T yang umumnya menyeimbangkan gaya, radius alami, dan dukungan sayap sebelum uji pertama.',
+    productionExampleItems: [
+      ['Kondisi awal', 'Baja lunak 3 mm, tekuk udara 90°, bukaan V24, dan perkakas dengan rating beban yang sesuai untuk panjang tekuk aktual.'],
+      ['Hasil yang diharapkan', 'Bukaan sekitar 8 kali tebal lembaran dan umumnya membentuk radius dalam alami sekitar 3-4 mm.'],
+      ['Penilaian teknik', 'Setujui setelan hanya setelah memastikan radius gambar, dukungan sayap terpendek, tonase terhitung, rating beban perkakas, dan sudut uji. Jika satu batas gagal, ubah bukaan atau perkakas alih-alih hanya mengandalkan aturan 8T.'],
     ],
     materialSelectionTitle: 'Pengaruh Material pada Pemilihan Cetakan V',
     materialSelectionIntro: 'Ketebalan yang sama tidak berarti kondisi tekuk yang sama. Kekuatan tarik, keuletan, hasil akhir permukaan, dan radius yang diterima menentukan apakah bukaan perlu diperbesar atau permukaan dilindungi.',
@@ -1001,11 +1105,23 @@ const engineeringContent = {
       ['Seimbang', 'Sedang', 'Dapat diprediksi pada lot normal', 'Biasanya paling berulang'],
       ['Lebih lebar', 'Turun', 'Radius lebih besar; pengaruh pegas balik naik', 'Beban turun, perlu sayap lebih panjang'],
     ],
+    checklistTitle: 'Daftar Periksa Insinyur Sebelum Menyetujui Bukaan V',
+    checklistIntro: 'Sebelum menyetujui bukaan V untuk produksi, periksa pemilihannya sebagai kondisi tekuk yang lengkap, bukan hanya sebagai kelipatan ketebalan.',
+    checklistItems: [
+      ['Ketebalan dan material', 'Mulai dari kelipatan ketebalan, lalu sesuaikan dengan kekuatan, keuletan, arah pengerolan, dan variasi lot material.'],
+      ['Radius dalam', 'Pastikan radius alami dari bukaan yang dipilih sesuai dengan toleransi gambar dan kebutuhan fungsi.'],
+      ['Margin tonase', 'Pastikan mesin dan perkakas tidak berulang kali bekerja mendekati beban nominal maksimumnya.'],
+      ['Sayap minimum', 'Periksa bahwa sayap terpendek tetap ditumpu pada kedua bahu cetakan selama penekukan.'],
+      ['Pegas balik', 'Untuk baja tahan karat, aluminium, dan mutu kekuatan tinggi, pastikan apakah bukaan menambah pemulihan sudut atau memerlukan kompensasi.'],
+      ['Umur perkakas dan permukaan', 'Pertimbangkan tekanan bahu, bekas terlihat, film pelindung, perkakas antitanda, dan keausan produksi panjang.'],
+    ],
     faq: [
       ['Mengapa 8T sering dipakai sebagai setelan awal?', 'Nilai ini umumnya merupakan kompromi praktis: beban terkendali, radius alami berguna untuk banyak gambar, dan sayap biasa tetap tertumpu. Komponen nyata tetap harus diuji.'],
       ['Apakah baja tahan karat memakai V yang sama dengan baja lunak?', 'Tidak secara otomatis. Baja tahan karat umumnya memerlukan gaya lebih besar, lebih banyak pegas balik, dan bekas lebih terlihat; bukaan lebih besar atau perlindungan permukaan mungkin tepat.'],
       ['Dapatkah saya memperlebar V untuk mengatasi kekurangan tonase?', 'Hanya setelah memeriksa radius yang diminta dan sayap minimum. Pengurangan gaya dapat membuat sisi pendek tidak stabil atau menghasilkan radius yang tidak diterima.'],
       ['Mengapa muncul bekas garis pada bahu cetakan?', 'Lembaran mengalami tekanan kontak tinggi pada bahu saat berputar dan bergeser. Bukaan sempit, perkakas kotor, dan permukaan dekoratif memperbesar risiko.'],
+      ['Haruskah saya selalu memilih bukaan V terkecil yang memenuhi radius gambar?', 'Tidak. Bukaan terkecil dapat melampaui kapasitas mesin atau perkakas, menandai permukaan, mempercepat keausan, atau meretakkan material. Gunakan hanya setelah semua batas produksi dipastikan.'],
+      ['Dapatkah satu bukaan V digunakan untuk ketebalan lembaran berbeda?', 'Terkadang, tetapi setiap ketebalan menghasilkan rasio V terhadap tebal yang berbeda. Periksa kembali radius alami, tonase, dukungan sayap, dan bekas setiap kali ketebalan berubah.'],
     ],
     notesTitle: 'Catatan Pengalaman Teknik',
     notes: [
@@ -1055,17 +1171,21 @@ const createArticleStructuredData = () => ({
   mainEntityOfPage: getSiteUrl(routePath),
 })
 
-const createFAQStructuredData = () => ({
-  '@type': 'FAQPage',
-  mainEntity: englishContent.faq.map(([question, answer]) => ({
-    '@type': 'Question',
-    name: question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: answer,
-    },
-  })),
-})
+const createFAQStructuredData = () => {
+  const faqItems = getPageContent('en').faq || englishContent.faq
+
+  return {
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(([question, answer]) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
+  }
+}
 
 function TextCard({ title, text }) {
   return (
@@ -1492,6 +1612,28 @@ export default function PressBrakeVDieOpeningGuide({
 
           <VDieOpeningDiagram labels={page.diagram} />
 
+          <section
+            className='zyco-v-guide__panel'
+            aria-labelledby='v-guide-production-example'
+          >
+            <h2
+              className='zyco-v-guide__section-title'
+              id='v-guide-production-example'
+            >
+              {page.productionExampleTitle}
+            </h2>
+            <p className='zyco-v-guide__copy'>{page.productionExampleIntro}</p>
+            <div className='zyco-v-guide__cards zyco-v-guide__cards--range'>
+              {page.productionExampleItems.map(([title, text]) => (
+                <TextCard
+                  key={title}
+                  title={title}
+                  text={text}
+                />
+              ))}
+            </div>
+          </section>
+
           <div className='zyco-v-guide__grid'>
             <section
               className='zyco-v-guide__panel'
@@ -1685,6 +1827,28 @@ export default function PressBrakeVDieOpeningGuide({
               />
             </section>
           </div>
+
+          <section
+            className='zyco-v-guide__panel'
+            aria-labelledby='v-guide-checklist'
+          >
+            <h2
+              className='zyco-v-guide__section-title'
+              id='v-guide-checklist'
+            >
+              {page.checklistTitle}
+            </h2>
+            <p className='zyco-v-guide__copy'>{page.checklistIntro}</p>
+            <div className='zyco-v-guide__cards zyco-v-guide__cards--two'>
+              {page.checklistItems.map(([title, text]) => (
+                <TextCard
+                  key={title}
+                  title={title}
+                  text={text}
+                />
+              ))}
+            </div>
+          </section>
 
           <section
             className='zyco-v-guide__panel'
