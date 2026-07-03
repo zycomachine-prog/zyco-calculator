@@ -620,6 +620,9 @@ const engineeringContent = {
       ['Springback', 'For stainless, aluminum and high-strength grades, confirm whether the opening increases angle recovery or requires compensation.'],
       ['Tooling life and surface', 'Consider shoulder pressure, visible marks, protective film, anti-mark tooling and long-run wear.'],
     ],
+    toolLinkTitle: 'Use the V Die Selection Tool',
+    toolLinkText: 'After checking thickness, inside radius, tonnage, springback and minimum flange support, use the selection tool to compare practical V-die opening recommendations for your bending condition.',
+    toolLinkButton: 'Open V Die Selection Tool',
     faq: [
       ['Why is 8T often used as the first setup?', 'It is commonly a practical compromise: force is manageable, the natural radius is usable for many drawings, and ordinary flanges retain support. It must still be checked against the actual part.'],
       ['Should stainless use the same V opening as mild steel?', 'Not automatically. Stainless normally requires more force and exhibits more springback; surface marking can also be more visible. A wider opening or surface protection may be appropriate.'],
@@ -719,6 +722,9 @@ const engineeringContent = {
       ['回弹', '对于不锈钢、铝材和高强钢，应确认该开口是否会增大角度回弹或需要额外补偿。'],
       ['模具寿命与表面', '综合考虑模肩压力、可见压痕、保护膜、防压痕模具以及长时间生产磨损。'],
     ],
+    toolLinkTitle: '使用 V 型模具选择工具',
+    toolLinkText: '在确认板厚、内圆角、吨位、回弹和最小法兰支撑后，可使用该工具对比当前折弯工况下的 V 型模开口建议。',
+    toolLinkButton: '打开 V 型模具选择工具',
     faq: [
       ['为什么常以 8T 作为初始设定？', '它通常是实用折中点：载荷可控，自然半径适用于较多图纸，普通法兰也有足够支撑；但仍须对实际零件验证。'],
       ['不锈钢能否直接使用低碳钢相同开口？', '不能直接套用。不锈钢通常需要更高力并有更明显回弹，表面压痕也更易见，可能需要较宽开口或表面保护。'],
@@ -818,6 +824,9 @@ const engineeringContent = {
       ['Пружинение', 'Для нержавеющей стали, алюминия и высокопрочных марок проверьте, увеличивает ли раскрытие возврат угла и нужна ли компенсация.'],
       ['Ресурс оснастки и поверхность', 'Учитывайте давление на плечах, видимые следы, защитную пленку, оснастку против следов и износ в длинной серии.'],
     ],
+    toolLinkTitle: 'Используйте инструмент выбора V-матрицы',
+    toolLinkText: 'После проверки толщины, внутреннего радиуса, усилия, пружинения и поддержки минимальной полки используйте инструмент, чтобы сравнить практические рекомендации по раскрытию V-матрицы для ваших условий гибки.',
+    toolLinkButton: 'Открыть инструмент выбора V-матрицы',
     faq: [
       ['Почему 8T часто берут первым вариантом?', 'Это практический компромисс: приемлемая нагрузка, подходящий для многих чертежей естественный радиус и достаточная опора обычных полок. Фактическую деталь все равно проверяют.'],
       ['Можно ли для нержавеющей стали применять то же раскрытие, что для обычной стали?', 'Не автоматически. Нержавеющая сталь обычно требует большего усилия, сильнее пружинит и легче показывает следы; может понадобиться большее раскрытие или защита поверхности.'],
@@ -917,6 +926,9 @@ const engineeringContent = {
       ['Retorno elástico', 'En inoxidable, aluminio y aceros de alta resistencia, confirme si la abertura aumenta la recuperación angular o exige compensación.'],
       ['Vida del útil y superficie', 'Considere la presión en hombros, las marcas visibles, la película protectora, el utillaje antimarcas y el desgaste en series largas.'],
     ],
+    toolLinkTitle: 'Utilice la herramienta de selección de matriz V',
+    toolLinkText: 'Después de comprobar el espesor, el radio interior, el tonelaje, la recuperación elástica y el apoyo de la pestaña mínima, utilice la herramienta para comparar recomendaciones prácticas de abertura V para su condición de plegado.',
+    toolLinkButton: 'Abrir la herramienta de selección de matriz V',
     faq: [
       ['¿Por qué se suele comenzar con 8T?', 'Suele ser un compromiso práctico: carga manejable, radio natural útil para muchos planos y apoyo suficiente para pestañas ordinarias. La pieza real debe verificarse.'],
       ['¿Debe usarse en inoxidable la misma V que en acero dulce?', 'No automáticamente. El inoxidable suele exigir más fuerza, recuperar más ángulo y mostrar más las marcas; puede convenir una abertura mayor o protección.'],
@@ -1016,6 +1028,9 @@ const engineeringContent = {
       ['Geri esneme', 'Paslanmaz, alüminyum ve yüksek dayanımlı kalitelerde açıklığın açı geri dönüşünü artırıp artırmadığını veya telafi gerektirip gerektirmediğini doğrulayın.'],
       ['Takım ömrü ve yüzey', 'Omuz basıncını, görünür izleri, koruyucu filmi, iz bırakmayan takımı ve uzun seri aşınmasını değerlendirin.'],
     ],
+    toolLinkTitle: 'V Kalıp Seçim Aracını Kullanın',
+    toolLinkText: 'Kalınlık, iç radyüs, tonaj, geri esneme ve minimum flanş desteğini kontrol ettikten sonra büküm koşulunuza uygun pratik V kalıp açıklığı önerilerini karşılaştırmak için seçim aracını kullanın.',
+    toolLinkButton: 'V Kalıp Seçim Aracını Aç',
     faq: [
       ['Neden ilk ayar olarak sıkça 8T kullanılır?', 'Çoğu zaman uygulanabilir bir dengedir: yük yönetilebilir, doğal radyüs birçok resme uyar ve normal flanşlar destekli kalır. Gerçek parça yine de doğrulanmalıdır.'],
       ['Paslanmaz için yumuşak çelikle aynı V kullanılmalı mı?', 'Otomatik olarak hayır. Paslanmaz genellikle daha fazla kuvvet ve geri esneme gösterir, izler daha görünürdür; geniş açıklık veya yüzey koruması uygun olabilir.'],
@@ -1115,6 +1130,9 @@ const engineeringContent = {
       ['Pegas balik', 'Untuk baja tahan karat, aluminium, dan mutu kekuatan tinggi, pastikan apakah bukaan menambah pemulihan sudut atau memerlukan kompensasi.'],
       ['Umur perkakas dan permukaan', 'Pertimbangkan tekanan bahu, bekas terlihat, film pelindung, perkakas antitanda, dan keausan produksi panjang.'],
     ],
+    toolLinkTitle: 'Gunakan Alat Pemilihan Cetakan V',
+    toolLinkText: 'Setelah memeriksa ketebalan, radius dalam, tonase, pegas balik, dan tumpuan sayap minimum, gunakan alat pemilihan untuk membandingkan rekomendasi praktis bukaan cetakan V bagi kondisi penekukan Anda.',
+    toolLinkButton: 'Buka Alat Pemilihan Cetakan V',
     faq: [
       ['Mengapa 8T sering dipakai sebagai setelan awal?', 'Nilai ini umumnya merupakan kompromi praktis: beban terkendali, radius alami berguna untuk banyak gambar, dan sayap biasa tetap tertumpu. Komponen nyata tetap harus diuji.'],
       ['Apakah baja tahan karat memakai V yang sama dengan baja lunak?', 'Tidak secara otomatis. Baja tahan karat umumnya memerlukan gaya lebih besar, lebih banyak pegas balik, dan bekas lebih terlihat; bukaan lebih besar atau perlindungan permukaan mungkin tepat.'],
@@ -1515,6 +1533,7 @@ export default function PressBrakeVDieOpeningGuide({
 
           .zyco-v-guide__tool {
             min-height: 46px;
+            max-width: 100%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -1529,6 +1548,10 @@ export default function PressBrakeVDieOpeningGuide({
             text-decoration: none;
             box-shadow: none;
             transition: all 0.25s ease;
+          }
+
+          .zyco-v-guide__tool-link-actions {
+            margin-top: 18px;
           }
 
           .zyco-v-guide__tool:hover {
@@ -1847,6 +1870,27 @@ export default function PressBrakeVDieOpeningGuide({
                   text={text}
                 />
               ))}
+            </div>
+          </section>
+
+          <section
+            className='zyco-v-guide__panel'
+            aria-labelledby='v-guide-tool-link'
+          >
+            <h2
+              className='zyco-v-guide__section-title'
+              id='v-guide-tool-link'
+            >
+              {page.toolLinkTitle}
+            </h2>
+            <p className='zyco-v-guide__copy'>{page.toolLinkText}</p>
+            <div className='zyco-v-guide__tools zyco-v-guide__tool-link-actions'>
+              <a
+                className='zyco-v-guide__tool'
+                href='/engineering-tools/v-die-selection-tool'
+              >
+                {page.toolLinkButton}
+              </a>
             </div>
           </section>
 
