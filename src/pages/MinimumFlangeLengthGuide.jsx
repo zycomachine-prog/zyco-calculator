@@ -15,6 +15,7 @@ const relatedTools = [
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
   ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
+  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],

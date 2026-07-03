@@ -41,6 +41,7 @@ const AluminumBendingGuide = lazy(() => import('./pages/AluminumBendingGuide.jsx
 const SpringbackDatabase = lazy(() => import('./pages/SpringbackDatabase.jsx'))
 const SpringbackCompensationGuide = lazy(() => import('./pages/SpringbackCompensationGuide.jsx'))
 const VDieSelection = lazy(() => import('./pages/VDieSelection.jsx'))
+const PressBrakeVDieSelectionChart = lazy(() => import('./pages/PressBrakeVDieSelectionChart.jsx'))
 
 export default function App() {
   const [language, setLanguage] = useState(getStoredLanguage)
@@ -155,6 +156,11 @@ export default function App() {
           <Route
             path='/engineering-tools/v-die-selection-tool'
             element={<VDieSelection {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering-tools/press-brake-v-die-selection-chart'
+            element={<PressBrakeVDieSelectionChart {...languageProps} />}
           />
 
           <Route

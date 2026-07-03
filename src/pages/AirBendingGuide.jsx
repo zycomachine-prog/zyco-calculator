@@ -144,6 +144,10 @@ const relatedTools = [
     href: '/engineering-tools/v-die-selection-tool',
   },
   {
+    key: 'vDieSelectionChart',
+    href: '/engineering-tools/press-brake-v-die-selection-chart',
+  },
+  {
     key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },

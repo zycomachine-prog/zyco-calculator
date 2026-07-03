@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
+import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   ZYCO_PUBLISHER,
   createFAQPageStructuredData,
@@ -20,6 +21,7 @@ const relatedTools = [
   ['springbackDatabase', '/engineering-tools/springback-database'],
   ['springbackCompensationGuide', routePath],
   ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
+  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
   ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
   ['airBendingGuide', '/engineering-tools/air-bending-guide'],
   ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
@@ -269,6 +271,7 @@ const Card = ({ title, text }) => (
 
 export default function SpringbackCompensationGuide({ language = 'en', setLanguage = () => {} }) {
   const page = content[language] || content.en
+  const sharedText = getEngineeringText(language)
 
   useEffect(() => {
     setPageSEO({
@@ -353,7 +356,7 @@ export default function SpringbackCompensationGuide({ language = 'en', setLangua
           <section className='zyco-comp__panel' aria-labelledby='comp-production'><h2 className='zyco-comp__section-title' id='comp-production'>{page.production.title}</h2><ul className='zyco-comp__list'>{page.production.items.map((item) => <li key={item}>{item}</li>)}</ul></section>
           <section className='zyco-comp__panel' aria-labelledby='comp-faq'><h2 className='zyco-comp__section-title' id='comp-faq'>{page.faqTitle}</h2><div className='zyco-comp__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div></section>
           <EngineeringCTA language={language} />
-          <section className='zyco-comp__panel' aria-labelledby='comp-related'><h2 className='zyco-comp__section-title' id='comp-related'>{page.relatedTitle}</h2><nav className='zyco-comp__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-comp__tool' href={href} key={key}>{page.relatedLabels[key]}</a>)}</nav></section>
+          <section className='zyco-comp__panel' aria-labelledby='comp-related'><h2 className='zyco-comp__section-title' id='comp-related'>{page.relatedTitle}</h2><nav className='zyco-comp__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-comp__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>)}</nav></section>
         </div>
       </main>
     </>

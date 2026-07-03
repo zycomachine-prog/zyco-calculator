@@ -50,6 +50,11 @@ const tools = [
     href: '/engineering-tools/v-die-selection-tool',
   },
   {
+    key: 'vDieSelectionChart',
+    status: 'active',
+    href: '/engineering-tools/press-brake-v-die-selection-chart',
+  },
+  {
     key: 'insideRadiusGuide',
     status: 'active',
     href: '/engineering-tools/inside-radius-guide',
@@ -140,6 +145,10 @@ const relatedTools = [
     href: '/engineering-tools/v-die-selection-tool',
   },
   {
+    key: 'vDieSelectionChart',
+    href: '/engineering-tools/press-brake-v-die-selection-chart',
+  },
+  {
     key: 'insideRadiusGuide',
     href: '/engineering-tools/inside-radius-guide',
   },
@@ -194,6 +203,7 @@ const toolStructuredDataNames = {
   springbackDatabase: 'Springback Database',
   springbackCompensationGuide: 'Springback Compensation Guide',
   vDieSelectionTool: 'V Die Selection Tool',
+  vDieSelectionChart: 'Press Brake V Die Selection Chart',
   insideRadiusGuide: 'Inside Radius Guide',
   airBendingGuide: 'Air Bending Guide',
   bottomingVsCoiningGuide: 'Bottoming vs Coining Guide',
