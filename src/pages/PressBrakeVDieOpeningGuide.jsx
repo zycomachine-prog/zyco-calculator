@@ -583,6 +583,9 @@ const engineeringContent = {
     chartTitle: 'Thickness vs Recommended V Opening',
     chartIntro:
       'Initial air-bending references for ordinary production. Confirm material grade, shortest flange, required radius and tooling load before release.',
+    chartLinkText:
+      'For a complete thickness-by-opening reference, see the Press Brake V Die Selection Chart with 6T / 8T / 10T / 12T comparison and production checks.',
+    chartLinkButton: 'View V Die Selection Chart',
     chartHeaders: ['Thickness', 'Initial V opening', 'Approximate inside radius', 'Production check'],
     chartRows: [
       ['1.0 mm', '6 to 8 mm', '1.0 to 1.3 mm', 'Marking and small flange support'],
@@ -688,6 +691,8 @@ const engineeringContent = {
     ],
     chartTitle: '板厚与推荐 V 型模开口',
     chartIntro: '以下为空气折弯普通生产的初始参考。放行前应确认材料牌号、最短法兰、目标半径以及模具承载能力。',
+    chartLinkText: '如需查看完整的板厚与 V 型模开口对照表，可参考折弯机 V 型模选择表，其中包含 6T / 8T / 10T / 12T 对比和生产检查要点。',
+    chartLinkButton: '查看 V 型模选择表',
     chartHeaders: ['板厚', '初始 V 开口', '近似内圆角', '生产核对重点'],
     chartRows: [
       ['1.0 mm', '6 至 8 mm', '1.0 至 1.3 mm', '表面压痕与小法兰支撑'],
@@ -790,6 +795,8 @@ const engineeringContent = {
     ],
     chartTitle: 'Толщина и рекомендуемое раскрытие V',
     chartIntro: 'Начальные ориентиры воздушной гибки для обычного производства. Перед запуском подтвердите марку, самую короткую полку, требуемый радиус и нагрузку оснастки.',
+    chartLinkText: 'Полную таблицу соответствия толщины и раскрытия см. в таблице выбора V-матрицы для листогибочного пресса со сравнением 6T / 8T / 10T / 12T и производственными проверками.',
+    chartLinkButton: 'Открыть таблицу выбора V-матрицы',
     chartHeaders: ['Толщина', 'Начальное раскрытие V', 'Примерный внутренний радиус', 'Проверка в производстве'],
     chartRows: [
       ['1,0 мм', '6-8 мм', '1,0-1,3 мм', 'Следы и опора малой полки'],
@@ -892,6 +899,8 @@ const engineeringContent = {
     ],
     chartTitle: 'Espesor y abertura V recomendada',
     chartIntro: 'Referencias iniciales para plegado al aire de producción normal. Confirme calidad, pestaña más corta, radio exigido y carga del utillaje antes de liberar.',
+    chartLinkText: 'Para consultar una referencia completa de espesor y abertura, vea la Tabla de selección de matriz V para plegadora, con comparación 6T / 8T / 10T / 12T y comprobaciones de producción.',
+    chartLinkButton: 'Ver tabla de selección de matriz V',
     chartHeaders: ['Espesor', 'Abertura V inicial', 'Radio interior aproximado', 'Control de producción'],
     chartRows: [
       ['1,0 mm', '6 a 8 mm', '1,0 a 1,3 mm', 'Marcado y apoyo de pestaña pequeña'],
@@ -994,6 +1003,8 @@ const engineeringContent = {
     ],
     chartTitle: 'Kalınlığa Göre Önerilen V Açıklığı',
     chartIntro: 'Normal havada bükme üretimi için ilk referanslar. Serbest bırakmadan önce malzeme sınıfını, en kısa flanşı, gereken radyüsü ve takım yükünü doğrulayın.',
+    chartLinkText: 'Eksiksiz bir kalınlık-açıklık referansı için 6T / 8T / 10T / 12T karşılaştırması ve üretim kontrollerini içeren Abkant Pres V Kalıp Seçim Tablosuna bakın.',
+    chartLinkButton: 'V Kalıp Seçim Tablosunu Görüntüle',
     chartHeaders: ['Kalınlık', 'İlk V açıklığı', 'Yaklaşık iç radyüs', 'Üretim kontrolü'],
     chartRows: [
       ['1,0 mm', '6-8 mm', '1,0-1,3 mm', 'Yüzey izi ve küçük flanş desteği'],
@@ -1096,6 +1107,8 @@ const engineeringContent = {
     ],
     chartTitle: 'Ketebalan dan Bukaan V yang Disarankan',
     chartIntro: 'Referensi awal untuk produksi tekuk udara umum. Pastikan mutu material, sayap terpendek, radius yang diminta, dan beban perkakas sebelum pelepasan.',
+    chartLinkText: 'Untuk referensi lengkap ketebalan terhadap bukaan, lihat Tabel Pemilihan Cetakan V Press Brake dengan perbandingan 6T / 8T / 10T / 12T dan pemeriksaan produksi.',
+    chartLinkButton: 'Lihat Tabel Pemilihan Cetakan V',
     chartHeaders: ['Ketebalan', 'Bukaan V awal', 'Perkiraan radius dalam', 'Pemeriksaan produksi'],
     chartRows: [
       ['1,0 mm', '6-8 mm', '1,0-1,3 mm', 'Bekas dan tumpuan sayap kecil'],
@@ -1507,6 +1520,19 @@ export default function PressBrakeVDieOpeningGuide({
             line-height: 1.55;
           }
 
+          .zyco-v-guide__chart-link {
+            min-width: 0;
+            margin-top: 18px;
+            padding: 18px;
+            border: 1px solid rgba(147, 197, 253, 0.18);
+            border-radius: 16px;
+            background: rgba(30, 64, 175, 0.18);
+          }
+
+          .zyco-v-guide__chart-link .zyco-v-guide__tools {
+            margin-top: 14px;
+          }
+
           .zyco-v-guide__faq,
           .zyco-v-guide__notes {
             display: grid;
@@ -1814,6 +1840,17 @@ export default function PressBrakeVDieOpeningGuide({
               headers={page.chartHeaders}
               rows={page.chartRows}
             />
+            <div className='zyco-v-guide__chart-link'>
+              <p className='zyco-v-guide__copy'>{page.chartLinkText}</p>
+              <div className='zyco-v-guide__tools'>
+                <a
+                  className='zyco-v-guide__tool'
+                  href='/engineering-tools/press-brake-v-die-selection-chart'
+                >
+                  {page.chartLinkButton}
+                </a>
+              </div>
+            </div>
           </section>
 
           <div className='zyco-v-guide__grid'>
