@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/engineering",
+      "destination": "/engineering-tools",
+      "permanent": true
+    },
+    {
+      "source": "/engineering/:path*",
+      "destination": "/engineering-tools/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!.*\\.).*)",

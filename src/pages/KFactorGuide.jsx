@@ -274,7 +274,7 @@ export default function KFactorGuide({ language = 'en', setLanguage = () => {} }
       <main className='zyco-kfactor'>
         <div className='zyco-kfactor__shell'>
           <header className='zyco-kfactor__hero'>
-            <a className='zyco-kfactor__back' href='/engineering' aria-label={page.back}>{page.back}</a>
+            <a className='zyco-kfactor__back' href='/engineering-tools' aria-label={page.back}>{page.back}</a>
             <LanguageSwitcher className='zyco-page-language-switcher' language={language} setLanguage={setLanguage} />
             <p className='zyco-kfactor__eyebrow'>{page.eyebrow}</p>
             <h1 className='zyco-kfactor__title'>{page.title}</h1>
