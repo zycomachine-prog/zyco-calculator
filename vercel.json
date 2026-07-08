@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "/engineering-tools/press-brake-calculator",
+      "permanent": true
+    },
+    {
       "source": "/engineering",
       "destination": "/engineering-tools",
       "permanent": true
