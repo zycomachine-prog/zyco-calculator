@@ -728,16 +728,47 @@ const pages = {
       title: 'Bend Allowance Calculator',
       subtitle:
         'Calculate sheet metal bend allowance, bend deduction and flat pattern reference values',
+      measurementMethodTitle: 'A / B Measurement Method',
+      measurementStraightTitle: 'A and B measured to bend tangent lines',
+      measurementStraightFormula: 'L = A + B + BA',
+      measurementStraightDescription:
+        'Use when A and B are straight flange lengths from bend tangent lines to part edges.',
+      measurementOutsideTitle: 'A and B measured as outside dimensions',
+      measurementOutsideFormula: 'L = A + B - BD',
+      measurementOutsideDescription:
+        'Use when A and B are outside dimensions or outside flange dimensions.',
+      dimensionMethodDiagram: 'Dimension Method Diagram',
+      straightFlangeDiagramTitle: 'Straight flange measurement: A | BA | B',
+      outsideDimensionsDiagramTitle: 'Outside dimension measurement: A + B - BD',
+      bentPartView: 'Bent Part View',
+      flatPatternView: 'Flat Pattern View',
+      outsideDimensionView: 'Outside Dimension View',
+      calculationView: 'Calculation View',
+      bendArea: 'Bend Area',
+      outsideDimensionsSum: 'Outside dimensions sum',
+      bdCorrection: 'Bend deduction correction',
+      flatPatternLengthShort: 'Flat pattern length',
+      straightFlangeDiagramNote:
+        'Use this method when A and B are measured from bend tangent lines to part edges. L is always the flat pattern length, and BA is added as the developed length through the bend area.',
+      outsideDimensionsDiagramNote:
+        'Use this method when A and B are outside dimensions. BD is deducted from A + B to obtain the flat pattern length L. BD is a correction value, not an actual physical segment of the flat blank.',
+      flangeA: 'A - First straight flange length (mm)',
+      flangeB: 'B - Second straight flange length (mm)',
       formulaReference: 'Formula Reference',
       formulaIntro:
         'Bend allowance uses the neutral axis arc length formula:',
       formulaWhere:
-        'Where: A = bend angle in degrees, R = inside radius, K = K-factor, T = material thickness',
-      formulaOutsideSetback: 'Outside setback: OSSB = tan(A / 2) x (R + T)',
+        'Where: θ = bend angle in degrees, R = inside radius, K = K-factor, T = material thickness',
+      formulaOutsideSetback: 'Outside setback: OSSB = tan(θ / 2) x (R + T)',
       formulaBendDeduction: 'Bend deduction: BD = 2 x OSSB - BA',
+      formulaStraightFlange: 'Straight flange lengths: L = A + B + BA',
+      formulaOutsideDimensions: 'Outside dimensions: L = A + B - BD',
+      formulaFlatPatternWhere:
+        'Where: L = flat pattern length, A = first flange dimension, B = second flange dimension, BA = bend allowance, BD = bend deduction',
       formulaNote:
         'These formulas are standard sheet metal development references. Actual flat pattern results may vary depending on material grade, grain direction, tooling, bend method, springback compensation and production tolerance. For production parts, trial bending and measurement are recommended.',
       output: {
+        flatPatternLength: 'Flat Pattern Length (L)',
         bendAllowance: 'Bend Allowance',
         outsideSetback: 'Outside Setback',
         bendDeduction: 'Bend Deduction',
@@ -747,6 +778,9 @@ const pages = {
       overview2:
         'In air bending, the inside radius is mainly determined by the V-opening and material properties. Bend angle can slightly influence the formed radius, so this calculator applies a conservative angle adjustment for engineering reference.',
       notes: [
+        'Use A + B + BA when A and B are straight flange lengths measured from the bend tangent points to the edges.',
+        'Use A + B - BD when A and B are outside dimensions or outside flange dimensions.',
+        'Production flat patterns still require correction for the actual material, K-Factor, inside radius, tooling, springback and trial bends.',
         'K-Factor is an engineering reference value.',
         'Actual flat pattern results may vary depending on material grade, grain direction, tooling, bend method and production tolerance.',
         'For production parts, trial bending and measurement are recommended.',
@@ -995,14 +1029,45 @@ const localizedOverrides = {
     bend: {
       title: '折弯展开计算器',
       subtitle: '计算钣金折弯展开量、折弯扣除和展开参考值',
+      measurementMethodTitle: 'A / B 测量方式',
+      measurementStraightTitle: 'A 和 B 测量到折弯切线',
+      measurementStraightFormula: 'L = A + B + BA',
+      measurementStraightDescription:
+        '当 A 和 B 是从折弯切线到工件边缘的直边长度时使用。',
+      measurementOutsideTitle: 'A 和 B 作为外形尺寸测量',
+      measurementOutsideFormula: 'L = A + B - BD',
+      measurementOutsideDescription:
+        '当 A 和 B 是外形尺寸或外侧法兰尺寸时使用。',
+      dimensionMethodDiagram: '尺寸方法图示',
+      straightFlangeDiagramTitle: '直边测量：A | BA | B',
+      outsideDimensionsDiagramTitle: '外形尺寸测量：A + B - BD',
+      bentPartView: '折弯后工件示意',
+      flatPatternView: '展开示意',
+      outsideDimensionView: '外形尺寸示意',
+      calculationView: '计算关系示意',
+      bendArea: '折弯区域',
+      outsideDimensionsSum: '外形尺寸总和',
+      bdCorrection: '折弯扣除修正量',
+      flatPatternLengthShort: '展开总长',
+      straightFlangeDiagramNote:
+        '当 A 和 B 是从折弯切线到工件边缘的直边长度时，使用 L = A + B + BA。L 始终表示展开总长，BA 是加入展开长度中的折弯区域展开量。',
+      outsideDimensionsDiagramNote:
+        '当 A 和 B 是外形尺寸或外侧法兰尺寸时，使用 L = A + B - BD。BD 是从 A + B 中扣除的折弯扣除量，用于得到展开总长，并不是展开板材中的实际物理段。',
+      flangeA: 'A - 第一段直边长度 (mm)',
+      flangeB: 'B - 第二段直边长度 (mm)',
       formulaReference: '公式参考',
       formulaIntro: '折弯展开量采用中性层弧长公式：',
-      formulaWhere: '其中：A = 折弯角度，R = 内半径，K = K 因子，T = 材料厚度',
-      formulaOutsideSetback: '外侧退让量：OSSB = tan(A / 2) x (R + T)',
+      formulaWhere: '其中：θ = 折弯角度，R = 内半径，K = K 因子，T = 材料厚度',
+      formulaOutsideSetback: '外侧退让量：OSSB = tan(θ / 2) x (R + T)',
       formulaBendDeduction: '折弯扣除：BD = 2 x OSSB - BA',
+      formulaStraightFlange: '直边长度：L = A + B + BA',
+      formulaOutsideDimensions: '外形尺寸：L = A + B - BD',
+      formulaFlatPatternWhere:
+        '其中：L = 展开总长，A = 第一段法兰尺寸，B = 第二段法兰尺寸，BA = 折弯展开量，BD = 折弯扣除量',
       formulaNote:
         '这些公式为标准钣金展开参考。实际展开结果会随材料牌号、纹理方向、模具、折弯方式、回弹补偿和生产公差变化。量产零件建议通过试弯和测量确认。',
       output: {
+        flatPatternLength: '展开总长 (L)',
         bendAllowance: '折弯展开量',
         outsideSetback: '外侧退让量',
         bendDeduction: '折弯扣除',
@@ -1012,6 +1077,9 @@ const localizedOverrides = {
       overview2:
         '空气折弯中，内半径主要由 V 开口和材料属性决定。折弯角度会轻微影响成形半径，因此本计算器采用保守角度修正作为工程参考。',
       notes: [
+        '当 A 和 B 是从折弯切线点到板边的直边长度时，使用 A + B + BA。',
+        '当 A 和 B 是外形尺寸或外侧法兰尺寸时，使用 A + B - BD。',
+        '实际生产展开仍需结合真实材料、K 因子、内半径、模具、回弹和试折结果进行修正。',
         'K 因子是工程参考值。',
         '实际展开结果会随材料牌号、纹理方向、模具、折弯方式和生产公差变化。',
         '量产零件建议通过试弯和测量确认。',
@@ -1209,14 +1277,45 @@ const localizedOverrides = {
       title: 'Калькулятор припуска на гиб',
       subtitle:
         'Расчет припуска на гиб, вычета гиба и справочных значений развертки',
+      measurementMethodTitle: 'Метод измерения A / B',
+      measurementStraightTitle: 'A и B измеряются до касательных линий гиба',
+      measurementStraightFormula: 'L = A + B + BA',
+      measurementStraightDescription:
+        'Используйте, когда A и B являются прямыми длинами полок от касательных линий гиба до кромок детали.',
+      measurementOutsideTitle: 'A и B измеряются как наружные размеры',
+      measurementOutsideFormula: 'L = A + B - BD',
+      measurementOutsideDescription:
+        'Используйте, когда A и B являются наружными размерами или наружными размерами полок.',
+      dimensionMethodDiagram: 'Схема метода измерения',
+      straightFlangeDiagramTitle: 'Измерение прямых полок: A | BA | B',
+      outsideDimensionsDiagramTitle: 'Измерение наружных размеров: A + B - BD',
+      bentPartView: 'Вид согнутой детали',
+      flatPatternView: 'Вид развертки',
+      outsideDimensionView: 'Вид наружных размеров',
+      calculationView: 'Схема расчета',
+      bendArea: 'Зона гиба',
+      outsideDimensionsSum: 'Сумма наружных размеров',
+      bdCorrection: 'Поправка вычета гиба',
+      flatPatternLengthShort: 'Длина развертки',
+      straightFlangeDiagramNote:
+        'Используйте этот метод, когда A и B измерены от касательных линий гиба до кромок детали. L всегда является длиной развертки, а BA добавляется как развернутая длина зоны гиба.',
+      outsideDimensionsDiagramNote:
+        'Используйте этот метод, когда A и B являются наружными размерами. BD вычитается из A + B для получения длины развертки L. BD — поправка, а не физический участок плоской заготовки.',
+      flangeA: 'A - длина первой прямой полки (мм)',
+      flangeB: 'B - длина второй прямой полки (мм)',
       formulaReference: 'Справка по формулам',
       formulaIntro: 'Припуск на гиб рассчитывается по длине дуги нейтральной оси:',
-      formulaWhere: 'Где: A = угол гибки в градусах, R = внутренний радиус, K = K-фактор, T = толщина материала',
-      formulaOutsideSetback: 'Внешний отступ: OSSB = tan(A / 2) x (R + T)',
+      formulaWhere: 'Где: θ = угол гибки в градусах, R = внутренний радиус, K = K-фактор, T = толщина материала',
+      formulaOutsideSetback: 'Внешний отступ: OSSB = tan(θ / 2) x (R + T)',
       formulaBendDeduction: 'Вычет гиба: BD = 2 x OSSB - BA',
+      formulaStraightFlange: 'Прямые длины полок: L = A + B + BA',
+      formulaOutsideDimensions: 'Наружные размеры: L = A + B - BD',
+      formulaFlatPatternWhere:
+        'Где: L = длина развертки, A = размер первой полки, B = размер второй полки, BA = припуск на гиб, BD = вычет гиба',
       formulaNote:
         'Эти формулы являются стандартной справкой по развертке листа. Фактическая развертка зависит от марки материала, направления прокатки, оснастки, метода гибки, компенсации пружинения и допуска производства.',
       output: {
+        flatPatternLength: 'Длина развертки (L)',
         bendAllowance: 'Припуск на гиб',
         outsideSetback: 'Внешний отступ',
         bendDeduction: 'Вычет гиба',
@@ -1226,6 +1325,9 @@ const localizedOverrides = {
       overview2:
         'При воздушной гибке внутренний радиус в основном задается раскрытием V-матрицы и свойствами материала. Угол гибки может немного менять сформированный радиус, поэтому применяется консервативная поправка.',
       notes: [
+        'Используйте A + B + BA, когда A и B — прямые длины от касательных гиба до кромок.',
+        'Используйте A + B - BD, когда A и B — наружные размеры или наружные размеры полок.',
+        'Производственную развертку следует корректировать по фактическому материалу, K-фактору, внутреннему радиусу, оснастке, пружинению и пробным гибам.',
         'K-фактор является инженерным справочным значением.',
         'Фактическая развертка зависит от марки материала, направления прокатки, оснастки, метода гибки и допуска производства.',
         'Для серийных деталей рекомендуется пробная гибка и измерение.',
@@ -1413,16 +1515,47 @@ const localizedOverrides = {
       title: 'Calculadora de desarrollo de plegado',
       subtitle:
         'Calcular desarrollo, deducción de plegado y valores de referencia de patrón plano',
+      measurementMethodTitle: 'Método de medición A / B',
+      measurementStraightTitle: 'A y B se miden hasta las tangentes del pliegue',
+      measurementStraightFormula: 'L = A + B + BA',
+      measurementStraightDescription:
+        'Use cuando A y B sean longitudes rectas de pestaña desde las líneas tangentes del pliegue hasta los bordes de la pieza.',
+      measurementOutsideTitle: 'A y B se miden como dimensiones exteriores',
+      measurementOutsideFormula: 'L = A + B - BD',
+      measurementOutsideDescription:
+        'Use cuando A y B sean dimensiones exteriores o dimensiones exteriores de pestaña.',
+      dimensionMethodDiagram: 'Diagrama del método de dimensiones',
+      straightFlangeDiagramTitle: 'Medición de pestañas rectas: A | BA | B',
+      outsideDimensionsDiagramTitle: 'Medición de dimensiones exteriores: A + B - BD',
+      bentPartView: 'Vista de la pieza plegada',
+      flatPatternView: 'Vista del patrón plano',
+      outsideDimensionView: 'Vista de dimensiones exteriores',
+      calculationView: 'Vista del cálculo',
+      bendArea: 'Zona de plegado',
+      outsideDimensionsSum: 'Suma de dimensiones exteriores',
+      bdCorrection: 'Corrección de deducción de plegado',
+      flatPatternLengthShort: 'Longitud del patrón plano',
+      straightFlangeDiagramNote:
+        'Use este método cuando A y B se midan desde las líneas tangentes del pliegue hasta los bordes de la pieza. L siempre es la longitud del patrón plano y BA se suma como longitud desarrollada de la zona de plegado.',
+      outsideDimensionsDiagramNote:
+        'Use este método cuando A y B sean dimensiones exteriores. BD se resta de A + B para obtener la longitud del patrón plano L. BD es una corrección, no un tramo físico de la chapa desplegada.',
+      flangeA: 'A - longitud de la primera pestaña recta (mm)',
+      flangeB: 'B - longitud de la segunda pestaña recta (mm)',
       formulaReference: 'Referencia de fórmulas',
       formulaIntro:
         'El desarrollo de plegado usa la fórmula de longitud de arco de la fibra neutra:',
       formulaWhere:
-        'Donde: A = ángulo de plegado en grados, R = radio interior, K = K-Factor, T = espesor del material',
-      formulaOutsideSetback: 'Retroceso exterior: OSSB = tan(A / 2) x (R + T)',
+        'Donde: θ = ángulo de plegado en grados, R = radio interior, K = K-Factor, T = espesor del material',
+      formulaOutsideSetback: 'Retroceso exterior: OSSB = tan(θ / 2) x (R + T)',
       formulaBendDeduction: 'Deducción de plegado: BD = 2 x OSSB - BA',
+      formulaStraightFlange: 'Longitudes rectas de pestaña: L = A + B + BA',
+      formulaOutsideDimensions: 'Dimensiones exteriores: L = A + B - BD',
+      formulaFlatPatternWhere:
+        'Donde: L = longitud del patrón plano, A = primera dimensión de pestaña, B = segunda dimensión de pestaña, BA = desarrollo de plegado, BD = deducción de plegado',
       formulaNote:
         'Estas fórmulas son referencias estándar de desarrollo de chapa. El resultado real puede variar por material, dirección de laminación, utillaje, método, compensación de recuperación y tolerancia.',
       output: {
+        flatPatternLength: 'Longitud del patrón plano (L)',
         bendAllowance: 'Desarrollo de plegado',
         outsideSetback: 'Retroceso exterior',
         bendDeduction: 'Deducción de plegado',
@@ -1432,6 +1565,9 @@ const localizedOverrides = {
       overview2:
         'En plegado al aire, el radio interior depende principalmente de la abertura V y del material. El ángulo puede influir ligeramente, por lo que se aplica un ajuste conservador.',
       notes: [
+        'Use A + B + BA cuando A y B sean longitudes rectas medidas desde las tangentes del pliegue hasta los bordes.',
+        'Use A + B - BD cuando A y B sean dimensiones exteriores o dimensiones exteriores de pestaña.',
+        'El patrón de producción debe corregirse según el material real, K-Factor, radio interior, utillaje, recuperación elástica y pliegues de prueba.',
         'K-Factor es un valor de referencia de ingeniería.',
         'El patrón plano real puede variar según material, dirección de laminación, utillaje, método y tolerancia.',
         'Para piezas de producción se recomienda prueba de plegado y medición.',
@@ -1618,14 +1754,45 @@ const localizedOverrides = {
       title: 'Büküm payı hesaplayıcı',
       subtitle:
         'Sac büküm payı, büküm düşümü ve açınım referans değerlerini hesapla',
+      measurementMethodTitle: 'A / B ölçüm yöntemi',
+      measurementStraightTitle: 'A ve B büküm teğet çizgilerine kadar ölçülür',
+      measurementStraightFormula: 'L = A + B + BA',
+      measurementStraightDescription:
+        'A ve B, büküm teğet çizgilerinden parça kenarlarına olan düz flanş uzunluklarıysa kullanın.',
+      measurementOutsideTitle: 'A ve B dış ölçüler olarak ölçülür',
+      measurementOutsideFormula: 'L = A + B - BD',
+      measurementOutsideDescription:
+        'A ve B dış ölçüler veya dış flanş ölçüleriyse kullanın.',
+      dimensionMethodDiagram: 'Ölçülendirme yöntemi diyagramı',
+      straightFlangeDiagramTitle: 'Düz flanş ölçümü: A | BA | B',
+      outsideDimensionsDiagramTitle: 'Dış ölçü yöntemi: A + B - BD',
+      bentPartView: 'Bükülmüş parça görünümü',
+      flatPatternView: 'Açınım görünümü',
+      outsideDimensionView: 'Dış ölçü görünümü',
+      calculationView: 'Hesaplama görünümü',
+      bendArea: 'Büküm bölgesi',
+      outsideDimensionsSum: 'Dış ölçüler toplamı',
+      bdCorrection: 'Büküm düşümü düzeltmesi',
+      flatPatternLengthShort: 'Açınım uzunluğu',
+      straightFlangeDiagramNote:
+        'A ve B büküm teğet çizgilerinden parça kenarlarına ölçüldüğünde bu yöntemi kullanın. L her zaman açınım uzunluğudur ve BA, büküm bölgesinin açınım uzunluğu olarak eklenir.',
+      outsideDimensionsDiagramNote:
+        'A ve B dış ölçüler olduğunda bu yöntemi kullanın. Açınım uzunluğu L için BD, A + B toplamından çıkarılır. BD bir düzeltme değeridir; düz açınımın fiziksel bir bölümü değildir.',
+      flangeA: 'A - birinci düz flanş uzunluğu (mm)',
+      flangeB: 'B - ikinci düz flanş uzunluğu (mm)',
       formulaReference: 'Formül referansı',
       formulaIntro: 'Büküm payı, nötr eksen yay uzunluğu formülüyle hesaplanır:',
-      formulaWhere: 'Burada: A = derece cinsinden büküm açısı, R = iç radyüs, K = K-Faktörü, T = malzeme kalınlığı',
-      formulaOutsideSetback: 'Dış geri çekme: OSSB = tan(A / 2) x (R + T)',
+      formulaWhere: 'Burada: θ = derece cinsinden büküm açısı, R = iç radyüs, K = K-Faktörü, T = malzeme kalınlığı',
+      formulaOutsideSetback: 'Dış geri çekme: OSSB = tan(θ / 2) x (R + T)',
       formulaBendDeduction: 'Büküm düşümü: BD = 2 x OSSB - BA',
+      formulaStraightFlange: 'Düz flanş uzunlukları: L = A + B + BA',
+      formulaOutsideDimensions: 'Dış ölçüler: L = A + B - BD',
+      formulaFlatPatternWhere:
+        'Burada: L = açınım uzunluğu, A = birinci flanş ölçüsü, B = ikinci flanş ölçüsü, BA = büküm payı, BD = büküm düşümü',
       formulaNote:
         'Bu formüller standart sac açınım referanslarıdır. Gerçek açınım; malzeme kalitesi, hadde yönü, takım, bükme yöntemi, geri esneme telafisi ve üretim toleransına göre değişebilir.',
       output: {
+        flatPatternLength: 'Açınım uzunluğu (L)',
         bendAllowance: 'Büküm payı',
         outsideSetback: 'Dış geri çekme',
         bendDeduction: 'Büküm düşümü',
@@ -1635,6 +1802,9 @@ const localizedOverrides = {
       overview2:
         'Havada bükmede iç radyüs esas olarak V açıklığı ve malzeme özellikleriyle belirlenir. Büküm açısı radyüsü az miktarda etkileyebilir, bu nedenle muhafazakar bir açı düzeltmesi uygulanır.',
       notes: [
+        'A ve B büküm teğetlerinden kenarlara ölçülen düz flanş uzunluklarıysa A + B + BA kullanın.',
+        'A ve B dış ölçüler veya dış flanş ölçüleriyse A + B - BD kullanın.',
+        'Üretim açınımı gerçek malzeme, K-Faktörü, iç radyüs, takım, geri esneme ve deneme bükümlerine göre düzeltilmelidir.',
         'K-Faktörü mühendislik referans değeridir.',
         'Gerçek açınım; malzeme kalitesi, hadde yönü, takım, bükme yöntemi ve üretim toleransına göre değişebilir.',
         'Üretim parçaları için deneme bükümü ve ölçüm önerilir.',
@@ -1821,16 +1991,47 @@ const localizedOverrides = {
       title: 'Kalkulator bend allowance',
       subtitle:
         'Hitung bend allowance, bend deduction, dan nilai referensi flat pattern',
+      measurementMethodTitle: 'Metode pengukuran A / B',
+      measurementStraightTitle: 'A dan B diukur sampai garis singgung tekuk',
+      measurementStraightFormula: 'L = A + B + BA',
+      measurementStraightDescription:
+        'Gunakan saat A dan B adalah panjang flange lurus dari garis singgung tekuk ke tepi part.',
+      measurementOutsideTitle: 'A dan B diukur sebagai dimensi luar',
+      measurementOutsideFormula: 'L = A + B - BD',
+      measurementOutsideDescription:
+        'Gunakan saat A dan B adalah dimensi luar atau dimensi flange luar.',
+      dimensionMethodDiagram: 'Diagram metode dimensi',
+      straightFlangeDiagramTitle: 'Pengukuran flange lurus: A | BA | B',
+      outsideDimensionsDiagramTitle: 'Pengukuran dimensi luar: A + B - BD',
+      bentPartView: 'Tampilan part tertekuk',
+      flatPatternView: 'Tampilan flat pattern',
+      outsideDimensionView: 'Tampilan dimensi luar',
+      calculationView: 'Tampilan perhitungan',
+      bendArea: 'Area tekuk',
+      outsideDimensionsSum: 'Jumlah dimensi luar',
+      bdCorrection: 'Koreksi bend deduction',
+      flatPatternLengthShort: 'Panjang flat pattern',
+      straightFlangeDiagramNote:
+        'Gunakan metode ini saat A dan B diukur dari garis singgung tekuk ke tepi part. L selalu merupakan panjang flat pattern, dan BA ditambahkan sebagai panjang pengembangan area tekuk.',
+      outsideDimensionsDiagramNote:
+        'Gunakan metode ini saat A dan B adalah dimensi luar. BD dikurangkan dari A + B untuk memperoleh panjang flat pattern L. BD adalah nilai koreksi, bukan segmen fisik pada blank datar.',
+      flangeA: 'A - panjang flange lurus pertama (mm)',
+      flangeB: 'B - panjang flange lurus kedua (mm)',
       formulaReference: 'Referensi formula',
       formulaIntro:
         'Bend allowance menggunakan rumus panjang busur pada neutral axis:',
       formulaWhere:
-        'Di mana: A = sudut tekuk dalam derajat, R = radius dalam, K = K-Factor, T = ketebalan material',
-      formulaOutsideSetback: 'Outside setback: OSSB = tan(A / 2) x (R + T)',
+        'Di mana: θ = sudut tekuk dalam derajat, R = radius dalam, K = K-Factor, T = ketebalan material',
+      formulaOutsideSetback: 'Outside setback: OSSB = tan(θ / 2) x (R + T)',
       formulaBendDeduction: 'Bend deduction: BD = 2 x OSSB - BA',
+      formulaStraightFlange: 'Panjang flange lurus: L = A + B + BA',
+      formulaOutsideDimensions: 'Dimensi luar: L = A + B - BD',
+      formulaFlatPatternWhere:
+        'Di mana: L = panjang flat pattern, A = dimensi flange pertama, B = dimensi flange kedua, BA = bend allowance, BD = bend deduction',
       formulaNote:
         'Formula ini adalah referensi standar pengembangan plat. Hasil flat pattern aktual dapat berubah menurut grade material, arah rolling, tooling, metode bending, kompensasi springback, dan toleransi produksi.',
       output: {
+        flatPatternLength: 'Panjang flat pattern (L)',
         bendAllowance: 'Bend allowance',
         outsideSetback: 'Outside setback',
         bendDeduction: 'Bend deduction',
@@ -1840,6 +2041,9 @@ const localizedOverrides = {
       overview2:
         'Pada air bending, radius dalam terutama ditentukan oleh bukaan V dan properti material. Sudut tekuk dapat sedikit memengaruhi radius terbentuk, sehingga kalkulator memakai penyesuaian konservatif.',
       notes: [
+        'Gunakan A + B + BA jika A dan B adalah panjang flange lurus dari garis singgung tekuk ke tepi.',
+        'Gunakan A + B - BD jika A dan B adalah dimensi luar atau dimensi flange luar.',
+        'Flat pattern produksi tetap harus dikoreksi menurut material aktual, K-Factor, radius dalam, tooling, springback, dan trial bending.',
         'K-Factor adalah nilai referensi teknik.',
         'Hasil flat pattern aktual dapat berubah menurut grade material, arah rolling, tooling, metode bending, dan toleransi produksi.',
         'Untuk part produksi, trial bending dan pengukuran direkomendasikan.',

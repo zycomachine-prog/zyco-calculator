@@ -166,6 +166,9 @@ export default function BendAllowanceCalculator({
   const [insideRadius, setInsideRadius] = useState('2.6')
   const [bendAngle, setBendAngle] = useState('90')
   const [kFactor, setKFactor] = useState('0.33')
+  const [dimensionType, setDimensionType] = useState('straightFlange')
+  const [flangeA, setFlangeA] = useState('50')
+  const [flangeB, setFlangeB] = useState('50')
   const [isManualRadiusOverride, setIsManualRadiusOverride] =
     useState(false)
 
@@ -247,12 +250,16 @@ export default function BendAllowanceCalculator({
     const insideRadiusValue = Number(insideRadius)
     const bendAngleValue = Number(bendAngle)
     const kFactorValue = Number(kFactor)
+    const flangeAValue = Number(flangeA)
+    const flangeBValue = Number(flangeB)
 
     const hasValidInputs = [
       thicknessValue,
       insideRadiusValue,
       bendAngleValue,
       kFactorValue,
+      flangeAValue,
+      flangeBValue,
     ].every((value) => Number.isFinite(value) && value > 0)
 
     if (!hasValidInputs) {
@@ -268,14 +275,22 @@ export default function BendAllowanceCalculator({
       Math.tan(halfAngleRadians) *
       (insideRadiusValue + thicknessValue)
     const bendDeduction = 2 * outsideSetback - bendAllowance
+    const flatPatternLength =
+      dimensionType === 'outsideDimensions'
+        ? flangeAValue + flangeBValue - bendDeduction
+        : flangeAValue + flangeBValue + bendAllowance
 
     return {
+      flatPatternLength,
       bendAllowance,
       outsideSetback,
       bendDeduction,
     }
   }, [
     bendAngle,
+    dimensionType,
+    flangeA,
+    flangeB,
     insideRadius,
     kFactor,
     thickness,
@@ -306,6 +321,11 @@ export default function BendAllowanceCalculator({
   }
 
   const outputRows = [
+    [
+      page.output.flatPatternLength,
+      result ? formatMillimeters(result.flatPatternLength) : '--',
+      true,
+    ],
     [
       page.output.bendAllowance,
       result ? formatMillimeters(result.bendAllowance) : '--',
@@ -569,6 +589,97 @@ export default function BendAllowanceCalculator({
             font-weight: 650;
           }
 
+          .zyco-bend-method {
+            display: grid;
+            gap: 10px;
+            margin: 0 0 18px;
+          }
+
+          .zyco-bend-method__title {
+            margin: 0;
+            padding-left: 6px;
+            color: #93c5fd;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+          }
+
+          .zyco-bend-method__cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+          }
+
+          .zyco-bend-method__card {
+            display: grid;
+            gap: 8px;
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 20px;
+            background:
+              radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 50%),
+              rgba(15, 23, 42, 0.3);
+            color: #e2e8f0;
+            text-align: left;
+            cursor: pointer;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            transition:
+              transform 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              background 0.2s ease;
+          }
+
+          .zyco-bend-method__card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(125, 211, 252, 0.42);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+          }
+
+          .zyco-bend-method__card:focus-visible {
+            outline: none;
+            border-color: #7dd3fc;
+            box-shadow:
+              0 0 0 4px rgba(59, 130, 246, 0.16),
+              0 14px 30px rgba(15, 23, 42, 0.22);
+          }
+
+          .zyco-bend-method__card--active {
+            border-color: rgba(125, 211, 252, 0.56);
+            background:
+              radial-gradient(circle at top left, rgba(56, 189, 248, 0.28), transparent 52%),
+              rgba(30, 64, 175, 0.28);
+            box-shadow:
+              0 18px 34px rgba(37, 99, 235, 0.22),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          }
+
+          .zyco-bend-method__card-title {
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 850;
+          }
+
+          .zyco-bend-method__card-formula {
+            color: #7dd3fc;
+            font-size: 15px;
+            line-height: 1.4;
+            font-weight: 900;
+            letter-spacing: 0.2px;
+          }
+
+          .zyco-bend-method__card-description {
+            color: #cbd5e1;
+            font-size: 13px;
+            line-height: 1.6;
+            font-weight: 650;
+          }
+
           .zyco-bend-radius-reference {
             display: grid;
             gap: 10px;
@@ -621,6 +732,14 @@ export default function BendAllowanceCalculator({
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
           }
 
+          .zyco-bend-result--primary {
+            grid-column: 1 / -1;
+            border-color: rgba(125, 211, 252, 0.42);
+            background:
+              radial-gradient(circle at top left, rgba(56, 189, 248, 0.32), transparent 52%),
+              rgba(15, 23, 42, 0.38);
+          }
+
           .zyco-bend-result__label {
             margin: 0 0 10px;
             color: #93c5fd;
@@ -638,6 +757,137 @@ export default function BendAllowanceCalculator({
             line-height: 1.2;
             font-weight: 900;
             overflow-wrap: anywhere;
+          }
+
+          .zyco-bend-diagram {
+            margin: 0 0 24px;
+            padding: 18px;
+            border: 1px solid rgba(125, 211, 252, 0.28);
+            border-radius: 20px;
+            background:
+              linear-gradient(145deg, rgba(15, 23, 42, 0.42), rgba(30, 64, 175, 0.2));
+          }
+
+          .zyco-bend-diagram__heading {
+            margin: 0 0 6px;
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.35;
+            font-weight: 850;
+          }
+
+          .zyco-bend-diagram__mode {
+            margin: 0 0 12px;
+            color: #7dd3fc;
+            font-size: 13px;
+            line-height: 1.45;
+            font-weight: 800;
+          }
+
+          .zyco-bend-diagram__svg {
+            display: block;
+            width: 100%;
+            height: auto;
+          }
+
+          .zyco-bend-diagram__views {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+          }
+
+          .zyco-bend-diagram__view {
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid rgba(147, 197, 253, 0.18);
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.28);
+          }
+
+          .zyco-bend-diagram__view-title {
+            margin: 0 0 8px;
+            color: #bfdbfe;
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+          }
+
+          .zyco-bend-diagram__calculation {
+            display: grid;
+            align-content: center;
+            min-height: 210px;
+            gap: 18px;
+            padding: 4px 0;
+          }
+
+          .zyco-bend-diagram__flow {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+            gap: 5px;
+            align-items: stretch;
+          }
+
+          .zyco-bend-diagram__step {
+            display: grid;
+            align-content: center;
+            gap: 5px;
+            min-width: 0;
+            min-height: 92px;
+            padding: 8px 5px;
+            border: 1px solid rgba(125, 211, 252, 0.34);
+            border-radius: 12px;
+            background: rgba(30, 64, 175, 0.28);
+            text-align: center;
+          }
+
+          .zyco-bend-diagram__step--correction {
+            border: 2px dashed #facc15;
+            background: rgba(250, 204, 21, 0.08);
+          }
+
+          .zyco-bend-diagram__step-value {
+            color: #ffffff;
+            font-size: 17px;
+            line-height: 1.2;
+            font-weight: 900;
+          }
+
+          .zyco-bend-diagram__step--correction .zyco-bend-diagram__step-value {
+            color: #facc15;
+          }
+
+          .zyco-bend-diagram__step-label {
+            color: #bfdbfe;
+            font-size: 9px;
+            line-height: 1.35;
+            font-weight: 750;
+            overflow-wrap: anywhere;
+          }
+
+          .zyco-bend-diagram__flow-arrow {
+            align-self: center;
+            color: #7dd3fc;
+            font-size: 16px;
+            font-weight: 900;
+          }
+
+          .zyco-bend-diagram__equation-line {
+            color: #ffffff;
+            font-size: 19px;
+            line-height: 1.2;
+            font-weight: 900;
+            text-align: center;
+            white-space: nowrap;
+          }
+
+          .zyco-bend-diagram__note {
+            margin: 10px 0 0;
+            color: #dbeafe;
+            font-size: 13px;
+            line-height: 1.6;
+            font-weight: 650;
           }
 
           .zyco-bend__formula {
@@ -792,7 +1042,9 @@ export default function BendAllowanceCalculator({
           }
 
           @media (max-width: 720px) {
-            .zyco-bend__faq {
+            .zyco-bend__faq,
+            .zyco-bend-method__cards,
+            .zyco-bend-diagram__views {
               grid-template-columns: 1fr;
             }
           }
@@ -863,6 +1115,174 @@ export default function BendAllowanceCalculator({
 
           <div className='zyco-bend__grid'>
             <article className='zyco-bend-card'>
+              <section
+                aria-labelledby='bend-measurement-method'
+                className='zyco-bend-method'
+              >
+                <h2
+                  className='zyco-bend-method__title'
+                  id='bend-measurement-method'
+                >
+                  {page.measurementMethodTitle}
+                </h2>
+
+                <div className='zyco-bend-method__cards'>
+                  <button
+                    aria-pressed={dimensionType === 'straightFlange'}
+                    className={`zyco-bend-method__card${
+                      dimensionType === 'straightFlange'
+                        ? ' zyco-bend-method__card--active'
+                        : ''
+                    }`}
+                    type='button'
+                    onClick={() => setDimensionType('straightFlange')}
+                  >
+                    <span className='zyco-bend-method__card-title'>
+                      {page.measurementStraightTitle}
+                    </span>
+                    <span className='zyco-bend-method__card-formula'>
+                      {page.measurementStraightFormula}
+                    </span>
+                    <span className='zyco-bend-method__card-description'>
+                      {page.measurementStraightDescription}
+                    </span>
+                  </button>
+
+                  <button
+                    aria-pressed={dimensionType === 'outsideDimensions'}
+                    className={`zyco-bend-method__card${
+                      dimensionType === 'outsideDimensions'
+                        ? ' zyco-bend-method__card--active'
+                        : ''
+                    }`}
+                    type='button'
+                    onClick={() => setDimensionType('outsideDimensions')}
+                  >
+                    <span className='zyco-bend-method__card-title'>
+                      {page.measurementOutsideTitle}
+                    </span>
+                    <span className='zyco-bend-method__card-formula'>
+                      {page.measurementOutsideFormula}
+                    </span>
+                    <span className='zyco-bend-method__card-description'>
+                      {page.measurementOutsideDescription}
+                    </span>
+                  </button>
+                </div>
+              </section>
+
+              <figure className='zyco-bend-diagram'>
+                <figcaption>
+                  <h2 className='zyco-bend-diagram__heading'>
+                    {page.dimensionMethodDiagram}
+                  </h2>
+                  <p className='zyco-bend-diagram__mode'>
+                    {dimensionType === 'straightFlange'
+                      ? page.straightFlangeDiagramTitle
+                      : page.outsideDimensionsDiagramTitle}
+                  </p>
+                </figcaption>
+
+                {dimensionType === 'straightFlange' ? (
+                  <div className='zyco-bend-diagram__views'>
+                    <div className='zyco-bend-diagram__view'>
+                      <p className='zyco-bend-diagram__view-title'>{page.bentPartView}</p>
+                      <svg aria-label={page.bentPartView} className='zyco-bend-diagram__svg' role='img' viewBox='0 0 300 220'>
+                        <defs>
+                          <marker id='bend-arrow-tangent' markerHeight='7' markerWidth='7' orient='auto-start-reverse' refX='3.5' refY='3.5'>
+                            <path d='M0,0 L7,3.5 L0,7 Z' fill='#7dd3fc' />
+                          </marker>
+                        </defs>
+                        <path d='M92 28 V150 Q92 174 116 174 H270' fill='none' stroke='#3b82f6' strokeLinecap='round' strokeWidth='24' />
+                        <path d='M92 28 V150 Q92 174 116 174 H270' fill='none' stroke='#bfdbfe' strokeLinecap='round' strokeWidth='2' />
+                        <line x1='53' x2='53' y1='28' y2='150' stroke='#7dd3fc' markerStart='url(#bend-arrow-tangent)' markerEnd='url(#bend-arrow-tangent)' />
+                        <line x1='65' x2='102' y1='28' y2='28' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <line x1='65' x2='102' y1='150' y2='150' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <text x='34' y='94' fill='#ffffff' fontSize='18' fontWeight='900' textAnchor='middle'>A</text>
+                        <line x1='116' x2='270' y1='204' y2='204' stroke='#7dd3fc' markerStart='url(#bend-arrow-tangent)' markerEnd='url(#bend-arrow-tangent)' />
+                        <line x1='116' x2='116' y1='184' y2='212' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <line x1='270' x2='270' y1='184' y2='212' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <text x='193' y='199' fill='#ffffff' fontSize='18' fontWeight='900' textAnchor='middle'>B</text>
+                        <circle cx='104' cy='162' r='25' fill='#0f172a' stroke='#facc15' strokeDasharray='5 4' strokeWidth='2' />
+                        <text x='142' y='126' fill='#facc15' fontSize='12' fontWeight='800'>{page.bendArea}</text>
+                        <line x1='137' x2='119' y1='130' y2='146' stroke='#facc15' />
+                      </svg>
+                    </div>
+
+                    <div className='zyco-bend-diagram__view'>
+                      <p className='zyco-bend-diagram__view-title'>{page.flatPatternView}</p>
+                      <svg aria-label={page.flatPatternView} className='zyco-bend-diagram__svg' role='img' viewBox='0 0 300 220'>
+                        <defs>
+                          <marker id='bend-arrow-flat' markerHeight='7' markerWidth='7' orient='auto-start-reverse' refX='3.5' refY='3.5'>
+                            <path d='M0,0 L7,3.5 L0,7 Z' fill='#7dd3fc' />
+                          </marker>
+                        </defs>
+                        <rect x='18' y='72' width='108' height='48' rx='4' fill='#2563eb' stroke='#93c5fd' />
+                        <rect x='126' y='72' width='48' height='48' fill='#0f172a' stroke='#facc15' strokeDasharray='6 4' strokeWidth='2' />
+                        <rect x='174' y='72' width='108' height='48' rx='4' fill='#2563eb' stroke='#93c5fd' />
+                        <text x='72' y='102' fill='#ffffff' fontSize='18' fontWeight='900' textAnchor='middle'>A</text>
+                        <text x='150' y='102' fill='#facc15' fontSize='15' fontWeight='900' textAnchor='middle'>BA</text>
+                        <text x='228' y='102' fill='#ffffff' fontSize='18' fontWeight='900' textAnchor='middle'>B</text>
+                        <line x1='18' x2='282' y1='155' y2='155' stroke='#7dd3fc' strokeWidth='2' markerStart='url(#bend-arrow-flat)' markerEnd='url(#bend-arrow-flat)' />
+                        <text x='150' y='187' fill='#dbeafe' fontSize='18' fontWeight='900' textAnchor='middle'>L = A + B + BA</text>
+                      </svg>
+                    </div>
+                  </div>
+                ) : (
+                  <div className='zyco-bend-diagram__views'>
+                    <div className='zyco-bend-diagram__view'>
+                      <p className='zyco-bend-diagram__view-title'>{page.outsideDimensionView}</p>
+                      <svg aria-label={page.outsideDimensionView} className='zyco-bend-diagram__svg' role='img' viewBox='0 0 300 220'>
+                        <defs>
+                          <marker id='bend-arrow-outside' markerHeight='7' markerWidth='7' orient='auto-start-reverse' refX='3.5' refY='3.5'>
+                            <path d='M0,0 L7,3.5 L0,7 Z' fill='#7dd3fc' />
+                          </marker>
+                        </defs>
+                        <path d='M105 25 V154 H270' fill='none' stroke='#3b82f6' strokeLinecap='round' strokeLinejoin='round' strokeWidth='24' />
+                        <path d='M105 25 V154 H270' fill='none' stroke='#bfdbfe' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' />
+                        <line x1='50' x2='50' y1='25' y2='166' stroke='#7dd3fc' markerStart='url(#bend-arrow-outside)' markerEnd='url(#bend-arrow-outside)' />
+                        <line x1='62' x2='105' y1='25' y2='25' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <line x1='62' x2='105' y1='166' y2='166' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <text x='31' y='101' fill='#ffffff' fontSize='18' fontWeight='900' textAnchor='middle'>A</text>
+                        <line x1='93' x2='270' y1='202' y2='202' stroke='#7dd3fc' markerStart='url(#bend-arrow-outside)' markerEnd='url(#bend-arrow-outside)' />
+                        <line x1='93' x2='93' y1='174' y2='210' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <line x1='270' x2='270' y1='174' y2='210' stroke='#7dd3fc' strokeDasharray='4 4' />
+                        <text x='181' y='197' fill='#ffffff' fontSize='18' fontWeight='900' textAnchor='middle'>B</text>
+                      </svg>
+                    </div>
+
+                    <div className='zyco-bend-diagram__view'>
+                      <p className='zyco-bend-diagram__view-title'>{page.calculationView}</p>
+                      <div className='zyco-bend-diagram__calculation'>
+                        <div className='zyco-bend-diagram__flow'>
+                          <div className='zyco-bend-diagram__step'>
+                            <span className='zyco-bend-diagram__step-value'>A + B</span>
+                            <span className='zyco-bend-diagram__step-label'>{page.outsideDimensionsSum}</span>
+                          </div>
+                          <span aria-hidden='true' className='zyco-bend-diagram__flow-arrow'>→</span>
+                          <div className='zyco-bend-diagram__step zyco-bend-diagram__step--correction'>
+                            <span className='zyco-bend-diagram__step-value'>− BD</span>
+                            <span className='zyco-bend-diagram__step-label'>{page.bdCorrection}</span>
+                          </div>
+                          <span aria-hidden='true' className='zyco-bend-diagram__flow-arrow'>→</span>
+                          <div className='zyco-bend-diagram__step'>
+                            <span className='zyco-bend-diagram__step-value'>L</span>
+                            <span className='zyco-bend-diagram__step-label'>{page.flatPatternLengthShort}</span>
+                          </div>
+                        </div>
+                        <div className='zyco-bend-diagram__equation-line'>L = A + B − BD</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <p className='zyco-bend-diagram__note'>
+                  {dimensionType === 'straightFlange'
+                    ? page.straightFlangeDiagramNote
+                    : page.outsideDimensionsDiagramNote}
+                </p>
+              </figure>
+
               <h2 className='zyco-bend-card__title'>
                 {t.common.inputParameters}
               </h2>
@@ -981,6 +1401,36 @@ export default function BendAllowanceCalculator({
                   {t.materialNames[selectedMaterial.materialKey]}:{' '}
                   {selectedMaterial.recommendedKFactor.toFixed(2)}
                 </p>
+
+                <label className='zyco-bend-field'>
+                  <span className='zyco-bend-field__label'>
+                    {page.flangeA}
+                  </span>
+
+                  <input
+                    className='zyco-bend-field__control'
+                    min='0'
+                    step='0.1'
+                    type='number'
+                    value={flangeA}
+                    onChange={(event) => setFlangeA(event.target.value)}
+                  />
+                </label>
+
+                <label className='zyco-bend-field'>
+                  <span className='zyco-bend-field__label'>
+                    {page.flangeB}
+                  </span>
+
+                  <input
+                    className='zyco-bend-field__control'
+                    min='0'
+                    step='0.1'
+                    type='number'
+                    value={flangeB}
+                    onChange={(event) => setFlangeB(event.target.value)}
+                  />
+                </label>
               </div>
             </article>
 
@@ -990,9 +1440,9 @@ export default function BendAllowanceCalculator({
               </h2>
 
               <dl className='zyco-bend-results'>
-                {outputRows.map(([label, value]) => (
+                {outputRows.map(([label, value, isPrimary]) => (
                   <div
-                    className='zyco-bend-result'
+                    className={`zyco-bend-result${isPrimary ? ' zyco-bend-result--primary' : ''}`}
                     key={label}
                   >
                     <dt className='zyco-bend-result__label'>
@@ -1016,7 +1466,7 @@ export default function BendAllowanceCalculator({
 
               <ul className='zyco-bend__formula'>
                 <li className='zyco-bend__formula-item'>
-                  BA = A × π / 180 × (R + K × T)
+                  BA = θ × π / 180 × (R + K × T)
                 </li>
 
                 <li className='zyco-bend__formula-item'>
@@ -1029,6 +1479,18 @@ export default function BendAllowanceCalculator({
 
                 <li className='zyco-bend__formula-item'>
                   {page.formulaBendDeduction}
+                </li>
+
+                <li className='zyco-bend__formula-item'>
+                  {page.formulaStraightFlange}
+                </li>
+
+                <li className='zyco-bend__formula-item'>
+                  {page.formulaOutsideDimensions}
+                </li>
+
+                <li className='zyco-bend__formula-item'>
+                  {page.formulaFlatPatternWhere}
                 </li>
               </ul>
 
