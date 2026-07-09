@@ -129,6 +129,12 @@ relatedTools.ru.toolingSelectionGuide = 'Руководство по выбор�
 relatedTools.es.toolingSelectionGuide = 'Guía de selección de utillaje para plegadora'
 relatedTools.tr.toolingSelectionGuide = 'Abkant pres takım seçimi kılavuzu'
 relatedTools.id.toolingSelectionGuide = 'Panduan pemilihan perkakas mesin tekuk'
+relatedTools.en.controllerSelectionGuide = 'Press Brake Controller Selection Guide'
+relatedTools.zh.controllerSelectionGuide = '折弯机控制系统选型指南'
+relatedTools.ru.controllerSelectionGuide = 'Руководство по выбору контроллера листогиба'
+relatedTools.es.controllerSelectionGuide = 'Guía de selección de control para plegadora'
+relatedTools.tr.controllerSelectionGuide = 'Abkant pres kontrol seçimi kılavuzu'
+relatedTools.id.controllerSelectionGuide = 'Panduan pemilihan controller press brake'
 relatedTools.en.crowningGuide = 'Press Brake Crowning Guide'
 relatedTools.zh.crowningGuide = '折弯机挠度补偿指南'
 relatedTools.ru.crowningGuide = 'Руководство по компенсации прогиба листогиба'
@@ -2100,6 +2106,29 @@ Object.entries(bottomingVsCoiningHubDescriptions).forEach(([language, descriptio
   if (language !== 'en') {
     localizedOverrides[language].hub.tools.splice(7, 0, [
       'bottomingVsCoiningGuide',
+      description,
+    ])
+  }
+})
+
+const controllerSelectionHubDescriptions = {
+  en: 'Compare EASYCAT ET16/ET18, Delem, Cybelec and ESA press brake controllers by axis configuration, programming method, stability, application and machine cost control.',
+  zh: '按轴配置、编程方式、稳定性、应用场景和机器成本控制，对比 EASYCAT ET16/ET18、Delem、Cybelec 与 ESA 折弯机控制系统。',
+  ru: 'Сравнение контроллеров EASYCAT ET16/ET18, Delem, Cybelec и ESA по осям, программированию, стабильности, применению и стоимости станка.',
+  es: 'Compare controles EASYCAT ET16/ET18, Delem, Cybelec y ESA por configuración de ejes, programación, estabilidad, aplicación y control del costo.',
+  tr: 'EASYCAT ET16/ET18, Delem, Cybelec ve ESA abkant pres kontrollerini eksen konfigürasyonu, programlama, kararlılık, uygulama ve maliyet kontrolüne göre karşılaştırın.',
+  id: 'Bandingkan controller press brake EASYCAT ET16/ET18, Delem, Cybelec, dan ESA menurut konfigurasi sumbu, metode pemrograman, stabilitas, aplikasi, dan kontrol biaya mesin.',
+}
+
+pages.en.hub.tools.splice(17, 0, [
+  'controllerSelectionGuide',
+  controllerSelectionHubDescriptions.en,
+])
+
+Object.entries(controllerSelectionHubDescriptions).forEach(([language, description]) => {
+  if (language !== 'en') {
+    localizedOverrides[language].hub.tools.splice(17, 0, [
+      'controllerSelectionGuide',
       description,
     ])
   }

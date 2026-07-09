@@ -95,6 +95,11 @@ const tools = [
     href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
+    key: 'controllerSelectionGuide',
+    status: 'active',
+    href: '/engineering-tools/press-brake-controller-selection-guide',
+  },
+  {
     key: 'crowningGuide',
     status: 'active',
     href: '/engineering-tools/press-brake-crowning-guide',
@@ -181,6 +186,10 @@ const relatedTools = [
     href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
+    key: 'controllerSelectionGuide',
+    href: '/engineering-tools/press-brake-controller-selection-guide',
+  },
+  {
     key: 'crowningGuide',
     href: '/engineering-tools/press-brake-crowning-guide',
   },
@@ -212,6 +221,7 @@ const toolStructuredDataNames = {
   vDieOpeningGuide: 'How to Choose Press Brake V-Die Opening',
   minimumFlangeLengthGuide: 'Minimum Flange Length Guide',
   toolingSelectionGuide: 'Press Brake Tooling Selection Guide',
+  controllerSelectionGuide: 'Press Brake Controller Selection Guide',
   crowningGuide: 'Press Brake Crowning Guide',
   stainlessSteelBendingGuide: 'Stainless Steel Bending Guide',
   aluminumBendingGuide: 'Aluminum Bending Guide',

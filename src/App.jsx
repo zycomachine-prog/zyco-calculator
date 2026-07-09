@@ -34,6 +34,7 @@ const MaterialDatabase = lazy(() => import('./pages/MaterialDatabase.jsx'))
 const PressBrakeTonnageGuide = lazy(() => import('./pages/PressBrakeTonnageGuide.jsx'))
 const PressBrakeCrowningGuide = lazy(() => import('./pages/PressBrakeCrowningGuide.jsx'))
 const PressBrakeToolingSelectionGuide = lazy(() => import('./pages/PressBrakeToolingSelectionGuide.jsx'))
+const PressBrakeControllerSelectionGuide = lazy(() => import('./pages/PressBrakeControllerSelectionGuide.jsx'))
 const PressBrakeVDieOpeningGuide = lazy(() => import('./pages/PressBrakeVDieOpeningGuide.jsx'))
 const MinimumFlangeLengthGuide = lazy(() => import('./pages/MinimumFlangeLengthGuide.jsx'))
 const StainlessSteelBendingGuide = lazy(() => import('./pages/StainlessSteelBendingGuide.jsx'))
@@ -179,6 +180,11 @@ export default function App() {
           />
 
           <Route
+            path='/engineering-tools/press-brake-controller-selection-guide'
+            element={<PressBrakeControllerSelectionGuide {...languageProps} />}
+          />
+
+          <Route
             path='/engineering-tools/how-to-choose-press-brake-v-die-opening'
             element={<PressBrakeVDieOpeningGuide {...languageProps} />}
           />
@@ -239,6 +245,16 @@ export default function App() {
           />
 
           <Route
+            path='/engineering-tools/v-opening-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/how-to-choose-press-brake-v-die-opening'
+                replace
+              />
+            }
+          />
+
+          <Route
             path='/engineering/press-brake-tonnage-guide'
             element={
               <Navigate
@@ -273,6 +289,16 @@ export default function App() {
             element={
               <Navigate
                 to='/engineering-tools/press-brake-tooling-selection-guide'
+                replace
+              />
+            }
+          />
+
+          <Route
+            path='/engineering/press-brake-controller-selection-guide'
+            element={
+              <Navigate
+                to='/engineering-tools/press-brake-controller-selection-guide'
                 replace
               />
             }
