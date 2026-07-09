@@ -109,6 +109,10 @@ const relatedEngineeringTools = [
     href: '/engineering-tools/press-brake-tooling-selection-guide',
   },
   {
+    labelKey: 'controllerSelectionGuide',
+    href: '/engineering-tools/press-brake-controller-selection-guide',
+  },
+  {
     labelKey: 'crowningGuide',
     href: '/engineering-tools/press-brake-crowning-guide',
   },
@@ -197,6 +201,18 @@ relatedToolFallbackLabels.tr.toolingSelectionGuide =
   'Abkant pres takım seçimi kılavuzu'
 relatedToolFallbackLabels.id.toolingSelectionGuide =
   'Panduan pemilihan perkakas mesin tekuk'
+relatedToolFallbackLabels.en.controllerSelectionGuide =
+  'Press Brake Controller Selection Guide'
+relatedToolFallbackLabels.zh.controllerSelectionGuide =
+  '折弯机控制系统选型指南'
+relatedToolFallbackLabels.ru.controllerSelectionGuide =
+  'Руководство по выбору контроллера листогиба'
+relatedToolFallbackLabels.es.controllerSelectionGuide =
+  'Guía de selección de control para plegadora'
+relatedToolFallbackLabels.tr.controllerSelectionGuide =
+  'Abkant pres kontrol seçimi kılavuzu'
+relatedToolFallbackLabels.id.controllerSelectionGuide =
+  'Panduan pemilihan controller press brake'
 relatedToolFallbackLabels.en.crowningGuide = 'Press Brake Crowning Guide'
 relatedToolFallbackLabels.zh.crowningGuide = '折弯机挠度补偿指南'
 relatedToolFallbackLabels.ru.crowningGuide =

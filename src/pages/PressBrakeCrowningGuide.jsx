@@ -29,6 +29,7 @@ const relatedTools = [
   ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
   ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
   ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
+  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
   ['crowningGuide', routePath],
   ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
   ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
