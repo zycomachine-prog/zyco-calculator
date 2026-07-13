@@ -7,6 +7,7 @@ import {
 import CountUp from 'react-countup'
 import { calculatorLanguageMap } from '../languages/engineeringText.js'
 import {
+  createFAQPageStructuredData,
   createWebApplicationStructuredData,
   setPageSEO,
   setStructuredData,
@@ -124,6 +125,24 @@ const relatedEngineeringTools = [
     labelKey: 'aluminumBendingGuide',
     href: '/engineering-tools/aluminum-bending-guide',
   },
+]
+
+const pressBrakeCalculatorSeoDescription =
+  'Press brake calculator for air-bending tonnage by material, thickness, bend length and V-die opening, with capacity, radius and springback references.'
+
+const englishPressBrakeCalculatorFaq = [
+  [
+    'What does this press brake calculator calculate?',
+    'It estimates air-bending tonnage from material, sheet thickness, bend length and V-die opening, then provides machine-capacity, inside-radius and springback references.',
+  ],
+  [
+    'How is press brake bending tonnage estimated?',
+    'The calculator combines sheet thickness, bend length, material factor and V-die opening. The result is an engineering estimate for air bending and should be verified against tooling and production conditions.',
+  ],
+  [
+    'Is a brake press calculator result the same as the machine capacity I should select?',
+    'No. Rated machine capacity should include a practical margin for continuous production, material variation, tooling condition and concentrated loading.',
+  ],
 ]
 
 const relatedToolFallbackLabels = {
@@ -291,22 +310,26 @@ export default function PressBrakeCalculator({
 
 useEffect(() => {
   setPageSEO({
-    title: 'Press Brake Tonnage Calculator for Sheet Metal Bending | ZYCO',
-    description:
-      'Calculate press brake bending force for sheet metal air bending based on material, thickness, bend length and V-die opening. Estimate tonnage, machine capacity, inside radius and springback reference.',
+    title: 'Press Brake Calculator: Tonnage, V-Die & Bending | ZYCO',
+    description: pressBrakeCalculatorSeoDescription,
     keywords:
-      'press brake calculator, press brake tonnage calculator, bending force calculator, sheet metal bending calculator, V die opening, air bending force',
+      'press brake calculator, press brake tonnage calculator, brake press calculator, brake press tonnage calculator, press brake bending calculator, bending force calculator, sheet metal bending calculator, V die opening, air bending force',
     canonicalPath: '/engineering-tools/press-brake-calculator',
   })
 
   setStructuredData({
     id: 'press-brake-calculator-jsonld',
-    data: createWebApplicationStructuredData({
-      name: 'Press Brake Tonnage Calculator',
-      description:
-        'Calculate press brake bending force for sheet metal air bending based on material, thickness, bend length and V-die opening. Estimate tonnage, machine capacity, inside radius and springback reference.',
-      path: '/engineering-tools/press-brake-calculator',
-    }),
+    data: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        createWebApplicationStructuredData({
+          name: 'Press Brake Calculator',
+          description: pressBrakeCalculatorSeoDescription,
+          path: '/engineering-tools/press-brake-calculator',
+        }),
+        createFAQPageStructuredData(englishPressBrakeCalculatorFaq),
+      ],
+    },
   })
 }, [])
 
@@ -666,7 +689,8 @@ const vDie =
   const texts = {
     EN: {
       title: 'ZYCO Press Brake Calculator',
-      subtitle: 'Professional Bending Force Calculation System',
+      subtitle:
+        'Calculate air-bending tonnage, V-die opening, inside radius and machine capacity for sheet metal parts.',
       result: 'Calculation Result',
       machine: 'Recommended Machine',
       vdie: 'Recommended V Die',
@@ -730,9 +754,11 @@ const vDie =
         check: 'Engineering Check Required',
         custom: 'Custom Configuration Recommended',
       },
-      engineeringOverviewTitle: 'Engineering Overview',
+      engineeringOverviewTitle: 'How to Use the Press Brake Calculator',
       engineeringOverviewText:
         'This press brake calculator estimates bending force for air bending based on sheet thickness, bend length, material factor and V-die opening. It is useful for early machine capacity checks, quotation review and tooling setup planning. Real production results can change with material tensile strength, die condition, punch radius, bend angle, grain direction, lubrication and machine deflection, so calculated tonnage should be treated as an engineering estimate rather than a substitute for trial bending.',
+      faqTitle: 'Press Brake Calculator FAQ',
+      faq: englishPressBrakeCalculatorFaq,
       relatedEngineeringToolsTitle: 'Related Engineering Tools',
       relatedTools: {
         pressBrakeCalculator: 'Press Brake Calculator',
@@ -755,7 +781,8 @@ const vDie =
     },
     CN: {
       title: 'ZYCO折弯机计算器',
-      subtitle: '专业折弯力计算系统',
+      subtitle:
+        '计算钣金零件空气折弯吨位、V 型模开口、内半径和设备能力。',
       result: '计算结果',
       machine: '推荐设备',
       vdie: '推荐V槽',
@@ -821,9 +848,24 @@ const vDie =
         check: '\u9700\u8981\u5de5\u7a0b\u786e\u8ba4',
         custom: '\u5efa\u8bae\u5b9a\u5236\u914d\u7f6e',
       },
-      engineeringOverviewTitle: '工程说明',
+      engineeringOverviewTitle: '如何使用折弯机计算器',
       engineeringOverviewText:
         '这款折弯机计算器可根据板材厚度、折弯长度、材料系数和 V 型模具开口大小，估算空气折弯所需的折弯力。它适用于早期设备能力判断、报价审核和模具设定规划。实际生产结果会因材料抗拉强度、模具状态、冲头半径、折弯角度、纹理方向、润滑情况和机器挠度等因素而变化，因此计算出的吨位应视为工程估算值，而非试弯结果的替代。',
+      faqTitle: '折弯机计算器常见问题',
+      faq: [
+        [
+          '这款折弯机计算器计算什么？',
+          '它会根据材料、板厚、折弯长度和 V 型模开口估算空气折弯吨位，并提供设备能力、内半径和回弹参考。',
+        ],
+        [
+          '折弯吨位是如何估算的？',
+          '计算器结合板厚、折弯长度、材料系数和 V 型模开口进行估算。结果为空气折弯工程估算值，应结合模具和生产条件进行确认。',
+        ],
+        [
+          '计算结果是否等同于应选择的设备能力？',
+          '不是。设备额定能力应为连续生产、材料波动、模具状态和集中载荷保留合理余量。',
+        ],
+      ],
       relatedEngineeringToolsTitle: '相关工程工具',
       relatedTools: {
         pressBrakeCalculator: '折弯机计算器',
@@ -846,7 +888,8 @@ const vDie =
     },
     RU: {
       title: 'Калькулятор листогиба ZYCO',
-      subtitle: 'Профессиональная система расчета усилия гибки',
+      subtitle:
+        'Рассчитывайте тоннаж воздушной гибки, раскрытие V-матрицы, внутренний радиус и мощность станка для деталей из листового металла.',
       result: 'Результат расчета',
       machine: 'Рекомендуемый станок',
       vdie: 'Рекомендуемая V-матрица',
@@ -912,9 +955,24 @@ const vDie =
         check: '\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0438\u043d\u0436\u0435\u043d\u0435\u0440\u043d\u0430\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430',
         custom: '\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f',
       },
-      engineeringOverviewTitle: 'Инженерный обзор',
+      engineeringOverviewTitle: 'Как использовать калькулятор листогиба',
       engineeringOverviewText:
         'Этот калькулятор листогиба оценивает усилие воздушной гибки на основе толщины листа, длины гиба, коэффициента материала и раскрытия V-матрицы. Он полезен для предварительной проверки мощности станка, оценки коммерческого предложения и планирования настройки оснастки. Фактический результат в производстве может изменяться из-за прочности материала на растяжение, состояния матрицы, радиуса пуансона, угла гибки, направления прокатки, смазки и прогиба станка, поэтому рассчитанный тоннаж следует рассматривать как инженерную оценку, а не замену пробной гибки.',
+      faqTitle: 'Частые вопросы о калькуляторе листогиба',
+      faq: [
+        [
+          'Что рассчитывает этот калькулятор листогиба?',
+          'Он оценивает тоннаж воздушной гибки по материалу, толщине листа, длине гиба и раскрытию V-матрицы, а также дает справочные значения по мощности станка, внутреннему радиусу и пружинению.',
+        ],
+        [
+          'Как оценивается тоннаж гибки на листогибочном прессе?',
+          'Калькулятор объединяет толщину листа, длину гиба, коэффициент материала и раскрытие V-матрицы. Результат является инженерной оценкой для воздушной гибки и должен проверяться с учетом оснастки и производственных условий.',
+        ],
+        [
+          'Совпадает ли результат калькулятора с мощностью станка, которую нужно выбрать?',
+          'Нет. Номинальная мощность станка должна включать практический запас для непрерывного производства, разброса материала, состояния оснастки и сосредоточенной нагрузки.',
+        ],
+      ],
       relatedEngineeringToolsTitle: 'Связанные инженерные инструменты',
       relatedTools: {
         pressBrakeCalculator: 'Калькулятор листогиба',
@@ -937,7 +995,8 @@ const vDie =
     },
     ES: {
       title: 'Calculadora de Plegado ZYCO',
-      subtitle: 'Sistema profesional de cálculo de fuerza de plegado',
+      subtitle:
+        'Calcule tonelaje de plegado al aire, abertura de matriz V, radio interior y capacidad de máquina para piezas de chapa.',
       result: 'Resultado del cálculo',
       machine: 'Máquina recomendada',
       vdie: 'Matriz V recomendada',
@@ -1002,9 +1061,24 @@ const vDie =
         check: 'Requiere comprobaci\u00f3n de ingenier\u00eda',
         custom: 'Configuraci\u00f3n personalizada recomendada',
       },
-      engineeringOverviewTitle: 'Resumen de ingeniería',
+      engineeringOverviewTitle: 'Cómo usar la calculadora de plegadora',
       engineeringOverviewText:
         'Esta calculadora de plegadora estima la fuerza de plegado para plegado al aire según el espesor de la chapa, la longitud de plegado, el factor del material y la abertura de la matriz V. Es útil para verificaciones iniciales de capacidad de máquina, revisión de cotizaciones y planificación de ajustes de utillaje. Los resultados reales de producción pueden variar por la resistencia a la tracción del material, el estado de la matriz, el radio del punzón, el ángulo de plegado, la dirección de laminación, la lubricación y la deflexión de la máquina, por lo que el tonelaje calculado debe tratarse como una estimación de ingeniería y no como sustituto de una prueba de plegado.',
+      faqTitle: 'Preguntas frecuentes sobre la calculadora de plegadora',
+      faq: [
+        [
+          '¿Qué calcula esta calculadora de plegadora?',
+          'Estima el tonelaje de plegado al aire a partir del material, el espesor de chapa, la longitud de plegado y la abertura de la matriz V, y proporciona referencias de capacidad de máquina, radio interior y retorno elástico.',
+        ],
+        [
+          '¿Cómo se estima el tonelaje de plegado?',
+          'La calculadora combina espesor de chapa, longitud de plegado, factor del material y abertura de matriz V. El resultado es una estimación de ingeniería para plegado al aire y debe verificarse con el utillaje y las condiciones de producción.',
+        ],
+        [
+          '¿El resultado de la calculadora equivale a la capacidad de máquina que debo elegir?',
+          'No. La capacidad nominal de la máquina debe incluir un margen práctico para producción continua, variación del material, estado del utillaje y cargas concentradas.',
+        ],
+      ],
       relatedEngineeringToolsTitle: 'Herramientas de ingeniería relacionadas',
       relatedTools: {
         pressBrakeCalculator: 'Calculadora de plegadora',
@@ -1027,7 +1101,8 @@ const vDie =
     },
     TR: {
       title: 'ZYCO Abkant Pres Hesaplayıcı',
-      subtitle: 'Profesyonel Bükme Kuvveti Hesaplama Sistemi',
+      subtitle:
+        'Sac parçalar için havada bükme tonajını, V kalıp açıklığını, iç radyüsü ve makine kapasitesini hesaplayın.',
       result: 'Hesaplama Sonucu',
       machine: 'Önerilen Makine',
       vdie: 'Önerilen V Kalıp',
@@ -1093,9 +1168,24 @@ const vDie =
         check: 'M\u00fchendislik kontrol\u00fc gerekli',
         custom: '\u00d6zel konfig\u00fcrasyon \u00f6nerilir',
       },
-      engineeringOverviewTitle: 'Mühendislik özeti',
+      engineeringOverviewTitle: 'Abkant pres hesaplayıcı nasıl kullanılır',
       engineeringOverviewText:
         'Bu abkant pres hesaplayıcısı, sac kalınlığı, bükme uzunluğu, malzeme katsayısı ve V kalıp açıklığına göre havada bükme için gerekli bükme kuvvetini tahmin eder. Erken makine kapasitesi kontrolü, teklif değerlendirmesi ve takım ayarı planlaması için kullanışlıdır. Gerçek üretim sonuçları malzeme çekme dayanımı, kalıp durumu, zımba radyüsü, bükme açısı, hadde yönü, yağlama ve makine sehimi gibi etkenlere göre değişebilir; bu nedenle hesaplanan tonaj deneme bükümünün yerine geçen kesin değer değil, mühendislik tahmini olarak değerlendirilmelidir.',
+      faqTitle: 'Abkant pres hesaplayıcı SSS',
+      faq: [
+        [
+          'Bu abkant pres hesaplayıcı neyi hesaplar?',
+          'Malzeme, sac kalınlığı, bükme uzunluğu ve V kalıp açıklığına göre havada bükme tonajını tahmin eder; ayrıca makine kapasitesi, iç radyüs ve geri esneme için referanslar sunar.',
+        ],
+        [
+          'Abkant pres bükme tonajı nasıl tahmin edilir?',
+          'Hesaplayıcı sac kalınlığını, bükme uzunluğunu, malzeme katsayısını ve V kalıp açıklığını birlikte değerlendirir. Sonuç havada bükme için mühendislik tahminidir ve takım ile üretim koşullarına göre doğrulanmalıdır.',
+        ],
+        [
+          'Hesaplayıcı sonucu seçmem gereken makine kapasitesiyle aynı mıdır?',
+          'Hayır. Nominal makine kapasitesi; sürekli üretim, malzeme değişkenliği, takım durumu ve yoğun yükler için pratik bir pay içermelidir.',
+        ],
+      ],
       relatedEngineeringToolsTitle: 'İlgili mühendislik araçları',
       relatedTools: {
         pressBrakeCalculator: 'Abkant pres hesaplayıcısı',
@@ -1118,7 +1208,8 @@ const vDie =
     },
     ID: {
       title: 'Kalkulator Press Brake ZYCO',
-      subtitle: 'Sistem Perhitungan Gaya Tekuk Profesional',
+      subtitle:
+        'Hitung tonase air bending, bukaan V-die, radius dalam, dan kapasitas mesin untuk komponen sheet metal.',
       result: 'Hasil Perhitungan',
       machine: 'Mesin Rekomendasi',
       vdie: 'V Die Rekomendasi',
@@ -1183,9 +1274,24 @@ const vDie =
         check: 'Perlu pemeriksaan engineering',
         custom: 'Konfigurasi khusus direkomendasikan',
       },
-      engineeringOverviewTitle: 'Ringkasan teknik',
+      engineeringOverviewTitle: 'Cara menggunakan kalkulator press brake',
       engineeringOverviewText:
         'Kalkulator press brake ini memperkirakan gaya tekuk untuk air bending berdasarkan ketebalan plat, panjang tekukan, faktor material, dan bukaan V-die. Alat ini berguna untuk pemeriksaan awal kapasitas mesin, evaluasi penawaran, dan perencanaan setelan tooling. Hasil produksi aktual dapat berubah karena kekuatan tarik material, kondisi die, radius punch, sudut tekuk, arah serat material, pelumasan, dan defleksi mesin, sehingga tonase hasil perhitungan harus diperlakukan sebagai estimasi teknik, bukan pengganti trial bending.',
+      faqTitle: 'FAQ kalkulator press brake',
+      faq: [
+        [
+          'Apa yang dihitung oleh kalkulator press brake ini?',
+          'Kalkulator ini memperkirakan tonase air bending dari material, ketebalan lembaran, panjang tekukan, dan bukaan V-die, lalu memberikan referensi kapasitas mesin, radius dalam, dan springback.',
+        ],
+        [
+          'Bagaimana tonase bending press brake diperkirakan?',
+          'Kalkulator menggabungkan ketebalan lembaran, panjang tekukan, faktor material, dan bukaan V-die. Hasilnya adalah estimasi teknik untuk air bending dan perlu diverifikasi terhadap tooling serta kondisi produksi.',
+        ],
+        [
+          'Apakah hasil kalkulator sama dengan kapasitas mesin yang harus dipilih?',
+          'Tidak. Kapasitas nominal mesin harus menyertakan margin praktis untuk produksi kontinu, variasi material, kondisi tooling, dan beban terkonsentrasi.',
+        ],
+      ],
       relatedEngineeringToolsTitle: 'Alat teknik terkait',
       relatedTools: {
         pressBrakeCalculator: 'Kalkulator press brake',
@@ -3960,6 +4066,94 @@ linear-gradient(
           >
             {t.engineeringOverviewText}
           </p>
+        </section>
+
+        <section
+          aria-labelledby='press-brake-calculator-faq'
+          style={{
+            marginTop: '16px',
+            padding: isMobile ? '18px' : '20px 22px',
+            border: '1px solid rgba(59,130,246,0.24)',
+            borderRadius: '24px',
+            background:
+              isExportingPDF
+                ? '#f8fbff'
+                : 'linear-gradient(145deg,rgba(239,246,255,0.92),rgba(191,219,254,0.68))',
+            boxShadow:
+              isExportingPDF
+                ? '0 8px 18px rgba(15,23,42,0.08)'
+                : '0 14px 38px rgba(15,23,42,0.18), inset 0 1px 0 rgba(255,255,255,0.72)',
+            backdropFilter:
+              isExportingPDF
+                ? 'none'
+                : 'blur(18px)',
+          }}
+        >
+          <h2
+            id='press-brake-calculator-faq'
+            style={{
+              margin: '0 0 14px',
+              color: '#1e3a8a',
+              fontSize: isMobile ? '19px' : '21px',
+              lineHeight: 1.28,
+              fontWeight: 850,
+            }}
+          >
+            {t.faqTitle}
+          </h2>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile
+                ? '1fr'
+                : 'repeat(3, minmax(0, 1fr))',
+              gap: '12px',
+            }}
+          >
+            {t.faq.map(([question, answer]) => (
+              <article
+                key={question}
+                style={{
+                  padding: '18px',
+                  border: '1px solid rgba(59,130,246,0.22)',
+                  borderRadius: '18px',
+                  background:
+                    isExportingPDF
+                      ? '#ffffff'
+                      : 'linear-gradient(145deg,rgba(255,255,255,0.84),rgba(219,234,254,0.64))',
+                  boxShadow:
+                    isExportingPDF
+                      ? '0 5px 12px rgba(15,23,42,0.06)'
+                      : '0 10px 26px rgba(30,64,175,0.14)',
+                }}
+              >
+                <h3
+                  style={{
+                    margin: '0 0 8px',
+                    color: '#1e3a8a',
+                    fontSize: isMobile ? '15px' : '16px',
+                    lineHeight: 1.38,
+                    fontWeight: 850,
+                  }}
+                >
+                  {question}
+                </h3>
+
+                <p
+                  style={{
+                    margin: 0,
+                    color: '#334155',
+                    fontSize: '14px',
+                    lineHeight: 1.68,
+                    fontWeight: 650,
+                  }}
+                >
+                  {answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section

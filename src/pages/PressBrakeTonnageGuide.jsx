@@ -12,13 +12,13 @@ const routePath = '/engineering-tools/press-brake-tonnage-guide'
 
 const englishContent = {
   eyebrow: 'Engineering Guide',
-  title: 'Press Brake Tonnage Guide',
+  title: 'Press Brake Tonnage Calculator Guide',
   subtitle:
-    'A practical reference for estimating air-bending force and selecting machine capacity for stable production.',
-  introTitle: 'Introduction',
+    'A practical guide to using a press brake tonnage calculator for estimating air-bending force and selecting machine capacity for stable production.',
+  introTitle: 'How a Press Brake Tonnage Calculator Works',
   intro:
     'Press brake tonnage is the force required to form a bend over a specified length. It is influenced by the sheet material, thickness, bend length and V-die opening. A calculated value is a selection reference: actual production also depends on tensile variation, tooling condition, punch radius, grain direction, deflection compensation and the intended duty cycle.',
-  formulaTitle: 'Tonnage Formula',
+  formulaTitle: 'Press Brake Tonnage Calculation Formula',
   formulaLabel: 'Air-bending calculation basis',
   formula:
     'Required tonnage = (calibration factor x thickness² x bend length x material factor) / V-opening / 20',
@@ -49,7 +49,7 @@ const englishContent = {
   recommendationTitle: 'Engineering Recommendation',
   recommendationText:
     'For continuous production, avoid long-term operation close to maximum tonnage. Increasing the V-die opening or selecting a larger machine can improve long-term machine stability when part geometry permits.',
-  mistakesTitle: 'Common Tonnage Calculation Mistakes',
+  mistakesTitle: 'Common Mistakes When Using a Press Brake Tonnage Calculator',
   mistakes: [
     'Selecting a machine only by the calculated tonnage value, without considering continuous production load ratio.',
     'Using the wrong material factor, especially when comparing mild steel, stainless steel, aluminum, and brass.',
@@ -77,8 +77,8 @@ const englishContent = {
   faqTitle: 'Frequently Asked Questions',
   faq: [
     [
-      'What does press brake tonnage mean?',
-      'It is the total forming force required along the programmed bend length under the chosen material and tooling conditions.',
+      'What does a press brake tonnage calculator calculate?',
+      'It estimates the required air-bending force from the selected material, sheet thickness, bend length and V-die opening.',
     ],
     [
       'Why is a larger V-opening sometimes used?',
@@ -108,11 +108,11 @@ const englishContent = {
 const localizedContent = {
   zh: {
     eyebrow: '工程指南',
-    title: '折弯机吨位指南',
-    subtitle: '用于估算空气折弯力并为稳定生产选择设备能力的实用参考。',
-    introTitle: '简介',
+    title: '折弯机吨位计算器指南',
+    subtitle: '用于估算空气折弯力、理解吨位计算并为稳定生产选择设备能力的实用参考。',
+    introTitle: '折弯机吨位计算器如何工作',
     intro: '折弯机吨位是沿指定折弯长度完成成形所需的总力，其主要受材料、板厚、折弯长度和 V 槽开口影响。计算结果用于设备选型参考；实际生产还应考虑材料抗拉强度波动、模具状态、冲头半径、轧制方向、挠度补偿以及生产负载周期。',
-    formulaTitle: '吨位公式',
+    formulaTitle: '折弯机吨位计算公式',
     formulaLabel: '空气折弯计算基础',
     formula: '所需吨位 =（校准系数 x 板厚² x 折弯长度 x 材料系数）/ V 槽开口 / 20',
     formulaNote: '计算器中板厚、折弯长度和 V 槽开口均以毫米输入。低碳钢为材料基准，其它材料按相对系数修正。本估算适用于空气折弯，不适用于压底或压印成形。',
@@ -141,7 +141,7 @@ const localizedContent = {
     recommendationTitle: '工程建议',
     recommendationText:
       '对于持续生产，应避免长期接近最大吨位运行。在零件几何允许的条件下，增大 V 槽开口或选择更大吨位设备，有助于提高机器长期运行稳定性。',
-    mistakesTitle: '常见吨位计算错误',
+    mistakesTitle: '常见折弯机吨位计算器使用错误',
     mistakes: [
       '只按计算吨位选择设备，而没有考虑连续生产负载比例。',
       '使用错误的材料系数，尤其是在比较低碳钢、不锈钢、铝和黄铜时。',
@@ -166,7 +166,7 @@ const localizedContent = {
     ],
     faqTitle: '常见问题',
     faq: [
-      ['折弯机吨位是什么？', '它是选定材料和模具条件下，沿设定折弯长度完成成形所需的总力。'],
+      ['折弯机吨位计算器计算什么？', '它会根据所选材料、板厚、折弯长度和 V 槽开口估算空气折弯所需的成形力。'],
       ['为什么有时应选择更大的 V 槽？', '更大的 V 槽能够降低所需吨位和模具载荷，但通常会产生更大的自然内圆角，并可能影响法兰要求。'],
       ['为什么不能将计算吨位直接等同于额定能力？', '持续生产通常不宜长期运行在最大额定吨位附近，适当余量有助于降低机架、液压系统和模具的持续载荷。'],
       ['为什么 V 槽开口越小，折弯吨位越高？', '较小的 V 槽开口会减少板材成形空间，因此需要更高折弯力。它可能有助于获得较小内半径，但也会增加模具负载、设备负载以及超过安全能力的风险。'],
@@ -181,13 +181,13 @@ const localizedContent = {
   },
   ru: {
     eyebrow: 'Инженерное руководство',
-    title: 'Руководство по тоннажу листогибочного пресса',
+    title: 'Руководство по калькулятору тоннажа листогибочного пресса',
     subtitle:
-      'Практический справочник по расчету усилия воздушной гибки и выбору мощности станка для стабильного производства.',
-    introTitle: 'Введение',
+      'Практический справочник по расчету усилия воздушной гибки, работе калькулятора тоннажа и выбору мощности станка для стабильного производства.',
+    introTitle: 'Как работает калькулятор тоннажа листогибочного пресса',
     intro:
       'Тоннаж листогибочного пресса - это суммарное усилие, необходимое для формирования гиба заданной длины. На него влияют материал листа, толщина, длина гиба и раскрытие V-матрицы. Расчетное значение служит ориентиром для выбора оборудования; в производстве также учитывают разброс прочности, состояние инструмента, радиус пуансона, направление проката, компенсацию прогиба и режим загрузки.',
-    formulaTitle: 'Формула тоннажа',
+    formulaTitle: 'Формула расчета тоннажа листогибочного пресса',
     formulaLabel: 'Основа расчета воздушной гибки',
     formula: 'Требуемый тоннаж = (калибровочный коэффициент x толщина² x длина гиба x коэффициент материала) / раскрытие V / 20',
     formulaNote:
@@ -217,7 +217,7 @@ const localizedContent = {
     recommendationTitle: 'Инженерная рекомендация',
     recommendationText:
       'При непрерывном производстве следует избегать длительной работы вблизи максимального тоннажа. Если геометрия детали допускает, увеличение раскрытия V-матрицы или выбор более мощного станка повышают долговременную стабильность оборудования.',
-    mistakesTitle: 'Типичные ошибки при расчете тоннажа',
+    mistakesTitle: 'Типичные ошибки при использовании калькулятора тоннажа',
     mistakes: [
       'Выбор станка только по расчетному тоннажу без учета коэффициента нагрузки при непрерывном производстве.',
       'Использование неправильного коэффициента материала, особенно при сравнении низкоуглеродистой стали, нержавеющей стали, алюминия и латуни.',
@@ -244,7 +244,7 @@ const localizedContent = {
     ],
     faqTitle: 'Частые вопросы',
     faq: [
-      ['Что означает тоннаж листогибочного пресса?', 'Это полное формовочное усилие по заданной длине гиба для выбранных материала и инструмента.'],
+      ['Что рассчитывает калькулятор тоннажа листогибочного пресса?', 'Он оценивает требуемое усилие воздушной гибки по выбранному материалу, толщине листа, длине гиба и раскрытию V-матрицы.'],
       ['Почему иногда выбирают большее раскрытие V?', 'Большее раскрытие снижает требуемый тоннаж и нагрузку на инструмент, но обычно увеличивает естественный внутренний радиус и может влиять на полку детали.'],
       ['Почему расчетное усилие не приравнивают к номиналу станка?', 'При серийной работе не рекомендуется постоянно использовать максимальный номинал; запас уменьшает длительную нагрузку на раму, гидравлику и инструмент.'],
       ['Почему тоннаж листогибочного пресса увеличивается при меньшем раскрытии V?', 'Меньшее раскрытие V оставляет листу меньше пространства для формования и требует большего усилия гибки. Это может помочь получить меньший внутренний радиус, но также повышает нагрузку на инструмент, станок и риск превышения безопасной мощности.'],
@@ -259,13 +259,13 @@ const localizedContent = {
   },
   es: {
     eyebrow: 'Guía de ingeniería',
-    title: 'Guía de tonelaje para plegadoras',
+    title: 'Guía de calculadora de tonelaje para plegadoras',
     subtitle:
-      'Referencia práctica para estimar la fuerza de plegado al aire y seleccionar capacidad de máquina para producción estable.',
-    introTitle: 'Introducción',
+      'Referencia práctica para estimar la fuerza de plegado al aire, entender el cálculo de tonelaje y seleccionar capacidad de máquina para producción estable.',
+    introTitle: 'Cómo funciona una calculadora de tonelaje para plegadoras',
     intro:
       'El tonelaje de una plegadora es la fuerza total necesaria para formar un pliegue de una longitud determinada. Depende del material, el espesor, la longitud de plegado y la abertura de la matriz V. El valor calculado orienta la selección; en producción también importan la variación de resistencia, el estado del utillaje, el radio del punzón, la dirección de laminación, la compensación de deflexión y el ciclo de trabajo.',
-    formulaTitle: 'Fórmula de tonelaje',
+    formulaTitle: 'Fórmula de cálculo de tonelaje para plegadoras',
     formulaLabel: 'Base de cálculo para plegado al aire',
     formula: 'Tonelaje requerido = (factor de calibración x espesor² x longitud de plegado x factor de material) / abertura V / 20',
     formulaNote:
@@ -295,7 +295,7 @@ const localizedContent = {
     recommendationTitle: 'Recomendación de ingeniería',
     recommendationText:
       'En producción continua, evite trabajar durante largos periodos cerca del tonelaje máximo. Si la geometría de la pieza lo permite, aumentar la abertura de la matriz V o seleccionar una máquina mayor puede mejorar la estabilidad a largo plazo.',
-    mistakesTitle: 'Errores comunes en el cálculo de tonelaje',
+    mistakesTitle: 'Errores comunes al usar una calculadora de tonelaje',
     mistakes: [
       'Seleccionar una máquina solo por el tonelaje calculado, sin considerar la relación de carga en producción continua.',
       'Usar un factor de material incorrecto, especialmente al comparar acero dulce, acero inoxidable, aluminio y latón.',
@@ -322,7 +322,7 @@ const localizedContent = {
     ],
     faqTitle: 'Preguntas frecuentes',
     faq: [
-      ['¿Qué significa el tonelaje de una plegadora?', 'Es la fuerza total de conformado requerida a lo largo de la longitud programada con el material y el utillaje seleccionados.'],
+      ['¿Qué calcula una calculadora de tonelaje para plegadoras?', 'Estima la fuerza de plegado al aire necesaria a partir del material seleccionado, el espesor de chapa, la longitud de plegado y la abertura de la matriz V.'],
       ['¿Por qué se utiliza a veces una abertura V mayor?', 'Una abertura mayor reduce el tonelaje y la carga del utillaje, pero normalmente aumenta el radio interior natural y puede influir en la pestaña.'],
       ['¿Por qué la fuerza calculada no se iguala a la capacidad nominal?', 'La producción continua no debería trabajar habitualmente al máximo nominal; el margen reduce la carga sostenida sobre bastidor, hidráulica y utillaje.'],
       ['¿Por qué aumenta el tonelaje de la plegadora cuando la abertura V es menor?', 'Una abertura V menor deja menos espacio de conformado a la chapa y exige mayor fuerza de plegado. Puede ayudar a conseguir un radio interior menor, pero también aumenta la carga del utillaje, la carga de la máquina y el riesgo de superar la capacidad segura.'],
@@ -337,13 +337,13 @@ const localizedContent = {
   },
   tr: {
     eyebrow: 'Mühendislik Kılavuzu',
-    title: 'Abkant Pres Tonaj Kılavuzu',
+    title: 'Abkant Pres Tonaj Hesaplayıcı Kılavuzu',
     subtitle:
-      'Havada bükme kuvvetini tahmin etmek ve kararlı üretim için makine kapasitesi seçmek üzere pratik referans.',
-    introTitle: 'Giriş',
+      'Havada bükme kuvvetini tahmin etmek, tonaj hesabını anlamak ve kararlı üretim için makine kapasitesi seçmek üzere pratik referans.',
+    introTitle: 'Abkant Pres Tonaj Hesaplayıcı Nasıl Çalışır',
     intro:
       'Abkant pres tonajı, belirli bir büküm uzunluğu boyunca şekillendirme için gereken toplam kuvvettir. Sac malzemesi, kalınlık, büküm uzunluğu ve V kalıp açıklığı bu değeri etkiler. Hesaplanan değer seçim referansıdır; gerçek üretimde çekme dayanımı değişimi, takım durumu, zımba radyüsü, hadde yönü, sehim telafisi ve çalışma çevrimi de dikkate alınmalıdır.',
-    formulaTitle: 'Tonaj Formülü',
+    formulaTitle: 'Abkant Pres Tonaj Hesaplama Formülü',
     formulaLabel: 'Havada bükme hesap temeli',
     formula: 'Gerekli tonaj = (kalibrasyon katsayısı x kalınlık² x büküm uzunluğu x malzeme katsayısı) / V açıklığı / 20',
     formulaNote:
@@ -373,7 +373,7 @@ const localizedContent = {
     recommendationTitle: 'Mühendislik Önerisi',
     recommendationText:
       'Sürekli üretimde maksimum tonaja yakın uzun süreli çalışmadan kaçınılmalıdır. Parça geometrisi izin verdiğinde V kalıp açıklığını artırmak veya daha büyük bir makine seçmek, uzun dönem makine kararlılığını iyileştirebilir.',
-    mistakesTitle: 'Yaygın Tonaj Hesaplama Hataları',
+    mistakesTitle: 'Yaygın Tonaj Hesaplayıcı Kullanım Hataları',
     mistakes: [
       'Makineyi yalnızca hesaplanan tonaj değerine göre seçmek ve sürekli üretim yük oranını dikkate almamak.',
       'Özellikle yumuşak çelik, paslanmaz çelik, alüminyum ve pirinci karşılaştırırken yanlış malzeme katsayısı kullanmak.',
@@ -400,7 +400,7 @@ const localizedContent = {
     ],
     faqTitle: 'Sık Sorulan Sorular',
     faq: [
-      ['Abkant pres tonajı ne anlama gelir?', 'Seçilen malzeme ve takım koşullarında programlanan büküm boyu boyunca gereken toplam şekillendirme kuvvetidir.'],
+      ['Abkant pres tonaj hesaplayıcı neyi hesaplar?', 'Seçilen malzeme, sac kalınlığı, büküm uzunluğu ve V kalıp açıklığına göre gerekli havada bükme kuvvetini tahmin eder.'],
       ['Neden bazen daha büyük V açıklığı kullanılır?', 'Daha büyük açıklık gerekli tonajı ve takım yükünü düşürür; ancak genellikle doğal iç radyüsü büyütür ve flanş gereksinimini etkileyebilir.'],
       ['Hesaplanan kuvvet neden nominal kapasiteye doğrudan eşitlenmez?', 'Sürekli üretim normalde azami nominalde yürütülmemelidir; pay, gövde, hidrolik ve takım üzerindeki sürekli yükü azaltır.'],
       ['V açıklığı küçüldüğünde abkant pres tonajı neden artar?', 'Daha küçük V açıklığı saca daha az şekillendirme alanı bırakır ve daha yüksek bükme kuvveti gerektirir. Daha küçük iç radyüs elde etmeye yardımcı olabilir, ancak takım yükünü, makine yükünü ve güvenli kapasiteyi aşma riskini de artırır.'],
@@ -415,13 +415,13 @@ const localizedContent = {
   },
   id: {
     eyebrow: 'Panduan Teknik',
-    title: 'Panduan Tonase Press Brake',
+    title: 'Panduan Kalkulator Tonase Press Brake',
     subtitle:
-      'Referensi praktis untuk memperkirakan gaya air bending dan memilih kapasitas mesin bagi produksi yang stabil.',
-    introTitle: 'Pendahuluan',
+      'Referensi praktis untuk memperkirakan gaya air bending, memahami perhitungan tonase, dan memilih kapasitas mesin bagi produksi yang stabil.',
+    introTitle: 'Cara Kerja Kalkulator Tonase Press Brake',
     intro:
       'Tonase press brake adalah gaya total yang diperlukan untuk membentuk tekukan pada panjang tertentu. Nilainya dipengaruhi material, ketebalan, panjang bending, dan bukaan V-die. Hasil perhitungan merupakan acuan pemilihan; produksi nyata juga perlu mempertimbangkan variasi kekuatan tarik, kondisi tooling, radius punch, arah serat, kompensasi defleksi, dan siklus beban.',
-    formulaTitle: 'Formula Tonase',
+    formulaTitle: 'Formula Perhitungan Tonase Press Brake',
     formulaLabel: 'Dasar perhitungan air bending',
     formula: 'Tonase diperlukan = (faktor kalibrasi x ketebalan² x panjang bending x faktor material) / bukaan V / 20',
     formulaNote:
@@ -451,7 +451,7 @@ const localizedContent = {
     recommendationTitle: 'Rekomendasi Teknik',
     recommendationText:
       'Untuk produksi kontinu, hindari operasi jangka panjang mendekati tonase maksimum. Jika geometri komponen memungkinkan, memperbesar bukaan V-die atau memilih mesin yang lebih besar dapat meningkatkan stabilitas mesin dalam jangka panjang.',
-    mistakesTitle: 'Kesalahan Umum Perhitungan Tonase',
+    mistakesTitle: 'Kesalahan Umum Penggunaan Kalkulator Tonase',
     mistakes: [
       'Memilih mesin hanya berdasarkan nilai tonase terhitung tanpa mempertimbangkan rasio beban produksi kontinu.',
       'Menggunakan faktor material yang salah, terutama saat membandingkan mild steel, stainless steel, aluminium, dan kuningan.',
@@ -478,7 +478,7 @@ const localizedContent = {
     ],
     faqTitle: 'Pertanyaan Umum',
     faq: [
-      ['Apa arti tonase press brake?', 'Tonase adalah total gaya pembentukan sepanjang panjang bending yang diprogram untuk material dan tooling yang dipilih.'],
+      ['Apa yang dihitung oleh kalkulator tonase press brake?', 'Kalkulator ini memperkirakan gaya air bending yang diperlukan berdasarkan material, ketebalan lembaran, panjang bending, dan bukaan V-die yang dipilih.'],
       ['Mengapa bukaan V yang lebih besar kadang digunakan?', 'Bukaan lebih besar menurunkan tonase dan beban tooling, tetapi biasanya memperbesar radius dalam alami dan dapat memengaruhi flange.'],
       ['Mengapa gaya terhitung tidak langsung disamakan dengan rating mesin?', 'Produksi kontinu sebaiknya tidak berjalan pada rating maksimum secara terus-menerus; margin mengurangi beban berkelanjutan pada rangka, hidrolik, dan tooling.'],
       ['Mengapa tonase press brake meningkat saat bukaan V menjadi lebih kecil?', 'Bukaan V yang lebih kecil memberi ruang pembentukan lebih sedikit pada lembaran dan membutuhkan gaya bending lebih tinggi. Hal ini dapat membantu mencapai radius dalam yang lebih kecil, tetapi juga meningkatkan beban tooling, beban mesin, dan risiko melampaui kapasitas aman.'],
@@ -581,7 +581,7 @@ const relatedTools = [
 ]
 
 const seoDescription =
-  'Explore the ZYCO press brake tonnage guide structure for bending force, load factors, recommended machine capacity, tonnage charts and practical calculation references.'
+  'Use this press brake tonnage calculator guide to estimate bending force from material thickness, bend length and V-die opening, with machine-capacity guidance, formula notes and production examples.'
 
 const createPageStructuredData = () => ({
   '@type': 'WebPage',
@@ -634,10 +634,10 @@ export default function PressBrakeTonnageGuide({
 }) {
   useEffect(() => {
     setPageSEO({
-      title: 'Press Brake Tonnage Guide | ZYCO Engineering Hub',
+      title: 'Press Brake Tonnage Calculator Guide | ZYCO',
       description: seoDescription,
       keywords:
-        'press brake tonnage guide, press brake capacity, bending force formula, press brake tonnage chart, press brake machine selection',
+        'press brake tonnage calculator, brake press tonnage calculator, press brake tonnage calculation, press brake tonnage guide, press brake capacity, bending force formula, press brake tonnage chart, press brake machine selection',
       canonicalPath: routePath,
     })
 

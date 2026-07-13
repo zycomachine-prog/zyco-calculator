@@ -178,13 +178,14 @@ export default function BendAllowanceCalculator({
 
   useEffect(() => {
     const englishPage = getEngineeringText('en').pages.bend
+    const seoDescription =
+      'Calculate bend allowance, bend deduction and flat pattern length from thickness, inside radius, bend angle and K-factor, with bend allowance chart guidance.'
 
     setPageSEO({
-      title: 'Bend Allowance Calculator for Sheet Metal Flat Pattern | ZYCO',
-      description:
-        'Calculate bend allowance, outside setback and bend deduction for sheet metal bending using thickness, inside radius, bend angle and K-factor. Useful for flat pattern and development reference.',
+      title: 'Bend Allowance Calculator & Chart for Flat Patterns | ZYCO',
+      description: seoDescription,
       keywords:
-        'bend allowance calculator, bend deduction calculator, K factor calculator, flat pattern calculator, sheet metal development, outside setback',
+        'bend allowance calculator, bend allowance chart, bending allowance chart, bend allowance, bend deduction calculator, K factor calculator, flat pattern calculator, sheet metal development, outside setback',
       canonicalPath: '/engineering-tools/bend-allowance-calculator',
     })
 
@@ -195,8 +196,7 @@ export default function BendAllowanceCalculator({
         '@graph': [
           createWebApplicationStructuredData({
             name: 'Bend Allowance Calculator',
-            description:
-              'Calculate bend allowance, outside setback and bend deduction for sheet metal bending using thickness, inside radius, bend angle and K-factor. Useful for flat pattern and development reference.',
+            description: seoDescription,
             path: '/engineering-tools/bend-allowance-calculator',
           }),
           createFAQPageStructuredData(englishPage.faq),

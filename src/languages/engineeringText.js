@@ -733,7 +733,7 @@ const pages = {
     bend: {
       title: 'Bend Allowance Calculator',
       subtitle:
-        'Calculate sheet metal bend allowance, bend deduction and flat pattern reference values',
+        'Calculate bend allowance, bend deduction and flat pattern length with formula and chart guidance.',
       measurementMethodTitle: 'A / B Measurement Method',
       measurementStraightTitle: 'A and B measured to bend tangent lines',
       measurementStraightFormula: 'L = A + B + BA',
@@ -782,7 +782,7 @@ const pages = {
       overview:
         'Bend allowance is used to estimate the developed length needed for a sheet metal flat pattern before press brake forming. It is affected by material thickness, inside bend radius, bend angle, K-Factor, material ductility and the bending method. In practical air bending, the selected V-opening, tooling geometry and material condition can shift the neutral axis and change the final flat pattern reference value.',
       overview2:
-        'In air bending, the inside radius is mainly determined by the V-opening and material properties. Bend angle can slightly influence the formed radius, so this calculator applies a conservative angle adjustment for engineering reference.',
+        'In air bending, the inside radius is mainly determined by the V-opening and material properties. Bend angle can slightly influence the formed radius, so this calculator applies a conservative angle adjustment for engineering reference. Bend allowance charts are useful starting references, but a general chart cannot fully account for the selected thickness, inside radius, bend angle and K-Factor. This calculator provides a condition-specific engineering estimate, while production flat patterns should still be verified by trial bending and measurement.',
       notes: [
         'Use A + B + BA when A and B are straight flange lengths measured from the bend tangent points to the edges.',
         'Use A + B - BD when A and B are outside dimensions or outside flange dimensions.',
@@ -808,6 +808,10 @@ const pages = {
         [
           'How is bend deduction different from bend allowance?',
           'Bend allowance represents the developed arc length through the bend, while bend deduction is used to subtract from flange dimensions to calculate flat length.',
+        ],
+        [
+          'What is the difference between a bend allowance chart and a bend allowance calculator?',
+          'A bend allowance chart provides general reference values, while a calculator uses the selected thickness, inside radius, bend angle and K-factor to produce a condition-specific estimate. Production flat patterns should still be verified by trial bending and measurement.',
         ],
       ],
     },
@@ -1034,7 +1038,7 @@ const localizedOverrides = {
     },
     bend: {
       title: '折弯展开计算器',
-      subtitle: '计算钣金折弯展开量、折弯扣除和展开参考值',
+      subtitle: '结合公式和图表参考计算折弯展开量、折弯扣除和展开长度。',
       measurementMethodTitle: 'A / B 测量方式',
       measurementStraightTitle: 'A 和 B 测量到折弯切线',
       measurementStraightFormula: 'L = A + B + BA',
@@ -1081,7 +1085,7 @@ const localizedOverrides = {
       overview:
         '折弯展开量用于估算折弯成形前钣金展开所需的展开长度。它受材料厚度、内半径、折弯角度、K 因子、材料延展性和折弯方式影响。在实际空气折弯中，所选 V 开口、模具几何和材料状态会改变中性层位置，从而改变最终展开参考值。',
       overview2:
-        '空气折弯中，内半径主要由 V 开口和材料属性决定。折弯角度会轻微影响成形半径，因此本计算器采用保守角度修正作为工程参考。',
+        '空气折弯中，内半径主要由 V 开口和材料属性决定。折弯角度会轻微影响成形半径，因此本计算器采用保守角度修正作为工程参考。折弯展开图表适合作为初始参考，但通用图表无法完整覆盖所选板厚、内半径、折弯角度和 K 因子。本计算器提供针对当前条件的工程估算，量产展开仍应通过试弯和测量确认。',
       notes: [
         '当 A 和 B 是从折弯切线点到板边的直边长度时，使用 A + B + BA。',
         '当 A 和 B 是外形尺寸或外侧法兰尺寸时，使用 A + B - BD。',
@@ -1107,6 +1111,10 @@ const localizedOverrides = {
         [
           '折弯扣除和折弯展开量有什么区别？',
           '折弯展开量表示折弯区域展开弧长，折弯扣除则用于从法兰尺寸中扣减，以计算展开长度。',
+        ],
+        [
+          '折弯展开图表和折弯展开计算器有什么区别？',
+          '折弯展开图表提供通用参考值，而计算器会根据所选板厚、内半径、折弯角度和 K 因子生成更贴合当前条件的估算。量产展开尺寸仍应通过试弯和测量验证。',
         ],
       ],
     },
@@ -1282,7 +1290,7 @@ const localizedOverrides = {
     bend: {
       title: 'Калькулятор припуска на гиб',
       subtitle:
-        'Расчет припуска на гиб, вычета гиба и справочных значений развертки',
+        'Расчет припуска на гиб, вычета гиба и длины развертки с формулами и табличными ориентирами.',
       measurementMethodTitle: 'Метод измерения A / B',
       measurementStraightTitle: 'A и B измеряются до касательных линий гиба',
       measurementStraightFormula: 'L = A + B + BA',
@@ -1329,7 +1337,7 @@ const localizedOverrides = {
       overview:
         'Припуск на гиб используется для оценки развернутой длины листовой детали до формовки на листогибе. На него влияют толщина, внутренний радиус, угол гибки, K-фактор, пластичность материала и метод гибки.',
       overview2:
-        'При воздушной гибке внутренний радиус в основном задается раскрытием V-матрицы и свойствами материала. Угол гибки может немного менять сформированный радиус, поэтому применяется консервативная поправка.',
+        'При воздушной гибке внутренний радиус в основном задается раскрытием V-матрицы и свойствами материала. Угол гибки может немного менять сформированный радиус, поэтому применяется консервативная поправка. Таблицы припуска на гиб полезны как начальный ориентир, но общая таблица не может полностью учесть выбранную толщину, внутренний радиус, угол гибки и K-фактор. Калькулятор дает инженерную оценку для конкретных условий, а производственные развертки все равно следует проверять пробной гибкой и измерением.',
       notes: [
         'Используйте A + B + BA, когда A и B — прямые длины от касательных гиба до кромок.',
         'Используйте A + B - BD, когда A и B — наружные размеры или наружные размеры полок.',
@@ -1344,6 +1352,7 @@ const localizedOverrides = {
         ['Что такое K-фактор?', 'K-фактор описывает положение нейтральной оси относительно толщины листа и зависит от материала, оснастки, радиуса и метода гибки.'],
         ['Фиксирован ли K-фактор для одного материала?', 'Нет. Это практическое справочное значение, которое меняется с радиусом, V-матрицей, состоянием материала и методом гибки.'],
         ['Чем вычет гиба отличается от припуска?', 'Припуск описывает развернутую дугу гиба, а вычет гиба вычитается из размеров полок для расчета развертки.'],
+        ['Чем таблица припуска на гиб отличается от калькулятора припуска?', 'Таблица припуска на гиб дает общие справочные значения, а калькулятор использует выбранную толщину, внутренний радиус, угол гибки и K-фактор для оценки под конкретные условия. Производственные развертки все равно следует проверять пробной гибкой и измерением.'],
       ],
     },
   },
@@ -1520,7 +1529,7 @@ const localizedOverrides = {
     bend: {
       title: 'Calculadora de desarrollo de plegado',
       subtitle:
-        'Calcular desarrollo, deducción de plegado y valores de referencia de patrón plano',
+        'Calcule desarrollo, deducción de plegado y longitud de patrón plano con fórmulas y orientación de tabla.',
       measurementMethodTitle: 'Método de medición A / B',
       measurementStraightTitle: 'A y B se miden hasta las tangentes del pliegue',
       measurementStraightFormula: 'L = A + B + BA',
@@ -1569,7 +1578,7 @@ const localizedOverrides = {
       overview:
         'El desarrollo de plegado estima la longitud desplegada necesaria antes del conformado. Depende del espesor, radio interior, ángulo, K-Factor, ductilidad y método de plegado.',
       overview2:
-        'En plegado al aire, el radio interior depende principalmente de la abertura V y del material. El ángulo puede influir ligeramente, por lo que se aplica un ajuste conservador.',
+        'En plegado al aire, el radio interior depende principalmente de la abertura V y del material. El ángulo puede influir ligeramente, por lo que se aplica un ajuste conservador. Las tablas de desarrollo de plegado son útiles como referencia inicial, pero una tabla general no puede cubrir por completo el espesor, el radio interior, el ángulo de plegado y el K-Factor seleccionados. La calculadora ofrece una estimación técnica específica para esas condiciones, mientras que los patrones planos de producción deben verificarse con prueba de plegado y medición.',
       notes: [
         'Use A + B + BA cuando A y B sean longitudes rectas medidas desde las tangentes del pliegue hasta los bordes.',
         'Use A + B - BD cuando A y B sean dimensiones exteriores o dimensiones exteriores de pestaña.',
@@ -1584,6 +1593,7 @@ const localizedOverrides = {
         ['¿Qué es K-Factor?', 'Describe la posición de la fibra neutra respecto al espesor y cambia con material, utillaje, radio y método.'],
         ['¿K-Factor es fijo para un material?', 'No. Es un valor práctico que cambia con radio, abertura V, condición del material y método.'],
         ['¿Cómo difiere la deducción del desarrollo?', 'El desarrollo es la longitud de arco; la deducción se resta de las pestañas para calcular la longitud plana.'],
+        ['¿Cuál es la diferencia entre una tabla de desarrollo de plegado y una calculadora?', 'Una tabla de desarrollo de plegado proporciona valores generales de referencia, mientras que una calculadora usa el espesor, el radio interior, el ángulo de plegado y el K-Factor seleccionados para generar una estimación específica. Los patrones planos de producción deben verificarse con prueba de plegado y medición.'],
       ],
     },
   },
@@ -1759,7 +1769,7 @@ const localizedOverrides = {
     bend: {
       title: 'Büküm payı hesaplayıcı',
       subtitle:
-        'Sac büküm payı, büküm düşümü ve açınım referans değerlerini hesapla',
+        'Formül ve tablo rehberiyle büküm payını, büküm düşümünü ve açınım uzunluğunu hesaplayın.',
       measurementMethodTitle: 'A / B ölçüm yöntemi',
       measurementStraightTitle: 'A ve B büküm teğet çizgilerine kadar ölçülür',
       measurementStraightFormula: 'L = A + B + BA',
@@ -1806,7 +1816,7 @@ const localizedOverrides = {
       overview:
         'Büküm payı, abkant şekillendirme öncesinde sac açınımı için gereken geliştirilmiş uzunluğu tahmin eder. Kalınlık, iç radyüs, büküm açısı, K-Faktörü, süneklik ve bükme yöntemi etkiler.',
       overview2:
-        'Havada bükmede iç radyüs esas olarak V açıklığı ve malzeme özellikleriyle belirlenir. Büküm açısı radyüsü az miktarda etkileyebilir, bu nedenle muhafazakar bir açı düzeltmesi uygulanır.',
+        'Havada bükmede iç radyüs esas olarak V açıklığı ve malzeme özellikleriyle belirlenir. Büküm açısı radyüsü az miktarda etkileyebilir, bu nedenle muhafazakar bir açı düzeltmesi uygulanır. Büküm payı tabloları başlangıç referansı olarak yararlıdır, ancak genel bir tablo seçilen kalınlığı, iç radyüsü, büküm açısını ve K-Faktörünü tam olarak kapsayamaz. Hesaplayıcı koşula özel bir mühendislik tahmini verir; üretim açınımları yine de deneme bükümü ve ölçümle doğrulanmalıdır.',
       notes: [
         'A ve B büküm teğetlerinden kenarlara ölçülen düz flanş uzunluklarıysa A + B + BA kullanın.',
         'A ve B dış ölçüler veya dış flanş ölçüleriyse A + B - BD kullanın.',
@@ -1821,6 +1831,7 @@ const localizedOverrides = {
         ['K-Faktörü nedir?', 'Nötr eksenin sac kalınlığı içindeki konumunu açıklar; malzeme, takım, radyüs ve yönteme göre değişir.'],
         ['K-Faktörü bir malzeme için sabit midir?', 'Hayır. İç radyüs, V açıklığı, malzeme durumu ve yönteme göre değişen pratik bir referanstır.'],
         ['Büküm düşümü büküm payından nasıl farklıdır?', 'Büküm payı yay uzunluğunu temsil eder; büküm düşümü düz boyu hesaplamak için flanş ölçülerinden çıkarılır.'],
+        ['Büküm payı tablosu ile büküm payı hesaplayıcı arasındaki fark nedir?', 'Büküm payı tablosu genel referans değerleri verir; hesaplayıcı ise seçilen kalınlık, iç radyüs, büküm açısı ve K-Faktörünü kullanarak koşula özel bir tahmin üretir. Üretim açınımları yine de deneme bükümü ve ölçümle doğrulanmalıdır.'],
       ],
     },
   },
@@ -1996,7 +2007,7 @@ const localizedOverrides = {
     bend: {
       title: 'Kalkulator bend allowance',
       subtitle:
-        'Hitung bend allowance, bend deduction, dan nilai referensi flat pattern',
+        'Hitung bend allowance, bend deduction, dan panjang flat pattern dengan panduan formula dan chart.',
       measurementMethodTitle: 'Metode pengukuran A / B',
       measurementStraightTitle: 'A dan B diukur sampai garis singgung tekuk',
       measurementStraightFormula: 'L = A + B + BA',
@@ -2045,7 +2056,7 @@ const localizedOverrides = {
       overview:
         'Bend allowance digunakan untuk memperkirakan panjang pengembangan yang diperlukan untuk flat pattern sebelum forming press brake. Nilainya dipengaruhi ketebalan, radius dalam, sudut tekuk, K-Factor, daktilitas, dan metode bending.',
       overview2:
-        'Pada air bending, radius dalam terutama ditentukan oleh bukaan V dan properti material. Sudut tekuk dapat sedikit memengaruhi radius terbentuk, sehingga kalkulator memakai penyesuaian konservatif.',
+        'Pada air bending, radius dalam terutama ditentukan oleh bukaan V dan properti material. Sudut tekuk dapat sedikit memengaruhi radius terbentuk, sehingga kalkulator memakai penyesuaian konservatif. Chart bend allowance berguna sebagai referensi awal, tetapi chart umum tidak dapat sepenuhnya memperhitungkan ketebalan, radius dalam, sudut tekuk, dan K-Factor yang dipilih. Kalkulator memberikan estimasi teknik sesuai kondisi, sedangkan flat pattern produksi tetap harus diverifikasi melalui trial bending dan pengukuran.',
       notes: [
         'Gunakan A + B + BA jika A dan B adalah panjang flange lurus dari garis singgung tekuk ke tepi.',
         'Gunakan A + B - BD jika A dan B adalah dimensi luar atau dimensi flange luar.',
@@ -2060,6 +2071,7 @@ const localizedOverrides = {
         ['Apa itu K-Factor?', 'K-Factor menjelaskan posisi neutral axis relatif terhadap ketebalan plat dan berubah menurut material, tooling, radius, dan metode bending.'],
         ['Apakah K-Factor tetap untuk satu material?', 'Tidak. Ini nilai referensi praktis yang berubah menurut radius dalam, bukaan V, kondisi material, dan metode bending.'],
         ['Apa beda bend deduction dan bend allowance?', 'Bend allowance adalah panjang busur area tekuk, sedangkan bend deduction dikurangkan dari dimensi flange untuk menghitung panjang flat.'],
+        ['Apa perbedaan bend allowance chart dan bend allowance calculator?', 'Bend allowance chart memberikan nilai referensi umum, sedangkan kalkulator menggunakan ketebalan, radius dalam, sudut tekuk, dan K-Factor yang dipilih untuk menghasilkan estimasi sesuai kondisi. Flat pattern produksi tetap harus diverifikasi melalui trial bending dan pengukuran.'],
       ],
     },
   },
