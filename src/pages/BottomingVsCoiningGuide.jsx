@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import BottomingVsCoiningMotionDiagram from '../components/BottomingVsCoiningMotionDiagram.jsx'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
@@ -10,30 +11,6 @@ import {
 } from '../utils/seo.js'
 
 const routePath = '/engineering-tools/bottoming-vs-coining-guide'
-
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', '/engineering-tools/k-factor-guide'],
-  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', routePath],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
 
 export default function BottomingVsCoiningGuide({
   language = 'en',
@@ -230,7 +207,7 @@ export default function BottomingVsCoiningGuide({
           <section className='zyco-method-guide__panel' aria-labelledby='method-related-title'>
             <h2 className='zyco-method-guide__section-title' id='method-related-title'>{t.common.relatedEngineeringTools}</h2>
             <nav className='zyco-method-guide__tools' aria-label={t.common.relatedToolsAria}>
-              {relatedTools.map(([key, href]) => <a className='zyco-method-guide__tool' href={href} key={key}>{t.relatedTools[key]}</a>)}
+              {relatedEngineeringToolTuples.map(([key, href]) => <a className='zyco-method-guide__tool' href={href} key={key}>{t.relatedTools[key]}</a>)}
             </nav>
           </section>
         </div>

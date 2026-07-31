@@ -1,34 +1,11 @@
 import { useEffect } from 'react'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import { getSiteUrl, setPageSEO, setStructuredData } from '../utils/seo.js'
 
 const routePath = '/engineering-tools/press-brake-v-die-selection-chart'
-
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', '/engineering-tools/k-factor-guide'],
-  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
 
 const chartValues = [
   ['0.8 mm', 'V5', 'V6', 'V8', 'V10', 'V6–V8'], ['1.0 mm', 'V6', 'V8', 'V10', 'V12', 'V6–V8'],
@@ -140,6 +117,6 @@ export default function PressBrakeVDieSelectionChart({ language = 'en', setLangu
     <section className='vchart__panel'><h2>{page.guideTitle}</h2><p className='vchart__copy'>{page.guideText}</p><div className='vchart__actions'><a className='vchart__button' href='/engineering-tools/how-to-choose-press-brake-v-die-opening'>{page.guideButton}</a></div></section>
     <section className='vchart__panel'><h2>{page.faqTitle}</h2><Cards items={page.faq} /></section>
     <EngineeringCTA language={language} />
-    <section className='vchart__panel'><h2>{page.relatedTitle}</h2><nav className='vchart__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='vchart__tool' href={href} key={key}>{sharedText.relatedTools[key] || key}</a>)}</nav></section>
+    <section className='vchart__panel'><h2>{page.relatedTitle}</h2><nav className='vchart__tools' aria-label={page.relatedAria}>{relatedEngineeringToolTuples.map(([key, href]) => <a className='vchart__tool' href={href} key={key}>{sharedText.relatedTools[key] || key}</a>)}</nav></section>
   </div></main></>
 }

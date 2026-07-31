@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { engineeringTools } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   createFAQPageStructuredData,
@@ -51,93 +52,6 @@ const materials = [
     naturalInsideRadiusFactor: 0.16,
     minimumSafeInsideRadius: '0.8T\u20131T',
     recommendedInsideRadius: '1T\u20131.5T',
-  },
-]
-
-const relatedTools = [
-  {
-    key: 'pressBrakeCalculator',
-    href: '/engineering-tools/press-brake-calculator',
-  },
-  {
-    key: 'bendAllowanceCalculator',
-    href: '/engineering-tools/bend-allowance-calculator',
-  },
-  {
-    key: 'kFactorGuide',
-    href: '/engineering-tools/k-factor-guide',
-  },
-  {
-    key: 'bendDeductionGuide',
-    href: '/engineering-tools/bend-deduction-guide',
-  },
-  {
-    key: 'materialDatabase',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    key: 'springbackDatabase',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    key: 'springbackCompensationGuide',
-    href: '/engineering-tools/springback-compensation-guide',
-  },
-  {
-    key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection-tool',
-  },
-  {
-    key: 'vDieSelectionChart',
-    href: '/engineering-tools/press-brake-v-die-selection-chart',
-  },
-  {
-    key: 'insideRadiusGuide',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    key: 'airBendingGuide',
-    href: '/engineering-tools/air-bending-guide',
-  },
-  {
-    key: 'bottomingVsCoiningGuide',
-    href: '/engineering-tools/bottoming-vs-coining-guide',
-  },
-  {
-    key: 'bendSequenceGuide',
-    href: '/engineering-tools/bend-sequence-guide',
-  },
-  {
-    key: 'pressBrakeTonnageGuide',
-    href: '/engineering-tools/press-brake-tonnage-guide',
-  },
-  {
-    key: 'vDieOpeningGuide',
-    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
-  },
-  {
-    key: 'minimumFlangeLengthGuide',
-    href: '/engineering-tools/minimum-flange-length-guide',
-  },
-  {
-    key: 'toolingSelectionGuide',
-    href: '/engineering-tools/press-brake-tooling-selection-guide',
-  },
-  {
-    key: 'controllerSelectionGuide',
-    href: '/engineering-tools/press-brake-controller-selection-guide',
-  },
-  {
-    key: 'crowningGuide',
-    href: '/engineering-tools/press-brake-crowning-guide',
-  },
-  {
-    key: 'stainlessSteelBendingGuide',
-    href: '/engineering-tools/stainless-steel-bending-guide',
-  },
-  {
-    key: 'aluminumBendingGuide',
-    href: '/engineering-tools/aluminum-bending-guide',
   },
 ]
 
@@ -871,7 +785,7 @@ export default function VDieSelection({
               className='zyco-vdie__tools'
               aria-label={t.common.relatedToolsAria}
             >
-              {relatedTools.map((tool) => (
+              {engineeringTools.map((tool) => (
                 <a
                   className='zyco-vdie-card__action'
                   href={tool.href}

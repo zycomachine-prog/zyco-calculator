@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import {
+  engineeringHubTools,
+  engineeringTools,
+} from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   getSiteUrl,
@@ -8,203 +12,9 @@ import {
   setStructuredData,
 } from '../utils/seo.js'
 
-const tools = [
-  {
-    key: 'pressBrakeCalculator',
-    status: 'active',
-    href: '/engineering-tools/press-brake-calculator',
-  },
-  {
-    key: 'bendAllowanceCalculator',
-    status: 'active',
-    href: '/engineering-tools/bend-allowance-calculator',
-  },
-  {
-    key: 'kFactorGuide',
-    status: 'active',
-    href: '/engineering-tools/k-factor-guide',
-  },
-  {
-    key: 'bendDeductionGuide',
-    status: 'active',
-    href: '/engineering-tools/bend-deduction-guide',
-  },
-  {
-    key: 'materialDatabase',
-    status: 'active',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    key: 'springbackDatabase',
-    status: 'active',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    key: 'springbackCompensationGuide',
-    status: 'active',
-    href: '/engineering-tools/springback-compensation-guide',
-  },
-  {
-    key: 'vDieSelectionTool',
-    status: 'active',
-    href: '/engineering-tools/v-die-selection-tool',
-  },
-  {
-    key: 'vDieSelectionChart',
-    status: 'active',
-    href: '/engineering-tools/press-brake-v-die-selection-chart',
-  },
-  {
-    key: 'insideRadiusGuide',
-    status: 'active',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    key: 'airBendingGuide',
-    status: 'active',
-    href: '/engineering-tools/air-bending-guide',
-  },
-  {
-    key: 'bottomingVsCoiningGuide',
-    status: 'active',
-    href: '/engineering-tools/bottoming-vs-coining-guide',
-  },
-  {
-    key: 'bendSequenceGuide',
-    status: 'active',
-    href: '/engineering-tools/bend-sequence-guide',
-  },
-  {
-    key: 'pressBrakeTonnageGuide',
-    status: 'active',
-    href: '/engineering-tools/press-brake-tonnage-guide',
-  },
-  {
-    key: 'vDieOpeningGuide',
-    status: 'active',
-    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
-  },
-  {
-    key: 'minimumFlangeLengthGuide',
-    status: 'active',
-    href: '/engineering-tools/minimum-flange-length-guide',
-  },
-  {
-    key: 'toolingSelectionGuide',
-    status: 'active',
-    href: '/engineering-tools/press-brake-tooling-selection-guide',
-  },
-  {
-    key: 'controllerSelectionGuide',
-    status: 'active',
-    href: '/engineering-tools/press-brake-controller-selection-guide',
-  },
-  {
-    key: 'crowningGuide',
-    status: 'active',
-    href: '/engineering-tools/press-brake-crowning-guide',
-  },
-  {
-    key: 'stainlessSteelBendingGuide',
-    status: 'active',
-    href: '/engineering-tools/stainless-steel-bending-guide',
-  },
-  {
-    key: 'aluminumBendingGuide',
-    status: 'active',
-    href: '/engineering-tools/aluminum-bending-guide',
-  },
-]
-
-const relatedTools = [
-  {
-    key: 'pressBrakeCalculator',
-    href: '/engineering-tools/press-brake-calculator',
-  },
-  {
-    key: 'bendAllowanceCalculator',
-    href: '/engineering-tools/bend-allowance-calculator',
-  },
-  {
-    key: 'kFactorGuide',
-    href: '/engineering-tools/k-factor-guide',
-  },
-  {
-    key: 'bendDeductionGuide',
-    href: '/engineering-tools/bend-deduction-guide',
-  },
-  {
-    key: 'materialDatabase',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    key: 'springbackDatabase',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    key: 'springbackCompensationGuide',
-    href: '/engineering-tools/springback-compensation-guide',
-  },
-  {
-    key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection-tool',
-  },
-  {
-    key: 'vDieSelectionChart',
-    href: '/engineering-tools/press-brake-v-die-selection-chart',
-  },
-  {
-    key: 'insideRadiusGuide',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    key: 'airBendingGuide',
-    href: '/engineering-tools/air-bending-guide',
-  },
-  {
-    key: 'bottomingVsCoiningGuide',
-    href: '/engineering-tools/bottoming-vs-coining-guide',
-  },
-  {
-    key: 'bendSequenceGuide',
-    href: '/engineering-tools/bend-sequence-guide',
-  },
-  {
-    key: 'pressBrakeTonnageGuide',
-    href: '/engineering-tools/press-brake-tonnage-guide',
-  },
-  {
-    key: 'vDieOpeningGuide',
-    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
-  },
-  {
-    key: 'minimumFlangeLengthGuide',
-    href: '/engineering-tools/minimum-flange-length-guide',
-  },
-  {
-    key: 'toolingSelectionGuide',
-    href: '/engineering-tools/press-brake-tooling-selection-guide',
-  },
-  {
-    key: 'controllerSelectionGuide',
-    href: '/engineering-tools/press-brake-controller-selection-guide',
-  },
-  {
-    key: 'crowningGuide',
-    href: '/engineering-tools/press-brake-crowning-guide',
-  },
-  {
-    key: 'stainlessSteelBendingGuide',
-    href: '/engineering-tools/stainless-steel-bending-guide',
-  },
-  {
-    key: 'aluminumBendingGuide',
-    href: '/engineering-tools/aluminum-bending-guide',
-  },
-]
-
 const toolStructuredDataNames = {
   pressBrakeCalculator: 'Press Brake Calculator',
+  pressBrakeCapacityCalculator: 'Press Brake Capacity Calculator',
   bendAllowanceCalculator: 'Bend Allowance Calculator',
   kFactorGuide: 'K-Factor Guide',
   bendDeductionGuide: 'Bend Deduction Guide',
@@ -255,7 +65,7 @@ export default function EngineeringHub({
             '@type': 'ItemList',
             name: 'ZYCO Engineering Tools',
             url: getSiteUrl('/engineering-tools'),
-            itemListElement: tools.map((tool, index) => ({
+            itemListElement: engineeringHubTools.map((tool, index) => ({
               '@type': 'ListItem',
               position: index + 1,
               name: toolStructuredDataNames[tool.key],
@@ -644,7 +454,7 @@ export default function EngineeringHub({
           </section>
 
           <div className='zyco-hub__grid'>
-            {tools.map((tool, index) => (
+            {engineeringHubTools.map((tool, index) => (
               <article
                 className='zyco-tool-card'
                 key={tool.key}
@@ -696,7 +506,7 @@ export default function EngineeringHub({
               className='zyco-hub__tools'
               aria-label={t.common.relatedToolsAria}
             >
-              {relatedTools.map((tool) => (
+              {engineeringTools.map((tool) => (
                 <a
                   className='zyco-tool-card__action'
                   href={tool.href}

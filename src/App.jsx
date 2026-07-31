@@ -22,6 +22,9 @@ const htmlLanguageMap = {
 }
 
 const PressBrakeCalculator = lazy(() => import('./pages/PressBrakeCalculator.jsx'))
+const PressBrakeCapacityCalculator = lazy(() =>
+  import('./pages/PressBrakeCapacityCalculator.jsx')
+)
 const AirBendingGuide = lazy(() => import('./pages/AirBendingGuide.jsx'))
 const BottomingVsCoiningGuide = lazy(() => import('./pages/BottomingVsCoiningGuide.jsx'))
 const BendSequenceGuide = lazy(() => import('./pages/BendSequenceGuide.jsx'))
@@ -102,6 +105,16 @@ export default function App() {
           <Route
             path='/engineering-tools/press-brake-calculator'
             element={<PressBrakeCalculator {...languageProps} />}
+          />
+
+          <Route
+            path='/engineering-tools/press-brake-capacity-calculator'
+            element={
+              <PressBrakeCapacityCalculator
+                language={language}
+                setLanguage={setLanguage}
+              />
+            }
           />
 
           <Route

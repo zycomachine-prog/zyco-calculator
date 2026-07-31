@@ -5,6 +5,7 @@ import {
   useRef,
 } from 'react'
 import CountUp from 'react-countup'
+import { relatedEngineeringToolsWithLabelKey } from '../data/engineeringTools.js'
 import { calculatorLanguageMap } from '../languages/engineeringText.js'
 import {
   createFAQPageStructuredData,
@@ -39,93 +40,6 @@ const ZYCO_STANDARD_MACHINE_MAX_V_OPENINGS = {
   500: 140,
   600: 150,
 }
-
-const relatedEngineeringTools = [
-  {
-    labelKey: 'pressBrakeCalculator',
-    href: '/engineering-tools/press-brake-calculator',
-  },
-  {
-    labelKey: 'bendAllowanceCalculator',
-    href: '/engineering-tools/bend-allowance-calculator',
-  },
-  {
-    labelKey: 'kFactorGuide',
-    href: '/engineering-tools/k-factor-guide',
-  },
-  {
-    labelKey: 'bendDeductionGuide',
-    href: '/engineering-tools/bend-deduction-guide',
-  },
-  {
-    labelKey: 'materialDatabase',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    labelKey: 'springbackDatabase',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    labelKey: 'springbackCompensationGuide',
-    href: '/engineering-tools/springback-compensation-guide',
-  },
-  {
-    labelKey: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection-tool',
-  },
-  {
-    labelKey: 'vDieSelectionChart',
-    href: '/engineering-tools/press-brake-v-die-selection-chart',
-  },
-  {
-    labelKey: 'insideRadiusGuide',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    labelKey: 'airBendingGuide',
-    href: '/engineering-tools/air-bending-guide',
-  },
-  {
-    labelKey: 'bottomingVsCoiningGuide',
-    href: '/engineering-tools/bottoming-vs-coining-guide',
-  },
-  {
-    labelKey: 'bendSequenceGuide',
-    href: '/engineering-tools/bend-sequence-guide',
-  },
-  {
-    labelKey: 'pressBrakeTonnageGuide',
-    href: '/engineering-tools/press-brake-tonnage-guide',
-  },
-  {
-    labelKey: 'vDieOpeningGuide',
-    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
-  },
-  {
-    labelKey: 'minimumFlangeLengthGuide',
-    href: '/engineering-tools/minimum-flange-length-guide',
-  },
-  {
-    labelKey: 'toolingSelectionGuide',
-    href: '/engineering-tools/press-brake-tooling-selection-guide',
-  },
-  {
-    labelKey: 'controllerSelectionGuide',
-    href: '/engineering-tools/press-brake-controller-selection-guide',
-  },
-  {
-    labelKey: 'crowningGuide',
-    href: '/engineering-tools/press-brake-crowning-guide',
-  },
-  {
-    labelKey: 'stainlessSteelBendingGuide',
-    href: '/engineering-tools/stainless-steel-bending-guide',
-  },
-  {
-    labelKey: 'aluminumBendingGuide',
-    href: '/engineering-tools/aluminum-bending-guide',
-  },
-]
 
 const pressBrakeCalculatorSeoDescription =
   'Press brake calculator for air-bending tonnage by material, thickness, bend length and V-die opening, with capacity, radius and springback references.'
@@ -166,6 +80,18 @@ const relatedToolFallbackLabels = {
   },
 }
 
+relatedToolFallbackLabels.en.pressBrakeCapacityCalculator =
+  'Press Brake Capacity Calculator'
+relatedToolFallbackLabels.zh.pressBrakeCapacityCalculator =
+  '折弯机能力计算器'
+relatedToolFallbackLabels.ru.pressBrakeCapacityCalculator =
+  'Калькулятор возможностей листогибочного пресса'
+relatedToolFallbackLabels.es.pressBrakeCapacityCalculator =
+  'Calculadora de capacidad de plegadora'
+relatedToolFallbackLabels.tr.pressBrakeCapacityCalculator =
+  'Abkant pres kapasite hesaplayıcısı'
+relatedToolFallbackLabels.id.pressBrakeCapacityCalculator =
+  'Kalkulator kapasitas press brake'
 relatedToolFallbackLabels.en.bottomingVsCoiningGuide = 'Bottoming vs Coining Guide'
 relatedToolFallbackLabels.zh.bottomingVsCoiningGuide = '压底折弯与压印折弯指南'
 relatedToolFallbackLabels.ru.bottomingVsCoiningGuide = 'Bottoming и Coining: руководство'
@@ -282,6 +208,45 @@ relatedToolFallbackLabels.ru.kFactorGuide = 'Руководство по K-фа�
 relatedToolFallbackLabels.es.kFactorGuide = 'Guía del factor K'
 relatedToolFallbackLabels.tr.kFactorGuide = 'K-Faktörü Kılavuzu'
 relatedToolFallbackLabels.id.kFactorGuide = 'Panduan K-Factor'
+
+const capacityCalculatorLinkContent = {
+  en: {
+    title: 'Already Know Your Machine’s Rated Tonnage?',
+    description:
+      'Use the Press Brake Capacity Calculator to check the maximum sheet thickness, maximum bend length or minimum V-die opening for an existing machine.',
+    button: 'Check Press Brake Capacity →',
+  },
+  zh: {
+    title: '已有折弯机额定吨位？',
+    description:
+      '使用折弯机能力计算器，根据现有机器吨位检查最大板厚、最大折弯长度或最小 V 型模开口。',
+    button: '检查折弯机能力 →',
+  },
+  ru: {
+    title: 'Уже знаете номинальное усилие вашего пресса?',
+    description:
+      'Используйте калькулятор возможностей листогибочного пресса, чтобы проверить максимальную толщину листа, максимальную длину гиба или минимальное раскрытие V-матрицы для имеющегося станка.',
+    button: 'Проверить возможности пресса →',
+  },
+  es: {
+    title: '¿Ya conoce el tonelaje nominal de su plegadora?',
+    description:
+      'Use la calculadora de capacidad de plegadora para comprobar el espesor máximo, la longitud máxima de plegado o la abertura mínima de matriz V de una máquina existente.',
+    button: 'Comprobar la capacidad →',
+  },
+  tr: {
+    title: 'Abkant presinizin nominal tonajını biliyor musunuz?',
+    description:
+      'Mevcut makinenin maksimum sac kalınlığını, maksimum büküm uzunluğunu veya minimum V kalıp açıklığını kontrol etmek için abkant pres kapasite hesaplayıcısını kullanın.',
+    button: 'Abkant kapasitesini kontrol et →',
+  },
+  id: {
+    title: 'Sudah mengetahui tonase terukur press brake Anda?',
+    description:
+      'Gunakan kalkulator kapasitas press brake untuk memeriksa ketebalan pelat maksimum, panjang tekuk maksimum, atau bukaan V-die minimum pada mesin yang tersedia.',
+    button: 'Periksa kapasitas press brake →',
+  },
+}
 
 const getInitialMaterial = () => {
   if (typeof window === 'undefined') {
@@ -1315,6 +1280,9 @@ const vDie =
   }
 
   const t = texts[calculatorLanguage]
+  const capacityLink =
+    capacityCalculatorLinkContent[language] ||
+    capacityCalculatorLinkContent.en
 const titleFontSize = {
   EN: isMobile ? '28px' : '52px',
   CN: isMobile ? '30px' : '52px',
@@ -1526,6 +1494,61 @@ const animationStyle = `
   outline-offset: 3px;
 }
 
+.press-brake-capacity-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 24px;
+  padding: 22px 24px;
+  border: 1px solid rgba(59, 130, 246, 0.26);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(248, 250, 252, 0.94), rgba(219, 234, 254, 0.78));
+  box-shadow:
+    0 16px 42px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.press-brake-capacity-link__copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #1e3a8a;
+  line-height: 1.3;
+}
+
+.press-brake-capacity-link__button {
+  flex: 0 0 auto;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 18px;
+  border: 1px solid rgba(147, 197, 253, 0.48);
+  border-radius: 15px;
+  background: rgba(30, 64, 175, 0.88);
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 850;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.press-brake-capacity-link__button:hover {
+  transform: translateY(-3px);
+  border-color: rgba(125, 211, 252, 0.88);
+  background: rgba(37, 99, 235, 0.96);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+}
+
+.press-brake-capacity-link__button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.3);
+  outline-offset: 3px;
+}
+
 .zyco-press-brake-related-tool {
   border: 1px solid rgba(147, 197, 253, 0.38);
   background: linear-gradient(180deg, rgba(30, 64, 175, 0.92), rgba(30, 58, 138, 0.9));
@@ -1582,6 +1605,17 @@ const animationStyle = `
     0 0 0 3px rgba(14, 165, 233, 0.055),
     inset 0 1px 0 rgba(255, 255, 255, 0.98),
     inset 0 -10px 22px rgba(219, 234, 254, 0.16) !important;
+}
+
+@media (max-width: 980px) {
+  .press-brake-capacity-link {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .press-brake-capacity-link__button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 640px) {
@@ -4020,6 +4054,39 @@ linear-gradient(
           </a>
         </div>
 
+        <section className='press-brake-capacity-link'>
+          <div className='press-brake-capacity-link__copy'>
+            <h2
+              style={{
+                margin: '0 0 8px',
+                fontSize: '21px',
+                lineHeight: 1.3,
+                fontWeight: 850,
+              }}
+            >
+              {capacityLink.title}
+            </h2>
+            <p
+              style={{
+                margin: 0,
+                color: '#334155',
+                fontSize: '15px',
+                lineHeight: 1.68,
+                fontWeight: 650,
+              }}
+            >
+              {capacityLink.description}
+            </p>
+          </div>
+
+          <a
+            className='press-brake-capacity-link__button'
+            href='/engineering-tools/press-brake-capacity-calculator'
+          >
+            {capacityLink.button}
+          </a>
+        </section>
+
         <section
           aria-labelledby='press-brake-engineering-overview'
           style={{
@@ -4200,7 +4267,7 @@ linear-gradient(
               gap: '10px',
             }}
           >
-            {relatedEngineeringTools.map((tool) => (
+            {relatedEngineeringToolsWithLabelKey.map((tool) => (
               <a
                 href={tool.href}
                 key={tool.labelKey}

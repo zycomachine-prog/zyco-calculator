@@ -1,35 +1,12 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import MinimumFlangeDiagram from '../components/MinimumFlangeDiagram.jsx'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import { getSiteUrl, setPageSEO, setStructuredData } from '../utils/seo.js'
 
 const routePath = '/engineering-tools/minimum-flange-length-guide'
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', '/engineering-tools/k-factor-guide'],
-  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', routePath],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
-
 const content = {
   en: {
     back: '← Back to Engineering Tools', eyebrow: 'Engineering Guide', title: 'Minimum Flange Length Guide',
@@ -210,7 +187,7 @@ export default function MinimumFlangeLengthGuide({ language = 'en', setLanguage 
           </div>
           <section className='zyco-flange__panel' aria-labelledby='flange-faq'><h2 className='zyco-flange__section-title' id='flange-faq'>{page.faqTitle}</h2><div className='zyco-flange__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p className='zyco-flange__copy'>{answer}</p></article>)}</div></section>
           <EngineeringCTA language={language} />
-          <section className='zyco-flange__panel' aria-labelledby='flange-related'><h2 className='zyco-flange__section-title' id='flange-related'>{page.relatedTitle}</h2><nav className='zyco-flange__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-flange__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>)}</nav></section>
+          <section className='zyco-flange__panel' aria-labelledby='flange-related'><h2 className='zyco-flange__section-title' id='flange-related'>{page.relatedTitle}</h2><nav className='zyco-flange__tools' aria-label={page.relatedAria}>{relatedEngineeringToolTuples.map(([key, href]) => <a className='zyco-flange__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>)}</nav></section>
         </div>
       </main>
     </>

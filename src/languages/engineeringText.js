@@ -91,6 +91,30 @@ relatedTools.ru.airBendingGuide = 'Руководство по Air Bending'
 relatedTools.es.airBendingGuide = 'Guía de Air Bending'
 relatedTools.tr.airBendingGuide = 'Air Bending kılavuzu'
 relatedTools.id.airBendingGuide = 'Panduan Air Bending'
+const pressBrakeCapacityCalculatorNames = {
+  en: 'Press Brake Capacity Calculator',
+  zh: '折弯机能力计算器',
+  ru: 'Калькулятор возможностей листогибочного пресса',
+  es: 'Calculadora de capacidad de plegadora',
+  tr: 'Abkant pres kapasite hesaplayıcısı',
+  id: 'Kalkulator kapasitas press brake',
+}
+
+Object.entries(pressBrakeCapacityCalculatorNames).forEach(
+  ([language, name]) => {
+    const {
+      pressBrakeCalculator,
+      ...remainingRelatedTools
+    } = relatedTools[language]
+
+    relatedTools[language] = {
+      pressBrakeCalculator,
+      pressBrakeCapacityCalculator: name,
+      ...remainingRelatedTools,
+    }
+  }
+)
+
 relatedTools.en.bottomingVsCoiningGuide = 'Bottoming vs Coining Guide'
 relatedTools.zh.bottomingVsCoiningGuide = '压底折弯与压印折弯指南'
 relatedTools.ru.bottomingVsCoiningGuide = 'Bottoming и Coining: руководство'
@@ -2145,6 +2169,31 @@ Object.entries(controllerSelectionHubDescriptions).forEach(([language, descripti
     ])
   }
 })
+
+const pressBrakeCapacityCalculatorHubDescriptions = {
+  en: 'Calculate maximum sheet thickness, maximum bend length or minimum V-die opening from an existing press brake’s rated tonnage.',
+  zh: '根据现有折弯机的额定吨位，反算最大板厚、最大折弯长度或最小 V 型模开口。',
+  ru: 'Расчет максимальной толщины листа, максимальной длины гиба или минимального раскрытия V-матрицы по номинальному усилию существующего листогибочного пресса.',
+  es: 'Calcule el espesor máximo de chapa, la longitud máxima de plegado o la abertura mínima de matriz V a partir del tonelaje nominal de una plegadora existente.',
+  tr: 'Mevcut bir abkant presin nominal tonajına göre maksimum sac kalınlığını, maksimum büküm uzunluğunu veya minimum V kalıp açıklığını hesaplayın.',
+  id: 'Hitung ketebalan pelat maksimum, panjang tekuk maksimum, atau bukaan V-die minimum berdasarkan tonase terukur press brake yang sudah ada.',
+}
+
+pages.en.hub.tools.splice(1, 0, [
+  'pressBrakeCapacityCalculator',
+  pressBrakeCapacityCalculatorHubDescriptions.en,
+])
+
+Object.entries(pressBrakeCapacityCalculatorHubDescriptions).forEach(
+  ([language, description]) => {
+    if (language !== 'en') {
+      localizedOverrides[language].hub.tools.splice(1, 0, [
+        'pressBrakeCapacityCalculator',
+        description,
+      ])
+    }
+  }
+)
 
 const airBendingPageTranslations = {
   en: {

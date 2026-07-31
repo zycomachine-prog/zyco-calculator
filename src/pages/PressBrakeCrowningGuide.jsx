@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import CrowningDiagram from '../components/CrowningDiagram.jsx'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import { getEngineeringText } from '../languages/engineeringText.js'
@@ -10,30 +11,6 @@ import {
 } from '../utils/seo.js'
 
 const routePath = '/engineering-tools/press-brake-crowning-guide'
-
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', '/engineering-tools/k-factor-guide'],
-  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', routePath],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
 
 const content = {
   en: {
@@ -445,7 +422,7 @@ export default function PressBrakeCrowningGuide({
           <section className='zyco-crowning__panel' aria-labelledby='crowning-related'>
             <h2 className='zyco-crowning__section-title' id='crowning-related'>{page.relatedTitle}</h2>
             <nav className='zyco-crowning__tools' aria-label={page.relatedAria}>
-              {relatedTools.map(([key, href]) => (
+              {relatedEngineeringToolTuples.map(([key, href]) => (
                 <a className='zyco-crowning__tool' href={href} key={key}>{page.relatedLabels[key] || sharedText.relatedTools[key]}</a>
               ))}
             </nav>

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import KFactorNeutralAxisDiagram from '../components/KFactorNeutralAxisDiagram.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   ZYCO_PUBLISHER,
@@ -12,30 +13,6 @@ import {
 } from '../utils/seo.js'
 
 const routePath = '/engineering-tools/k-factor-guide'
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', routePath],
-  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
-
 const content = {
   en: {
     back: '← Back to Engineering Tools',
@@ -364,7 +341,7 @@ export default function KFactorGuide({ language = 'en', setLanguage = () => {} }
           <section className='zyco-kfactor__panel' aria-labelledby='kfactor-related'>
             <h2 className='zyco-kfactor__section-title' id='kfactor-related'>{page.relatedTitle}</h2>
             <nav className='zyco-kfactor__tools' aria-label={page.relatedAria}>
-              {relatedTools.map(([key, href]) => <a className='zyco-kfactor__tool' href={href} key={key}>{sharedText.relatedTools[key]}</a>)}
+              {relatedEngineeringToolTuples.map(([key, href]) => <a className='zyco-kfactor__tool' href={href} key={key}>{sharedText.relatedTools[key]}</a>)}
             </nav>
           </section>
         </div>

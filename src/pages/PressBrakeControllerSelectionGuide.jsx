@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import { getSiteUrl, setPageSEO, setStructuredData } from '../utils/seo.js'
 
@@ -13,30 +14,6 @@ const normalizeLanguage = (language) => {
   if (language === 'cn') return 'zh'
   return 'en'
 }
-
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', '/engineering-tools/k-factor-guide'],
-  ['bendDeductionGuide', '/engineering-tools/bend-deduction-guide'],
-  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
 
 const controllerModels = [
   ['EASYCAT', 'ET16', 'value', 'et16Axis', 'touch2d', 'practicalSupport', 'costExport', 'value'],
@@ -503,7 +480,7 @@ export default function PressBrakeControllerSelectionGuide({ language = 'en', se
           <div className='zyco-controller__grid'><section className='zyco-controller__panel'><h2 className='zyco-controller__section-title'>{page.labels.mistakes}</h2><ul className='zyco-controller__list'>{page.mistakes.map((item) => <li className='zyco-controller__copy' key={item}>{item}</li>)}</ul></section><section className='zyco-controller__panel'><h2 className='zyco-controller__section-title'>{page.labels.advice}</h2><ul className='zyco-controller__list'>{page.advice.map((item) => <li className='zyco-controller__copy' key={item}>{item}</li>)}</ul></section></div>
           <section className='zyco-controller__panel'><h2 className='zyco-controller__section-title'>{page.labels.faq}</h2><div className='zyco-controller__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p className='zyco-controller__copy'>{answer}</p></article>)}</div></section>
           <EngineeringCTA language={activeLanguage} />
-          <section className='zyco-controller__panel'><h2 className='zyco-controller__section-title'>{page.labels.related}</h2><nav className='zyco-controller__tools' aria-label={page.labels.related}>{relatedTools.map(([key, href]) => <a className='zyco-controller__tool' href={href} key={key}>{sharedText.relatedTools[key]}</a>)}</nav></section>
+          <section className='zyco-controller__panel'><h2 className='zyco-controller__section-title'>{page.labels.related}</h2><nav className='zyco-controller__tools' aria-label={page.labels.related}>{relatedEngineeringToolTuples.map(([key, href]) => <a className='zyco-controller__tool' href={href} key={key}>{sharedText.relatedTools[key]}</a>)}</nav></section>
         </div>
       </main>
     </>

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import BendDeductionDiagram from '../components/BendDeductionDiagram.jsx'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { relatedEngineeringToolTuples } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   ZYCO_PUBLISHER,
@@ -12,30 +13,6 @@ import {
 } from '../utils/seo.js'
 
 const routePath = '/engineering-tools/bend-deduction-guide'
-const relatedTools = [
-  ['pressBrakeCalculator', '/engineering-tools/press-brake-calculator'],
-  ['bendAllowanceCalculator', '/engineering-tools/bend-allowance-calculator'],
-  ['kFactorGuide', '/engineering-tools/k-factor-guide'],
-  ['bendDeductionGuide', routePath],
-  ['materialDatabase', '/engineering-tools/material-database'],
-  ['springbackDatabase', '/engineering-tools/springback-database'],
-  ['springbackCompensationGuide', '/engineering-tools/springback-compensation-guide'],
-  ['vDieSelectionTool', '/engineering-tools/v-die-selection-tool'],
-  ['vDieSelectionChart', '/engineering-tools/press-brake-v-die-selection-chart'],
-  ['insideRadiusGuide', '/engineering-tools/inside-radius-guide'],
-  ['airBendingGuide', '/engineering-tools/air-bending-guide'],
-  ['bottomingVsCoiningGuide', '/engineering-tools/bottoming-vs-coining-guide'],
-  ['bendSequenceGuide', '/engineering-tools/bend-sequence-guide'],
-  ['pressBrakeTonnageGuide', '/engineering-tools/press-brake-tonnage-guide'],
-  ['vDieOpeningGuide', '/engineering-tools/how-to-choose-press-brake-v-die-opening'],
-  ['minimumFlangeLengthGuide', '/engineering-tools/minimum-flange-length-guide'],
-  ['toolingSelectionGuide', '/engineering-tools/press-brake-tooling-selection-guide'],
-  ['controllerSelectionGuide', '/engineering-tools/press-brake-controller-selection-guide'],
-  ['crowningGuide', '/engineering-tools/press-brake-crowning-guide'],
-  ['stainlessSteelBendingGuide', '/engineering-tools/stainless-steel-bending-guide'],
-  ['aluminumBendingGuide', '/engineering-tools/aluminum-bending-guide'],
-]
-
 const content = {
   en: {
     back: '← Back to Engineering Tools', eyebrow: 'Engineering Guide', title: 'Bend Deduction Guide',
@@ -266,7 +243,7 @@ export default function BendDeductionGuide({ language = 'en', setLanguage = () =
           <section className='zyco-bd__panel' aria-labelledby='bd-notes'><h2 className='zyco-bd__section-title' id='bd-notes'>{page.notes.title}</h2><ul className='zyco-bd__list'>{page.notes.items.map((item) => <li className='zyco-bd__copy' key={item}>{item}</li>)}</ul></section>
           <section className='zyco-bd__panel' aria-labelledby='bd-faq'><h2 className='zyco-bd__section-title' id='bd-faq'>{page.faqTitle}</h2><div className='zyco-bd__faq'>{page.faq.map(([question, answer]) => <article key={question}><h3>{question}</h3><p className='zyco-bd__copy'>{answer}</p></article>)}</div></section>
           <EngineeringCTA language={language} />
-          <section className='zyco-bd__panel' aria-labelledby='bd-related'><h2 className='zyco-bd__section-title' id='bd-related'>{page.relatedTitle}</h2><nav className='zyco-bd__tools' aria-label={page.relatedAria}>{relatedTools.map(([key, href]) => <a className='zyco-bd__tool' href={href} key={key}>{sharedText.relatedTools[key]}</a>)}</nav></section>
+          <section className='zyco-bd__panel' aria-labelledby='bd-related'><h2 className='zyco-bd__section-title' id='bd-related'>{page.relatedTitle}</h2><nav className='zyco-bd__tools' aria-label={page.relatedAria}>{relatedEngineeringToolTuples.map(([key, href]) => <a className='zyco-bd__tool' href={href} key={key}>{sharedText.relatedTools[key]}</a>)}</nav></section>
         </div>
       </main>
     </>

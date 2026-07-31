@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import EngineeringCTA from '../components/EngineeringCTA.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import { engineeringTools } from '../data/engineeringTools.js'
 import { getEngineeringText } from '../languages/engineeringText.js'
 import {
   createFAQPageStructuredData,
@@ -48,93 +49,6 @@ const materials = [
   },
 ]
 
-const relatedTools = [
-  {
-    key: 'pressBrakeCalculator',
-    href: '/engineering-tools/press-brake-calculator',
-  },
-  {
-    key: 'bendAllowanceCalculator',
-    href: '/engineering-tools/bend-allowance-calculator',
-  },
-  {
-    key: 'kFactorGuide',
-    href: '/engineering-tools/k-factor-guide',
-  },
-  {
-    key: 'bendDeductionGuide',
-    href: '/engineering-tools/bend-deduction-guide',
-  },
-  {
-    key: 'materialDatabase',
-    href: '/engineering-tools/material-database',
-  },
-  {
-    key: 'springbackDatabase',
-    href: '/engineering-tools/springback-database',
-  },
-  {
-    key: 'springbackCompensationGuide',
-    href: '/engineering-tools/springback-compensation-guide',
-  },
-  {
-    key: 'vDieSelectionTool',
-    href: '/engineering-tools/v-die-selection-tool',
-  },
-  {
-    key: 'vDieSelectionChart',
-    href: '/engineering-tools/press-brake-v-die-selection-chart',
-  },
-  {
-    key: 'insideRadiusGuide',
-    href: '/engineering-tools/inside-radius-guide',
-  },
-  {
-    key: 'airBendingGuide',
-    href: '/engineering-tools/air-bending-guide',
-  },
-  {
-    key: 'bottomingVsCoiningGuide',
-    href: '/engineering-tools/bottoming-vs-coining-guide',
-  },
-  {
-    key: 'bendSequenceGuide',
-    href: '/engineering-tools/bend-sequence-guide',
-  },
-  {
-    key: 'pressBrakeTonnageGuide',
-    href: '/engineering-tools/press-brake-tonnage-guide',
-  },
-  {
-    key: 'vDieOpeningGuide',
-    href: '/engineering-tools/how-to-choose-press-brake-v-die-opening',
-  },
-  {
-    key: 'minimumFlangeLengthGuide',
-    href: '/engineering-tools/minimum-flange-length-guide',
-  },
-  {
-    key: 'toolingSelectionGuide',
-    href: '/engineering-tools/press-brake-tooling-selection-guide',
-  },
-  {
-    key: 'controllerSelectionGuide',
-    href: '/engineering-tools/press-brake-controller-selection-guide',
-  },
-  {
-    key: 'crowningGuide',
-    href: '/engineering-tools/press-brake-crowning-guide',
-  },
-  {
-    key: 'stainlessSteelBendingGuide',
-    href: '/engineering-tools/stainless-steel-bending-guide',
-  },
-  {
-    key: 'aluminumBendingGuide',
-    href: '/engineering-tools/aluminum-bending-guide',
-  },
-]
-
 const backToEngineeringToolsLabels = {
   en: '← Back to Engineering Tools',
   zh: '← 返回工程工具中心',
@@ -142,6 +56,45 @@ const backToEngineeringToolsLabels = {
   es: '← Volver a herramientas de ingeniería',
   tr: '← Mühendislik araçlarına dön',
   id: '← Kembali ke Engineering Tools',
+}
+
+const capacityCalculatorLinkContent = {
+  en: {
+    title: 'Can Your Existing Press Brake Make This Part?',
+    description:
+      'After calculating the flat pattern, use the Press Brake Capacity Calculator to check whether the sheet thickness, bend length and required V-die opening are within the capacity of your existing machine.',
+    button: 'Check Press Brake Capacity →',
+  },
+  zh: {
+    title: '现有折弯机能否加工该零件？',
+    description:
+      '完成板材展开计算后，使用折弯机能力计算器，根据现有机器吨位检查板厚、折弯长度和所需 V 型模开口是否在设备能力范围内。',
+    button: '检查折弯机能力 →',
+  },
+  ru: {
+    title: 'Сможет ли ваш листогибочный пресс изготовить эту деталь?',
+    description:
+      'После расчета развертки используйте калькулятор возможностей листогибочного пресса, чтобы проверить, соответствуют ли толщина листа, длина гиба и требуемое раскрытие V-матрицы возможностям имеющегося станка.',
+    button: 'Проверить возможности пресса →',
+  },
+  es: {
+    title: '¿Puede su plegadora actual fabricar esta pieza?',
+    description:
+      'Después de calcular el desarrollo de la chapa, use la calculadora de capacidad de plegadora para comprobar si el espesor, la longitud de plegado y la abertura V necesaria están dentro de la capacidad de su máquina.',
+    button: 'Comprobar la capacidad →',
+  },
+  tr: {
+    title: 'Mevcut abkant presiniz bu parçayı üretebilir mi?',
+    description:
+      'Sac açınımını hesapladıktan sonra, sac kalınlığının, büküm uzunluğunun ve gerekli V kalıp açıklığının mevcut makinenizin kapasitesi içinde olup olmadığını kontrol etmek için abkant pres kapasite hesaplayıcısını kullanın.',
+    button: 'Abkant kapasitesini kontrol et →',
+  },
+  id: {
+    title: 'Apakah press brake Anda dapat membuat benda kerja ini?',
+    description:
+      'Setelah menghitung panjang bentangan, gunakan kalkulator kapasitas press brake untuk memeriksa apakah ketebalan pelat, panjang tekuk, dan bukaan V-die yang diperlukan masih berada dalam kapasitas mesin yang tersedia.',
+    button: 'Periksa kapasitas press brake →',
+  },
 }
 
 const formatMillimeters = (value) => `${value.toFixed(2)} mm`
@@ -162,6 +115,9 @@ export default function BendAllowanceCalculator({
 }) {
   const t = getEngineeringText(language)
   const page = t.pages.bend
+  const capacityLink =
+    capacityCalculatorLinkContent[language] ||
+    capacityCalculatorLinkContent.en
   const backToEngineeringToolsLabel =
     backToEngineeringToolsLabels[language] ||
     backToEngineeringToolsLabels.en
@@ -1034,10 +990,74 @@ export default function BendAllowanceCalculator({
             font-weight: 600;
           }
 
+          .bend-allowance-capacity-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 22px;
+            margin-top: 22px;
+            padding: 22px 24px;
+            border: 1px solid rgba(147, 197, 253, 0.24);
+            border-radius: 24px;
+            background:
+              linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+            backdrop-filter: blur(16px);
+          }
+
+          .bend-allowance-capacity-link__copy {
+            min-width: 0;
+            color: #ffffff;
+            overflow-wrap: anywhere;
+          }
+
+          .bend-allowance-capacity-link__button {
+            flex: 0 0 auto;
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 0 18px;
+            border: 1px solid rgba(147, 197, 253, 0.4);
+            border-radius: 16px;
+            background:
+              linear-gradient(135deg, #1e3a8a, #2563eb 55%, #60a5fa);
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.35;
+            font-weight: 850;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.25s ease;
+          }
+
+          .bend-allowance-capacity-link__button:hover {
+            transform: translateY(-3px);
+            border-color: rgba(125, 211, 252, 0.78);
+            background:
+              linear-gradient(135deg, #1e40af, #2563eb 50%, #7dd3fc);
+            box-shadow: 0 16px 34px rgba(37, 99, 235, 0.34);
+          }
+
+          .bend-allowance-capacity-link__button:focus-visible {
+            outline: 3px solid rgba(125, 211, 252, 0.72);
+            outline-offset: 3px;
+          }
+
           @media (max-width: 980px) {
             .zyco-bend__grid,
             .zyco-bend-results {
               grid-template-columns: 1fr;
+            }
+
+            .bend-allowance-capacity-link {
+              align-items: stretch;
+              flex-direction: column;
+            }
+
+            .bend-allowance-capacity-link__button {
+              width: 100%;
             }
 
             .zyco-bend__title {
@@ -1520,6 +1540,39 @@ export default function BendAllowanceCalculator({
             </article>
           </div>
 
+          <section className='bend-allowance-capacity-link'>
+            <div className='bend-allowance-capacity-link__copy'>
+              <h2
+                style={{
+                  margin: '0 0 8px',
+                  fontSize: '21px',
+                  lineHeight: 1.35,
+                  fontWeight: 850,
+                }}
+              >
+                {capacityLink.title}
+              </h2>
+              <p
+                style={{
+                  margin: 0,
+                  color: '#cbd5e1',
+                  fontSize: '15px',
+                  lineHeight: 1.68,
+                  fontWeight: 600,
+                }}
+              >
+                {capacityLink.description}
+              </p>
+            </div>
+
+            <a
+              className='bend-allowance-capacity-link__button'
+              href='/engineering-tools/press-brake-capacity-calculator'
+            >
+              {capacityLink.button}
+            </a>
+          </section>
+
           <section
             className='zyco-bend__panel'
             aria-labelledby='bend-allowance-engineering-overview'
@@ -1609,7 +1662,7 @@ export default function BendAllowanceCalculator({
               className='zyco-bend__tools'
               aria-label={t.common.relatedToolsAria}
             >
-              {relatedTools.map((tool) => (
+              {engineeringTools.map((tool) => (
                 <a
                   className='zyco-bend__action'
                   href={tool.href}
