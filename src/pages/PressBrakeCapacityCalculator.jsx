@@ -63,14 +63,39 @@ const capacityContent = {
     formulaVariables:
       'P is bending force in tons, T is sheet thickness in mm, L is bend length in mm, M is the material factor and V is the V-die opening in mm.',
     minimumVExplanation:
-      'The minimum V opening is the greater of the tonnage-based requirement and 6 times the sheet thickness.',
+      'The final minimum V opening is the greater of the tonnage-based requirement and the applicable thickness-based rule below.',
+    theoreticalVRuleTitle: 'Theoretical engineering minimum V opening',
+    theoreticalVRuleItems: ['T < 8 mm: V ≥ 6T', '8 mm ≤ T < 25 mm: V ≥ 8T', 'T ≥ 25 mm: V ≥ 10T'],
+    continuousVRuleTitle: 'Recommended V opening for continuous production',
+    continuousVRuleItems: ['T < 8 mm: V ≥ 8T', '8 mm ≤ T < 25 mm: V ≥ 10T', 'T ≥ 25 mm: V ≥ 12T'],
+    vRuleScopeNote:
+      'These ratios are primarily for general engineering checks of mild-steel air bending. High-strength steel, wear-resistant steel, special materials and thick plate must not be assessed from these ratios alone. Always confirm the requirements of the machine manufacturer, tooling manufacturer and material supplier.',
+    maximumThicknessNoteTitle: 'Engineering capacity note',
+    maximumThicknessNote:
+      'Maximum thickness is limited by both machine tonnage capacity and the applicable range of the current V-die opening. The final result uses the lower of these two limits.',
+    currentVOpeningLabel: 'Current V opening',
+    theoreticalMinimumVLabel: 'Theoretical minimum V opening',
+    continuousMinimumVLabel: 'Recommended minimum V opening for continuous production',
+    belowTheoreticalTitle: 'V opening is below the theoretical minimum',
+    belowTheoreticalText:
+      'The current V opening is smaller than the theoretical minimum for this sheet thickness. Neither the recommended continuous nor theoretical maximum bend length is an executable result.',
+    belowTheoreticalAction:
+      'Use a V opening equal to or greater than the theoretical minimum and recalculate.',
+    theoreticalOnlyTitle: 'V opening supports theoretical calculation only',
+    theoreticalOnlyText:
+      'The current V opening meets the theoretical minimum but is below the continuous-production recommendation. Only the theoretical maximum bend length is shown; the recommended continuous maximum bend length is unavailable.',
+    theoreticalOnlyAction:
+      'For a continuous-production result, use a V opening equal to or greater than the recommended continuous minimum.',
+    continuousCompatibleTitle: 'Tooling and part suitability confirmation',
+    continuousCompatibleText:
+      'The current V opening reaches the recommended minimum for continuous production. Still confirm the actual lower-die opening, tooling load capacity, target inside radius, minimum flange length, part geometry and material requirements. The calculated lengths do not mean the tooling and part are automatically suitable.',
     toolingCompatibilityTitle: 'Tooling and Part Compatibility Check',
     toolingCompatibilityRequirementBefore:
       'The minimum V-die opening required for continuous production is',
     toolingCompatibilityRequirementAfter:
       '. Confirm that the available lower die includes an opening equal to or larger than this value.',
     toolingCompatibilityDetails:
-      'Before selecting the actual die, verify that the resulting inside radius, minimum flange length and tooling load rating meet the part and machine requirements. Consult the machine or tooling manufacturer when necessary.',
+      'Before selecting the actual die, verify the target inside radius, minimum flange length, part geometry, tooling load capacity, material requirements and applicable manufacturer requirements. Confirm with the machine or tooling manufacturer when necessary.',
     safetyTitle: 'Engineering Limits and Safety Reminders',
     safetyItems: [
       'This calculator estimates air-bending capacity only.',
@@ -80,8 +105,8 @@ const capacityContent = {
       'Verify stroke, daylight, throat depth, inside radius and minimum flange requirements.',
       'Results are engineering references, not production guarantees.',
       'Larger V openings reduce required tonnage but increase natural inside radius and minimum flange requirements.',
-      'The V-die opening is never allowed to be smaller than 6 times the sheet thickness in this calculator.',
-      'The 6× thickness rule is a conservative minimum. Tooling load, material strength, inside radius or flange requirements may require a larger V opening.',
+      'The calculator checks V-opening compatibility with theoretical 6T / 8T / 10T and continuous-production 8T / 10T / 12T thickness rules.',
+      'These ratios are general engineering guidance for mild-steel air bending and must not be the sole basis for high-strength steel, wear-resistant steel, special materials or thick plate.',
     ],
     faqTitle: 'Press Brake Capacity Calculator FAQ',
     faq: [
@@ -89,7 +114,7 @@ const capacityContent = {
       ['How is maximum sheet thickness calculated?', 'The calculator rearranges the air-bending force formula and solves for thickness using machine tonnage, bend length, material factor and V-die opening.'],
       ['Why are theoretical and continuous capacities different?', 'The theoretical result uses 100% of rated tonnage. The recommended continuous result applies an automatic 85%, 90% or 92% load ratio for more conservative repeated production.'],
       ['Can the calculated maximum bend length exceed the machine working length?', 'Yes. The formula calculates tonnage capacity only. Actual usable bend length can still be limited by machine working length and available tooling length.'],
-      ['Why can the V-die opening not be smaller than six times the sheet thickness?', 'Six times sheet thickness is used as a conservative minimum opening. Tooling load, material strength, radius or flange requirements may require a larger opening.'],
+      ['How does the calculator check V-die opening compatibility with sheet thickness?', 'Theoretical results use the 6T / 8T / 10T thickness ranges, while continuous-production results use 8T / 10T / 12T. Maximum Thickness checks both tonnage capacity and V-opening suitability; Maximum Bend Length hides non-executable results when the opening is insufficient; and Minimum V Opening uses the greater of the tonnage requirement and the applicable thickness rule. High-strength steel, wear-resistant steel, special materials and thick plate still require confirmation from the machine and tooling manufacturers and the material supplier.'],
       ['Can this calculator guarantee safe production?', 'No. Results are engineering references. Confirm machine load curves, concentrated loading, tooling ratings and the actual bending setup before production.'],
     ],
     relatedTools: 'Related Engineering Tools',
@@ -141,11 +166,29 @@ const capacityContent = {
     recommendedContinuousTonnage: '建议连续生产吨位',
     formulaReference: '公式说明',
     formulaVariables: 'P 为折弯力（吨），T 为板厚（mm），L 为折弯长度（mm），M 为材料系数，V 为 V 型模开口（mm）。',
-    minimumVExplanation: '最小 V 型模开口取吨位要求与板厚 6 倍两者中的较大值。',
+    minimumVExplanation: '最终最小 V 型模开口取吨位公式要求与下列板厚分段规则要求中的较大值。',
+    theoreticalVRuleTitle: '理论工程最低 V 型模开口',
+    theoreticalVRuleItems: ['T < 8 mm：V ≥ 6T', '8 mm ≤ T < 25 mm：V ≥ 8T', 'T ≥ 25 mm：V ≥ 10T'],
+    continuousVRuleTitle: '建议连续生产 V 型模开口',
+    continuousVRuleItems: ['T < 8 mm：V ≥ 8T', '8 mm ≤ T < 25 mm：V ≥ 10T', 'T ≥ 25 mm：V ≥ 12T'],
+    vRuleScopeNote: '这些比例主要用于普通低碳钢空气折弯的一般工程校核。高强钢、耐磨钢、特殊材料和厚板不得只依赖该比例，必须继续确认机器制造商、模具制造商和材料供应商要求。',
+    maximumThicknessNoteTitle: '工程能力说明',
+    maximumThicknessNote: '最大板厚同时受到机器吨位能力和当前 V 型模开口适用范围限制，最终结果采用两项限制中的较小值。',
+    currentVOpeningLabel: '当前 V 型模开口',
+    theoreticalMinimumVLabel: '理论最低 V 型模开口',
+    continuousMinimumVLabel: '连续生产建议最低 V 型模开口',
+    belowTheoreticalTitle: 'V 型模开口低于理论最低值',
+    belowTheoreticalText: '当前 V 型模开口小于该板厚对应的理论最低 V 开口，建议连续生产最大折弯长度和理论最大折弯长度均不可作为可执行结果。',
+    belowTheoreticalAction: '请使用等于或大于理论最低值的 V 型模开口后重新计算。',
+    theoreticalOnlyTitle: 'V 型模开口仅满足理论计算要求',
+    theoreticalOnlyText: '当前 V 型模开口满足理论最低要求，但低于连续生产建议值。因此只显示理论最大折弯长度，建议连续生产最大折弯长度不可用。',
+    theoreticalOnlyAction: '如需连续生产结果，请使用等于或大于连续生产建议最低值的 V 型模开口。',
+    continuousCompatibleTitle: '模具与零件适用性确认',
+    continuousCompatibleText: '当前 V 型模开口已达到连续生产建议最低值。仍需确认实际下模开口、模具承载能力、目标内半径、最小翻边长度、零件几何形状和材料要求；计算结果不代表模具和零件自动适用。',
     toolingCompatibilityTitle: '模具与零件适用性确认',
     toolingCompatibilityRequirementBefore: '连续生产要求的最小 V 型模开口为',
     toolingCompatibilityRequirementAfter: '。请确认现有下模是否包含等于或大于该数值的 V 型模开口。',
-    toolingCompatibilityDetails: '选择实际模具前，还应核实该模具形成的内半径、最小翻边长度及模具额定载荷是否满足零件和设备要求。必要时请向机床或模具制造商确认。',
+    toolingCompatibilityDetails: '选择实际模具前，还应校核目标内半径、最小翻边长度、零件几何形状、模具承载能力、材料要求以及相关制造商要求。必要时请向机器或模具制造商确认。',
     safetyTitle: '工程限制与安全提醒',
     safetyItems: [
       '本计算器仅估算空弯能力。',
@@ -155,8 +198,8 @@ const capacityContent = {
       '请核实行程、开口高度、喉口深度、内半径和最小翻边要求。',
       '计算结果仅供工程参考，不是生产保证。',
       '增大 V 型模开口可降低所需吨位，但会增大自然内半径和最小翻边要求。',
-      '本计算器不允许 V 型模开口小于板厚的 6 倍。',
-      '板厚 6 倍规则是保守下限；模具载荷、材料强度、内半径或翻边要求可能需要更大的 V 型模开口。',
+      '本计算器使用理论 6T / 8T / 10T 和连续生产 8T / 10T / 12T 分段规则校核 V 型模开口与板厚的兼容性。',
+      '这些比例主要用于普通低碳钢空气折弯的一般工程判断，不得作为高强钢、耐磨钢、特殊材料或厚板的唯一依据。',
     ],
     faqTitle: '折弯机能力计算器常见问题',
     faq: [
@@ -164,7 +207,7 @@ const capacityContent = {
       ['最大板厚如何计算？', '计算器对空弯力公式进行反算，结合设备吨位、折弯长度、材料系数和 V 型模开口求出板厚。'],
       ['理论能力与连续生产能力为什么不同？', '理论结果使用 100% 额定吨位；连续生产建议结果自动采用 85%、90% 或 92% 的负载比例，为重复生产保留更保守的余量。'],
       ['计算出的最大折弯长度会超过设备工作长度吗？', '可能会。公式只计算吨位能力，实际可用折弯长度仍可能受设备工作长度和模具长度限制。'],
-      ['为什么 V 型模开口不能小于板厚的 6 倍？', '板厚 6 倍作为保守的最小开口；模具载荷、材料强度、半径或翻边要求可能需要更大的开口。'],
+      ['计算器如何校核 V 型模开口与板厚的兼容性？', '理论结果使用 6T / 8T / 10T 分段规则，连续生产结果使用 8T / 10T / 12T 分段规则。最大板厚模式同时校核吨位能力和 V 开口适用性；最大折弯长度模式在 V 开口不足时隐藏不可执行结果；最小 V 开口模式取吨位公式要求与板厚分段规则中的较大值。高强钢、耐磨钢、特殊材料和厚板仍需向机器及模具制造商和材料供应商确认。'],
       ['该计算器能保证生产安全吗？', '不能。结果仅供工程参考。生产前必须确认设备载荷曲线、集中载荷、模具额定载荷和实际折弯设置。'],
     ],
     relatedTools: '相关工程工具',
@@ -206,11 +249,29 @@ const capacityContent = {
     recommendedContinuousTonnage: 'Рекомендуемое усилие для непрерывной работы',
     formulaReference: 'Расчетные формулы',
     formulaVariables: 'P — усилие гибки в тоннах, T — толщина листа в мм, L — длина гиба в мм, M — коэффициент материала, V — раскрытие V-матрицы в мм.',
-    minimumVExplanation: 'Минимальное раскрытие V-матрицы равно большему из двух значений: требованию по усилию или шестикратной толщине листа.',
+    minimumVExplanation: 'Итоговое минимальное раскрытие V-матрицы равно большему из требования по усилию и применимого правила по толщине ниже.',
+    theoreticalVRuleTitle: 'Теоретический инженерный минимум раскрытия V-матрицы',
+    theoreticalVRuleItems: ['T < 8 мм: V ≥ 6T', '8 мм ≤ T < 25 мм: V ≥ 8T', 'T ≥ 25 мм: V ≥ 10T'],
+    continuousVRuleTitle: 'Рекомендуемое раскрытие V-матрицы для непрерывного производства',
+    continuousVRuleItems: ['T < 8 мм: V ≥ 8T', '8 мм ≤ T < 25 мм: V ≥ 10T', 'T ≥ 25 мм: V ≥ 12T'],
+    vRuleScopeNote: 'Эти соотношения предназначены прежде всего для общей инженерной проверки воздушной гибки низкоуглеродистой стали. Для высокопрочной, износостойкой и специальной стали, других особых материалов и толстого листа нельзя полагаться только на эти соотношения. Обязательно подтвердите требования изготовителей пресса и оснастки, а также поставщика материала.',
+    maximumThicknessNoteTitle: 'Инженерное пояснение по возможностям',
+    maximumThicknessNote: 'Максимальная толщина одновременно ограничивается усилием пресса и допустимым диапазоном текущего раскрытия V-матрицы. Итоговый результат равен меньшему из этих двух ограничений.',
+    currentVOpeningLabel: 'Текущее раскрытие V-матрицы',
+    theoreticalMinimumVLabel: 'Теоретическое минимальное раскрытие V-матрицы',
+    continuousMinimumVLabel: 'Рекомендуемое минимальное раскрытие для непрерывного производства',
+    belowTheoreticalTitle: 'Раскрытие V-матрицы ниже теоретического минимума',
+    belowTheoreticalText: 'Текущее раскрытие V-матрицы меньше теоретического минимума для этой толщины. Ни рекомендуемая непрерывная, ни теоретическая максимальная длина гиба не являются исполнимым результатом.',
+    belowTheoreticalAction: 'Используйте раскрытие, равное или больше теоретического минимума, и выполните расчет повторно.',
+    theoreticalOnlyTitle: 'Раскрытие допускает только теоретический расчет',
+    theoreticalOnlyText: 'Текущее раскрытие соответствует теоретическому минимуму, но меньше рекомендации для непрерывного производства. Отображается только теоретическая максимальная длина; рекомендуемая непрерывная длина недоступна.',
+    theoreticalOnlyAction: 'Для результата непрерывного производства используйте раскрытие не меньше рекомендуемого непрерывного минимума.',
+    continuousCompatibleTitle: 'Проверка пригодности оснастки и детали',
+    continuousCompatibleText: 'Текущее раскрытие достигло рекомендуемого минимума для непрерывного производства. Все равно проверьте фактическое раскрытие нижней матрицы, допустимую нагрузку оснастки, требуемый внутренний радиус, минимальную полку, геометрию детали и требования к материалу. Расчет не означает автоматическую пригодность оснастки и детали.',
     toolingCompatibilityTitle: 'Проверка совместимости оснастки и детали',
     toolingCompatibilityRequirementBefore: 'Минимальное раскрытие V-матрицы для непрерывной работы составляет',
     toolingCompatibilityRequirementAfter: '. Убедитесь, что имеющаяся нижняя матрица имеет раскрытие, равное или больше этого значения.',
-    toolingCompatibilityDetails: 'Перед выбором фактической матрицы убедитесь, что получаемый внутренний радиус, минимальная длина полки и допустимая нагрузка оснастки соответствуют требованиям детали и пресса. При необходимости проконсультируйтесь с изготовителем пресса или оснастки.',
+    toolingCompatibilityDetails: 'Перед выбором фактической матрицы проверьте требуемый внутренний радиус, минимальную длину полки, геометрию детали, допустимую нагрузку оснастки, требования к материалу и применимые требования изготовителей. При необходимости проконсультируйтесь с изготовителем пресса или оснастки.',
     safetyTitle: 'Инженерные ограничения и безопасность',
     safetyItems: [
       'Калькулятор оценивает возможности только для воздушной гибки.',
@@ -220,8 +281,8 @@ const capacityContent = {
       'Проверьте ход, открытие, глубину зева, внутренний радиус и минимальную полку.',
       'Результаты являются инженерным ориентиром, а не гарантией производства.',
       'Большее раскрытие V-матрицы снижает усилие, но увеличивает естественный внутренний радиус и минимальную полку.',
-      'В этом калькуляторе раскрытие V-матрицы не может быть меньше шестикратной толщины листа.',
-      'Правило 6× является консервативным минимумом; нагрузка оснастки, прочность материала, радиус или полка могут потребовать большего раскрытия.',
+      'Калькулятор проверяет совместимость раскрытия V-матрицы по теоретическим диапазонам 6T / 8T / 10T и диапазонам 8T / 10T / 12T для непрерывного производства.',
+      'Эти соотношения служат общей инженерной рекомендацией для воздушной гибки низкоуглеродистой стали и не должны быть единственным основанием для высокопрочной, износостойкой или специальной стали и толстого листа.',
     ],
     faqTitle: 'Вопросы о калькуляторе возможностей пресса',
     faq: [
@@ -229,7 +290,7 @@ const capacityContent = {
       ['Как рассчитывается максимальная толщина листа?', 'Формула усилия воздушной гибки преобразуется для определения толщины с учетом усилия пресса, длины гиба, материала и раскрытия V-матрицы.'],
       ['Почему теоретические и непрерывные возможности различаются?', 'Теоретический результат использует 100% номинального усилия, а для непрерывной работы применяется коэффициент 85%, 90% или 92%.'],
       ['Может ли расчетная длина гиба превышать рабочую длину пресса?', 'Да. Формула учитывает только усилие; фактическая длина ограничивается рабочей длиной пресса и оснастки.'],
-      ['Почему раскрытие V-матрицы не может быть меньше 6 толщин листа?', 'Шестикратная толщина принята как консервативный минимум; нагрузка оснастки, материал, радиус или полка могут требовать большего раскрытия.'],
+      ['Как калькулятор проверяет совместимость раскрытия V-матрицы с толщиной листа?', 'Теоретические результаты используют диапазоны 6T / 8T / 10T, а результаты для непрерывного производства — 8T / 10T / 12T. Режим максимальной толщины одновременно проверяет усилие и пригодность раскрытия; режим максимальной длины скрывает неисполнимые результаты при недостаточном раскрытии; режим минимального раскрытия выбирает большее из требования по усилию и применимого правила по толщине. Для высокопрочной, износостойкой и специальной стали и толстого листа по-прежнему требуется подтверждение изготовителей пресса и оснастки и поставщика материала.'],
       ['Гарантирует ли калькулятор безопасность производства?', 'Нет. Это инженерный ориентир. Необходимо проверить диаграмму нагрузок, сосредоточенную нагрузку, оснастку и реальную установку.'],
     ],
     relatedTools: 'Связанные инженерные инструменты',
@@ -271,11 +332,29 @@ const capacityContent = {
     recommendedContinuousTonnage: 'Tonelaje recomendado para producción continua',
     formulaReference: 'Referencia de fórmulas',
     formulaVariables: 'P es la fuerza de plegado en toneladas, T es el espesor en mm, L es la longitud de plegado en mm, M es el factor del material y V es la abertura de matriz V en mm.',
-    minimumVExplanation: 'La abertura mínima de matriz V es el mayor valor entre el requisito por tonelaje y 6 veces el espesor de la chapa.',
+    minimumVExplanation: 'La abertura V mínima final es el mayor valor entre el requisito por tonelaje y la regla aplicable por espesor indicada a continuación.',
+    theoreticalVRuleTitle: 'Abertura V mínima teórica de ingeniería',
+    theoreticalVRuleItems: ['T < 8 mm: V ≥ 6T', '8 mm ≤ T < 25 mm: V ≥ 8T', 'T ≥ 25 mm: V ≥ 10T'],
+    continuousVRuleTitle: 'Abertura V recomendada para producción continua',
+    continuousVRuleItems: ['T < 8 mm: V ≥ 8T', '8 mm ≤ T < 25 mm: V ≥ 10T', 'T ≥ 25 mm: V ≥ 12T'],
+    vRuleScopeNote: 'Estas relaciones se destinan principalmente a comprobaciones generales de ingeniería para plegado al aire de acero dulce. El acero de alta resistencia, el acero antidesgaste, los materiales especiales y la chapa gruesa no deben evaluarse solo con estas relaciones. Confirme siempre los requisitos del fabricante de la máquina, del fabricante del utillaje y del proveedor del material.',
+    maximumThicknessNoteTitle: 'Nota de capacidad de ingeniería',
+    maximumThicknessNote: 'El espesor máximo está limitado tanto por la capacidad de tonelaje de la máquina como por el intervalo admisible de la abertura V actual. El resultado final utiliza el menor de ambos límites.',
+    currentVOpeningLabel: 'Abertura V actual',
+    theoreticalMinimumVLabel: 'Abertura V mínima teórica',
+    continuousMinimumVLabel: 'Abertura V mínima recomendada para producción continua',
+    belowTheoreticalTitle: 'La abertura V está por debajo del mínimo teórico',
+    belowTheoreticalText: 'La abertura V actual es menor que el mínimo teórico para este espesor. Ni la longitud máxima recomendada para producción continua ni la longitud máxima teórica son resultados ejecutables.',
+    belowTheoreticalAction: 'Use una abertura V igual o superior al mínimo teórico y vuelva a calcular.',
+    theoreticalOnlyTitle: 'La abertura V solo admite el cálculo teórico',
+    theoreticalOnlyText: 'La abertura V actual cumple el mínimo teórico, pero es inferior a la recomendación para producción continua. Solo se muestra la longitud máxima teórica; la longitud máxima continua recomendada no está disponible.',
+    theoreticalOnlyAction: 'Para obtener un resultado de producción continua, use una abertura V igual o superior al mínimo continuo recomendado.',
+    continuousCompatibleTitle: 'Confirmación de idoneidad del utillaje y la pieza',
+    continuousCompatibleText: 'La abertura V actual alcanza el mínimo recomendado para producción continua. Aun así, confirme la abertura real de la matriz inferior, la capacidad de carga del utillaje, el radio interior objetivo, la pestaña mínima, la geometría de la pieza y los requisitos del material. El cálculo no implica que el utillaje y la pieza sean automáticamente adecuados.',
     toolingCompatibilityTitle: 'Comprobación de compatibilidad del utillaje y la pieza',
     toolingCompatibilityRequirementBefore: 'La abertura mínima de matriz V necesaria para la producción continua es',
     toolingCompatibilityRequirementAfter: '. Confirme que la matriz inferior disponible tenga una abertura igual o superior a este valor.',
-    toolingCompatibilityDetails: 'Antes de seleccionar la matriz definitiva, verifique que el radio interior resultante, la longitud mínima de pestaña y la capacidad de carga del utillaje cumplan los requisitos de la pieza y de la plegadora. Consulte al fabricante de la máquina o del utillaje cuando sea necesario.',
+    toolingCompatibilityDetails: 'Antes de seleccionar la matriz definitiva, compruebe el radio interior objetivo, la pestaña mínima, la geometría de la pieza, la capacidad de carga del utillaje, los requisitos del material y los requisitos aplicables de los fabricantes. Consulte al fabricante de la máquina o del utillaje cuando sea necesario.',
     safetyTitle: 'Límites de ingeniería y recordatorios de seguridad',
     safetyItems: [
       'Esta calculadora solo estima la capacidad para plegado al aire.',
@@ -285,8 +364,8 @@ const capacityContent = {
       'Verifique carrera, apertura, profundidad de cuello, radio interior y pestaña mínima.',
       'Los resultados son referencias de ingeniería, no garantías de producción.',
       'Una abertura V mayor reduce el tonelaje requerido, pero aumenta el radio interior natural y la pestaña mínima.',
-      'Esta calculadora nunca permite una abertura de matriz V menor que 6 veces el espesor.',
-      'La regla de 6× es un mínimo conservador; la carga del utillaje, la resistencia, el radio o la pestaña pueden exigir una abertura mayor.',
+      'La calculadora comprueba la compatibilidad de la abertura V con las reglas teóricas 6T / 8T / 10T y las reglas 8T / 10T / 12T para producción continua.',
+      'Estas relaciones son una guía general de ingeniería para plegado al aire de acero dulce y no deben ser el único criterio para acero de alta resistencia, acero antidesgaste, materiales especiales o chapa gruesa.',
     ],
     faqTitle: 'Preguntas sobre la calculadora de capacidad',
     faq: [
@@ -294,7 +373,7 @@ const capacityContent = {
       ['¿Cómo se calcula el espesor máximo?', 'Se despeja el espesor en la fórmula de fuerza de plegado al aire usando tonelaje, longitud, factor del material y abertura de matriz V.'],
       ['¿Por qué difieren la capacidad teórica y la continua?', 'La teórica usa el 100% del tonelaje nominal; la recomendación continua aplica automáticamente una relación del 85%, 90% o 92%.'],
       ['¿Puede la longitud calculada superar la longitud de trabajo?', 'Sí. La fórmula solo calcula capacidad por tonelaje; la longitud útil real depende de la máquina y del utillaje.'],
-      ['¿Por qué la abertura V no puede ser menor que 6 veces el espesor?', 'Se utiliza como mínimo conservador; la carga del utillaje, el material, el radio o la pestaña pueden requerir una abertura mayor.'],
+      ['¿Cómo comprueba la calculadora la compatibilidad entre la abertura V y el espesor?', 'Los resultados teóricos usan los intervalos 6T / 8T / 10T y los de producción continua usan 8T / 10T / 12T. El modo de espesor máximo comprueba tanto el tonelaje como la idoneidad de la abertura; el modo de longitud máxima oculta resultados no ejecutables cuando la abertura es insuficiente; y el modo de abertura mínima utiliza el mayor valor entre el requisito por tonelaje y la regla aplicable por espesor. El acero de alta resistencia, el acero antidesgaste, los materiales especiales y la chapa gruesa siguen requiriendo confirmación de los fabricantes de la máquina y del utillaje y del proveedor del material.'],
       ['¿Garantiza esta calculadora una producción segura?', 'No. Es una referencia de ingeniería. Confirme curvas de carga, cargas concentradas, límites del utillaje y la configuración real.'],
     ],
     relatedTools: 'Herramientas de ingeniería relacionadas',
@@ -336,11 +415,29 @@ const capacityContent = {
     recommendedContinuousTonnage: 'Önerilen sürekli üretim tonajı',
     formulaReference: 'Formül referansı',
     formulaVariables: 'P ton cinsinden büküm kuvveti, T mm cinsinden sac kalınlığı, L mm cinsinden büküm uzunluğu, M malzeme katsayısı ve V mm cinsinden V kalıp açıklığıdır.',
-    minimumVExplanation: 'Minimum V kalıp açıklığı, tonaj gereksinimi ile sac kalınlığının 6 katından büyük olanıdır.',
+    minimumVExplanation: 'Nihai minimum V açıklığı, tonaj gereksinimi ile aşağıdaki kalınlığa bağlı kuralın büyük olanıdır.',
+    theoreticalVRuleTitle: 'Teorik mühendislik minimum V açıklığı',
+    theoreticalVRuleItems: ['T < 8 mm: V ≥ 6T', '8 mm ≤ T < 25 mm: V ≥ 8T', 'T ≥ 25 mm: V ≥ 10T'],
+    continuousVRuleTitle: 'Sürekli üretim için önerilen V açıklığı',
+    continuousVRuleItems: ['T < 8 mm: V ≥ 8T', '8 mm ≤ T < 25 mm: V ≥ 10T', 'T ≥ 25 mm: V ≥ 12T'],
+    vRuleScopeNote: 'Bu oranlar öncelikle yumuşak çeliğin havada bükümü için genel mühendislik kontrollerinde kullanılır. Yüksek dayanımlı çelik, aşınmaya dayanıklı çelik, özel malzemeler ve kalın levha yalnızca bu oranlarla değerlendirilmemelidir. Makine üreticisinin, takım üreticisinin ve malzeme tedarikçisinin gereksinimlerini mutlaka doğrulayın.',
+    maximumThicknessNoteTitle: 'Mühendislik kapasite notu',
+    maximumThicknessNote: 'Maksimum kalınlık hem makine tonaj kapasitesi hem de mevcut V kalıp açıklığının uygun aralığı ile sınırlıdır. Nihai sonuç bu iki sınırdan küçük olanını kullanır.',
+    currentVOpeningLabel: 'Mevcut V açıklığı',
+    theoreticalMinimumVLabel: 'Teorik minimum V açıklığı',
+    continuousMinimumVLabel: 'Sürekli üretim için önerilen minimum V açıklığı',
+    belowTheoreticalTitle: 'V açıklığı teorik minimumun altında',
+    belowTheoreticalText: 'Mevcut V açıklığı bu sac kalınlığı için teorik minimumdan küçüktür. Önerilen sürekli ve teorik maksimum büküm uzunluklarının ikisi de uygulanabilir sonuç değildir.',
+    belowTheoreticalAction: 'Teorik minimuma eşit veya daha büyük bir V açıklığı kullanın ve yeniden hesaplayın.',
+    theoreticalOnlyTitle: 'V açıklığı yalnızca teorik hesabı destekliyor',
+    theoreticalOnlyText: 'Mevcut V açıklığı teorik minimumu karşılar, ancak sürekli üretim önerisinin altındadır. Yalnızca teorik maksimum büküm uzunluğu gösterilir; önerilen sürekli maksimum uzunluk kullanılamaz.',
+    theoreticalOnlyAction: 'Sürekli üretim sonucu için önerilen sürekli minimuma eşit veya daha büyük bir V açıklığı kullanın.',
+    continuousCompatibleTitle: 'Takım ve parça uygunluğu onayı',
+    continuousCompatibleText: 'Mevcut V açıklığı sürekli üretim için önerilen minimuma ulaşmıştır. Yine de gerçek alt kalıp açıklığını, takım yük kapasitesini, hedef iç yarıçapı, minimum flanş uzunluğunu, parça geometrisini ve malzeme gereksinimlerini doğrulayın. Hesaplanan uzunluklar takımın ve parçanın otomatik olarak uygun olduğu anlamına gelmez.',
     toolingCompatibilityTitle: 'Takım ve parça uyumluluk kontrolü',
     toolingCompatibilityRequirementBefore: 'Sürekli üretim için gereken minimum V kalıp açıklığı',
     toolingCompatibilityRequirementAfter: ' değeridir. Mevcut alt kalıbın bu değere eşit veya daha büyük bir açıklığa sahip olduğunu doğrulayın.',
-    toolingCompatibilityDetails: 'Gerçek kalıbı seçmeden önce oluşacak iç yarıçapın, minimum flanş uzunluğunun ve takım yük kapasitesinin parça ve makine gereksinimlerini karşıladığını doğrulayın. Gerektiğinde makine veya takım üreticisine danışın.',
+    toolingCompatibilityDetails: 'Gerçek kalıbı seçmeden önce hedef iç yarıçapı, minimum flanş uzunluğunu, parça geometrisini, takım yük kapasitesini, malzeme gereksinimlerini ve geçerli üretici şartlarını kontrol edin. Gerektiğinde makine veya takım üreticisine danışın.',
     safetyTitle: 'Mühendislik sınırları ve güvenlik hatırlatmaları',
     safetyItems: [
       'Bu hesaplayıcı yalnızca havada büküm kapasitesini tahmin eder.',
@@ -350,8 +447,8 @@ const capacityContent = {
       'Strok, açıklık, boğaz derinliği, iç yarıçap ve minimum flanş gereksinimlerini doğrulayın.',
       'Sonuçlar mühendislik referansıdır, üretim garantisi değildir.',
       'Daha büyük V açıklıkları tonajı azaltır, ancak doğal iç yarıçapı ve minimum flanşı artırır.',
-      'Bu hesaplayıcıda V kalıp açıklığı sac kalınlığının 6 katından küçük olamaz.',
-      '6× kalınlık kuralı ihtiyatlı bir minimumdur; takım yükü, malzeme dayanımı, yarıçap veya flanş daha büyük açıklık gerektirebilir.',
+      'Hesaplayıcı V açıklığı uyumluluğunu teorik 6T / 8T / 10T ve sürekli üretim 8T / 10T / 12T kalınlık kurallarıyla kontrol eder.',
+      'Bu oranlar yumuşak çeliğin havada bükümü için genel mühendislik rehberidir ve yüksek dayanımlı çelik, aşınmaya dayanıklı çelik, özel malzemeler veya kalın levha için tek dayanak olmamalıdır.',
     ],
     faqTitle: 'Abkant pres kapasite hesaplayıcısı SSS',
     faq: [
@@ -359,7 +456,7 @@ const capacityContent = {
       ['Maksimum sac kalınlığı nasıl hesaplanır?', 'Havada büküm kuvveti formülü tonaj, uzunluk, malzeme katsayısı ve V açıklığıyla kalınlık için yeniden düzenlenir.'],
       ['Teorik ve sürekli üretim kapasiteleri neden farklıdır?', 'Teorik sonuç nominal tonajın %100’ünü, sürekli üretim sonucu ise otomatik %85, %90 veya %92 yük oranını kullanır.'],
       ['Hesaplanan büküm uzunluğu makine çalışma uzunluğunu aşabilir mi?', 'Evet. Formül yalnızca tonaj kapasitesini hesaplar; gerçek uzunluk makine ve takım uzunluğuyla sınırlıdır.'],
-      ['V kalıp açıklığı neden kalınlığın 6 katından küçük olamaz?', 'Bu değer ihtiyatlı minimumdur; takım yükü, malzeme, yarıçap veya flanş daha büyük açıklık gerektirebilir.'],
+      ['Hesaplayıcı V kalıp açıklığı ile sac kalınlığı uyumluluğunu nasıl kontrol eder?', 'Teorik sonuçlar 6T / 8T / 10T, sürekli üretim sonuçları ise 8T / 10T / 12T kalınlık aralıklarını kullanır. Maksimum Kalınlık modu hem tonaj kapasitesini hem de V açıklığı uygunluğunu kontrol eder; Maksimum Büküm Uzunluğu modu açıklık yetersizse uygulanamaz sonuçları gizler; Minimum V Açıklığı modu tonaj gereksinimi ile geçerli kalınlık kuralından büyük olanını kullanır. Yüksek dayanımlı çelik, aşınmaya dayanıklı çelik, özel malzemeler ve kalın levha için makine ve takım üreticileri ile malzeme tedarikçisinin onayı yine gereklidir.'],
       ['Bu hesaplayıcı güvenli üretimi garanti eder mi?', 'Hayır. Sonuçlar mühendislik referansıdır. Yük eğrilerini, noktasal yükü, takım kapasitesini ve gerçek kurulumu doğrulayın.'],
     ],
     relatedTools: 'İlgili mühendislik araçları',
@@ -401,11 +498,29 @@ const capacityContent = {
     recommendedContinuousTonnage: 'Tonase produksi kontinu yang disarankan',
     formulaReference: 'Referensi rumus',
     formulaVariables: 'P adalah gaya tekuk dalam ton, T adalah ketebalan pelat dalam mm, L adalah panjang tekuk dalam mm, M adalah faktor material, dan V adalah bukaan V-die dalam mm.',
-    minimumVExplanation: 'Bukaan V-die minimum adalah nilai yang lebih besar antara kebutuhan berdasarkan tonase dan 6 kali ketebalan pelat.',
+    minimumVExplanation: 'Bukaan V minimum akhir adalah nilai yang lebih besar antara kebutuhan berdasarkan tonase dan aturan ketebalan yang berlaku di bawah ini.',
+    theoreticalVRuleTitle: 'Bukaan V minimum teoretis untuk pemeriksaan teknik',
+    theoreticalVRuleItems: ['T < 8 mm: V ≥ 6T', '8 mm ≤ T < 25 mm: V ≥ 8T', 'T ≥ 25 mm: V ≥ 10T'],
+    continuousVRuleTitle: 'Bukaan V yang disarankan untuk produksi kontinu',
+    continuousVRuleItems: ['T < 8 mm: V ≥ 8T', '8 mm ≤ T < 25 mm: V ≥ 10T', 'T ≥ 25 mm: V ≥ 12T'],
+    vRuleScopeNote: 'Rasio ini terutama digunakan untuk pemeriksaan teknik umum pada air bending baja ringan. Baja berkekuatan tinggi, baja tahan aus, material khusus, dan pelat tebal tidak boleh dinilai hanya berdasarkan rasio ini. Selalu konfirmasikan persyaratan produsen mesin, produsen tooling, dan pemasok material.',
+    maximumThicknessNoteTitle: 'Catatan kapasitas teknik',
+    maximumThicknessNote: 'Ketebalan maksimum dibatasi oleh kapasitas tonase mesin dan rentang yang sesuai untuk bukaan V-die saat ini. Hasil akhir menggunakan nilai yang lebih kecil dari kedua batas tersebut.',
+    currentVOpeningLabel: 'Bukaan V saat ini',
+    theoreticalMinimumVLabel: 'Bukaan V minimum teoretis',
+    continuousMinimumVLabel: 'Bukaan V minimum yang disarankan untuk produksi kontinu',
+    belowTheoreticalTitle: 'Bukaan V di bawah minimum teoretis',
+    belowTheoreticalText: 'Bukaan V saat ini lebih kecil daripada minimum teoretis untuk ketebalan pelat ini. Panjang tekuk maksimum produksi kontinu yang disarankan dan panjang maksimum teoretis keduanya bukan hasil yang dapat dijalankan.',
+    belowTheoreticalAction: 'Gunakan bukaan V yang sama dengan atau lebih besar daripada minimum teoretis, lalu hitung ulang.',
+    theoreticalOnlyTitle: 'Bukaan V hanya mendukung perhitungan teoretis',
+    theoreticalOnlyText: 'Bukaan V saat ini memenuhi minimum teoretis, tetapi berada di bawah rekomendasi produksi kontinu. Hanya panjang tekuk maksimum teoretis yang ditampilkan; panjang maksimum kontinu yang disarankan tidak tersedia.',
+    theoreticalOnlyAction: 'Untuk memperoleh hasil produksi kontinu, gunakan bukaan V yang sama dengan atau lebih besar daripada minimum kontinu yang disarankan.',
+    continuousCompatibleTitle: 'Konfirmasi kesesuaian tooling dan benda kerja',
+    continuousCompatibleText: 'Bukaan V saat ini telah mencapai minimum yang disarankan untuk produksi kontinu. Tetap konfirmasikan bukaan lower die aktual, kapasitas beban tooling, radius dalam target, panjang flange minimum, geometri benda kerja, dan persyaratan material. Hasil perhitungan tidak berarti tooling dan benda kerja otomatis sesuai.',
     toolingCompatibilityTitle: 'Pemeriksaan kompatibilitas tooling dan benda kerja',
     toolingCompatibilityRequirementBefore: 'Bukaan V-die minimum yang diperlukan untuk produksi kontinu adalah',
     toolingCompatibilityRequirementAfter: '. Pastikan lower die yang tersedia memiliki bukaan yang sama dengan atau lebih besar dari nilai ini.',
-    toolingCompatibilityDetails: 'Sebelum memilih die yang akan digunakan, pastikan radius dalam yang dihasilkan, panjang flange minimum, dan rating beban tooling memenuhi kebutuhan benda kerja dan mesin. Konsultasikan dengan produsen mesin atau tooling bila diperlukan.',
+    toolingCompatibilityDetails: 'Sebelum memilih die aktual, periksa radius dalam target, panjang flange minimum, geometri benda kerja, kapasitas beban tooling, persyaratan material, dan persyaratan produsen yang berlaku. Konfirmasikan kepada produsen mesin atau tooling bila diperlukan.',
     safetyTitle: 'Batas teknik dan pengingat keselamatan',
     safetyItems: [
       'Kalkulator ini hanya memperkirakan kapasitas air bending.',
@@ -415,8 +530,8 @@ const capacityContent = {
       'Verifikasi stroke, daylight, throat depth, radius dalam, dan kebutuhan flange minimum.',
       'Hasil adalah referensi teknik, bukan jaminan produksi.',
       'Bukaan V yang lebih besar mengurangi tonase, tetapi meningkatkan radius dalam alami dan kebutuhan flange minimum.',
-      'Bukaan V-die tidak boleh lebih kecil dari 6 kali ketebalan pelat dalam kalkulator ini.',
-      'Aturan ketebalan 6× adalah batas minimum konservatif; beban tooling, kekuatan material, radius, atau flange dapat memerlukan bukaan lebih besar.',
+      'Kalkulator memeriksa kompatibilitas bukaan V dengan aturan ketebalan teoretis 6T / 8T / 10T dan produksi kontinu 8T / 10T / 12T.',
+      'Rasio ini merupakan panduan teknik umum untuk air bending baja ringan dan tidak boleh menjadi satu-satunya dasar untuk baja berkekuatan tinggi, baja tahan aus, material khusus, atau pelat tebal.',
     ],
     faqTitle: 'FAQ kalkulator kapasitas press brake',
     faq: [
@@ -424,7 +539,7 @@ const capacityContent = {
       ['Bagaimana ketebalan pelat maksimum dihitung?', 'Rumus gaya air bending disusun ulang untuk ketebalan dengan tonase, panjang tekuk, faktor material, dan bukaan V-die.'],
       ['Mengapa kapasitas teoretis dan kontinu berbeda?', 'Hasil teoretis memakai 100% tonase terukur, sedangkan hasil kontinu menerapkan rasio beban otomatis 85%, 90%, atau 92%.'],
       ['Dapatkah panjang tekuk hasil perhitungan melebihi panjang kerja mesin?', 'Ya. Rumus hanya menghitung kapasitas tonase; panjang aktual tetap dibatasi mesin dan tooling.'],
-      ['Mengapa bukaan V-die tidak boleh kurang dari 6 kali ketebalan?', 'Nilai itu adalah minimum konservatif; beban tooling, material, radius, atau flange mungkin memerlukan bukaan lebih besar.'],
+      ['Bagaimana kalkulator memeriksa kompatibilitas bukaan V-die dengan ketebalan pelat?', 'Hasil teoretis memakai rentang 6T / 8T / 10T, sedangkan hasil produksi kontinu memakai 8T / 10T / 12T. Mode Ketebalan Maksimum memeriksa kapasitas tonase dan kesesuaian bukaan V; mode Panjang Tekuk Maksimum menyembunyikan hasil yang tidak dapat dijalankan saat bukaan tidak mencukupi; dan mode Bukaan V Minimum memakai nilai yang lebih besar antara kebutuhan tonase dan aturan ketebalan yang berlaku. Baja berkekuatan tinggi, baja tahan aus, material khusus, dan pelat tebal tetap memerlukan konfirmasi dari produsen mesin dan tooling serta pemasok material.'],
       ['Apakah kalkulator menjamin produksi yang aman?', 'Tidak. Hasil adalah referensi teknik. Konfirmasikan kurva beban, beban terpusat, rating tooling, dan setup aktual.'],
     ],
     relatedTools: 'Alat teknik terkait',
@@ -444,6 +559,41 @@ const getLoadRatio = (ratedTonnage) => {
   if (ratedTonnage < 63) return 0.85
   if (ratedTonnage < 300) return 0.9
   return 0.92
+}
+
+const getTheoreticalMinimumVOpening = (thickness) => {
+  if (thickness < 8) return thickness * 6
+  if (thickness < 25) return thickness * 8
+  return thickness * 10
+}
+
+const getContinuousMinimumVOpening = (thickness) => {
+  if (thickness < 8) return thickness * 8
+  if (thickness < 25) return thickness * 10
+  return thickness * 12
+}
+
+const getTheoreticalMaximumThicknessByVOpening = (opening) => {
+  if (opening < 48) return opening / 6
+  if (opening < 64) return 8
+  if (opening < 200) return opening / 8
+  if (opening < 250) return 25
+  return opening / 10
+}
+
+const getContinuousMaximumThicknessByVOpening = (opening) => {
+  if (opening < 64) return opening / 8
+  if (opening < 80) return 8
+  if (opening < 250) return opening / 10
+  if (opening < 300) return 25
+  return opening / 12
+}
+
+const getLimitSource = (tonnageLimit, vOpeningLimit) => {
+  const tolerance = 1e-9 * Math.max(1, tonnageLimit, vOpeningLimit)
+
+  if (Math.abs(tonnageLimit - vOpeningLimit) <= tolerance) return 'both'
+  return tonnageLimit < vOpeningLimit ? 'tonnage' : 'vOpening'
 }
 
 const isPositiveFinite = (value) =>
@@ -527,19 +677,43 @@ export default function PressBrakeCapacityCalculator({
         return null
       }
 
-      const theoreticalRaw = Math.sqrt(
+      const theoreticalThicknessByTonnage = Math.sqrt(
         (rated * opening * 20) /
           (calibrationFactor * length * materialFactor)
       )
-      const continuousRaw = Math.sqrt(
+      const continuousThicknessByTonnage = Math.sqrt(
         (continuousTonnage * opening * 20) /
           (calibrationFactor * length * materialFactor)
+      )
+      const theoreticalThicknessByVOpening =
+        getTheoreticalMaximumThicknessByVOpening(opening)
+      const continuousThicknessByVOpening =
+        getContinuousMaximumThicknessByVOpening(opening)
+      const theoreticalValue = Math.min(
+        theoreticalThicknessByTonnage,
+        theoreticalThicknessByVOpening
+      )
+      const continuousValue = Math.min(
+        continuousThicknessByTonnage,
+        continuousThicknessByVOpening
       )
 
       return {
         ...base,
-        theoretical: floorToTwoDecimals(theoreticalRaw),
-        continuous: floorToTwoDecimals(continuousRaw),
+        theoretical: floorToTwoDecimals(theoreticalValue),
+        continuous: floorToTwoDecimals(continuousValue),
+        theoreticalThicknessByTonnage,
+        continuousThicknessByTonnage,
+        theoreticalThicknessByVOpening,
+        continuousThicknessByVOpening,
+        theoreticalLimitSource: getLimitSource(
+          theoreticalThicknessByTonnage,
+          theoreticalThicknessByVOpening
+        ),
+        continuousLimitSource: getLimitSource(
+          continuousThicknessByTonnage,
+          continuousThicknessByVOpening
+        ),
       }
     }
 
@@ -553,15 +727,46 @@ export default function PressBrakeCapacityCalculator({
         thickness *
         thickness *
         materialFactor
+      const theoreticalMinimumV =
+        getTheoreticalMinimumVOpening(thickness)
+      const continuousMinimumV =
+        getContinuousMinimumVOpening(thickness)
+
+      if (opening < theoreticalMinimumV) {
+        return {
+          ...base,
+          theoretical: null,
+          continuous: null,
+          compatibilityStatus: 'belowTheoretical',
+          theoreticalMinimumV,
+          continuousMinimumV,
+        }
+      }
+
+      const theoreticalValue = Math.floor(
+        (rated * opening * 20) / denominator
+      )
+
+      if (opening < continuousMinimumV) {
+        return {
+          ...base,
+          theoretical: theoreticalValue,
+          continuous: null,
+          compatibilityStatus: 'theoreticalOnly',
+          theoreticalMinimumV,
+          continuousMinimumV,
+        }
+      }
 
       return {
         ...base,
-        theoretical: Math.floor(
-          (rated * opening * 20) / denominator
-        ),
+        theoretical: theoreticalValue,
         continuous: Math.floor(
           (continuousTonnage * opening * 20) / denominator
         ),
+        compatibilityStatus: 'continuousCompatible',
+        theoreticalMinimumV,
+        continuousMinimumV,
       }
     }
 
@@ -569,26 +774,35 @@ export default function PressBrakeCapacityCalculator({
       return null
     }
 
-    const thicknessMinimum = thickness * 6
     const numerator =
       calibrationFactor *
       thickness *
       thickness *
       length *
       materialFactor
-    const theoreticalRaw = Math.max(
-      numerator / (rated * 20),
-      thicknessMinimum
+    const theoreticalVByTonnage = numerator / (rated * 20)
+    const continuousVByTonnage = numerator / (continuousTonnage * 20)
+    const theoreticalMinimumVByThickness =
+      getTheoreticalMinimumVOpening(thickness)
+    const continuousMinimumVByThickness =
+      getContinuousMinimumVOpening(thickness)
+    const theoreticalValue = Math.max(
+      theoreticalVByTonnage,
+      theoreticalMinimumVByThickness
     )
-    const continuousRaw = Math.max(
-      numerator / (continuousTonnage * 20),
-      thicknessMinimum
+    const continuousValue = Math.max(
+      continuousVByTonnage,
+      continuousMinimumVByThickness
     )
 
     return {
       ...base,
-      theoretical: safeCeilMillimeters(theoreticalRaw),
-      continuous: safeCeilMillimeters(continuousRaw),
+      theoretical: safeCeilMillimeters(theoreticalValue),
+      continuous: safeCeilMillimeters(continuousValue),
+      theoreticalVByTonnage,
+      continuousVByTonnage,
+      theoreticalMinimumVByThickness,
+      continuousMinimumVByThickness,
     }
   }, [
     bendLength,
@@ -895,6 +1109,52 @@ export default function PressBrakeCapacityCalculator({
             border-radius: 16px;
             background: rgba(30, 41, 59, 0.58);
             overflow-wrap: anywhere;
+          }
+
+          .zyco-capacity-tooling-check--info {
+            border-color: rgba(56, 189, 248, 0.48);
+            background: rgba(7, 89, 133, 0.3);
+          }
+
+          .zyco-capacity-tooling-check--warning {
+            border-color: rgba(250, 204, 21, 0.52);
+            background: rgba(113, 63, 18, 0.34);
+          }
+
+          .zyco-capacity-tooling-check--error {
+            border-color: rgba(248, 113, 113, 0.58);
+            background: rgba(127, 29, 29, 0.34);
+          }
+
+          .zyco-capacity-tooling-check--error .zyco-capacity-tooling-check__title {
+            color: #fecaca;
+          }
+
+          .zyco-capacity-tooling-check__values {
+            display: grid;
+            gap: 7px;
+            margin: 12px 0 0;
+          }
+
+          .zyco-capacity-tooling-check__value {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 8px 16px;
+            align-items: start;
+            margin: 0;
+            color: #dbeafe;
+          }
+
+          .zyco-capacity-tooling-check__value dt,
+          .zyco-capacity-tooling-check__value dd {
+            margin: 0;
+          }
+
+          .zyco-capacity-tooling-check__value dd {
+            color: #ffffff;
+            font-weight: 900;
+            text-align: right;
+            white-space: nowrap;
           }
 
           .zyco-capacity-tooling-check__title {
@@ -1271,6 +1531,109 @@ export default function PressBrakeCapacityCalculator({
                 ))}
               </dl>
 
+              {isThicknessMode && result && (
+                <div
+                  className='zyco-capacity-tooling-check zyco-capacity-tooling-check--info'
+                  role='note'
+                >
+                  <h3 className='zyco-capacity-tooling-check__title'>
+                    {page.maximumThicknessNoteTitle}
+                  </h3>
+                  <p className='zyco-capacity-tooling-check__copy'>
+                    {page.maximumThicknessNote}
+                  </p>
+                </div>
+              )}
+
+              {mode === 'maximumBendLength' &&
+                result?.compatibilityStatus === 'belowTheoretical' && (
+                  <div
+                    className='zyco-capacity-tooling-check zyco-capacity-tooling-check--error'
+                    role='alert'
+                  >
+                    <h3 className='zyco-capacity-tooling-check__title'>
+                      {page.belowTheoreticalTitle}
+                    </h3>
+                    <p className='zyco-capacity-tooling-check__copy'>
+                      {page.belowTheoreticalText}
+                    </p>
+                    <dl className='zyco-capacity-tooling-check__values'>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.currentVOpeningLabel}</dt>
+                        <dd>{Number(vOpening).toFixed(2)} mm</dd>
+                      </div>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.theoreticalMinimumVLabel}</dt>
+                        <dd>{result.theoreticalMinimumV.toFixed(2)} mm</dd>
+                      </div>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.continuousMinimumVLabel}</dt>
+                        <dd>{result.continuousMinimumV.toFixed(2)} mm</dd>
+                      </div>
+                    </dl>
+                    <p className='zyco-capacity-tooling-check__copy'>
+                      {page.belowTheoreticalAction}
+                    </p>
+                  </div>
+                )}
+
+              {mode === 'maximumBendLength' &&
+                result?.compatibilityStatus === 'theoreticalOnly' && (
+                  <div
+                    className='zyco-capacity-tooling-check zyco-capacity-tooling-check--warning'
+                    role='status'
+                  >
+                    <h3 className='zyco-capacity-tooling-check__title'>
+                      {page.theoreticalOnlyTitle}
+                    </h3>
+                    <p className='zyco-capacity-tooling-check__copy'>
+                      {page.theoreticalOnlyText}
+                    </p>
+                    <dl className='zyco-capacity-tooling-check__values'>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.currentVOpeningLabel}</dt>
+                        <dd>{Number(vOpening).toFixed(2)} mm</dd>
+                      </div>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.theoreticalMinimumVLabel}</dt>
+                        <dd>{result.theoreticalMinimumV.toFixed(2)} mm</dd>
+                      </div>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.continuousMinimumVLabel}</dt>
+                        <dd>{result.continuousMinimumV.toFixed(2)} mm</dd>
+                      </div>
+                    </dl>
+                    <p className='zyco-capacity-tooling-check__copy'>
+                      {page.theoreticalOnlyAction}
+                    </p>
+                  </div>
+                )}
+
+              {mode === 'maximumBendLength' &&
+                result?.compatibilityStatus === 'continuousCompatible' && (
+                  <div
+                    className='zyco-capacity-tooling-check zyco-capacity-tooling-check--info'
+                    role='note'
+                  >
+                    <h3 className='zyco-capacity-tooling-check__title'>
+                      {page.continuousCompatibleTitle}
+                    </h3>
+                    <p className='zyco-capacity-tooling-check__copy'>
+                      {page.continuousCompatibleText}
+                    </p>
+                    <dl className='zyco-capacity-tooling-check__values'>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.currentVOpeningLabel}</dt>
+                        <dd>{Number(vOpening).toFixed(2)} mm</dd>
+                      </div>
+                      <div className='zyco-capacity-tooling-check__value'>
+                        <dt>{page.continuousMinimumVLabel}</dt>
+                        <dd>{result.continuousMinimumV.toFixed(2)} mm</dd>
+                      </div>
+                    </dl>
+                  </div>
+                )}
+
               {isVOpeningMode &&
                 result &&
                 isPositiveFinite(result.continuous) && (
@@ -1338,10 +1701,25 @@ export default function PressBrakeCapacityCalculator({
             {isVOpeningMode && (
               <>
                 <p className='zyco-capacity__formula'>
-                  V = max((1.33 × T² × L × M) / (P × 20), T × 6)
+                  V = max(V<sub>tonnage</sub>, V<sub>thickness</sub>)
                 </p>
                 <p className='zyco-capacity__copy'>
                   {page.minimumVExplanation}
+                </p>
+                <h3>{page.theoreticalVRuleTitle}</h3>
+                <ul className='zyco-capacity__list'>
+                  {page.theoreticalVRuleItems.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <h3>{page.continuousVRuleTitle}</h3>
+                <ul className='zyco-capacity__list'>
+                  {page.continuousVRuleItems.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <p className='zyco-capacity__copy'>
+                  {page.vRuleScopeNote}
                 </p>
               </>
             )}
