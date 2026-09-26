@@ -720,6 +720,8 @@ const vDie =
         custom: 'Custom Configuration Recommended',
       },
       engineeringOverviewTitle: 'How to Use the Press Brake Calculator',
+      engineeringOverviewAction: 'Enter your material, sheet thickness, bend length and V-die opening to calculate the required press brake tonnage.',
+      tonnageGuideLink: 'Press brake tonnage formula and worked example',
       engineeringOverviewText:
         'This press brake calculator estimates bending force for air bending based on sheet thickness, bend length, material factor and V-die opening. It is useful for early machine capacity checks, quotation review and tooling setup planning. Real production results can change with material tensile strength, die condition, punch radius, bend angle, grain direction, lubrication and machine deflection, so calculated tonnage should be treated as an engineering estimate rather than a substitute for trial bending.',
       faqTitle: 'Press Brake Calculator FAQ',
@@ -814,6 +816,8 @@ const vDie =
         custom: '\u5efa\u8bae\u5b9a\u5236\u914d\u7f6e',
       },
       engineeringOverviewTitle: '如何使用折弯机计算器',
+      engineeringOverviewAction: '输入材料、板厚、折弯长度和 V 型模开口，计算所需的折弯机吨位。',
+      tonnageGuideLink: '折弯机吨位公式与计算示例',
       engineeringOverviewText:
         '这款折弯机计算器可根据板材厚度、折弯长度、材料系数和 V 型模具开口大小，估算空气折弯所需的折弯力。它适用于早期设备能力判断、报价审核和模具设定规划。实际生产结果会因材料抗拉强度、模具状态、冲头半径、折弯角度、纹理方向、润滑情况和机器挠度等因素而变化，因此计算出的吨位应视为工程估算值，而非试弯结果的替代。',
       faqTitle: '折弯机计算器常见问题',
@@ -921,6 +925,8 @@ const vDie =
         custom: '\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044f \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f',
       },
       engineeringOverviewTitle: 'Как использовать калькулятор листогиба',
+      engineeringOverviewAction: 'Введите материал, толщину листа, длину гиба и раскрытие V-матрицы, чтобы рассчитать требуемое усилие листогибочного пресса.',
+      tonnageGuideLink: 'Формула расчета усилия листогибочного пресса и пример расчета',
       engineeringOverviewText:
         'Этот калькулятор листогиба оценивает усилие воздушной гибки на основе толщины листа, длины гиба, коэффициента материала и раскрытия V-матрицы. Он полезен для предварительной проверки мощности станка, оценки коммерческого предложения и планирования настройки оснастки. Фактический результат в производстве может изменяться из-за прочности материала на растяжение, состояния матрицы, радиуса пуансона, угла гибки, направления прокатки, смазки и прогиба станка, поэтому рассчитанный тоннаж следует рассматривать как инженерную оценку, а не замену пробной гибки.',
       faqTitle: 'Частые вопросы о калькуляторе листогиба',
@@ -1027,6 +1033,8 @@ const vDie =
         custom: 'Configuraci\u00f3n personalizada recomendada',
       },
       engineeringOverviewTitle: 'Cómo usar la calculadora de plegadora',
+      engineeringOverviewAction: 'Introduzca el material, el espesor de chapa, la longitud de plegado y la abertura de matriz V para calcular el tonelaje requerido de la plegadora.',
+      tonnageGuideLink: 'Fórmula de tonelaje de plegadora y ejemplo de cálculo',
       engineeringOverviewText:
         'Esta calculadora de plegadora estima la fuerza de plegado para plegado al aire según el espesor de la chapa, la longitud de plegado, el factor del material y la abertura de la matriz V. Es útil para verificaciones iniciales de capacidad de máquina, revisión de cotizaciones y planificación de ajustes de utillaje. Los resultados reales de producción pueden variar por la resistencia a la tracción del material, el estado de la matriz, el radio del punzón, el ángulo de plegado, la dirección de laminación, la lubricación y la deflexión de la máquina, por lo que el tonelaje calculado debe tratarse como una estimación de ingeniería y no como sustituto de una prueba de plegado.',
       faqTitle: 'Preguntas frecuentes sobre la calculadora de plegadora',
@@ -1134,6 +1142,8 @@ const vDie =
         custom: '\u00d6zel konfig\u00fcrasyon \u00f6nerilir',
       },
       engineeringOverviewTitle: 'Abkant pres hesaplayıcı nasıl kullanılır',
+      engineeringOverviewAction: 'Gerekli abkant pres tonajını hesaplamak için malzemeyi, sac kalınlığını, büküm uzunluğunu ve V kalıp açıklığını girin.',
+      tonnageGuideLink: 'Abkant pres tonaj formülü ve hesaplama örneği',
       engineeringOverviewText:
         'Bu abkant pres hesaplayıcısı, sac kalınlığı, bükme uzunluğu, malzeme katsayısı ve V kalıp açıklığına göre havada bükme için gerekli bükme kuvvetini tahmin eder. Erken makine kapasitesi kontrolü, teklif değerlendirmesi ve takım ayarı planlaması için kullanışlıdır. Gerçek üretim sonuçları malzeme çekme dayanımı, kalıp durumu, zımba radyüsü, bükme açısı, hadde yönü, yağlama ve makine sehimi gibi etkenlere göre değişebilir; bu nedenle hesaplanan tonaj deneme bükümünün yerine geçen kesin değer değil, mühendislik tahmini olarak değerlendirilmelidir.',
       faqTitle: 'Abkant pres hesaplayıcı SSS',
@@ -1240,6 +1250,8 @@ const vDie =
         custom: 'Konfigurasi khusus direkomendasikan',
       },
       engineeringOverviewTitle: 'Cara menggunakan kalkulator press brake',
+      engineeringOverviewAction: 'Masukkan material, ketebalan pelat, panjang tekuk, dan bukaan V-die untuk menghitung tonase press brake yang diperlukan.',
+      tonnageGuideLink: 'Formula tonase press brake dan contoh perhitungan',
       engineeringOverviewText:
         'Kalkulator press brake ini memperkirakan gaya tekuk untuk air bending berdasarkan ketebalan plat, panjang tekukan, faktor material, dan bukaan V-die. Alat ini berguna untuk pemeriksaan awal kapasitas mesin, evaluasi penawaran, dan perencanaan setelan tooling. Hasil produksi aktual dapat berubah karena kekuatan tarik material, kondisi die, radius punch, sudut tekuk, arah serat material, pelumasan, dan defleksi mesin, sehingga tonase hasil perhitungan harus diperlakukan sebagai estimasi teknik, bukan pengganti trial bending.',
       faqTitle: 'FAQ kalkulator press brake',
@@ -1451,6 +1463,24 @@ const animationStyle = `
   100% {
     background-position: -160% 0;
   }
+}
+
+.zyco-press-brake-context-link,
+.zyco-press-brake-context-link:visited {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.zyco-press-brake-context-link:hover,
+.zyco-press-brake-context-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.zyco-press-brake-context-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 .zyco-press-brake-back-to-hub {
@@ -4131,7 +4161,14 @@ linear-gradient(
               fontWeight: 650,
             }}
           >
-            {t.engineeringOverviewText}
+            {t.engineeringOverviewAction} {' '}
+            {t.engineeringOverviewText} {' '}
+            <a
+              className='zyco-press-brake-context-link'
+              href='/engineering-tools/press-brake-tonnage-guide'
+            >
+              {t.tonnageGuideLink} <span aria-hidden='true'>→</span>
+            </a>
           </p>
         </section>
 

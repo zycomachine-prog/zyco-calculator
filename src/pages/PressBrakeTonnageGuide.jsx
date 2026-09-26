@@ -16,7 +16,8 @@ const englishContent = {
   title: 'Press Brake Tonnage Calculator Guide',
   subtitle:
     'A practical guide to using a press brake tonnage calculator for estimating air-bending force and selecting machine capacity for stable production.',
-  introTitle: 'How a Press Brake Tonnage Calculator Works',
+  introTitle: 'Understanding Press Brake Tonnage Calculation',
+  calculatorLink: 'Calculate required press brake tonnage',
   intro:
     'Press brake tonnage is the force required to form a bend over a specified length. It is influenced by the sheet material, thickness, bend length and V-die opening. A calculated value is a selection reference: actual production also depends on tensile variation, tooling condition, punch radius, grain direction, deflection compensation and the intended duty cycle.',
   formulaTitle: 'Press Brake Tonnage Calculation Formula',
@@ -111,7 +112,8 @@ const localizedContent = {
     eyebrow: '工程指南',
     title: '折弯机吨位计算器指南',
     subtitle: '用于估算空气折弯力、理解吨位计算并为稳定生产选择设备能力的实用参考。',
-    introTitle: '折弯机吨位计算器如何工作',
+    introTitle: '理解折弯机吨位计算',
+    calculatorLink: '计算所需的折弯机吨位',
     intro: '折弯机吨位是沿指定折弯长度完成成形所需的总力，其主要受材料、板厚、折弯长度和 V 槽开口影响。计算结果用于设备选型参考；实际生产还应考虑材料抗拉强度波动、模具状态、冲头半径、轧制方向、挠度补偿以及生产负载周期。',
     formulaTitle: '折弯机吨位计算公式',
     formulaLabel: '空气折弯计算基础',
@@ -185,7 +187,8 @@ const localizedContent = {
     title: 'Руководство по калькулятору тоннажа листогибочного пресса',
     subtitle:
       'Практический справочник по расчету усилия воздушной гибки, работе калькулятора тоннажа и выбору мощности станка для стабильного производства.',
-    introTitle: 'Как работает калькулятор тоннажа листогибочного пресса',
+    introTitle: 'Понимание расчета усилия листогибочного пресса',
+    calculatorLink: 'Рассчитать требуемое усилие листогибочного пресса',
     intro:
       'Тоннаж листогибочного пресса - это суммарное усилие, необходимое для формирования гиба заданной длины. На него влияют материал листа, толщина, длина гиба и раскрытие V-матрицы. Расчетное значение служит ориентиром для выбора оборудования; в производстве также учитывают разброс прочности, состояние инструмента, радиус пуансона, направление проката, компенсацию прогиба и режим загрузки.',
     formulaTitle: 'Формула расчета тоннажа листогибочного пресса',
@@ -263,7 +266,8 @@ const localizedContent = {
     title: 'Guía de calculadora de tonelaje para plegadoras',
     subtitle:
       'Referencia práctica para estimar la fuerza de plegado al aire, entender el cálculo de tonelaje y seleccionar capacidad de máquina para producción estable.',
-    introTitle: 'Cómo funciona una calculadora de tonelaje para plegadoras',
+    introTitle: 'Comprender el cálculo del tonelaje de plegado',
+    calculatorLink: 'Calcular el tonelaje requerido de la plegadora',
     intro:
       'El tonelaje de una plegadora es la fuerza total necesaria para formar un pliegue de una longitud determinada. Depende del material, el espesor, la longitud de plegado y la abertura de la matriz V. El valor calculado orienta la selección; en producción también importan la variación de resistencia, el estado del utillaje, el radio del punzón, la dirección de laminación, la compensación de deflexión y el ciclo de trabajo.',
     formulaTitle: 'Fórmula de cálculo de tonelaje para plegadoras',
@@ -341,7 +345,8 @@ const localizedContent = {
     title: 'Abkant Pres Tonaj Hesaplayıcı Kılavuzu',
     subtitle:
       'Havada bükme kuvvetini tahmin etmek, tonaj hesabını anlamak ve kararlı üretim için makine kapasitesi seçmek üzere pratik referans.',
-    introTitle: 'Abkant Pres Tonaj Hesaplayıcı Nasıl Çalışır',
+    introTitle: 'Abkant Pres Tonaj Hesabını Anlamak',
+    calculatorLink: 'Gerekli abkant pres tonajını hesaplayın',
     intro:
       'Abkant pres tonajı, belirli bir büküm uzunluğu boyunca şekillendirme için gereken toplam kuvvettir. Sac malzemesi, kalınlık, büküm uzunluğu ve V kalıp açıklığı bu değeri etkiler. Hesaplanan değer seçim referansıdır; gerçek üretimde çekme dayanımı değişimi, takım durumu, zımba radyüsü, hadde yönü, sehim telafisi ve çalışma çevrimi de dikkate alınmalıdır.',
     formulaTitle: 'Abkant Pres Tonaj Hesaplama Formülü',
@@ -419,7 +424,8 @@ const localizedContent = {
     title: 'Panduan Kalkulator Tonase Press Brake',
     subtitle:
       'Referensi praktis untuk memperkirakan gaya air bending, memahami perhitungan tonase, dan memilih kapasitas mesin bagi produksi yang stabil.',
-    introTitle: 'Cara Kerja Kalkulator Tonase Press Brake',
+    introTitle: 'Memahami Perhitungan Tonase Press Brake',
+    calculatorLink: 'Hitung tonase press brake yang diperlukan',
     intro:
       'Tonase press brake adalah gaya total yang diperlukan untuk membentuk tekukan pada panjang tertentu. Nilainya dipengaruhi material, ketebalan, panjang bending, dan bukaan V-die. Hasil perhitungan merupakan acuan pemilihan; produksi nyata juga perlu mempertimbangkan variasi kekuatan tarik, kondisi tooling, radius punch, arah serat, kompensasi defleksi, dan siklus beban.',
     formulaTitle: 'Formula Perhitungan Tonase Press Brake',
@@ -621,6 +627,24 @@ export default function PressBrakeTonnageGuide({
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
             backdrop-filter: blur(16px);
             box-shadow: 0 28px 68px rgba(2, 8, 23, 0.2);
+          }
+
+          .zyco-tonnage-guide__context-link,
+          .zyco-tonnage-guide__context-link:visited {
+            color: #bfdbfe;
+            font-weight: 700;
+            text-decoration: none;
+          }
+
+          .zyco-tonnage-guide__context-link:hover,
+          .zyco-tonnage-guide__context-link:focus-visible {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+
+          .zyco-tonnage-guide__context-link:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 3px;
           }
 
           .zyco-tonnage-guide__back {
@@ -999,7 +1023,13 @@ export default function PressBrakeTonnageGuide({
             </h2>
 
             <p className='zyco-tonnage-guide__copy'>
-              {page.intro}
+              {page.intro} {' '}
+              <a
+                className='zyco-tonnage-guide__context-link'
+                href='/engineering-tools/press-brake-calculator'
+              >
+                {page.calculatorLink} <span aria-hidden='true'>→</span>
+              </a>
             </p>
           </section>
 
